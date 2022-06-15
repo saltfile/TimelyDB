@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/IndexDBv1_1.dir/main.cpp.o  -o IndexDBv1_1  index/Engine/libEngine.a index/libindex.a -lpthread index/Engine/libEngine.a -lpthread index/Engine/snappy/libsnappy.a index/primitive/libprimitive.a 
