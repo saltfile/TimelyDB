@@ -12,18 +12,13 @@
 
 
 int size_of_buf(u8 *buf){
-    for(int i = 0;i < 1024;i++){
+    for(int i = 0;i < 1002555l;i++){
         if(buf[i] == NULL){
             return i+1;
         }
     }
     return sizeof(buf);
 }
-
-
-
-
-
 
 //将原来的server变为epoll
 
@@ -67,7 +62,7 @@ void handler_eventsserver(int epollfd,struct epoll_event *events,int num,int lis
         else if (events[i].events & EPOLLIN)
             rec_runtable(epollfd,fd,buf);
         else if (events[i].events & EPOLLOUT)
-            send_runables(epollfd,fd,buf);
+            send_runtable(epollfd,buf);
     }
 }
 //epoll链接
@@ -89,20 +84,76 @@ void handler_accpet(int epollfd,int listenfd){
 
 //epoll接收
 void rec_runtable(int epollfd,int fd,char *buf) {
-
-}
-//epoll发送
-void send_runables(int epollfd,int fd,char *buf){
-    int nwrite;
-    nwrite = write(fd,buf,strlen(buf));
-    if (nwrite == -1){
-        perror("write error:");
+    int nread;
+    memset(buf,0,sizeof(buf));
+    nread = read(fd,buf,4096);
+    if (nread == -1){
+        perror("read error:");
         close(fd);
-        delete_event(epollfd,fd,EPOLLOUT);
+        delete_event(epollfd,fd,EPOLLIN);
     }
-    else
+    else if (nread == 0){
+        fprintf(stderr,"client close.\n");
+//        close(fd);
+        delete_event(epollfd,fd,EPOLLIN);
+    }
+    else{
+        char *ptr = (char *)buf;
+        int time = 0;
+            fprintf(stdout, "收到消息");
+
+            time++;
+            cout<<buf<<endl;
+            cout<<"========================"<<endl;
+            int len = size_of_buf((u8 *)buf);
+
+            packge *packge1 = (packge *)malloc(sizeof(packge));
+            packge1->solve_package((u8 *)buf);
+            printf("%d\n",packge1->pack_head);
+            cout<<packge1->result<<endl;
+
+            // TODO:经过了数据库的一些操作得到答案,在这里需要联调
+
+            packge *packge2 = (packge *)malloc(sizeof(packge));
+
+            cout<<endl;
+
+            string res = " i m a massage";
+
+            //判断协议头的目的
+            switch (packge1->pack_head) {
+                case 128 :packge2->create_package("successfluy into database",CONN_SUCCESS);break;
+                case 65 :packge2->create_package("id,name,age;1,xxsadaasdx,13;2,yydssdy,16",MESS_SUCCESS);break;
+                case 0 :packge2->create_package("success is user add",MESS_SUCCESS);break;
+                case 1 :packge2->create_package("err is del user",OPER_FAIL);break;
+                case 2 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 3 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 4 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 5 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 6 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 7 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 8 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 9 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 10 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 11 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 12 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 13 :packge2->create_package("succses",MESS_SUCCESS);break;
+                default:packge2->create_package("error",CONN_FAIL);
+            }
+            cout<<"解析*1"<<endl;
+        send_runtable(fd,(char *)packge2->all);
+            memset(buf,0,4096);
+            usleep(1000);
+            free(packge1);
+            free(packge2);
+        }
+//        printf("read message is : %s",buf);
+//        char *message = str_copy(message,buf);
         modify_event(epollfd,fd,EPOLLIN);
-    memset(buf,0,4096);
+    }
+//epoll发送
+void send_runtable(int new_fd,char *buf){
+    send(new_fd, buf, strlen(buf), 0);
 }
 
 int sckt_bind_fun(int port){
@@ -239,9 +290,6 @@ void read_runtable(int socketfd){
             case 11 :packge2->create_package("succses",MESS_SUCCESS);break;
             case 12 :packge2->create_package("succses",MESS_SUCCESS);break;
             case 13 :packge2->create_package("succses",MESS_SUCCESS);break;
-
-
-
             default:packge2->create_package("error",CONN_FAIL);
         }
 
@@ -255,7 +303,9 @@ void read_runtable(int socketfd){
     }
 }
 
-
+void send_runables(int epollfd,int fd,char *buf){
+    send(epollfd, buf, strlen(buf), 0);
+}
 /**
  * TODO:类似于java的网络写io
  * @param sockfdsocketfd:类似于java的socket cp要发送的消息,len消息长度

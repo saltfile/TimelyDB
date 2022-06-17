@@ -253,6 +253,33 @@ ser_io_start/server.cpp.s:
 	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f Server/CMakeFiles/Server.dir/build.make Server/CMakeFiles/Server.dir/ser_io_start/server.cpp.s
 .PHONY : ser_io_start/server.cpp.s
 
+str/str_fun.o: str/str_fun.cpp.o
+
+.PHONY : str/str_fun.o
+
+# target to build an object file
+str/str_fun.cpp.o:
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f Server/CMakeFiles/Server.dir/build.make Server/CMakeFiles/Server.dir/str/str_fun.cpp.o
+.PHONY : str/str_fun.cpp.o
+
+str/str_fun.i: str/str_fun.cpp.i
+
+.PHONY : str/str_fun.i
+
+# target to preprocess a source file
+str/str_fun.cpp.i:
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f Server/CMakeFiles/Server.dir/build.make Server/CMakeFiles/Server.dir/str/str_fun.cpp.i
+.PHONY : str/str_fun.cpp.i
+
+str/str_fun.s: str/str_fun.cpp.s
+
+.PHONY : str/str_fun.s
+
+# target to generate assembly for a file
+str/str_fun.cpp.s:
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f Server/CMakeFiles/Server.dir/build.make Server/CMakeFiles/Server.dir/str/str_fun.cpp.s
+.PHONY : str/str_fun.cpp.s
+
 test/testlab.o: test/testlab.cpp.o
 
 .PHONY : test/testlab.o
@@ -301,6 +328,9 @@ help:
 	@echo "... ser_io_start/server.o"
 	@echo "... ser_io_start/server.i"
 	@echo "... ser_io_start/server.s"
+	@echo "... str/str_fun.o"
+	@echo "... str/str_fun.i"
+	@echo "... str/str_fun.s"
 	@echo "... test/testlab.o"
 	@echo "... test/testlab.i"
 	@echo "... test/testlab.s"

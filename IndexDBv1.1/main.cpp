@@ -2,12 +2,15 @@
 // Created by zy on 2022/4/2.
 
 #include "index/database_index.h"
+#include "Server/ser_drive.h"
 //#include <cstring>
 //#include "index/test.h"
 //#include <bitset>
 //#include "Engine/database_engine.h"
 int main(){
-    z_index();
+//    ser_start(8686);
+    epollser_start(8787);
+//    z_index();
 ////    InitRootNode();
 ////    VfsNode  * databaseNode = createNode(1,"test",1,NULL,NULL,NULL);
 ////    databaseNode->filepath=(char *)malloc(sizeof("/home/mikasa/indexTSDB"));

@@ -101,6 +101,7 @@ IndexDBv1_1: CMakeFiles/IndexDBv1_1.dir/main.cpp.o
 IndexDBv1_1: CMakeFiles/IndexDBv1_1.dir/build.make
 IndexDBv1_1: index/Engine/libEngine.a
 IndexDBv1_1: index/libindex.a
+IndexDBv1_1: Server/libServer.a
 IndexDBv1_1: index/Engine/libEngine.a
 IndexDBv1_1: index/Engine/snappy/libsnappy.a
 IndexDBv1_1: index/primitive/libprimitive.a

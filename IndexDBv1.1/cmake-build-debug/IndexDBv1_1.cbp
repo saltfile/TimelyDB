@@ -84,10 +84,10 @@
 				</MakeCommands>
 			</Target>
 			<Target title="Server">
-				<Option output="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/Server/Server" prefix_auto="0" extension_auto="0"/>
+				<Option output="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/Server/libServer.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/Server"/>
 				<Option object_output="./"/>
-				<Option type="1"/>
+				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/usr/include/c++/7"/>
@@ -107,10 +107,10 @@
 				</MakeCommands>
 			</Target>
 			<Target title="Server/fast">
-				<Option output="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/Server/Server" prefix_auto="0" extension_auto="0"/>
+				<Option output="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/Server/libServer.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/Server"/>
 				<Option object_output="./"/>
-				<Option type="1"/>
+				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/usr/include/c++/7"/>
@@ -347,10 +347,10 @@
 		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/Server/pack/req_dispose.cpp">
 			<Option target="Server"/>
 		</Unit>
-		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/Server/ser_drive.h">
+		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/Server/ser_io_start/server.cpp">
 			<Option target="Server"/>
 		</Unit>
-		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/Server/ser_io_start/server.cpp">
+		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/Server/str/str_fun.cpp">
 			<Option target="Server"/>
 		</Unit>
 		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/Server/test/testlab.cpp">

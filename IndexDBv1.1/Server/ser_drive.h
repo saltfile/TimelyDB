@@ -30,7 +30,6 @@
 #include <netinet/ip.h>
 #include <future>
 #include <cstdlib>
-#include <boost/thread.hpp>
 #include <exception>
 using namespace std;
 typedef unsigned char u8;
@@ -93,9 +92,6 @@ u8 *to_Char(string result);
 void cen_process(packge *packge);
 
 
-
-
-
 //crc校验
 
 //这个是用来读取一个数组有多长的函数
@@ -128,6 +124,22 @@ u8* fun_xor(u8 *bytes,int size);
 string get_Result(u8 *bytes);
 
 
+
+
+//lab
+/////////////////////////////字符串轮子2
+//字符串轮子
+char * str_copy(char *str,char *arr);
+//分割时用的方法
+//获取长度
+int spilt_size(char *a,char *b);
+//分割字符
+char ** split(char *str,char *dent);
+//字符合并
+char * str_merge(char *str,char * merstr);
+
+char *strrpc(char *dest,char *src,char *before,char *after);
+
 //////////////////////////////////lab
 int sckt_bind_fun(int port);
 int epollser_start(int port);
@@ -136,7 +148,7 @@ void add_event(int epollfd,int fd,int state);
 void delete_event(int epollfd,int fd,int state);
 void modify_event(int epollfd,int fd,int state);
 void handler_eventsserver(int epollfd,struct epoll_event *events,int num,int listenfd,char *buf);
-void send_runables(int epollfd,int fd,char *buf);
+void send_runtable(int new_fd,char *buf);
 void rec_runtable(int epollfd,int fd,char *buf);
 void handler_accpet(int epollfd,int listenfd);
 int epollser_start(int port);

@@ -13,7 +13,6 @@ aux_source_directory(./index index)
 #aux_source_directory(./primitive primitive)
 AUX_SOURCE_DIRECTORY(. indexDB)
 add_executable(IndexDBv1_1  ${indexDB} )
-
-TARGET_LINK_LIBRARIES(IndexDBv1_1 Engine index pthread)
+TARGET_LINK_LIBRARIES(IndexDBv1_1 Engine index Server pthread)
 
 
