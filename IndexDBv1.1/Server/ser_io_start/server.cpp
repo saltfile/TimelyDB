@@ -22,10 +22,6 @@ int size_of_buf(u8 *buf){
 
 //将原来的server变为epoll
 
-
-
-
-
 int epollser_start(int port) {
     int  iSocketFD;
     iSocketFD = sckt_bind_fun(port);
@@ -293,9 +289,8 @@ void read_runtable(int socketfd){
             default:packge2->create_package("error",CONN_FAIL);
         }
 
-    send_runtable(socketfd,packge2->all,packge2->alllen);
+         send_runtable(socketfd,packge2->all,packge2->alllen);
         cout<<"解析*1"<<endl;
-
         memset(buf,0,1024);
         usleep(1000);
         free(packge1);
