@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="myDriver">
+    <output-path>$PROJECT_DIR$</output-path>
+    <root id="archive" name="myDriver.war">
+      <element id="javaee-facet-resources" facet="myDriver/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="myDriver" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

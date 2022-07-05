@@ -1,0 +1,117 @@
+1、用户登录
+http请求方式：POST
+http://localhost:8080/login
+
+字段     说明    类型
+user   名字    String
+pwd     密码    String
+
+{
+    "msg":"登录成功",
+    "result":{
+        null
+    },
+    "code":1（成功）0（失败）
+}
+
+2、用户注册
+
+3、添加用户
+http请求方式：POST
+http://localhost:8080/adduser
+
+字段     说明    类型
+user   名字    String
+pwd     密码    String
+
+{
+    "msg":"添加成功",
+    "result":{
+        "uname":"用户名",
+        "pwd":"密码"
+    },
+    "code":1（成功）0（失败）
+}
+
+4、删除用户
+http请求方式：POST
+http://localhost:8080/deleteuser
+
+字段     说明    类型
+user   名字    String
+
+
+5、修改用户权限
+http请求方式：POST
+http://localhost:8080/modifyinguserrightsdao
+
+字段         说明     类型
+user        用户名   String
+privilege    权限     int
+
+6、创建数据库
+http请求方式：POST
+http://localhost:8080/createdatabase
+
+字段            说明       类型
+databasename   数据库名称  String
+
+
+7、删除数据库
+http请求方式：POST
+http://localhost:8080/deletedatabase
+
+字段            说明       类型
+databasename   数据库名称  String
+
+8、新建表
+http请求方式：POST
+http://localhost:8080/createtable
+
+字段         说明       类型
+tablename   表名称    String
+
+9、删除表
+http请求方式：POST
+http://localhost:8080/deletetable
+
+字段         说明       类型
+tablename   表名称    String
+
+
+10、查看表信息
+http请求方式：GET
+http://localhost:8080/showtables
+
+字段         说明       类型
+tablename   表名称    String
+
+11、查看数据库信息
+http请求方式：POST
+http://localhost:8080/showdatabases
+
+字段            说明       类型
+databasename   数据库名称  String
+
+12、切换数据库
+http请求方式：POST
+http://localhost:8080/switchdatabase
+
+字段            说明       类型
+databasename   数据库名称  String
+
+13、清除缓存
+http请求方式：POST
+http://localhost:8080/clearcache
+
+14、批处理数据
+http请求方式：POST
+http://localhost:8080/batchdata
+
+15、查询语句
+http请求方式：POST
+http://localhost:8080/query
+
+16、alter语句
+http请求方式：POST
+http://localhost:8080/deleteuser

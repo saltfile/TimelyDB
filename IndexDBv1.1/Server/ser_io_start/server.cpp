@@ -111,7 +111,7 @@ void rec_runtable(int epollfd,int fd,char *buf) {
             // TODO:经过了数据库的一些操作得到答案,在这里需要联调
 
             packge *packge2 = (packge *)malloc(sizeof(packge));
-
+            memset(packge2,0,sizeof(packge2));
             cout<<endl;
 
             string res = " i m a massage";
@@ -120,8 +120,8 @@ void rec_runtable(int epollfd,int fd,char *buf) {
             switch (packge1->pack_head) {
                 case 128 :packge2->create_package("successfluy into database",CONN_SUCCESS);break;
                 case 65 :packge2->create_package("id,name,age;1,xxsadaasdx,13;2,yydssdy,16",MESS_SUCCESS);break;
-                case 0 :packge2->create_package("success is user add",MESS_SUCCESS);break;
-                case 1 :packge2->create_package("err is del user",OPER_FAIL);break;
+                case 0 :packge2->create_package(packge1->result,MESS_SUCCESS);break;
+                case 1 :packge2->create_package("err is del user",MESS_SUCCESS);break;
                 case 2 :packge2->create_package("succses",MESS_SUCCESS);break;
                 case 3 :packge2->create_package("succses",MESS_SUCCESS);break;
                 case 4 :packge2->create_package("succses",MESS_SUCCESS);break;
@@ -264,14 +264,12 @@ void read_runtable(int socketfd){
 
         packge *packge2 = (packge *)malloc(sizeof(packge));
 
-        cout<<endl;
-
         string res = " i m a massage";
 
         //判断协议头的目的
         switch (packge1->pack_head) {
             case 128 :packge2->create_package("successfluy into database",CONN_SUCCESS);break;
-            case 65 :packge2->create_package("id,name,age;1,xxsadaasdx,13;2,yydssdy,16",MESS_SUCCESS);break;
+            case 65 :packge2->create_package("id,name,age;1,xxsadaasdx,13;2,yydssdy,16;",MESS_SUCCESS);break;
             case 0 :packge2->create_package("success is user add",MESS_SUCCESS);break;
             case 1 :packge2->create_package("err is del user",OPER_FAIL);break;
             case 2 :packge2->create_package("succses",MESS_SUCCESS);break;
