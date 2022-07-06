@@ -208,6 +208,19 @@ primitive/fast:
 	$(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/build
 .PHONY : primitive/fast
 
+#=============================================================================
+# Target rules for targets named grammar
+
+# Build rule for target.
+grammar: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar
+.PHONY : grammar
+
+# fast build rule for target.
+grammar/fast:
+	$(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/build
+.PHONY : grammar/fast
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -246,6 +259,7 @@ help:
 	@echo "... Engine"
 	@echo "... IndexDBv1_1"
 	@echo "... Server"
+	@echo "... grammar"
 	@echo "... index"
 	@echo "... primitive"
 	@echo "... snappy"

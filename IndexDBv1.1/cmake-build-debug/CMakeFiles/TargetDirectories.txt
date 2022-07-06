@@ -16,3 +16,6 @@
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/primitive/CMakeFiles/rebuild_cache.dir
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/primitive/CMakeFiles/edit_cache.dir
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/primitive/CMakeFiles/primitive.dir
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/CMakeFiles/edit_cache.dir
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/CMakeFiles/rebuild_cache.dir
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/CMakeFiles/grammar.dir

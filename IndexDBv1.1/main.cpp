@@ -2,6 +2,7 @@
 // Created by zy on 2022/4/2.
 
 #include "index/database_index.h"
+#include "grammar/Myall.h"
 #include "Server/ser_drive.h"
 //#include <cstring>
 //#include "index/test.h"
@@ -9,6 +10,13 @@
 //#include "Engine/database_engine.h"
 int main(){
 //    ser_start(8787);
+//    use_fun();
+    char *sss = "insert into tname (id,name,age,sex) values(num,asd,45,N)(num,asd,11,N)(num,asd,23,N)(num,asd,67,N)";
+    char *str =   "select id,age,name from aaa where age > 2 and id = 12 or xxx = xs";
+    sqlsacnner(str);
+    get_wordlen();
+    create_sqltree();
+    treenode *root =check_tree();//词组中第一个word匹配
     epollser_start(8686);
 //    z_index();
 ////    InitRootNode();

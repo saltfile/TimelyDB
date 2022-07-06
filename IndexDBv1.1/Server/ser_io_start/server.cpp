@@ -79,21 +79,25 @@ void handler_accpet(int epollfd,int listenfd){
 
 
 //epoll接收
-void rec_runtable(int epollfd,int fd,char *buf) {
+void rec_runtable(int epollfd,int fd,char *buf)
+{
     int nread;
     memset(buf,0,sizeof(buf));
     nread = read(fd,buf,4096);
-    if (nread == -1){
+    if (nread == -1)
+    {
         perror("read error:");
         close(fd);
         delete_event(epollfd,fd,EPOLLIN);
     }
-    else if (nread == 0){
+    else if (nread == 0)
+    {
         fprintf(stderr,"client close.\n");
 //        close(fd);
         delete_event(epollfd,fd,EPOLLIN);
     }
-    else{
+    else
+        {
         char *ptr = (char *)buf;
         int time = 0;
             fprintf(stdout, "收到消息");
@@ -117,7 +121,8 @@ void rec_runtable(int epollfd,int fd,char *buf) {
             string res = " i m a massage";
 
             //判断协议头的目的
-            switch (packge1->pack_head) {
+            switch (packge1->pack_head)
+            {
                 case 128 :packge2->create_package("successfluy into database",CONN_SUCCESS);break;
                 case 65 :packge2->create_package("id,name,age;1,xxsadaasdx,13;2,yydssdy,16",MESS_SUCCESS);break;
                 case 0 :packge2->create_package(packge1->result,MESS_SUCCESS);break;
@@ -148,11 +153,13 @@ void rec_runtable(int epollfd,int fd,char *buf) {
         modify_event(epollfd,fd,EPOLLIN);
     }
 //epoll发送
-void send_runtable(int new_fd,char *buf){
+void send_runtable(int new_fd,char *buf)
+{
     send(new_fd, buf, strlen(buf), 0);
 }
 
-int sckt_bind_fun(int port){
+int sckt_bind_fun(int port)
+{
     int iSocketFD = 0;  //socket句柄
     int new_fd = 0;    //建立连接后的句柄
     struct sockaddr_in stLocalAddr = {0}; //本地地址信息结构图，下面有具体的属性赋值
@@ -160,7 +167,8 @@ int sckt_bind_fun(int port){
     socklen_t socklen = 0;
 
     iSocketFD = socket(AF_INET, SOCK_STREAM, 0); //建立socket
-    if (0 > iSocketFD) {
+    if (0 > iSocketFD)
+    {
         printf("创建socket失败！\n");
         return 0;
     }
@@ -170,13 +178,15 @@ int sckt_bind_fun(int port){
     stLocalAddr.sin_addr.s_addr = htonl(INADDR_ANY); /*IP，括号内容表示本机IP*/
 
     //绑定地址结构体和socket
-    if (0 > bind(iSocketFD, (struct sockaddr *) &stLocalAddr, sizeof(stLocalAddr))) {
+    if (0 > bind(iSocketFD, (struct sockaddr *) &stLocalAddr, sizeof(stLocalAddr)))
+    {
         printf("绑定失败！\n");
         exit(-1);
     }
 
     //开启监听 ，第二个参数是最大监听数
-    if (0 > listen(iSocketFD, 128)) {
+    if (0 > listen(iSocketFD, 128))
+    {
         printf("监听失败！\n");
         exit(-2);
     }
@@ -184,20 +194,23 @@ int sckt_bind_fun(int port){
     return iSocketFD;
 }
 
-void add_event(int epollfd,int fd,int state){
+void add_event(int epollfd,int fd,int state)
+{
     struct epoll_event ev;
     ev.events = state;
     ev.data.fd = fd;
     epoll_ctl(epollfd,EPOLL_CTL_ADD,fd,&ev);
 }
-void delete_event(int epollfd,int fd,int state){
+void delete_event(int epollfd,int fd,int state)
+{
     struct epoll_event ev;
     ev.events = state;
     ev.data.fd = fd;
     epoll_ctl(epollfd,EPOLL_CTL_DEL,fd,&ev);
 }
 
-void modify_event(int epollfd,int fd,int state){
+void modify_event(int epollfd,int fd,int state)
+{
     struct epoll_event ev;
     ev.events = state;
     ev.data.fd = fd;
@@ -209,7 +222,8 @@ void modify_event(int epollfd,int fd,int state){
  * @param port:端口号
  * @return 只是代表结束，没什么意义
  * */
-int ser_start(int port){
+int ser_start(int port)
+{
     int listenfd,connfd;
     socklen_t client;
     struct  sockaddr_in cliaddr,seraddr;
@@ -235,7 +249,8 @@ int ser_start(int port){
  * TODO:类似于java的网络读io
  * @param socketfd:类似于java的socket
  * */
-void read_runtable(int socketfd){
+void read_runtable(int socketfd)
+{
     ssize_t n;
     u8 buf[1024];
 
@@ -296,7 +311,8 @@ void read_runtable(int socketfd){
     }
 }
 
-void send_runables(int epollfd,int fd,char *buf){
+void send_runables(int epollfd,int fd,char *buf)
+{
     send(epollfd, buf, strlen(buf), 0);
 }
 /**
@@ -305,7 +321,8 @@ void send_runables(int epollfd,int fd,char *buf){
  *
  * */
 
-void send_runtable(int sockfd,u8 *cp,int len){
+void send_runtable(int sockfd,u8 *cp,int len)
+{
     size_t remaining = len;
     while (remaining) {
         int n_written = send(sockfd, cp, remaining, 0);
@@ -321,15 +338,15 @@ void send_runtable(int sockfd,u8 *cp,int len){
 }
 
 
-void process(packge *res){
+void process(packge *res)
+{
 
 }
 
 
-void cen_process(packge *packge){
+void cen_process(packge *packge)
+{
     //参数:就是传过来的原始包
-
-
     process(packge);
 
     if(packge->pack_head == 192){

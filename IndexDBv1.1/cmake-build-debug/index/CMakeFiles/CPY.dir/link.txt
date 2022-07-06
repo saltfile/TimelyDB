@@ -1,2 +1,0 @@
-/usr/bin/ar qc libCPY.a CMakeFiles/CPY.dir/cprocess.cpp.o CMakeFiles/CPY.dir/index_operation.cpp.o CMakeFiles/CPY.dir/rb_tree.cpp.o CMakeFiles/CPY.dir/skip_list.cpp.o CMakeFiles/CPY.dir/sql.cpp.o CMakeFiles/CPY.dir/test.cpp.o CMakeFiles/CPY.dir/z_malloc.cpp.o
-/usr/bin/ranlib libCPY.a
