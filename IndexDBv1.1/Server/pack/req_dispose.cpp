@@ -57,14 +57,13 @@ string packge::GetResult() {
  * */
 
 void packge::create_package(string result, u8 head) {
-
     int str_len = result.size();
     int all_len = str_len+9;
     this->alllen = all_len;
     cout<<all_len<<"    "<<endl;
     u8 *res = to_Char(result);
     this->all = (u8 *)malloc(sizeof(u8)*all_len);
-    memset(this->all,0,sizeof(all_len));
+
     //协议安装协议头
     this->all[0] = head;
     u8 *lenall = int_to_byte(all_len);
@@ -92,9 +91,7 @@ void packge::create_package(string result, u8 head) {
     }
     //最后再异或
     this->all = fun_xor(this->all,all_len);
-    int aa = sizeof(this->all);
     cout<<endl;
-    this->result = result;
     for(int i = 0;i < all_len;i++)
         printf("%d   ",this->all[i]);
 }

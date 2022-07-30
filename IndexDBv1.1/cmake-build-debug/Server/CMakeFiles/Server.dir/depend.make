@@ -13,8 +13,5 @@ Server/CMakeFiles/Server.dir/pack/req_dispose.cpp.o: ../Server/ser_drive.h
 Server/CMakeFiles/Server.dir/ser_io_start/server.cpp.o: ../Server/ser_drive.h
 Server/CMakeFiles/Server.dir/ser_io_start/server.cpp.o: ../Server/ser_io_start/server.cpp
 
-Server/CMakeFiles/Server.dir/str/str_fun.cpp.o: ../Server/ser_drive.h
-Server/CMakeFiles/Server.dir/str/str_fun.cpp.o: ../Server/str/str_fun.cpp
-
 Server/CMakeFiles/Server.dir/test/testlab.cpp.o: ../Server/test/testlab.cpp
 

@@ -1,3 +1,2 @@
-aux_source_directory(. server)
-add_library(Server ${server} ser_io_start/server.cpp pack/req_dispose.cpp crc/crc.cpp test/testlab.cpp str/str_fun.cpp)
-TARGET_LINK_LIBRARIES(Server pthread boost_system boost_filesystem rt boost_thread)
+AUX_SOURCE_DIRECTORY(. server)
+add_executable(Server ${server} ser_drive.h crc/crc.cpp pack/req_dispose.cpp ser_io_start/server.cpp test/testlab.cpp)

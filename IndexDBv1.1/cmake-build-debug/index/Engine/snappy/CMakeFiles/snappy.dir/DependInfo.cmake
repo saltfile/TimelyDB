@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-c.cc" "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine/snappy/CMakeFiles/snappy.dir/snappy-c.cc.o"
-  "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-sinksource.cc" "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine/snappy/CMakeFiles/snappy.dir/snappy-sinksource.cc.o"
-  "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-stubs-internal.cc" "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine/snappy/CMakeFiles/snappy.dir/snappy-stubs-internal.cc.o"
-  "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy.cc" "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine/snappy/CMakeFiles/snappy.dir/snappy.cc.o"
+  "/home/zy/桌面/IndexDBv1.1/snappy/snappy-c.cc" "/home/zy/桌面/IndexDBv1.1/cmake-build-debug/index/Engine/snappy/CMakeFiles/snappy.dir/snappy-c.cc.o"
+  "/home/zy/桌面/IndexDBv1.1/snappy/snappy-sinksource.cc" "/home/zy/桌面/IndexDBv1.1/cmake-build-debug/index/Engine/snappy/CMakeFiles/snappy.dir/snappy-sinksource.cc.o"
+  "/home/zy/桌面/IndexDBv1.1/snappy/snappy-stubs-internal.cc" "/home/zy/桌面/IndexDBv1.1/cmake-build-debug/index/Engine/snappy/CMakeFiles/snappy.dir/snappy-stubs-internal.cc.o"
+  "/home/zy/桌面/IndexDBv1.1/snappy/snappy.cc" "/home/zy/桌面/IndexDBv1.1/cmake-build-debug/index/Engine/snappy/CMakeFiles/snappy.dir/snappy.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

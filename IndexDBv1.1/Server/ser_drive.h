@@ -6,31 +6,21 @@
 #define SERVER_SER_DRIVE_H
 #include <error.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <cstring>
-#include <iostream>
+#include <string>
 #include <string.h>
-#include <cstring>
-#include <unistd.h>
-#include <pthread.h>
-#include <sched.h>
-#include <typeinfo>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/epoll.h>
-#include <fcntl.h>
-#include <thread>
-#include <chrono>
-#include <random>
-#include <arpa/inet.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netinet/ip.h>
-#include <future>
-#include <cstdlib>
-#include <exception>
+#include <iostream>
+#include <algorithm>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include<sys/socket.h>
+#include<netinet/in.h>
+#include<arpa/inet.h>
+#include<unistd.h>
+#include <vector>
+#include <time.h>
+#include <iconv.h>
+#include <bitset>
 using namespace std;
 typedef unsigned char u8;
 
@@ -92,6 +82,9 @@ u8 *to_Char(string result);
 void cen_process(packge *packge);
 
 
+
+
+
 //crc校验
 
 //这个是用来读取一个数组有多长的函数
@@ -126,30 +119,7 @@ string get_Result(u8 *bytes);
 
 
 
-//lab
-/////////////////////////////字符串轮子2
-//字符串轮子
-char * str_copy(char *str,char *arr);
-//分割时用的方法
-//获取长度
-int spilt_size(char *a,char *b);
-//分割字符
-char ** split(char *str,char *dent);
-//字符合并
-char * str_merge(char *str,char * merstr);
 
-char *strrpc(char *dest,char *src,char *before,char *after);
 
-//////////////////////////////////lab
-int sckt_bind_fun(int port);
-int epollser_start(int port);
-void run_epoll(int listenfd);
-void add_event(int epollfd,int fd,int state);
-void delete_event(int epollfd,int fd,int state);
-void modify_event(int epollfd,int fd,int state);
-void handler_eventsserver(int epollfd,struct epoll_event *events,int num,int listenfd,char *buf);
-void send_runtable(int new_fd,char *buf);
-void rec_runtable(int epollfd,int fd,char *buf);
-void handler_accpet(int epollfd,int listenfd);
-int epollser_start(int port);
+
 #endif //SERVER_SER_DRIVE_H

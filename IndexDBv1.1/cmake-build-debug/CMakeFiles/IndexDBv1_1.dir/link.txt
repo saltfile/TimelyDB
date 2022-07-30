@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/IndexDBv1_1.dir/main.cpp.o  -o IndexDBv1_1  index/Engine/libEngine.a index/libindex.a Server/libServer.a -lpthread grammar/libgrammar.a index/Engine/libEngine.a index/Engine/snappy/libsnappy.a index/primitive/libprimitive.a -lpthread -lboost_system -lboost_filesystem -lrt -lboost_thread 
+/usr/bin/c++ -g CMakeFiles/IndexDBv1_1.dir/main.cpp.o -o IndexDBv1_1  index/Engine/libEngine.a index/libindex.a -lpthread index/Engine/libEngine.a -lpthread index/Engine/snappy/libsnappy.a index/primitive/libprimitive.a 

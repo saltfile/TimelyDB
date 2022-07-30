@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/opt/Cpro/resolve/Myall.h
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+string
+-
+vector
+-
+iostream
+-
+time.h
+-
+
+/opt/Cpro/resolve/gammer_tree/gra_tree.cpp
+../Myall.h
+/opt/Cpro/resolve/Myall.h
+

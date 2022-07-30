@@ -57,7 +57,7 @@ void send_runtable(int sockfd,u8 *cp,int len)
         修改用户权限              2                    -254
 
          创建数据库               3                    -253
-0
+
          删除数据库               4                    -252
 
           新建表                 5                    -251
