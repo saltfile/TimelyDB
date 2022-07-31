@@ -64,11 +64,6 @@ char *keywords[] = {"select", "insert", "delete", "from", "into", "where", "grou
 scan_word * scanWordInit(){
    scan_word *res = (scan_word*)malloc(sizeof(scan_word));
    memset(res,0,sizeof(res));
-
-
-
-
-
     return res;
 }
 

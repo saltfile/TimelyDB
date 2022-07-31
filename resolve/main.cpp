@@ -16,8 +16,12 @@ char *str =   "select id,age,name from aaa where age > 2 and id = 12 or xxx = xs
 scan_word *res = scanWordInit();
 
 sqlsacnner(res,str);
-//get_wordlen();
-//create_sqltree();
+//get_wordlen(res);
+   treenode *root = check_tree(res);
+
+
+
+
 //treenode *root =check_tree();//词组中第一个word匹配
 //sqlsacnner(sss);
 //treenode *root2 = check_tree();

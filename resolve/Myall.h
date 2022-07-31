@@ -45,7 +45,7 @@ typedef struct {
     int num;
     char arr[255];
 } sqlitWord;
-sqlitWord get_word(int len);
+
 
 
 
@@ -72,13 +72,13 @@ typedef struct scan_word{
     int counts = 0;
 }scan_word;
 
-
+sqlitWord get_word(scan_word *scan,int len);
 scan_word * scanWordInit();
 void initNumber(scan_word *scan);
 
 int allFunc(scan_word *scan);
 void sqlsacnner(scan_word *scan,char *sqlsource);
-void clear_cache();
+void clear_cache(scan_word *scan);
 int get_wordlen(scan_word *scan);
 
 
@@ -104,11 +104,10 @@ int get_list_size(list *root);
 treenode *get_list_node(list *root,int len);
 list *remove_node(list *root,int len);
 //程序运行初期建立一颗死树用来和后面程序语句作对照
-treenode *check_tree();//先确定语句类型
-void check_fun(treenode *sql);
-void create_sqltree();
-void sql_sel(treenode *root);
-void sql_ins(treenode *root);
+treenode *check_tree(scan_word *scan);//先确定语句类型
+//void create_sqltree();
+void sql_sel(scan_word *scan,treenode *root);
+void sql_ins(scan_word *scan,treenode *root);
 void test();
 //临时性传参结构体
 typedef  struct colnm{
@@ -118,8 +117,8 @@ typedef  struct colnm{
     char *str;
 };
 
-colnm *get_colnm();
-colnm *get_andcolum(int len);
+colnm *get_colnm(scan_word *scan);
+colnm *get_andcolum(scan_word *scan,int len);
 void use_fun();
 //字符串复制
 char *str_copy(char *str,char *arr);
@@ -127,10 +126,10 @@ char * str_merge(char *str,char * merstr);
 void tree_trim(treenode *root);
 
 
-list * branch_245(int arrlen);
-list * branch_256(int arrlen,int num);
-list * branch_257(int arrlen);
-list * branch_258(int arrlen);
+list * branch_245(scan_word *scan,int arrlen);
+list * branch_256(scan_word *scan,int arrlen,int num);
+list * branch_257(scan_word *scan,int arrlen);
+list * branch_258(scan_word *scan,int arrlen);
 
 
 
