@@ -17,6 +17,7 @@ scan_word *res = scanWordInit();
 
 sqlsacnner(res,str);
 //get_wordlen(res);
+use_fun();
    treenode *root = check_tree(res);
 
 

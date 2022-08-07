@@ -94,7 +94,7 @@ void sqlsacnner(scan_word *scan,char *sqlsource) {
             char *str=oneword->word;
             char *aaa=str;
             //整体只加了这么一句 add_tree(oneword->typenum,aaa)
-           // add_tree(oneword->typenum,aaa);
+            // add_tree(oneword->typenum,aaa);
             strcpy(scan->word[i].arr, oneword->word);
             scan->word[i].num = oneword->typenum;
             i++;
@@ -102,7 +102,7 @@ void sqlsacnner(scan_word *scan,char *sqlsource) {
         over = oneword->typenum;
     }
     initNumber(scan);
-    get_wordlen(scan);
+//    get_wordlen(scan);
 }
 
 //从缓冲区读取一个字符道ch
@@ -610,7 +610,6 @@ void llParser(scan_word *scan) {
         case 1: //select
             printf("\nselect判断成功！种别码：%d  单词：%s\n", scan->number, scan->word[scan->len].arr);
             getWord(scan);
-
             scan->level = selectSql(scan);
             //TODO 取出tableName 转化为tableId
 //            mymap() 1 between and group by 2
@@ -787,6 +786,7 @@ list * branch_256(scan_word *scan,int arrlen,int num){
     char *set;
     for (int i = 0; i < num; i++) {
         trees[i] = (treenode *)malloc(sizeof(treenode));
+        memset(trees[i],0,sizeof(treenode));
         trees[i]->str = (char *)malloc(strlen(w->arr)+1);
         memset(trees[i]->str,0,strlen(w->arr)+1);
         for(int j = 0;j < strlen(w->arr);j++){

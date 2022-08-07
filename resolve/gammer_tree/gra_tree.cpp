@@ -12,33 +12,36 @@ int in_len = 0;
 treenode *init_sel(){
     //node1是select//节点type是1
     treenode *node1 = (treenode *)malloc(sizeof(treenode));
-    memset(node1,0,sizeof(node1));
+    memset(node1,0,sizeof(treenode));
     node1->strtype = 1;
     node1->str = "select";
     node1->strlen = strlen(node1->str);
     //node2是搜索结果*
     treenode *node2 = (treenode *)malloc(sizeof(treenode));
-    memset(node2,0,sizeof(node2));
+    memset(node2,0,sizeof(treenode));
     node2->strtype = 42;
     node2->str = "*";
     node2->strlen = strlen(node2->str);
     node1->nodelist = (list *)malloc(sizeof(list));
+    memset(node1->nodelist,0,sizeof(list));
     add_list(node1->nodelist,node2);
     //node3是from
     treenode *node3 = (treenode *)malloc(sizeof(treenode));
-    memset(node3,0,sizeof(node3));
+    memset(node3,0,sizeof(treenode));
     node3->strtype = 4;
     node3->str = "from";
     node3->strlen = strlen(node3->str);
     node2->nodelist = (list *)malloc(sizeof(list));
+    memset(node2->nodelist,0,sizeof(list));
     add_list(node1->nodelist,node3);
     //node4是表名就是个letter
     treenode *node4 = (treenode *)malloc(sizeof(treenode));
-    memset(node4,0,sizeof(node4));
+    memset(node4,0,sizeof(treenode));
     node4->strtype = 100;
     node4->str = "xxx";//这个只是代替
     node4->strlen = strlen(node4->str);
     node3->nodelist = (list *)malloc(sizeof(list));
+    memset(node3->nodelist,0,sizeof(list));
     add_list(node1->nodelist,node4);
     return node1;
 }
