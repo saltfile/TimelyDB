@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/Myall.h
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+string
+-
+vector
+-
+iostream
+-
+time.h
+-
+
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/gammer_tree/gra_tree.cpp
+../Myall.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/Myall.h
+

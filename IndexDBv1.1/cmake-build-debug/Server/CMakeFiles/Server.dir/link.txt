@@ -1,1 +1,2 @@
-/usr/bin/c++ -g CMakeFiles/Server.dir/Test.cpp.o CMakeFiles/Server.dir/crc/crc.cpp.o CMakeFiles/Server.dir/pack/req_dispose.cpp.o CMakeFiles/Server.dir/ser_io_start/server.cpp.o CMakeFiles/Server.dir/test/testlab.cpp.o -o Server 
+/usr/bin/ar qc libServer.a  CMakeFiles/Server.dir/Test.cpp.o CMakeFiles/Server.dir/ser_io_start/server.cpp.o CMakeFiles/Server.dir/pack/req_dispose.cpp.o CMakeFiles/Server.dir/crc/crc.cpp.o CMakeFiles/Server.dir/test/testlab.cpp.o CMakeFiles/Server.dir/str/str_fun.cpp.o
+/usr/bin/ranlib libServer.a

@@ -454,8 +454,7 @@ void create_skip_index(tuple_head* tupleHead){
 }
 /*
  * 创建红黑树索引*/
-tuple_head * create_rbtree_index(tuple_head *tupleHead) {
-    tuple_head *head=tupleHead;
+void create_rbtree_index(tuple_head *tupleHead) {
     char* swar= dbname_tname(tupleHead);//生成database_tablename
 
     rbRoot= find_rbTree(swar);//查找红黑树
@@ -488,27 +487,23 @@ tuple_head * create_rbtree_index(tuple_head *tupleHead) {
     }
 
     //根据tupleHead传入参数到Node里面
-    tuple_column* prex=tupleHead->fileds;
-
-    while(prex!=NULL){
+    while(tupleHead->fileds!=NULL){
         tuple_column* node_value1=node->tag_values;
-
         while(node_value1!=NULL){
-            if (prex->columnname==node_value1->columnname){
-                node_value1->datalist->timestamp=prex->datalist->timestamp;
-                node_value1->datalist->value=prex->datalist->value;
+            if (tupleHead->fileds->columnname==node_value1->columnname){
+                node_value1->datalist->timestamp=tupleHead->fileds->datalist->timestamp;
+                node_value1->datalist->value=tupleHead->fileds->datalist->value;
                 node_value1=node_value1->nextcolumn;
                 break;
             }else{
                 node_value1=node_value1->nextcolumn;
             }
         }
-        prex=prex->nextcolumn;
+        tupleHead->fileds=tupleHead->fileds->nextcolumn;
     }
 //    free(tupleHead);//删除
     //插入数据
     rbtree_insert(rbRoot, node);
 //    tupleHead->fileds->datalist.
-    return  head;
 }
 

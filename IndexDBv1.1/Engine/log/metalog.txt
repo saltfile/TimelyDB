@@ -1,4 +1,4 @@
-file_number=16
+file_number=11
 filelist]
 file_name=log1.txt
 min_timestamp=123313131
@@ -33,18 +33,3 @@ file_path=/home/mikasa/下载/IndexDBv1.1/Engine/log/log10.txt
 file_name=log11.txt
 min_timestamp=1649853073
 file_path=/home/mikasa/下载/IndexDBv1.1/Engine/log/log11.txt
-file_name=log12.txt
-min_timestamp=15613216545
-file_path=/home/zy/桌面/IndexDBv1.1/Engine/log/log12.txt
-file_name=log13.txt
-min_timestamp=15613216545
-file_path=/home/zy/桌面/IndexDBv1.1/Engine/log/log13.txt
-file_name=log14.txt
-min_timestamp=15613216545
-file_path=/home/zy/桌面/IndexDBv1.1/Engine/log/log14.txt
-file_name=log15.txt
-min_timestamp=15613216545
-file_path=/home/zy/桌面/IndexDBv1.1/Engine/log/log15.txt
-file_name=log16.txt
-min_timestamp=15613216545
-file_path=/home/zy/桌面/IndexDBv1.1/Engine/log/log16.txt

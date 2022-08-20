@@ -71,7 +71,7 @@ void hello(char ** yes){
 #include <hash_map>
 #include <string>
 using namespace std;
-int main() {
+int test() {
 
     z_index(); //调这个函数测试，会出现未定义引用错误
 

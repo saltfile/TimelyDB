@@ -24,6 +24,7 @@ extern void pthread_myrwlock_rdlock(){
     readernum++;
     pthread_mutex_unlock(&my_lock);
 }
+
 extern void pthread_myrwlock_wrlock(){
     pthread_mutex_lock(&my_lock);
     cout<<writernum<<endl;
@@ -34,6 +35,7 @@ extern void pthread_myrwlock_wrlock(){
     writernum=1;
     pthread_mutex_unlock(&my_lock);
 }
+
 extern void pthread_myrwlock_unlock(){
     pthread_mutex_lock(&my_lock);
     while(writernum>0){
@@ -51,6 +53,7 @@ extern void pthread_myrwlock_unlock(){
     pthread_mutex_unlock(&my_lock);
 
 }
+
 extern int pthread_myrwlock_init(){
     my_lock=PTHREAD_MUTEX_INITIALIZER;
     my_cond=PTHREAD_COND_INITIALIZER;

@@ -6,8 +6,8 @@
 //#include "global_c.h"
 //#include "wal.h"
 using namespace std;
-char * log_path="/home/zy/桌面/IndexDBv1.1/Engine/log/";//测试路径
-char * meta_log="/home/zy/桌面/IndexDBv1.1/Engine/log/metalog.txt";//测试路径,正式时更改
+char * log_path="/home/mikasa/下载/IndexDBv1.1/Engine/log/";//测试路径
+char * meta_log="/home/mikasa/下载/IndexDBv1.1/Engine/log/metalog.txt";//测试路径,正式时更改
 char * file_path=(char *)malloc(100);//当前日志文件路径
 /**
  * 初始化,当第一次写日志时初始化meta日志文件
@@ -141,7 +141,7 @@ int write_ahead_log(char * timestamp,char * databasename,char * tablename,value_
     }
     fseek(fp,size,SEEK_SET);
     fputs(message,fp);
-    int id=fclose(fp);
+    fclose(fp);
     return 1;
 }
 /**

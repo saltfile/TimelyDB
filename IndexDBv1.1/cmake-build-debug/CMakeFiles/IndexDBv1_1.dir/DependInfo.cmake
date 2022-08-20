@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/zy/桌面/IndexDBv1.1/main.cpp" "/home/zy/桌面/IndexDBv1.1/cmake-build-debug/CMakeFiles/IndexDBv1_1.dir/main.cpp.o"
+  "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/main.cpp" "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles/IndexDBv1_1.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -14,10 +14,12 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/zy/桌面/IndexDBv1.1/cmake-build-debug/index/Engine/CMakeFiles/Engine.dir/DependInfo.cmake"
-  "/home/zy/桌面/IndexDBv1.1/cmake-build-debug/index/CMakeFiles/index.dir/DependInfo.cmake"
-  "/home/zy/桌面/IndexDBv1.1/cmake-build-debug/index/Engine/snappy/CMakeFiles/snappy.dir/DependInfo.cmake"
-  "/home/zy/桌面/IndexDBv1.1/cmake-build-debug/index/primitive/CMakeFiles/primitive.dir/DependInfo.cmake"
+  "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine/CMakeFiles/Engine.dir/DependInfo.cmake"
+  "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/CMakeFiles/index.dir/DependInfo.cmake"
+  "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/Server/CMakeFiles/Server.dir/DependInfo.cmake"
+  "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/CMakeFiles/grammar.dir/DependInfo.cmake"
+  "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine/snappy/CMakeFiles/snappy.dir/DependInfo.cmake"
+  "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/primitive/CMakeFiles/primitive.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

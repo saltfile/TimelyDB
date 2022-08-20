@@ -6,41 +6,41 @@
 
 #IncludeRegexTransform: 
 
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-c.cc
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-c.cc
 snappy.h
-/home/zy/桌面/IndexDBv1.1/snappy/snappy.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy.h
 snappy-c.h
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-c.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-c.h
 
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-c.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-c.h
 stddef.h
 -
 
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-internal.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-internal.h
 snappy-stubs-internal.h
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-stubs-internal.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-stubs-internal.h
 
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-sinksource.cc
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-sinksource.cc
 string.h
 -
 snappy-sinksource.h
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-sinksource.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-sinksource.h
 
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-sinksource.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-sinksource.h
 stddef.h
 -
 
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-stubs-internal.cc
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-stubs-internal.cc
 algorithm
 -
 string
 -
 snappy-stubs-internal.h
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-stubs-internal.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-stubs-internal.h
 
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-stubs-internal.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-stubs-internal.h
 config.h
-/home/zy/桌面/IndexDBv1.1/snappy/config.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/config.h
 string
 -
 assert.h
@@ -58,7 +58,7 @@ intrin.h
 sanitizer/msan_interface.h
 -
 snappy-stubs-public.h
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-stubs-public.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-stubs-public.h
 sys/byteorder.h
 -
 sys/endian.h
@@ -70,7 +70,7 @@ libkern/OSByteOrder.h
 byteswap.h
 -
 
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-stubs-public.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-stubs-public.h
 stdint.h
 -
 stddef.h
@@ -80,15 +80,15 @@ sys/uio.h
 string
 -
 
-/home/zy/桌面/IndexDBv1.1/snappy/snappy.cc
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy.cc
 snappy.h
-/home/zy/桌面/IndexDBv1.1/snappy/snappy.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy.h
 snappy-internal.h
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-internal.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-internal.h
 snappy-sinksource.h
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-sinksource.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-sinksource.h
 iostream
-/home/zy/桌面/IndexDBv1.1/snappy/iostream
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/iostream
 tmmintrin.h
 -
 immintrin.h
@@ -102,11 +102,11 @@ string
 vector
 -
 
-/home/zy/桌面/IndexDBv1.1/snappy/snappy.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy.h
 cstddef
 -
 string
 -
 snappy-stubs-public.h
-/home/zy/桌面/IndexDBv1.1/snappy/snappy-stubs-public.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/snappy/snappy-stubs-public.h
 

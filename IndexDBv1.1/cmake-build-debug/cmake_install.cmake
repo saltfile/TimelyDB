@@ -1,4 +1,4 @@
-# Install script for directory: /home/zy/桌面/IndexDBv1.1
+# Install script for directory: /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -37,19 +37,19 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-# Set default install directory permissions.
-if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/Server/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/zy/桌面/IndexDBv1.1/cmake-build-debug/Server/cmake_install.cmake")
+  include("/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/zy/桌面/IndexDBv1.1/cmake-build-debug/index/cmake_install.cmake")
+  include("/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -60,5 +60,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/zy/桌面/IndexDBv1.1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

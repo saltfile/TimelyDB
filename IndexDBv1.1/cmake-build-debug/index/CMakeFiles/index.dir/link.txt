@@ -1,2 +1,2 @@
-/usr/bin/ar qc libindex.a CMakeFiles/index.dir/cprocess.cpp.o CMakeFiles/index.dir/index_operation.cpp.o CMakeFiles/index.dir/rb_tree.cpp.o CMakeFiles/index.dir/skip_list.cpp.o CMakeFiles/index.dir/sql.cpp.o CMakeFiles/index.dir/test.cpp.o CMakeFiles/index.dir/z_malloc.cpp.o
+/usr/bin/ar qc libindex.a  CMakeFiles/index.dir/cprocess.cpp.o CMakeFiles/index.dir/index_operation.cpp.o CMakeFiles/index.dir/rb_tree.cpp.o CMakeFiles/index.dir/skip_list.cpp.o CMakeFiles/index.dir/sql.cpp.o CMakeFiles/index.dir/test.cpp.o CMakeFiles/index.dir/z_malloc.cpp.o
 /usr/bin/ranlib libindex.a

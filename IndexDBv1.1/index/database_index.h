@@ -24,7 +24,7 @@ typedef struct pri{
 }PRI;
 
 
-tuple_head * create_rbtree_index(tuple_head *pHead);
+void create_rbtree_index(tuple_head *pHead);
 void create_skip_index(tuple_head* tupleHead);
 
 void delete_index(tuple_head* tupleHead);
