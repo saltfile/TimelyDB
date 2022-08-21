@@ -1,3 +1,4 @@
+#include <future>
 #include "Myall.h"
 #include "database_engine.h"
 /**
@@ -10,16 +11,16 @@
 
 
 int main() {
-//use_fun();
+use_fun();
 char *sss = "insert into tname (id,name,age,sex) values(num,asd,45,N)(num,asd,11,N)(num,asd,23,N)(num,asd,67,N)";
 char *str =   "select id,age,name from aaa where age > 2 and id = 12 or xxx = xs";
+char *cres = "create table aaaa";
 scan_word *res = scanWordInit();
-
-sqlsacnner(res,str);
+//
+sqlsacnner(res,cres);
 //get_wordlen(res);
-use_fun();
-   treenode *root = check_tree(res);
 
+treenode *root = check_tree(res);
 
 
 

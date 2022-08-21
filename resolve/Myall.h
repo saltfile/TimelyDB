@@ -121,6 +121,9 @@ colnm *get_colnm(scan_word *scan);
 colnm *get_andcolum(scan_word *scan,int len);
 void use_fun();
 //字符串复制
+//char *sss = "insert into tname (id,name,age,sex) values(num,asd,45,N)(num,asd,11,N)(num,asd,23,N)(num,asd,67,N)";
+//char *str =   "select id,age,name from aaa where age > 2 and id = 12 or xxx = xs";
+//scan_word *res = scanWordInit();
 char *str_copy(char *str,char *arr);
 char * str_merge(char *str,char * merstr);
 void tree_trim(treenode *root);
@@ -130,6 +133,13 @@ list * branch_245(scan_word *scan,int arrlen);
 list * branch_256(scan_word *scan,int arrlen,int num);
 list * branch_257(scan_word *scan,int arrlen);
 list * branch_258(scan_word *scan,int arrlen);
+
+
+treenode * statement_parsing(char *sql);
+
+
+
+
 
 
 

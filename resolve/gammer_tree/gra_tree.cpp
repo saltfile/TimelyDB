@@ -48,30 +48,63 @@ treenode *init_sel(){
 //初始化insert
 treenode *init_ins(){
     treenode *node1 = (treenode *)malloc(sizeof(treenode));
-    memset(node1,0,sizeof(node1));
+    memset(node1,0,sizeof(treenode));
     node1->strtype = 2;
     node1->str = "insert";
     node1->strlen = strlen(node1->str);
     treenode *node2 = (treenode *)malloc(sizeof(treenode));
-    memset(node2,0,sizeof(node2));
+    memset(node2,0,sizeof(treenode));
     node2->strtype = 5;
     node2->str = "into";
     node2->strlen = strlen(node2->str);
     node1->nodelist = (list *)malloc(sizeof(list));
+    memset(node1->nodelist,0,sizeof(list));
     add_list(node1->nodelist,node2);
     treenode *node3 = (treenode *)malloc(sizeof(treenode));
-    memset(node3,0,sizeof(node3));
+    memset(node3,0,sizeof(treenode));
     node3->strtype = 100;
     node3->str = "t_name";
     node3->strlen = strlen(node3->str);
     node2->nodelist = (list *)malloc(sizeof(list));
+    memset(node2->nodelist,0,sizeof(list));
     add_list(node1->nodelist,node3);
     return node1;
 }
 
-
-
-
+//初始化create——databse
+treenode *init_create_db(){
+    treenode *node1 = (treenode *)malloc(sizeof(treenode));
+    memset(node1,0,sizeof(treenode));
+    node1->strtype = 23;
+    node1->str = "database";
+    node1->strlen = strlen(node1->str);
+    treenode *node2 = (treenode *)malloc(sizeof(treenode));
+    memset(node2,0,sizeof(treenode));
+    node2->strtype = 100;
+    node2->str = "xxx";
+    node2->strlen = strlen(node2->str);
+    node1->nodelist = (list*)malloc(sizeof(list));
+    memset(node1->nodelist,0,sizeof(list));
+    add_list(node1->nodelist,node2);
+    return node1;
+}
+//初始化 create table
+treenode *init_create_tb(){
+    treenode *node1 = (treenode *)malloc(sizeof(treenode));
+    memset(node1,0,sizeof(treenode));
+    node1->strtype = 24;
+    node1->str = "table";
+    node1->strlen = strlen(node1->str);
+    treenode *node2 = (treenode *)malloc(sizeof(treenode));
+    memset(node2,0,sizeof(treenode));
+    node2->strtype = 100;
+    node2->str = "xxx";
+    node2->strlen = strlen(node2->str);
+    node1->nodelist = (list*)malloc(sizeof(list));
+    memset(node1->nodelist,0,sizeof(list));
+    add_list(node1->nodelist,node2);
+    return node1;
+}
 
 
 
@@ -158,6 +191,8 @@ treenode *check_tree(scan_word *scan){
             root = init_ins();
             sql_ins(scan,root);
             break;
+        case 22:
+
         default:
             log_erro("错误，语句存在违规语法");
             break;
@@ -167,7 +202,52 @@ treenode *check_tree(scan_word *scan){
 
     return root;
 }
+void check_ctreate(scan_word* scan,treenode *root){
+    treenode *p = root;
+    list *create = p->nodelist;
+    treenode *sql = create->tree;
 
+    int arrlen = 1;
+    int wordlen = get_wordlen(scan);
+    sqlitWord word = get_word(scan,arrlen);
+
+    //判断是创建数据库还是创建表单
+    switch (word.num) {
+        case 23:
+            root = init_create_db();
+
+            break;
+        case 24:break;
+        default:
+            log_erro("错误语法创建table/database");
+            break;
+
+    }
+}
+
+
+//TODO:这里是处理create database语句简单实例
+//就很简单的对比
+void sql_create_db(scan_word *scan,treenode *root){
+    treenode *p = root;
+    list * sel = p->nodelist;
+    treenode *sql = sel->tree;
+    int arrlen = 2;
+    int wordlen = get_wordlen(scan);
+    if (wordlen < arrlen){
+        root = NULL;
+        return;
+    }
+    sqlitWord word = get_word(scan,arrlen);
+    if (word.num == sql->strtype){
+        sql->str = str_copy(sql->str,word.arr);
+        sql->strlen = strlen(sql->str);
+    } else {
+        log_erro("错误：表名错误或为空");
+    }
+
+
+}
 
 //TODO:这里是处理insert语句简单实例
 //先对比前面四个语法是否正确
@@ -390,9 +470,12 @@ void sql_sel(scan_word *scan,treenode *root){
     if(where_word.num == 6){
         log_debug("发现where");
         treenode *node = (treenode *)malloc(sizeof(treenode));
+        memset(node,0,sizeof(treenode));
         node->strtype = 6;
         node->str = (char *)malloc(sizeof(strlen(where_word.arr)+1));
+
         node->str = where_word.arr;
+        node->strlen = strlen(node->str);
         node->str += '\0';
         add_list(sel,node);
         sel = sel->next;
@@ -474,7 +557,6 @@ void sql_sel(scan_word *scan,treenode *root){
                 newptr->strlen = strlen(newptr->str);
                 add_list(sel,newptr);sel = sel->next;
                 sql = sel->tree;arrlen++;}break;
-
         }
             if (wordlen <= arrlen) {
                 //封装语法错误
@@ -557,9 +639,6 @@ void tree_trim(treenode *root){
 
             }
         }
-
-
-
     }
 
 
@@ -585,6 +664,13 @@ void use_fun(){
 
 
 
+treenode * statement_parsing(char *sql){
+    scan_word *res = scanWordInit();
+    sqlsacnner(res,sql);
+    use_fun();
+    treenode *root = check_tree(res);
+    return root;
+}
 
 
 
