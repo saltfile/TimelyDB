@@ -110,6 +110,8 @@ typedef struct circularList{
 //
 ////执行 use databasename操作的函数
 int use_database(char * databasename);
+//检测用户是否use成功
+int use_detect();
 ////执行插入语句的函数
 int create_cir_nodelist(char * databasename,char * tablename,tuple_column * columns,value_tuple * datas);
 ////初始化环形列表的函数

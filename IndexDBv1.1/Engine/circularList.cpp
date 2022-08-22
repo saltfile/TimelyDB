@@ -28,6 +28,11 @@ int  use_database(char * databasename){
     return 0;
 }
 
+int use_detect(){
+    return (pthread_setspecific(key_databasename,databasename));
+}
+
+
 /*创建一条insert into 插入的数据链
 * 此函数对接给insert语句解析之后调用的
  * 该数据链会挂载到节点上
@@ -343,6 +348,7 @@ CircularList *initCircularList(long int cyclelength){
         printf("cyclelength is %d\n",cyclelength);
         list_head->size=cyclelength;
         list_head->next=(head_tuple *)malloc(sizeof(head_tuple));
+
         list_tail=list_head->next;
         list_tail->next=list_head->next;
     }else {

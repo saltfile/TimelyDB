@@ -181,6 +181,32 @@ index/Engine/CMakeFiles/Engine.dir/wal.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/wal.cpp.s"
 	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/Engine/wal.cpp -o CMakeFiles/Engine.dir/wal.cpp.s
 
+index/Engine/CMakeFiles/Engine.dir/__/index/skip_list.cpp.o: index/Engine/CMakeFiles/Engine.dir/flags.make
+index/Engine/CMakeFiles/Engine.dir/__/index/skip_list.cpp.o: ../index/skip_list.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object index/Engine/CMakeFiles/Engine.dir/__/index/skip_list.cpp.o"
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Engine.dir/__/index/skip_list.cpp.o -c /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/skip_list.cpp
+
+index/Engine/CMakeFiles/Engine.dir/__/index/skip_list.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Engine.dir/__/index/skip_list.cpp.i"
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/skip_list.cpp > CMakeFiles/Engine.dir/__/index/skip_list.cpp.i
+
+index/Engine/CMakeFiles/Engine.dir/__/index/skip_list.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/__/index/skip_list.cpp.s"
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/skip_list.cpp -o CMakeFiles/Engine.dir/__/index/skip_list.cpp.s
+
+index/Engine/CMakeFiles/Engine.dir/__/index/z_malloc.cpp.o: index/Engine/CMakeFiles/Engine.dir/flags.make
+index/Engine/CMakeFiles/Engine.dir/__/index/z_malloc.cpp.o: ../index/z_malloc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object index/Engine/CMakeFiles/Engine.dir/__/index/z_malloc.cpp.o"
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Engine.dir/__/index/z_malloc.cpp.o -c /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/z_malloc.cpp
+
+index/Engine/CMakeFiles/Engine.dir/__/index/z_malloc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Engine.dir/__/index/z_malloc.cpp.i"
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/z_malloc.cpp > CMakeFiles/Engine.dir/__/index/z_malloc.cpp.i
+
+index/Engine/CMakeFiles/Engine.dir/__/index/z_malloc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/__/index/z_malloc.cpp.s"
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/z_malloc.cpp -o CMakeFiles/Engine.dir/__/index/z_malloc.cpp.s
+
 # Object files for target Engine
 Engine_OBJECTS = \
 "CMakeFiles/Engine.dir/circularList.cpp.o" \
@@ -190,7 +216,9 @@ Engine_OBJECTS = \
 "CMakeFiles/Engine.dir/pthread_myrwlock.cpp.o" \
 "CMakeFiles/Engine.dir/test.cpp.o" \
 "CMakeFiles/Engine.dir/vfsTree.cpp.o" \
-"CMakeFiles/Engine.dir/wal.cpp.o"
+"CMakeFiles/Engine.dir/wal.cpp.o" \
+"CMakeFiles/Engine.dir/__/index/skip_list.cpp.o" \
+"CMakeFiles/Engine.dir/__/index/z_malloc.cpp.o"
 
 # External object files for target Engine
 Engine_EXTERNAL_OBJECTS =
@@ -203,9 +231,11 @@ index/Engine/libEngine.a: index/Engine/CMakeFiles/Engine.dir/pthread_myrwlock.cp
 index/Engine/libEngine.a: index/Engine/CMakeFiles/Engine.dir/test.cpp.o
 index/Engine/libEngine.a: index/Engine/CMakeFiles/Engine.dir/vfsTree.cpp.o
 index/Engine/libEngine.a: index/Engine/CMakeFiles/Engine.dir/wal.cpp.o
+index/Engine/libEngine.a: index/Engine/CMakeFiles/Engine.dir/__/index/skip_list.cpp.o
+index/Engine/libEngine.a: index/Engine/CMakeFiles/Engine.dir/__/index/z_malloc.cpp.o
 index/Engine/libEngine.a: index/Engine/CMakeFiles/Engine.dir/build.make
 index/Engine/libEngine.a: index/Engine/CMakeFiles/Engine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libEngine.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX static library libEngine.a"
 	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine && $(CMAKE_COMMAND) -P CMakeFiles/Engine.dir/cmake_clean_target.cmake
 	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Engine.dir/link.txt --verbose=$(VERBOSE)
 

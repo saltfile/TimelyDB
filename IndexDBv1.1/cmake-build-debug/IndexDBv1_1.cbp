@@ -411,9 +411,6 @@
 		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/log/log_fun.cpp">
 			<Option target="grammar"/>
 		</Unit>
-		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/vfsTree.cpp">
-			<Option target="grammar"/>
-		</Unit>
 		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/word_anylysis/sqlScanner.cpp">
 			<Option target="grammar"/>
 		</Unit>
@@ -428,6 +425,7 @@
 		</Unit>
 		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/skip_list.cpp">
 			<Option target="index"/>
+			<Option target="Engine"/>
 		</Unit>
 		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/sql.cpp">
 			<Option target="index"/>
@@ -437,6 +435,7 @@
 		</Unit>
 		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/z_malloc.cpp">
 			<Option target="index"/>
+			<Option target="Engine"/>
 		</Unit>
 		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/main.cpp">
 			<Option target="IndexDBv1_1"/>

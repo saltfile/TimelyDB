@@ -14,10 +14,10 @@ int main(){
      */
 //    ser_start(8787);
 //    use_fun();
-    char *sss = "insert into tname (id,name,age,sex) values(num,asd,45,N)(num,asd,11,N)(num,asd,23,N)(num,asd,67,N)";
-    char *str =   "select id,age,name from aaa where age > 2 and id = 12 or xxx = xs";
-    treenode *node =statement_parsing(str);
-
+//    char *sss = "insert into tname (id,name,age,sex) values(num,asd,45,N)(num,asd,11,N)(num,asd,23,N)(num,asd,67,N)";
+//    char *str =   "select id,age,name from aaa where age > 2 and id = 12 or xxx = xs";
+//    treenode *node =statement_parsing(str);
+test_lc();
 
 
 

@@ -226,33 +226,6 @@ log/log_fun.cpp.s:
 	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.s
 .PHONY : log/log_fun.cpp.s
 
-vfsTree.o: vfsTree.cpp.o
-
-.PHONY : vfsTree.o
-
-# target to build an object file
-vfsTree.cpp.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/vfsTree.cpp.o
-.PHONY : vfsTree.cpp.o
-
-vfsTree.i: vfsTree.cpp.i
-
-.PHONY : vfsTree.i
-
-# target to preprocess a source file
-vfsTree.cpp.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/vfsTree.cpp.i
-.PHONY : vfsTree.cpp.i
-
-vfsTree.s: vfsTree.cpp.s
-
-.PHONY : vfsTree.s
-
-# target to generate assembly for a file
-vfsTree.cpp.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/vfsTree.cpp.s
-.PHONY : vfsTree.cpp.s
-
 word_anylysis/sqlScanner.o: word_anylysis/sqlScanner.cpp.o
 
 .PHONY : word_anylysis/sqlScanner.o
@@ -298,9 +271,6 @@ help:
 	@echo "... log/log_fun.o"
 	@echo "... log/log_fun.i"
 	@echo "... log/log_fun.s"
-	@echo "... vfsTree.o"
-	@echo "... vfsTree.i"
-	@echo "... vfsTree.s"
 	@echo "... word_anylysis/sqlScanner.o"
 	@echo "... word_anylysis/sqlScanner.i"
 	@echo "... word_anylysis/sqlScanner.s"

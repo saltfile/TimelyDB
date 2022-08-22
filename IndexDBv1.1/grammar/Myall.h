@@ -12,6 +12,7 @@
 #include <vector>
 #include <iostream>
 #include <time.h>
+#include "../index/database_index.h"
 using namespace std;
 
 #define BUF_LEN 1024
@@ -22,17 +23,6 @@ void log_info(char *data);
 void log_erro(char *data);
 void log_erro(string data);
 void log_debug(char *data);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -105,7 +95,9 @@ treenode *get_list_node(list *root,int len);
 list *remove_node(list *root,int len);
 //程序运行初期建立一颗死树用来和后面程序语句作对照
 treenode *check_tree(scan_word *scan);//先确定语句类型
-//void create_sqltree();
+treenode *check_create(scan_word* scan,treenode *root);//确定是创void check_ctreate(scan_word* scan,treenode *root)建数据库还是表
+void sql_create_db(scan_word *scan,treenode *root);
+void sql_create_tb(scan_word *scan,treenode *root);
 void sql_sel(scan_word *scan,treenode *root);
 void sql_ins(scan_word *scan,treenode *root);
 void test();
@@ -121,6 +113,9 @@ colnm *get_colnm(scan_word *scan);
 colnm *get_andcolum(scan_word *scan,int len);
 void use_fun();
 //字符串复制
+//char *sss = "insert into tname (id,name,age,sex) values(num,asd,45,N)(num,asd,11,N)(num,asd,23,N)(num,asd,67,N)";
+//char *str =   "select id,age,name from aaa where age > 2 and id = 12 or xxx = xs";
+//scan_word *res = scanWordInit();
 char *str_copy(char *str,char *arr);
 char * str_merge(char *str,char * merstr);
 void tree_trim(treenode *root);
@@ -143,7 +138,7 @@ treenode * statement_parsing(char *sql);
 treenode *init_sel();
 
 
-
+void test_lc();
 
 
 

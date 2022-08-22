@@ -46,6 +46,10 @@ int z_index(){
 
 /*
  *
+func run(c *<-chan int8){
+	var a int8=99
+	time.Sleep(1*time.Second)
+
  *
  * delete from student age=18 AND name="zhangsan";*/
     sql_operation* delete_sql=malloc_sqloperation();

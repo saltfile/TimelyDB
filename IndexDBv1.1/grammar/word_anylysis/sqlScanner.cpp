@@ -29,6 +29,9 @@
  * 19 count
  * 20 as
  * 21 time
+ * 22 create
+ * 23 database
+ * 24 table
  * 100 letter
  * 150 >=
  * 160 <=
@@ -58,7 +61,7 @@
  * */
 
 char *keywords[] = {"select", "insert", "delete", "from", "into", "where", "group", "by", "between", "and", "or",
-                    "primary", "like", "values", "order", "mean", "max", "min", "count", "as", "time", _END_};
+                    "primary", "like", "values", "order", "mean", "max", "min", "count", "as", "time","create","database","table",_END_};
 
 
 scan_word * scanWordInit(){
@@ -66,16 +69,6 @@ scan_word * scanWordInit(){
    memset(res,0,sizeof(res));
     return res;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 sqlWord *scanner(scan_word *scan);
@@ -163,6 +156,12 @@ int reserver(scan_word *scan) {
     return 100; //不是关键字 普通字段
 
 }
+
+
+
+
+
+
 
 sqlWord *scanner(scan_word *scan) {
     sqlWord *myword = new sqlWord;

@@ -103,6 +103,8 @@ iostream
 -
 time.h
 -
+../index/database_index.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/database_index.h
 
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/database_index.h
 ../Engine/database_engine.h

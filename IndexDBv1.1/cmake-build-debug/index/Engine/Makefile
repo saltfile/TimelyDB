@@ -145,6 +145,60 @@ Engine/fast:
 	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/CMakeFiles/Engine.dir/build.make index/Engine/CMakeFiles/Engine.dir/build
 .PHONY : Engine/fast
 
+__/index/skip_list.o: __/index/skip_list.cpp.o
+
+.PHONY : __/index/skip_list.o
+
+# target to build an object file
+__/index/skip_list.cpp.o:
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/CMakeFiles/Engine.dir/build.make index/Engine/CMakeFiles/Engine.dir/__/index/skip_list.cpp.o
+.PHONY : __/index/skip_list.cpp.o
+
+__/index/skip_list.i: __/index/skip_list.cpp.i
+
+.PHONY : __/index/skip_list.i
+
+# target to preprocess a source file
+__/index/skip_list.cpp.i:
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/CMakeFiles/Engine.dir/build.make index/Engine/CMakeFiles/Engine.dir/__/index/skip_list.cpp.i
+.PHONY : __/index/skip_list.cpp.i
+
+__/index/skip_list.s: __/index/skip_list.cpp.s
+
+.PHONY : __/index/skip_list.s
+
+# target to generate assembly for a file
+__/index/skip_list.cpp.s:
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/CMakeFiles/Engine.dir/build.make index/Engine/CMakeFiles/Engine.dir/__/index/skip_list.cpp.s
+.PHONY : __/index/skip_list.cpp.s
+
+__/index/z_malloc.o: __/index/z_malloc.cpp.o
+
+.PHONY : __/index/z_malloc.o
+
+# target to build an object file
+__/index/z_malloc.cpp.o:
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/CMakeFiles/Engine.dir/build.make index/Engine/CMakeFiles/Engine.dir/__/index/z_malloc.cpp.o
+.PHONY : __/index/z_malloc.cpp.o
+
+__/index/z_malloc.i: __/index/z_malloc.cpp.i
+
+.PHONY : __/index/z_malloc.i
+
+# target to preprocess a source file
+__/index/z_malloc.cpp.i:
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/CMakeFiles/Engine.dir/build.make index/Engine/CMakeFiles/Engine.dir/__/index/z_malloc.cpp.i
+.PHONY : __/index/z_malloc.cpp.i
+
+__/index/z_malloc.s: __/index/z_malloc.cpp.s
+
+.PHONY : __/index/z_malloc.s
+
+# target to generate assembly for a file
+__/index/z_malloc.cpp.s:
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/CMakeFiles/Engine.dir/build.make index/Engine/CMakeFiles/Engine.dir/__/index/z_malloc.cpp.s
+.PHONY : __/index/z_malloc.cpp.s
+
 circularList.o: circularList.cpp.o
 
 .PHONY : circularList.o
@@ -370,6 +424,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Engine"
+	@echo "... __/index/skip_list.o"
+	@echo "... __/index/skip_list.i"
+	@echo "... __/index/skip_list.s"
+	@echo "... __/index/z_malloc.o"
+	@echo "... __/index/z_malloc.i"
+	@echo "... __/index/z_malloc.s"
 	@echo "... circularList.o"
 	@echo "... circularList.i"
 	@echo "... circularList.s"

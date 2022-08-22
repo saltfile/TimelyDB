@@ -88,20 +88,6 @@ pwd.h
 map
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/map
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/cprocess.cpp
-stdio.h
--
-unistd.h
--
-errno.h
--
-stdlib.h
--
-signal.h
--
-sys/wait.h
--
-
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/database_index.h
 ../Engine/database_engine.h
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/Engine/database_engine.h

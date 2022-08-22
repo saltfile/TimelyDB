@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Engine.dir/__/index/skip_list.cpp.o"
+  "CMakeFiles/Engine.dir/__/index/z_malloc.cpp.o"
   "CMakeFiles/Engine.dir/circularList.cpp.o"
   "CMakeFiles/Engine.dir/engine.cpp.o"
   "CMakeFiles/Engine.dir/loaddisk.cpp.o"

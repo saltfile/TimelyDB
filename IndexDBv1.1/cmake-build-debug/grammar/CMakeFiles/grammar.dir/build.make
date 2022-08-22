@@ -77,22 +77,9 @@ include grammar/CMakeFiles/grammar.dir/progress.make
 # Include the compile flags for this target's objects.
 include grammar/CMakeFiles/grammar.dir/flags.make
 
-grammar/CMakeFiles/grammar.dir/vfsTree.cpp.o: grammar/CMakeFiles/grammar.dir/flags.make
-grammar/CMakeFiles/grammar.dir/vfsTree.cpp.o: ../grammar/vfsTree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object grammar/CMakeFiles/grammar.dir/vfsTree.cpp.o"
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grammar.dir/vfsTree.cpp.o -c /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/vfsTree.cpp
-
-grammar/CMakeFiles/grammar.dir/vfsTree.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/grammar.dir/vfsTree.cpp.i"
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/vfsTree.cpp > CMakeFiles/grammar.dir/vfsTree.cpp.i
-
-grammar/CMakeFiles/grammar.dir/vfsTree.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grammar.dir/vfsTree.cpp.s"
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/vfsTree.cpp -o CMakeFiles/grammar.dir/vfsTree.cpp.s
-
 grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.o: grammar/CMakeFiles/grammar.dir/flags.make
 grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.o: ../grammar/gammer_tree/gra_tree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.o"
 	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.o -c /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/gammer_tree/gra_tree.cpp
 
 grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.i: cmake_force
@@ -105,7 +92,7 @@ grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.s: cmake_force
 
 grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o: grammar/CMakeFiles/grammar.dir/flags.make
 grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o: ../grammar/gammer_tree/list_fun.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o"
 	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o -c /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/gammer_tree/list_fun.cpp
 
 grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.i: cmake_force
@@ -115,6 +102,19 @@ grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.i: cmake_force
 grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.s"
 	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/gammer_tree/list_fun.cpp -o CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.s
+
+grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o: grammar/CMakeFiles/grammar.dir/flags.make
+grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o: ../grammar/word_anylysis/sqlScanner.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o"
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o -c /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/word_anylysis/sqlScanner.cpp
+
+grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.i"
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/word_anylysis/sqlScanner.cpp > CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.i
+
+grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.s"
+	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/word_anylysis/sqlScanner.cpp -o CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.s
 
 grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.o: grammar/CMakeFiles/grammar.dir/flags.make
 grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.o: ../grammar/log/log_fun.cpp
@@ -129,38 +129,23 @@ grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grammar.dir/log/log_fun.cpp.s"
 	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/log/log_fun.cpp -o CMakeFiles/grammar.dir/log/log_fun.cpp.s
 
-grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o: grammar/CMakeFiles/grammar.dir/flags.make
-grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o: ../grammar/word_anylysis/sqlScanner.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o"
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o -c /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/word_anylysis/sqlScanner.cpp
-
-grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.i"
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/word_anylysis/sqlScanner.cpp > CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.i
-
-grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.s"
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/word_anylysis/sqlScanner.cpp -o CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.s
-
 # Object files for target grammar
 grammar_OBJECTS = \
-"CMakeFiles/grammar.dir/vfsTree.cpp.o" \
 "CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.o" \
 "CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o" \
-"CMakeFiles/grammar.dir/log/log_fun.cpp.o" \
-"CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o"
+"CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o" \
+"CMakeFiles/grammar.dir/log/log_fun.cpp.o"
 
 # External object files for target grammar
 grammar_EXTERNAL_OBJECTS =
 
-grammar/libgrammar.a: grammar/CMakeFiles/grammar.dir/vfsTree.cpp.o
 grammar/libgrammar.a: grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.o
 grammar/libgrammar.a: grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o
-grammar/libgrammar.a: grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.o
 grammar/libgrammar.a: grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o
+grammar/libgrammar.a: grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.o
 grammar/libgrammar.a: grammar/CMakeFiles/grammar.dir/build.make
 grammar/libgrammar.a: grammar/CMakeFiles/grammar.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libgrammar.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libgrammar.a"
 	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && $(CMAKE_COMMAND) -P CMakeFiles/grammar.dir/cmake_clean_target.cmake
 	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/grammar.dir/link.txt --verbose=$(VERBOSE)
 

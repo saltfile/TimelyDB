@@ -2,8 +2,7 @@
 // Created by saltfish on 2022/2/17.
 //
 #include "../Myall.h"
-#define TREE_LEN 4
-char bname[255];
+char dbname[255];
 //被取走的树节点
 int sql_len = 0;
 int in_len = 0;
@@ -71,9 +70,40 @@ treenode *init_ins(){
     return node1;
 }
 
-
-
-
+//初始化create——databse
+treenode *init_create_db(){
+    treenode *node1 = (treenode *)malloc(sizeof(treenode));
+    memset(node1,0,sizeof(treenode));
+    node1->strtype = 23;
+    node1->str = "database";
+    node1->strlen = strlen(node1->str);
+    treenode *node2 = (treenode *)malloc(sizeof(treenode));
+    memset(node2,0,sizeof(treenode));
+    node2->strtype = 100;
+    node2->str = "xxx";
+    node2->strlen = strlen(node2->str);
+    node1->nodelist = (list*)malloc(sizeof(list));
+    memset(node1->nodelist,0,sizeof(list));
+    add_list(node1->nodelist,node2);
+    return node1;
+}
+//初始化 create table
+treenode *init_create_tb(){
+    treenode *node1 = (treenode *)malloc(sizeof(treenode));
+    memset(node1,0,sizeof(treenode));
+    node1->strtype = 24;
+    node1->str = "table";
+    node1->strlen = strlen(node1->str);
+    treenode *node2 = (treenode *)malloc(sizeof(treenode));
+    memset(node2,0,sizeof(treenode));
+    node2->strtype = 100;
+    node2->str = "xxx";
+    node2->strlen = strlen(node2->str);
+    node1->nodelist = (list*)malloc(sizeof(list));
+    memset(node1->nodelist,0,sizeof(list));
+    add_list(node1->nodelist,node2);
+    return node1;
+}
 
 
 
@@ -160,15 +190,85 @@ treenode *check_tree(scan_word *scan){
             root = init_ins();
             sql_ins(scan,root);
             break;
+        case 22:
+            root = check_create(scan,root);
+            break;
         default:
             log_erro("错误，语句存在违规语法");
             break;
-
-
     }
 
     return root;
 }
+treenode *check_create(scan_word* scan,treenode *root){
+    int arrlen = 1;
+    sqlitWord word = get_word(scan,arrlen);
+
+    //判断是创建数据库还是创建表单
+    switch (word.num) {
+        case 23:
+            log_info("建库语句");
+            root = init_create_db();
+            sql_create_db(scan,root);
+            break;
+        case 24:
+            log_info("建表语句");
+            root = init_create_tb();
+            sql_create_tb(scan,root);
+            break;
+        default:
+            log_erro("错误:语法创建库表参数有误");
+            break;
+    }
+    return root;
+}
+
+
+//TODO:这里是处理create database语句简单实例
+//就很简单的对比
+void sql_create_db(scan_word *scan,treenode *root){
+    treenode *p = root;
+    list * sel = p->nodelist;
+    treenode *sql = sel->tree;
+    int arrlen = 2;
+    int wordlen = get_wordlen(scan);
+    if (wordlen < arrlen){
+        root = NULL;
+        return;
+    }
+    sqlitWord word = get_word(scan,arrlen);
+    if (word.num == sql->strtype){
+        sql->str = str_copy(sql->str,word.arr);
+        sql->strlen = strlen(sql->str);
+    } else {
+        log_erro("错误：数据库名错误或为空");
+    }
+
+
+}
+
+//TODO:这里是处理create table语句简单实例
+//还是很简单的对比
+void sql_create_tb(scan_word *scan,treenode *root){
+    treenode *p = root;
+    list * sel = p->nodelist;
+    treenode *sql = sel->tree;
+    int arrlen = 2;
+    int wordlen = get_wordlen(scan);
+    if (wordlen < arrlen){
+        root = NULL;
+        return;
+    }
+    sqlitWord word = get_word(scan,arrlen);
+    if (word.num == sql->strtype){
+        sql->str = str_copy(sql->str,word.arr);
+        sql->strlen = strlen(sql->str);
+    } else {
+        log_erro("错误：表名错误或为空");
+    }
+}
+
+
 
 
 //TODO:这里是处理insert语句简单实例
@@ -355,7 +455,7 @@ void sql_sel(scan_word *scan,treenode *root){
         log_erro("语句错误");
         return;
     }
-    int tablelen = strlen(bname)+sql->strlen+2;
+    int tablelen = strlen(dbname)+sql->strlen+2;
     char name_tab[tablelen];
     word = get_word(scan,arrlen);
     if(word.num == sql->strtype){
@@ -365,9 +465,9 @@ void sql_sel(scan_word *scan,treenode *root){
         sql->str += '\0';
     }
 
-    if(strlen(bname) != 0){
+    if(strlen(dbname) != 0){
     memset(name_tab,0,tablelen);
-    strcat(name_tab,bname);
+    strcat(name_tab,dbname);
     strcat(name_tab,".");
     strcat(name_tab,sql->str);
     //这里需要链接文件树确定表存在
@@ -479,7 +579,6 @@ void sql_sel(scan_word *scan,treenode *root){
                 newptr->strlen = strlen(newptr->str);
                 add_list(sel,newptr);sel = sel->next;
                 sql = sel->tree;arrlen++;}break;
-
         }
             if (wordlen <= arrlen) {
                 //封装语法错误
@@ -564,16 +663,6 @@ void tree_trim(treenode *root){
         }
     }
 
-
-
-
-
-
-
-
-
-
-
 }
 
 
@@ -582,7 +671,7 @@ void tree_trim(treenode *root){
 
 void use_fun(){
     char *str = "sasd";
-    strcat(bname,str);
+    strcat(dbname,str);
 }
 
 
@@ -596,10 +685,33 @@ treenode * statement_parsing(char *sql){
 }
 
 
+sql_operation* create_semant(treenode *root){
+    treenode* p = root;
+    p = p->nodelist->tree;
+    sql_operation* create_database_sql=malloc_sqloperation();
+    create_database_sql->handler=CREATE_DATABASE;
+    create_database_sql->name = str_copy(create_database_sql->name,p->str);
+}
 
 
 
 
+
+
+
+void test_lc(){
+    char *cres = "create database aaaa";
+    scan_word *res = scanWordInit();
+//
+    sqlsacnner(res,cres);
+//get_wordlen(res);
+
+    treenode *root = check_tree(res);
+    sql_operation* u = create_semant(root);
+    sql_oper_create_database(u);
+
+
+}
 
 
 
