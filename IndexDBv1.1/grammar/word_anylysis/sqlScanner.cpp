@@ -627,6 +627,9 @@ void llParser(scan_word *scan) {
             getWord(scan);
             scan->level = deleteSql(scan);
             break;
+        case 22:
+            printf("\ncreate判断成功！ 种别码 :%d   单词 %s\n",scan->number,scan->word[scan->len+1].arr);
+            break;
         default:
             printf("error:语句错误");
             break;

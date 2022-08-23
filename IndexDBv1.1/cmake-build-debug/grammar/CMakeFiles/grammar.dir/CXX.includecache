@@ -88,15 +88,33 @@ pwd.h
 map
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/map
 
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/Myall.h
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+string
+-
+vector
+-
+iostream
+-
+time.h
+-
+../index/database_index.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/database_index.h
+
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/word_anylysis/sqlScanner.cpp
+../Myall.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/Myall.h
+
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/database_index.h
 ../Engine/database_engine.h
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/Engine/database_engine.h
 ../primitive/primitive.h
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/primitive.h
-
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/sql.cpp
-database_index.h
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/database_index.h
 
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/primitive.h
 vector

@@ -383,7 +383,10 @@ index/primitive/CMakeFiles/primitive.dir/clean:
 # Target rules for target grammar/CMakeFiles/grammar.dir
 
 # All Build rule for target.
-grammar/CMakeFiles/grammar.dir/all:
+grammar/CMakeFiles/grammar.dir/all: index/CMakeFiles/index.dir/all
+grammar/CMakeFiles/grammar.dir/all: index/Engine/CMakeFiles/Engine.dir/all
+grammar/CMakeFiles/grammar.dir/all: index/Engine/snappy/CMakeFiles/snappy.dir/all
+grammar/CMakeFiles/grammar.dir/all: index/primitive/CMakeFiles/primitive.dir/all
 	$(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/depend
 	$(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=21,22,23,24,25 "Built target grammar"
@@ -391,7 +394,7 @@ grammar/CMakeFiles/grammar.dir/all:
 
 # Build rule for subdir invocation for target.
 grammar/CMakeFiles/grammar.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 39
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar/CMakeFiles/grammar.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
 .PHONY : grammar/CMakeFiles/grammar.dir/rule

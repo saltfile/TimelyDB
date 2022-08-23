@@ -103,6 +103,7 @@ IndexDBv1_1: index/Engine/libEngine.a
 IndexDBv1_1: index/libindex.a
 IndexDBv1_1: Server/libServer.a
 IndexDBv1_1: grammar/libgrammar.a
+IndexDBv1_1: index/libindex.a
 IndexDBv1_1: index/Engine/libEngine.a
 IndexDBv1_1: index/Engine/snappy/libsnappy.a
 IndexDBv1_1: index/primitive/libprimitive.a

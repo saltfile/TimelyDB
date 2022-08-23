@@ -684,7 +684,7 @@ treenode * statement_parsing(char *sql){
     return root;
 }
 
-
+//
 sql_operation* create_semant(treenode *root){
     treenode* p = root;
     p = p->nodelist->tree;
@@ -707,8 +707,8 @@ void test_lc(){
 //get_wordlen(res);
 
     treenode *root = check_tree(res);
-    sql_operation* u = create_semant(root);
-    sql_oper_create_database(u);
+//    sql_operation* u = create_semant(root);
+//    sql_oper_create_database(u);
 
 
 }
