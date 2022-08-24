@@ -32,6 +32,7 @@
  * 22 create
  * 23 database
  * 24 table
+ * 25 use
  * 100 letter
  * 150 >=
  * 160 <=
@@ -61,7 +62,7 @@
  * */
 
 char *keywords[] = {"select", "insert", "delete", "from", "into", "where", "group", "by", "between", "and", "or",
-                    "primary", "like", "values", "order", "mean", "max", "min", "count", "as", "time","create","database","table",_END_};
+                    "primary", "like", "values", "order", "mean", "max", "min", "count", "as", "time","create","database","table","use",_END_};
 
 
 scan_word * scanWordInit(){
@@ -69,6 +70,8 @@ scan_word * scanWordInit(){
    memset(res,0,sizeof(res));
     return res;
 }
+
+
 
 
 sqlWord *scanner(scan_word *scan);
@@ -156,12 +159,6 @@ int reserver(scan_word *scan) {
     return 100; //不是关键字 普通字段
 
 }
-
-
-
-
-
-
 
 sqlWord *scanner(scan_word *scan) {
     sqlWord *myword = new sqlWord;
@@ -630,8 +627,11 @@ void llParser(scan_word *scan) {
         case 22:
             printf("\ncreate判断成功！ 种别码 :%d   单词 %s\n",scan->number,scan->word[scan->len+1].arr);
             break;
+        case 25:
+            printf("\nuse判断成功！ 种别码 :%d\n",scan->number);
+            break;
         default:
-            printf("error:语句错误");
+            printf("error:语句错误\n");
             break;
     }
     return;

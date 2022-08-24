@@ -2,7 +2,10 @@
 // Created by saltfish on 2022/2/17.
 //
 #include "../Myall.h"
-char dbname[255];
+#include "../../index/database_index.h"
+
+#define TREE_LEN 4
+char abname[255];
 //被取走的树节点
 int sql_len = 0;
 int in_len = 0;
@@ -107,71 +110,25 @@ treenode *init_create_tb(){
 
 
 
+treenode *init_use(){
+    treenode *node1 = (treenode *)malloc(sizeof(treenode));
+    memset(node1,0,sizeof(treenode));
+    node1->strtype = 25;
+    node1->str = "use";
+    node1->strlen = strlen(node1->str);
+    treenode *node2 = (treenode *)malloc(sizeof(treenode));
+    memset(node2,0,sizeof(treenode));
+    node2->strtype = 100;
+    node2->str = "xxx";
+    node2->strlen = strlen(node2->str);
+    node1->nodelist = (list *)malloc(sizeof(list));
+    memset(node1->nodelist,0,sizeof(list));
+    add_list(node1->nodelist,node2);
+    return node1;
+}
 
 
 
-
-
-
-
-//void create_sqltree(){
-//    for(int i = 0 ;i < TREE_LEN;i++){
-//        //node1是select//节点type是1
-//        treenode *node1 = (treenode *)malloc(sizeof(treenode));
-//        memset(node1,0,sizeof(node1));
-//        node1->strtype = 1;
-//        node1->str = "select";
-//        node1->strlen = strlen(node1->str);
-//        //node2是搜索结果*
-//        treenode *node2 = (treenode *)malloc(sizeof(treenode));
-//        memset(node2,0,sizeof(node2));
-//        node2->strtype = 42;
-//        node2->str = "*";
-//        node2->strlen = strlen(node2->str);
-//        node1->nodelist = (list *)malloc(sizeof(list));
-//        add_list(node1->nodelist,node2);
-//        //node3是from
-//        treenode *node3 = (treenode *)malloc(sizeof(treenode));
-//        memset(node3,0,sizeof(node3));
-//        node3->strtype = 4;
-//        node3->str = "from";
-//        node3->strlen = strlen(node3->str);
-//        node2->nodelist = (list *)malloc(sizeof(list));
-//        add_list(node1->nodelist,node3);
-//        //node4是表名就是个letter
-//        treenode *node4 = (treenode *)malloc(sizeof(treenode));
-//        memset(node4,0,sizeof(node4));
-//        node4->strtype = 100;
-//        node4->str = "xxx";//这个只是代替
-//        node4->strlen = strlen(node4->str);
-//        node3->nodelist = (list *)malloc(sizeof(list));
-//        add_list(node1->nodelist,node4);
-//    }
-//    sql_len = TREE_LEN-1;
-//    for(int i = 0 ;i < TREE_LEN;i++){
-//
-//        treenode *node1 = (treenode *)malloc(sizeof(treenode));
-//        memset(node1,0,sizeof(node1));
-//        node1->strtype = 2;
-//        node1->str = "insert";
-//        node1->strlen = strlen(node1->str);
-//        treenode *node2 = (treenode *)malloc(sizeof(treenode));
-//        memset(node2,0,sizeof(node2));
-//        node2->strtype = 5;
-//        node2->str = "into";
-//        node2->strlen = strlen(node2->str);
-//        node1->nodelist = (list *)malloc(sizeof(list));
-//        add_list(node1->nodelist,node2);
-//        treenode *node3 = (treenode *)malloc(sizeof(treenode));
-//        memset(node3,0,sizeof(node3));
-//        node3->strtype = 100;
-//        node3->str = "t_name";
-//        node3->strlen = strlen(node3->str);
-//        node2->nodelist = (list *)malloc(sizeof(list));
-//        add_list(node1->nodelist,node3);
-//    }
-//    in_len = TREE_LEN-1;
-//}
 
 
 treenode *check_tree(scan_word *scan){
@@ -193,6 +150,10 @@ treenode *check_tree(scan_word *scan){
         case 22:
             root = check_create(scan,root);
             break;
+        case 25:
+            root = init_use();
+            sql_use(scan,root);
+            break;
         default:
             log_erro("错误，语句存在违规语法");
             break;
@@ -200,6 +161,9 @@ treenode *check_tree(scan_word *scan){
 
     return root;
 }
+
+
+
 treenode *check_create(scan_word* scan,treenode *root){
     int arrlen = 1;
     sqlitWord word = get_word(scan,arrlen);
@@ -223,6 +187,26 @@ treenode *check_create(scan_word* scan,treenode *root){
     return root;
 }
 
+
+
+void sql_use(scan_word *scan,treenode *root){
+    treenode *p = root;
+    list * sel = p->nodelist;
+    treenode *sql = sel->tree;
+    int arrlen = 1;
+    int wordlen = get_wordlen(scan);
+    if (wordlen < arrlen || wordlen > 2){
+        root = NULL;
+        return;
+    }
+    sqlitWord word = get_word(scan,arrlen);
+    if (word.num == sql->strtype){
+        sql->str = str_copy(sql->str,word.arr);
+        sql->strlen = strlen(sql->str);
+    } else {
+        log_erro("错误：数据库名错误或为空");
+    }
+}
 
 //TODO:这里是处理create database语句简单实例
 //就很简单的对比
@@ -455,7 +439,7 @@ void sql_sel(scan_word *scan,treenode *root){
         log_erro("语句错误");
         return;
     }
-    int tablelen = strlen(dbname)+sql->strlen+2;
+    int tablelen = strlen(abname)+sql->strlen+2;
     char name_tab[tablelen];
     word = get_word(scan,arrlen);
     if(word.num == sql->strtype){
@@ -465,12 +449,12 @@ void sql_sel(scan_word *scan,treenode *root){
         sql->str += '\0';
     }
 
-    if(strlen(dbname) != 0){
-    memset(name_tab,0,tablelen);
-    strcat(name_tab,dbname);
-    strcat(name_tab,".");
-    strcat(name_tab,sql->str);
-    //这里需要链接文件树确定表存在
+    if(strlen(abname) != 0){
+        memset(name_tab,0,tablelen);
+        strcat(name_tab,abname);
+        strcat(name_tab,".");
+        strcat(name_tab,sql->str);
+        //这里需要链接文件树确定表存在
     } else{
         //封装错误包
         log_erro("未引用数据库");
@@ -488,7 +472,7 @@ void sql_sel(scan_word *scan,treenode *root){
         return;
     }
 
-   sqlitWord where_word = get_word(scan,arrlen);
+    sqlitWord where_word = get_word(scan,arrlen);
     if(where_word.num == 6){
         log_debug("发现where");
         treenode *node = (treenode *)malloc(sizeof(treenode));
@@ -518,24 +502,24 @@ void sql_sel(scan_word *scan,treenode *root){
     if(and_word.num == 100) {
         while (true){
             //先形成小链表
-        colnm *s = get_andcolum(scan,arrlen);
-        if(s->type == -234){
-            log_erro("语法错误:条件语句不可接受and/or语句");
-            return;
-        } else if(s->type == -235){
-            log_erro("语法错误:条件语句缺少元素");
-            return;
-        }
-        int p_len = arrlen;
-        treenode *annode = (treenode *) malloc(sizeof(treenode));
-        annode->nodelist = (struct list*)malloc(sizeof(list));
-        memset(annode->nodelist,0,sizeof(list));
+            colnm *s = get_andcolum(scan,arrlen);
+            if(s->type == -234){
+                log_erro("语法错误:条件语句不可接受and/or语句");
+                return;
+            } else if(s->type == -235){
+                log_erro("语法错误:条件语句缺少元素");
+                return;
+            }
+            int p_len = arrlen;
+            treenode *annode = (treenode *) malloc(sizeof(treenode));
+            annode->nodelist = (struct list*)malloc(sizeof(list));
+            memset(annode->nodelist,0,sizeof(list));
 
-        annode->nodelist = branch_245(scan,arrlen);
-        //这里指针逃逸需要去解决
+            annode->nodelist = branch_245(scan,arrlen);
+            //这里指针逃逸需要去解决
 
 
-        //生成下面的条件语句链表
+            //生成下面的条件语句链表
 //        for(int i = p_len ; i < arrlen+3;i++){
 //            sqlitWord sql_word = get_word(i);
 //            treenode *prevs = (treenode *)malloc(sizeof(treenode));
@@ -545,50 +529,50 @@ void sql_sel(scan_word *scan,treenode *root){
 //            add_list(annode->nodelist,prevs);
 //        }
 
-        annode->str = s->str;
-        annode->strlen = strlen(annode->str);
-        annode->strtype = s->type;
-        add_list(sel, annode);
-        sel = sel->next;
-        sql = sel->tree;
-        arrlen = s->end;
+            annode->str = s->str;
+            annode->strlen = strlen(annode->str);
+            annode->strtype = s->type;
+            add_list(sel, annode);
+            sel = sel->next;
+            sql = sel->tree;
+            arrlen = s->end;
 
-        if (wordlen <= arrlen) {
-                //封装语法错误
-                log_debug("语句结束");
-            break;
-        }
-
-            sqlitWord rela_word = get_word(scan,arrlen);
-        if(rela_word.num == 10 || rela_word.num == 11){
-        switch (rela_word.num) {
-            case 10:{treenode *newptr = (treenode *) malloc(sizeof(treenode));
-            newptr->strtype = 10;
-            newptr->str = (char *)malloc(sizeof(4));
-            newptr->str = "and";
-            newptr->str+='\0';
-            newptr->strlen = strlen(newptr->str);
-            add_list(sel,newptr);sel = sel->next;
-                sql = sel->tree;arrlen++;} break;
-
-            case 11:{treenode *newptr = (treenode *) malloc(sizeof(treenode));
-                newptr->strtype = 11;
-                newptr->str = (char *)malloc(sizeof(3));
-                newptr->str = "or";
-                newptr->str+='\0';
-                newptr->strlen = strlen(newptr->str);
-                add_list(sel,newptr);sel = sel->next;
-                sql = sel->tree;arrlen++;}break;
-        }
             if (wordlen <= arrlen) {
                 //封装语法错误
-                log_debug("where后面缺少相应语句");
+                log_debug("语句结束");
+                break;
+            }
+
+            sqlitWord rela_word = get_word(scan,arrlen);
+            if(rela_word.num == 10 || rela_word.num == 11){
+                switch (rela_word.num) {
+                    case 10:{treenode *newptr = (treenode *) malloc(sizeof(treenode));
+                        newptr->strtype = 10;
+                        newptr->str = (char *)malloc(sizeof(4));
+                        newptr->str = "and";
+                        newptr->str+='\0';
+                        newptr->strlen = strlen(newptr->str);
+                        add_list(sel,newptr);sel = sel->next;
+                        sql = sel->tree;arrlen++;} break;
+
+                    case 11:{treenode *newptr = (treenode *) malloc(sizeof(treenode));
+                        newptr->strtype = 11;
+                        newptr->str = (char *)malloc(sizeof(3));
+                        newptr->str = "or";
+                        newptr->str+='\0';
+                        newptr->strlen = strlen(newptr->str);
+                        add_list(sel,newptr);sel = sel->next;
+                        sql = sel->tree;arrlen++;}break;
+                }
+                if (wordlen <= arrlen) {
+                    //封装语法错误
+                    log_debug("where后面缺少相应语句");
+                    return;
+                }
+            }else{
+                log_erro("语法错误:条件语句缺少对应的运算符");
                 return;
             }
-        }else{
-            log_erro("语法错误:条件语句缺少对应的运算符");
-            return;
-        }
         }
         log_info("语句结束");
     } else{
@@ -666,12 +650,40 @@ void tree_trim(treenode *root){
 }
 
 
+void test_lc(){
+    char *cres = "create database safrtaas";
+    scan_word *res = scanWordInit();
+//
+    sqlsacnner(res,cres);
+////get_wordlen(res);
+//
+    treenode *root = check_tree(res);
 
+    sql_operation* create_database_sql=malloc_sqloperation();
+    create_database_sql->handler=CREATE_DATABASE;
+    create_database_sql->name="asdasdasd";
+    sql_oper_create_database(create_database_sql);
+
+
+
+
+
+//    sql_operation* use_dataname=malloc_sqloperation();
+//    use_dataname->handler=USE;
+//    use_dataname->name = "ass";
+//
+//    sql_oper_use(use_dataname);
+//    sql_operation* create_database_sql=malloc_sqloperation();
+//    create_database_sql->handler=CREATE_DATABASE;
+//    create_database_sql->name="asddasd";
+//    sql_oper_create_database(create_database_sql);
+
+}
 
 
 void use_fun(){
     char *str = "sasd";
-    strcat(dbname,str);
+    strcat(abname,str);
 }
 
 
@@ -684,34 +696,11 @@ treenode * statement_parsing(char *sql){
     return root;
 }
 
-//
-sql_operation* create_semant(treenode *root){
-    treenode* p = root;
-    p = p->nodelist->tree;
-    sql_operation* create_database_sql=malloc_sqloperation();
-    create_database_sql->handler=CREATE_DATABASE;
-    create_database_sql->name = str_copy(create_database_sql->name,p->str);
-}
 
 
 
 
 
-
-
-void test_lc(){
-    char *cres = "create database aaaa";
-    scan_word *res = scanWordInit();
-//
-    sqlsacnner(res,cres);
-//get_wordlen(res);
-
-    treenode *root = check_tree(res);
-//    sql_operation* u = create_semant(root);
-//    sql_oper_create_database(u);
-
-
-}
 
 
 

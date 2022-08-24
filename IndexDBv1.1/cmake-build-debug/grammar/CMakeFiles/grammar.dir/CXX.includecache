@@ -103,12 +103,12 @@ iostream
 -
 time.h
 -
-../index/database_index.h
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/database_index.h
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/word_anylysis/sqlScanner.cpp
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/gammer_tree/gra_tree.cpp
 ../Myall.h
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/Myall.h
+../../index/database_index.h
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/database_index.h
 
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/database_index.h
 ../Engine/database_engine.h

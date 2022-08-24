@@ -8,37 +8,59 @@
 struct passwd *username=getpwuid(getuid());
 IBool isinit;
 void mkdir_indexdb(){//初始化数据库
-    int size_mkdir=sizeof(strlen("mkdir /home/")+strlen(username->pw_name)+strlen("/indexTSDB/"));
-    char * mkdir=(char *)malloc(size_mkdir);
-    memset(mkdir,0,size_mkdir);
-    strcat(mkdir,"mkdir /home/");
-    strcat(mkdir,username->pw_name);
-    strcat(mkdir,"/indexTSDB");
-    if (system(mkdir)<0){
-        perror("[ERROR] mkdir the indexTSDB fail\n");
-    };
-    isinit=ITrue;
-    memset(mkdir,0,size_mkdir);
-    strcat(mkdir,"touch /home/");
-    strcat(mkdir,username->pw_name);
-    strcat(mkdir,"/user");
-    if (system(mkdir)<0){
-        perror("[ERROR] touch the user table fail\n");
+    int size_mkdir=sizeof(strlen("/home/")+strlen(username->pw_name)+strlen("/indexTSDB/"));
+
+    char * path=(char *)malloc(size_mkdir);
+    memset(path,0,size_mkdir);
+    strcat(path,"/home/");
+    strcat(path,username->pw_name);
+    strcat(path,"/indexTSDB");
+    if (access(path,F_OK)){
+        int isCreate = mkdir(path,S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
+        if( !isCreate )
+            printf("成功创建:%s\n",path);
+        else
+            printf("创建目录失败! error : %s \n",isCreate,path);
+    } else{
+        printf("创建完成");
     }
+
 }
+//void mkdir_indexdb(){//初始化数据库
+//    int size_mkdir=sizeof(strlen("/home/")+strlen(username->pw_name)+strlen("/indexTSDB/"));
+//    char * mkdir=(char *)malloc(size_mkdir);
+//    memset(mkdir,0,size_mkdir);
+//    strcat(mkdir,"mkdir /home/");
+//    strcat(mkdir,username->pw_name);
+//    strcat(mkdir,"/indexTSDB");
+//    if (system(mkdir)<0){
+////        perror("[ERROR] mkdir the indexTSDB fail\n");
+//    };
+//    isinit=ITrue;
+//    memset(mkdir,0,size_mkdir);
+//    strcat(mkdir,"touch /home/");
+//    strcat(mkdir,username->pw_name);
+//    strcat(mkdir,"/user");
+//    if (system(mkdir)<0){
+////        perror("[ERROR] touch the user table fail\n");
+//    }
+//    memset(mkdir,0,size_mkdir);
+//    free(mkdir);
+//}
 char * mkdir_database(char * databasename){//创建数据库,并返回数据库路径
     if (isinit!=ITrue){
         mkdir_indexdb();
     }
-    char * mkdir=(char *)malloc(strlen("mkdir /home/")+strlen(username->pw_name)+strlen("/indexTSDB/")+strlen(databasename));
-    strcat(mkdir,"mkdir /home/");
-    strcat(mkdir,username->pw_name);
-    strcat(mkdir,"/indexTSDB/");
-    strcat(mkdir,databasename);
-    if (system(mkdir)<0){
+    int yy = strlen("mkdir /home/")+strlen(username->pw_name)+strlen("/indexTSDB/")+strlen(databasename);
+    char *mkdiras=(char *)malloc(yy);
+    strcat(mkdiras,"mkdir /home/");
+    strcat(mkdiras,username->pw_name);
+    strcat(mkdiras,"/indexTSDB/");
+    strcat(mkdiras,databasename);
+    if (system(mkdiras)<0){
         perror("[ERROR] create database fail\n");
-    };
-    return mkdir+6;
+    }
+    return mkdiras+6;
 }
 void touch_table(char * databasename,char * tablename,char** columns,int columnSize){//创建表
     int size_touch=sizeof(strlen("touch /home/")+strlen(username->pw_name)+strlen("/indexTSDB/")+strlen(databasename)

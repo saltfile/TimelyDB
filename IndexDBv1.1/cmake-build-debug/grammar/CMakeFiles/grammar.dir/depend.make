@@ -10,30 +10,12 @@ grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.o: ../primitive/primitiv
 grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.o: ../snappy/snappy-stubs-public.h
 grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.o: ../snappy/snappy.h
 
-grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o: ../Engine/database_engine.h
-grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o: ../global_c.h
 grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o: ../grammar/Myall.h
 grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o: ../grammar/gammer_tree/list_fun.cpp
-grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o: ../index/database_index.h
-grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o: ../primitive/primitive.h
-grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o: ../snappy/snappy-stubs-public.h
-grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o: ../snappy/snappy.h
 
-grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.o: ../Engine/database_engine.h
-grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.o: ../global_c.h
 grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.o: ../grammar/Myall.h
 grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.o: ../grammar/log/log_fun.cpp
-grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.o: ../index/database_index.h
-grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.o: ../primitive/primitive.h
-grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.o: ../snappy/snappy-stubs-public.h
-grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.o: ../snappy/snappy.h
 
-grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o: ../Engine/database_engine.h
-grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o: ../global_c.h
 grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o: ../grammar/Myall.h
 grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o: ../grammar/word_anylysis/sqlScanner.cpp
-grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o: ../index/database_index.h
-grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o: ../primitive/primitive.h
-grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o: ../snappy/snappy-stubs-public.h
-grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o: ../snappy/snappy.h
 

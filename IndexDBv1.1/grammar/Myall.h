@@ -12,7 +12,6 @@
 #include <vector>
 #include <iostream>
 #include <time.h>
-#include "../index/database_index.h"
 using namespace std;
 
 #define BUF_LEN 1024
@@ -23,6 +22,17 @@ void log_info(char *data);
 void log_erro(char *data);
 void log_erro(string data);
 void log_debug(char *data);
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -81,10 +91,10 @@ typedef struct list{
 }list;
 
 typedef struct treenode{
-   char *str;
-   int strlen = 0;
-   int strtype = 0;
-   struct list *nodelist;//节点列表
+    char *str;
+    int strlen = 0;
+    int strtype = 0;
+    struct list *nodelist;//节点列表
 }treenode;
 //链表函数
 
@@ -100,6 +110,7 @@ void sql_create_db(scan_word *scan,treenode *root);
 void sql_create_tb(scan_word *scan,treenode *root);
 void sql_sel(scan_word *scan,treenode *root);
 void sql_ins(scan_word *scan,treenode *root);
+void sql_use(scan_word *scan,treenode *root);
 void test();
 //临时性传参结构体
 typedef  struct colnm{
@@ -138,8 +149,8 @@ treenode * statement_parsing(char *sql);
 treenode *init_sel();
 
 
-void test_lc();
 
+void test_lc();
 
 
 

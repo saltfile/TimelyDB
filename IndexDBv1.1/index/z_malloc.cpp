@@ -103,7 +103,6 @@ tuple_column* malloc_tuple_colum(void){
 tuple_head* malloc_tuple_head(void){
     tuple_head* tupleHead;
     tupleHead=(tuple_head*)malloc(sizeof(tuple_head));
-
     tupleHead->fileds=malloc_tuple_colum();
     return tupleHead;
 }
