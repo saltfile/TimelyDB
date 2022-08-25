@@ -144,6 +144,19 @@ IndexDBv1_1/fast:
 .PHONY : IndexDBv1_1/fast
 
 #=============================================================================
+# Target rules for targets named grammar
+
+# Build rule for target.
+grammar: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar
+.PHONY : grammar
+
+# fast build rule for target.
+grammar/fast:
+	$(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/build
+.PHONY : grammar/fast
+
+#=============================================================================
 # Target rules for targets named Server
 
 # Build rule for target.
@@ -207,19 +220,6 @@ primitive: cmake_check_build_system
 primitive/fast:
 	$(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/build
 .PHONY : primitive/fast
-
-#=============================================================================
-# Target rules for targets named grammar
-
-# Build rule for target.
-grammar: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar
-.PHONY : grammar
-
-# fast build rule for target.
-grammar/fast:
-	$(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/build
-.PHONY : grammar/fast
 
 main.o: main.cpp.o
 

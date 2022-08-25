@@ -212,7 +212,7 @@ void sql_oper_delete(sql_operation* sql);
 void sql_oper_select(sql_operation* sql);
 void sql_oper_drop_table(sql_operation* sql);
 void sql_oper_drop_database(sql_operation* sql);
-void sql_oper_use(sql_operation* sql);
+bool sql_oper_use(sql_operation* sql);
 void sql_oper_create_table(sql_operation* sql);
 void sql_oper_create_database(sql_operation* sql);
 /////////////////////////////////////////////////////zmalloc.h

@@ -3,7 +3,7 @@
 //
 #include "../Myall.h"
 #include "../../index/database_index.h"
-
+#include "../../Server/ser_drive.h"
 #define TREE_LEN 4
 char abname[255];
 //被取走的树节点
@@ -619,13 +619,6 @@ void sel_254(treenode *node){
 
     }
 
-
-
-
-
-
-
-
 }
 
 
@@ -650,29 +643,53 @@ void tree_trim(treenode *root){
 }
 
 
+
+
+packge * create_memte(char *sql){
+    packge *res = (packge *)malloc(sizeof(packge));
+    memset(res,0,sizeof(res));
+    scan_word *words = scanWordInit();
+//
+    sqlsacnner(words,sql);
+    treenode *root = check_tree(words);
+
+
+
+
+    
+
+    return res;
+}
+
+
+
+
+
+
+
+
+
+
+
 void test_lc(){
     char *cres = "create database safrtaas";
     scan_word *res = scanWordInit();
 //
     sqlsacnner(res,cres);
-////get_wordlen(res);
-//
     treenode *root = check_tree(res);
 
-    sql_operation* create_database_sql=malloc_sqloperation();
-    create_database_sql->handler=CREATE_DATABASE;
-    create_database_sql->name="asdasdasd";
-    sql_oper_create_database(create_database_sql);
+//    sql_operation* create_database_sql=malloc_sqloperation();
+//    create_database_sql->handler=CREATE_DATABASE;
+//    create_database_sql->name="aaa";
+//    sql_oper_create_database(create_database_sql);
 
 
 
-
-
-//    sql_operation* use_dataname=malloc_sqloperation();
-//    use_dataname->handler=USE;
-//    use_dataname->name = "ass";
+    sql_operation* use_dataname=malloc_sqloperation();
+    use_dataname->handler=USE;
+    use_dataname->name = "aaa";
 //
-//    sql_oper_use(use_dataname);
+    sql_oper_use(use_dataname);
 //    sql_operation* create_database_sql=malloc_sqloperation();
 //    create_database_sql->handler=CREATE_DATABASE;
 //    create_database_sql->name="asddasd";

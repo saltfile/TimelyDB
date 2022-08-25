@@ -177,13 +177,35 @@ void sql_oper_drop_database(sql_operation* sql){
 
 /*use databasename
  * */
-void sql_oper_use(sql_operation* sql){
+bool sql_oper_use(sql_operation* sql){
     if (tupleHead!= nullptr){
         free(tupleHead);
     }
     tupleHead=malloc_tuple_head();
-    tupleHead->databasename=sql->name;
+    passwd *user = get_user();
+    int yy = strlen("/home/")+strlen(user->pw_name)+strlen("/indexTSDB/")+strlen(sql->name);
+    char *path=(char *)malloc(yy);
+    memset(path,0,yy);
+    strcat(path,"/home/");
+    strcat(path,user->pw_name);
+    strcat(path,"/indexTSDB/");
+    strcat(path,sql->name);
+    if (access(path,F_OK)){
+            cout<<"\n错误没有这个数据库";
+        return false;
+        } else{
+        tupleHead->databasename=sql->name;
+           cout<<"\nOK ! 1 ROW";
+        return true;
+        }
 }
+
+
+
+
+
+
+
 
 /*创建表
  * */

@@ -34,8 +34,6 @@ void log_debug(char *data);
 
 
 
-
-
 //词法分析 代码:占林学长
 typedef struct {
     int typenum;
@@ -149,8 +147,7 @@ treenode * statement_parsing(char *sql);
 treenode *init_sel();
 
 
-
-void test_lc();
+void  test_lc();
 
 
 

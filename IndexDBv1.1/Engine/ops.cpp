@@ -26,6 +26,13 @@ void mkdir_indexdb(){//初始化数据库
     }
 
 }
+
+
+
+passwd* get_user(){
+    return username;
+}
+
 //void mkdir_indexdb(){//初始化数据库
 //    int size_mkdir=sizeof(strlen("/home/")+strlen(username->pw_name)+strlen("/indexTSDB/"));
 //    char * mkdir=(char *)malloc(size_mkdir);
@@ -47,20 +54,30 @@ void mkdir_indexdb(){//初始化数据库
 //    memset(mkdir,0,size_mkdir);
 //    free(mkdir);
 //}
-char * mkdir_database(char * databasename){//创建数据库,并返回数据库路径
+char *mkdir_database(char * databasename){//创建数据库,并返回数据库路径
     if (isinit!=ITrue){
         mkdir_indexdb();
     }
-    int yy = strlen("mkdir /home/")+strlen(username->pw_name)+strlen("/indexTSDB/")+strlen(databasename);
-    char *mkdiras=(char *)malloc(yy);
-    strcat(mkdiras,"mkdir /home/");
-    strcat(mkdiras,username->pw_name);
-    strcat(mkdiras,"/indexTSDB/");
-    strcat(mkdiras,databasename);
-    if (system(mkdiras)<0){
-        perror("[ERROR] create database fail\n");
+    int yy = strlen("/home/")+strlen(username->pw_name)+strlen("/indexTSDB/")+strlen(databasename);
+    char *path=(char *)malloc(yy);
+    memset(path,0,yy);
+    strcat(path,"/home/");
+    strcat(path,username->pw_name);
+    strcat(path,"/indexTSDB/");
+    strcat(path,databasename);
+    if (access(path,F_OK)){
+        int isCreate = mkdir(path,S_IRUSR | S_IWUSR | S_IXUSR | S_IRWXG | S_IRWXO);
+        if( !isCreate ){
+            printf("成功创建:%s\n",path);
+            return path;
+        }else{
+            printf("创建数据库失败! error : %s \n",isCreate,databasename);
+            return NULL;
+        }
+    } else{
+        printf("\n已有相同的数据库\n");
     }
-    return mkdiras+6;
+    return NULL;
 }
 void touch_table(char * databasename,char * tablename,char** columns,int columnSize){//创建表
     int size_touch=sizeof(strlen("touch /home/")+strlen(username->pw_name)+strlen("/indexTSDB/")+strlen(databasename)

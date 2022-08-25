@@ -96,7 +96,7 @@ u8 * to_crc16(short x){
 
 u8 *int_to_byte(int len){
     u8 *byte_len = (u8 *)malloc(4);
-
+    memset(byte_len,0,4);
     byte_len[3] = (u8) (len & 0xff);
     byte_len[2] = (u8) (len >> 8 & 0xff);
     byte_len[1] = (u8) (len >> 16 & 0xff);

@@ -5,7 +5,7 @@
 		<Option title="IndexDBv1_1"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\Server\;CMake Files\index\;CMake Files\Engine\;CMake Files\snappy\;CMake Files\primitive\;CMake Files\grammar\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\grammar\;CMake Files\Server\;CMake Files\index\;CMake Files\Engine\;CMake Files\snappy\;CMake Files\primitive\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug"/>
@@ -81,6 +81,52 @@
 					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="grammar">
+				<Option output="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/libgrammar.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 grammar"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="grammar/fast">
+				<Option output="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/libgrammar.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 grammar/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Server">
@@ -313,52 +359,6 @@
 					<DistClean command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/primitive/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="grammar">
-				<Option output="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/libgrammar.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 grammar"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="grammar/fast">
-				<Option output="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/libgrammar.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 grammar/fast"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 		</Build>
 		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/Engine/circularList.cpp">
 			<Option target="Engine"/>
@@ -494,6 +494,9 @@
 		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
+		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\grammar\"/>
+		</Unit>
 		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/Server/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\Server\"/>
 		</Unit>
@@ -508,9 +511,6 @@
 		</Unit>
 		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\primitive\"/>
-		</Unit>
-		<Unit filename="/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/grammar/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\grammar\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

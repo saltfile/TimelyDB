@@ -133,7 +133,7 @@ typedef struct database{
     char * location;
 }Database;
 //
-char * mkdir_database(char * databasename);
+char *mkdir_database(char * databasename);
 void touch_table(char * databasename,char * tablename,char** columns,int columnSize);
 void rm_database(char * databasename);
 void rm_table(char * databasename,char * tablename);
@@ -230,4 +230,9 @@ int write_ahead_log(char * timestamp,char * databasename,char * tablename,value_
 IBool load_ahead_log(head_tuple * load_list);
 //////////////////////////////////////////////////////////////////
 //
+
+passwd* get_user();
+
+
+
 #endif //G__TEST_DATABASE_ENGINE_H
