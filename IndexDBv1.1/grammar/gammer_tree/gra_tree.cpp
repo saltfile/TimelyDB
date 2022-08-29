@@ -231,6 +231,13 @@ void sql_create_db(scan_word *scan,treenode *root){
 
 }
 
+
+
+
+
+
+
+
 //TODO:这里是处理create table语句简单实例
 //还是很简单的对比
 void sql_create_tb(scan_word *scan,treenode *root){
@@ -250,10 +257,66 @@ void sql_create_tb(scan_word *scan,treenode *root){
     } else {
         log_erro("错误：表名错误或为空");
     }
+    //重写部分
+    //分词指针继续往下走
+    word = get_word(scan,++arrlen);
+    if (word.num == 40) {
+        arrlen++;
+        while (true) {
+            if (arrlen > get_wordlen(scan))break;
+            word = get_word(scan, arrlen);
+            if (word.num == 100) {
+                int end = base_type_syntax(scan, arrlen);
+                treenode *new_node = (treenode *) malloc(sizeof(treenode));
+                memset(new_node, 0, sizeof(treenode));
+                new_node->strtype = 259;
+                new_node->nodelist = branch_259(scan, arrlen, end);
+                add_list(sel, new_node);
+                arrlen = end;
+                arrlen++;
+                word = get_word(scan,arrlen);
+                if (word.num == 44){
+                    arrlen++;
+                    continue;
+                }
+                if (word.num == 41){
+                    int all = get_wordlen(scan);
+                    if (all > arrlen+1){
+                        log_erro("末尾检测到违法字符");
+                        break;
+                    }else{
+                        break;
+                    }
+                }
+            } else {log_erro("表列名与表列类型之间有语法错误");break;}
+        }
+    }
+        else{
+            log_erro("语句缺少 \"()\"");
+        }
+
+    }
+
+int base_type_syntax(scan_word *scan,int start){
+    int res = start+1;
+    sqlitWord word = get_word(scan,res);
+    //首先测试类型
+    if (word.num == 26 ||word.num == 27||word.num == 28||word.num == 29){
+        return res;
+    } else if (word.num == 30){
+        res+=1;
+        if (res >= get_wordlen(scan))return -2;
+        word = get_word(scan,res);
+        if (word.num != 40)return -1;
+        res+=1;
+        word = get_word(scan,res);
+        if (word.num != 200) return -1;
+        res+=1;
+        word = get_word(scan,res);
+        if (word.num != 41)return -1;
+        return res;
+    } else return -2;
 }
-
-
-
 
 //TODO:这里是处理insert语句简单实例
 //先对比前面四个语法是否正确
@@ -516,18 +579,6 @@ void sql_sel(scan_word *scan,treenode *root){
             memset(annode->nodelist,0,sizeof(list));
 
             annode->nodelist = branch_245(scan,arrlen);
-            //这里指针逃逸需要去解决
-
-
-            //生成下面的条件语句链表
-//        for(int i = p_len ; i < arrlen+3;i++){
-//            sqlitWord sql_word = get_word(i);
-//            treenode *prevs = (treenode *)malloc(sizeof(treenode));
-//            prevs->str = sql_word.arr+'\0';
-//            prevs->strlen = strlen(prevs->str);
-//            prevs->strtype = sql_word.num;
-//            add_list(annode->nodelist,prevs);
-//        }
 
             annode->str = s->str;
             annode->strlen = strlen(annode->str);
@@ -645,38 +696,59 @@ void tree_trim(treenode *root){
 
 
 
-packge * create_memte(char *sql){
+packge * use_memte(treenode *root){
     packge *res = (packge *)malloc(sizeof(packge));
     memset(res,0,sizeof(res));
-    scan_word *words = scanWordInit();
-//
-    sqlsacnner(words,sql);
-    treenode *root = check_tree(words);
-
-
-
-
-    
-
+    sql_operation* use_dataname=malloc_sqloperation();
+    use_dataname->handler=USE;
+    use_dataname->name = root->nodelist->tree->str;
+    bool b =  sql_oper_use(use_dataname);
+    if (b){
+        res->create_package("Database changed",MESS_SUCCESS);
+    } else{
+        res->create_package("Unknown database",OPER_FAIL);
+    }
     return res;
 }
 
 
 
+packge* create_memte(treenode *root){
+    packge *res = (packge *)malloc(sizeof(packge));
+    memset(res,0,sizeof(res));
+    sql_operation *create_database = malloc_sqloperation();
+    create_database->handler = CREATE_DATABASE;
+    create_database->name = root->nodelist->tree->str;
+    bool b = sql_oper_create_database(create_database);
+    if (b){
+        res->create_package("Successfully created",MESS_SUCCESS);
+    } else{
+        res->create_package("Error:Duplicate database or other errors already exist",OPER_FAIL);
+    }
+    return res;
+}
 
+packge* create_memte_tb(treenode *root){
+    packge *res = (packge *)malloc(sizeof(packge));
+    memset(res,0,sizeof(res));
 
+    sql_operation *create_tb = malloc_sqloperation();
+    create_tb->handler = CREATE_TABLE;
+    create_tb->name = root->nodelist->tree->str;
+    bool b = sql_oper_create_table(create_tb);
+    if (b){
+//        res->create_package("");
+    }
 
-
-
-
+}
 
 
 void test_lc(){
-    char *cres = "create database safrtaas";
-    scan_word *res = scanWordInit();
-//
-    sqlsacnner(res,cres);
-    treenode *root = check_tree(res);
+    char *cres = "create table tudent(age int,name varchar(255))";
+    scan_word *words = scanWordInit();
+    sqlsacnner(words,cres);
+    treenode *root = check_tree(words);
+//    packge*p = use_memte(root);
 
 //    sql_operation* create_database_sql=malloc_sqloperation();
 //    create_database_sql->handler=CREATE_DATABASE;
@@ -685,11 +757,11 @@ void test_lc(){
 
 
 
-    sql_operation* use_dataname=malloc_sqloperation();
-    use_dataname->handler=USE;
-    use_dataname->name = "aaa";
-//
-    sql_oper_use(use_dataname);
+//    sql_operation* use_dataname=malloc_sqloperation();
+//    use_dataname->handler=USE;
+//    use_dataname->name = "aaa";
+////
+//    sql_oper_use(use_dataname);
 //    sql_operation* create_database_sql=malloc_sqloperation();
 //    create_database_sql->handler=CREATE_DATABASE;
 //    create_database_sql->name="asddasd";

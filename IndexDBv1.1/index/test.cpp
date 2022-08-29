@@ -125,11 +125,11 @@ func run(c *<-chan int8){
     create_table->data_list->dataTypes=INT;
 
     create_table->data_list->next->c_name="name";
-//    create_table->data_list->next->dataTypes=VARCHAR;
+    create_table->data_list->next->dataTypes=VARCHAR;
     create_table->data_list->next->c_value="255";
 
     create_table->data_list->next->next->c_name="timestamp";
-//  create_table->data_list->next->next->dataTypes=VARCHAR;
+  create_table->data_list->next->next->dataTypes=VARCHAR;
     create_table->data_list->next->next->c_value="255";
 
 

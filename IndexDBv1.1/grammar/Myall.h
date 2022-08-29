@@ -134,8 +134,8 @@ list * branch_245(scan_word *scan,int arrlen);
 list * branch_256(scan_word *scan,int arrlen,int num);
 list * branch_257(scan_word *scan,int arrlen);
 list * branch_258(scan_word *scan,int arrlen);
-
-
+list *branch_259(scan_word *scanWord,int start,int end);
+int base_type_syntax(scan_word *scan,int start);
 treenode * statement_parsing(char *sql);
 
 

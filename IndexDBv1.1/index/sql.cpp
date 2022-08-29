@@ -209,7 +209,7 @@ bool sql_oper_use(sql_operation* sql){
 
 /*创建表
  * */
-void sql_oper_create_table(sql_operation* sql){
+bool sql_oper_create_table(sql_operation* sql){
     if (tupleHead->databasename==NULL){
         perror("[ERROR] databaseName  can't be NULL\n");
         perror(" 先use databasename");
@@ -248,15 +248,18 @@ void sql_oper_create_table(sql_operation* sql){
 /*
  * 创建数据库
  * */
-void sql_oper_create_database(sql_operation* sql){
+bool sql_oper_create_database(sql_operation* sql){
 
     char *syu = (char *)malloc(10);
     memset(syu,0,10);
 
-
     if (sql->name==NULL)  perror("[ERROR] create database false,databaseName  can't be NULL\n");
-    mkdir_database(sql->name);
-    free(sql);
+    char *path = mkdir_database(sql->name);
+    if (path!=NULL){
+        return true;
+    } else{
+        return false;
+    }
 }
 
 

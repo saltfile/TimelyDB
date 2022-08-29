@@ -33,6 +33,11 @@
  * 23 database
  * 24 table
  * 25 use
+ * 26 int
+ * 27 float
+ * 28 double
+ * 29 timestamp
+ * 30 varchar
  * 100 letter
  * 150 >=
  * 160 <=
@@ -58,11 +63,13 @@
  * 256 数据库查询的列号select age,name,id from中的age,name,id下面分支分出来分别是age name id
  * 257 ()插入语句中的内有列名
  * 258 ()插入语句中后面的value即类似于(ssss,15,28,72)
+ * 259 ccreate table时的列名及类型属性
  * 1000 \0
  * */
 
 char *keywords[] = {"select", "insert", "delete", "from", "into", "where", "group", "by", "between", "and", "or",
-                    "primary", "like", "values", "order", "mean", "max", "min", "count", "as", "time","create","database","table","use",_END_};
+                    "primary", "like", "values", "order", "mean", "max", "min", "count", "as", "time","create","database",
+                    "table","use","int","float","double","timestamp","varchar",_END_};
 
 
 scan_word * scanWordInit(){
@@ -777,6 +784,28 @@ list * branch_245(scan_word *scan,int arrlen){
     }
     return res;
 
+}
+
+
+
+
+
+
+list *branch_259(scan_word *scanWord,int start,int end){
+    list *res = (list*)malloc(sizeof(list));
+    memset(res,0,sizeof(list));
+    if (start >= end){return NULL;}
+    for (int i = start; i <= end; ++i) {
+        sqlitWord num_word = get_word(scanWord,i);
+        if (num_word.num == 40||num_word.num == 41)continue;
+        treenode *column_name = (treenode *)malloc(sizeof(treenode));
+        memset(column_name,0,sizeof(treenode));
+        column_name->str = str_copy(column_name->str,num_word.arr);
+        column_name->strlen = strlen(column_name->str);
+        column_name->strtype = num_word.num;
+        add_list(res,column_name);
+    }
+    return res;
 }
 list * branch_256(scan_word *scan,int arrlen,int num){
     list *res = (list *)malloc(sizeof(list));
