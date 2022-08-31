@@ -46,7 +46,7 @@ void create_vfsNode(char *databasename,char *tablename,condition* sql) {
         char *clouname=strcat_vfs(sql->c_name,sql->dataTypes,sql->c_value);
         VfsNode  * columnNode = createNode(3,clouname,1,NULL,NULL,NULL);
         addVfsTreeNode(table1Node,columnNode);
-        free(clouname);/////////////////////////? 要不要free
+//        free(clouname);/////////////////////////? 要不要free   你猜
         sql=sql->next;
     }
 }
@@ -230,7 +230,7 @@ bool sql_oper_create_table(sql_operation* sql){
         colums[i]=swap1->c_name;
         swap1=swap1->next;
     }
-    touch_table(tupleHead->databasename, sql->name, colums, columnNum);//jjs
+    if (!touch_table(tupleHead->databasename, sql->name, colums, columnNum))return false;//jjs
 
     //建vfsnode
     create_vfsNode(tupleHead->databasename,tupleHead->tablename,sql->data_list);//jjs

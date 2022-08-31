@@ -79,22 +79,61 @@ char *mkdir_database(char * databasename){//创建数据库,并返回数据库�
     }
     return NULL;
 }
-void touch_table(char * databasename,char * tablename,char** columns,int columnSize){//创建表
-    int size_touch=sizeof(strlen("touch /home/")+strlen(username->pw_name)+strlen("/indexTSDB/")+strlen(databasename)
+//旧
+//void touch_table(char * databasename,char * tablename,char** columns,int columnSize){//创建表
+//    int size_touch=sizeof(strlen("touch /home/")+strlen(username->pw_name)+strlen("/indexTSDB/")+strlen(databasename)+strlen("/")+strlen(tablename));
+//    char * touch=(char *)malloc(size_touch);
+//    memset(touch,0,size_touch);
+//    strcat(touch,"touch /home/");
+//    strcat(touch,username->pw_name);
+//    strcat(touch,"/indexTSDB/");
+//    strcat(touch,databasename);
+//    strcat(touch,"/");
+//    strcat(touch,tablename);
+//    if (system(touch)<0){
+//        perror("[ERROR] create table fail\n");
+//    }
+//    char * filepath=(char *)malloc(size_touch-1);
+//    memset(filepath,0,size_touch-6);
+//    strcat(filepath,"/home/");
+//    strcat(filepath,username->pw_name);
+//    strcat(filepath,"/indexTSDB/");
+//    strcat(filepath,databasename);
+//    strcat(filepath,"/");
+//    strcat(filepath,tablename);
+//    strcat(filepath,".tsdb");
+//    FILE *write=fopen(filepath,"a");
+//    if (write==NULL){
+//        perror("[ERROR] open file fail\n");
+//    }
+//    for (int i = 0; i < columnSize; ++i) {
+//        fwrite(columns[i],strlen(columns[i]),1,write);
+//        fwrite(";",1,1,write);
+//    }
+//}
+
+//新
+bool touch_table(char * databasename,char * tablename,char** columns,int columnSize){//创建表
+    int size_touch=sizeof(strlen("/home/")+strlen(username->pw_name)+strlen("/indexTSDB/")+strlen(databasename)
                           +strlen("/")+strlen(tablename));
     char * touch=(char *)malloc(size_touch);
     memset(touch,0,size_touch);
-    strcat(touch,"touch /home/");
+    strcat(touch,"/home/");
     strcat(touch,username->pw_name);
     strcat(touch,"/indexTSDB/");
     strcat(touch,databasename);
     strcat(touch,"/");
     strcat(touch,tablename);
-    if (system(touch)<0){
-        perror("[ERROR] create table fail\n");
+
+    if (access(touch,F_OK)){
+        FILE *fd = fopen(touch,"a");
+        fclose(fd);
+    } else{
+        perror("表已存在");
+        return false;
     }
-    char * filepath=(char *)malloc(size_touch-1);
-    memset(filepath,0,size_touch-6);
+    char * filepath=(char *)malloc(size_touch+5);
+    memset(filepath,0,size_touch+5);
     strcat(filepath,"/home/");
     strcat(filepath,username->pw_name);
     strcat(filepath,"/indexTSDB/");
@@ -107,10 +146,15 @@ void touch_table(char * databasename,char * tablename,char** columns,int columnS
         perror("[ERROR] open file fail\n");
     }
     for (int i = 0; i < columnSize; ++i) {
+        char *s = columns[i];
         fwrite(columns[i],strlen(columns[i]),1,write);
         fwrite(";",1,1,write);
     }
+    return true;
+//    fclose(write);
 }
+
+
 void rm_database(char * databasename){//删除数据库
     int size_rm=strlen("rm -rf /home/")+strlen(username->pw_name)+strlen("/")+strlen(databasename);
     char * rm_database=(char * )malloc(size_rm);

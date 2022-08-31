@@ -134,7 +134,7 @@ typedef struct database{
 }Database;
 //
 char *mkdir_database(char * databasename);
-void touch_table(char * databasename,char * tablename,char** columns,int columnSize);
+bool touch_table(char * databasename,char * tablename,char** columns,int columnSize);
 void rm_database(char * databasename);
 void rm_table(char * databasename,char * tablename);
 /////////////////////////////////////////////////////////pthread_myrwlock.h

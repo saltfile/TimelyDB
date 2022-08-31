@@ -736,18 +736,43 @@ packge* create_memte_tb(treenode *root){
     create_tb->handler = CREATE_TABLE;
     create_tb->name = root->nodelist->tree->str;
     bool b = sql_oper_create_table(create_tb);
-    if (b){
-//        res->create_package("");
-    }
-
 }
 
 
 void test_lc(){
-    char *cres = "create table tudent(age int,name varchar(255))";
-    scan_word *words = scanWordInit();
-    sqlsacnner(words,cres);
-    treenode *root = check_tree(words);
+//    char *cres = "create table tudent(age int,name varchar(255))";
+//    scan_word *words = scanWordInit();
+//    sqlsacnner(words,cres);
+//    treenode *root = check_tree(words);
+
+
+
+    sql_operation* use_dataname=malloc_sqloperation();
+    use_dataname->handler=USE;
+    use_dataname->name = "aaa";
+    sql_oper_use(use_dataname);
+    /*
+ *
+ * CREATE TABLE student(age int,name varchar(255),timestamp varchar(255))*/
+    sql_operation* create_table=malloc_sqloperation();
+    create_table->handler=CREATE_TABLE;
+    create_table->name="tea";
+    create_table->data_list->next=malloc_sqlcondition();
+    create_table->data_list->next->next=malloc_sqlcondition();
+
+    create_table->data_list->c_name="age";
+    create_table->data_list->dataTypes=INT;
+
+    create_table->data_list->next->c_name="name";
+    create_table->data_list->next->dataTypes=VARCHAR;
+    create_table->data_list->next->c_value="255";
+
+    create_table->data_list->next->next->c_name="timestamp";
+    create_table->data_list->next->next->dataTypes=VARCHAR;
+    create_table->data_list->next->next->c_value="255";
+    sql_oper_create_table(create_table);
+
+
 //    packge*p = use_memte(root);
 
 //    sql_operation* create_database_sql=malloc_sqloperation();
@@ -757,11 +782,9 @@ void test_lc(){
 
 
 
-//    sql_operation* use_dataname=malloc_sqloperation();
-//    use_dataname->handler=USE;
-//    use_dataname->name = "aaa";
+
 ////
-//    sql_oper_use(use_dataname);
+//
 //    sql_operation* create_database_sql=malloc_sqloperation();
 //    create_database_sql->handler=CREATE_DATABASE;
 //    create_database_sql->name="asddasd";
