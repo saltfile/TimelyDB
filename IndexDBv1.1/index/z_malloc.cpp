@@ -18,6 +18,7 @@ tuple_column* malloc_tuple_colum(void);
 condition* malloc_sqlcondition(void){
     condition* con;
     con=(condition*)malloc(sizeof(condition));
+    memset(con,0,sizeof(condition));
     return con;
 }
 

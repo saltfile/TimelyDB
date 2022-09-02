@@ -732,45 +732,69 @@ packge* create_memte_tb(treenode *root){
     packge *res = (packge *)malloc(sizeof(packge));
     memset(res,0,sizeof(res));
 
+
+
+    list *sql = root->nodelist;
+    treenode *p = sql->tree;
+
+    int list_lens = get_list_size(sql);
+    //名字就放上了
     sql_operation *create_tb = malloc_sqloperation();
     create_tb->handler = CREATE_TABLE;
-    create_tb->name = root->nodelist->tree->str;
-    bool b = sql_oper_create_table(create_tb);
+    create_tb->name = p->str;
+    sql = sql->next;
+    condition *l = create_tb->data_list;
+    for (int i = 1; i < list_lens; ++i) {
+        if (sql != NULL)
+            p = sql->tree;
+        else return NULL;
+
+        if (l == NULL)l = malloc_sqlcondition();
+
+        if (p->strtype == 259) {
+
+
+
+        }
+
+
+    }
 }
 
 
 void test_lc(){
-//    char *cres = "create table tudent(age int,name varchar(255))";
-//    scan_word *words = scanWordInit();
-//    sqlsacnner(words,cres);
-//    treenode *root = check_tree(words);
+    char *cres = "create table tudent(age int,name varchar(255))";
+    scan_word *words = scanWordInit();
+    sqlsacnner(words,cres);
+    treenode *root = check_tree(words);
+
+    create_memte_tb(root);
 
 
-
-    sql_operation* use_dataname=malloc_sqloperation();
-    use_dataname->handler=USE;
-    use_dataname->name = "aaa";
-    sql_oper_use(use_dataname);
+//    sql_operation* use_dataname=malloc_sqloperation();
+//    use_dataname->handler=USE;
+//    use_dataname->name = "aaa";
+//    sql_oper_use(use_dataname);
     /*
  *
  * CREATE TABLE student(age int,name varchar(255),timestamp varchar(255))*/
-    sql_operation* create_table=malloc_sqloperation();
-    create_table->handler=CREATE_TABLE;
-    create_table->name="tea";
-    create_table->data_list->next=malloc_sqlcondition();
-    create_table->data_list->next->next=malloc_sqlcondition();
-
-    create_table->data_list->c_name="age";
-    create_table->data_list->dataTypes=INT;
-
-    create_table->data_list->next->c_name="name";
-    create_table->data_list->next->dataTypes=VARCHAR;
-    create_table->data_list->next->c_value="255";
-
-    create_table->data_list->next->next->c_name="timestamp";
-    create_table->data_list->next->next->dataTypes=VARCHAR;
-    create_table->data_list->next->next->c_value="255";
-    sql_oper_create_table(create_table);
+//    sql_operation* create_table=malloc_sqloperation();
+//    create_table->handler=CREATE_TABLE;
+//    create_table->name="tea";
+//    create_table->data_list->next=malloc_sqlcondition();
+//    create_table->data_list->next->next=malloc_sqlcondition();
+//
+//    create_table->data_list->c_name="age";
+//    create_table->data_list->dataTypes=INT;
+//
+//    create_table->data_list->next->c_name="name";
+//    create_table->data_list->next->dataTypes=VARCHAR;
+//    create_table->data_list->next->c_value="255";
+//
+//    create_table->data_list->next->next->c_name="timestamp";
+//    create_table->data_list->next->next->dataTypes=VARCHAR;
+//    create_table->data_list->next->next->c_value="255";
+//    sql_oper_create_table(create_table);
 
 
 //    packge*p = use_memte(root);

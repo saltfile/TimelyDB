@@ -94,7 +94,7 @@ map
 ../primitive/primitive.h
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/primitive.h
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/sql.cpp
+/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/z_malloc.cpp
 database_index.h
 /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index/database_index.h
 
