@@ -738,27 +738,44 @@ packge* create_memte_tb(treenode *root){
     treenode *p = sql->tree;
 
     int list_lens = get_list_size(sql);
-    //名字就放上了
+    //表名就放上了
     sql_operation *create_tb = malloc_sqloperation();
     create_tb->handler = CREATE_TABLE;
     create_tb->name = p->str;
     sql = sql->next;
     condition *l = create_tb->data_list;
+    list *child;
     for (int i = 1; i < list_lens; ++i) {
         if (sql != NULL)
             p = sql->tree;
         else return NULL;
 
         if (l == NULL)l = malloc_sqlcondition();
-
         if (p->strtype == 259) {
+            child = p->nodelist;
+            treenode *ran = child->tree;
+            l->c_name = ran->str;
+            child = child->next;
+            ran = child->tree;
+            switch (ran->strtype) {
+                case 26:l->dataTypes = INT;break;
+                case 27:l->dataTypes = FLOAT;break;
+                case 28:l->dataTypes = DOUBLE;break;
+                case 29:l->dataTypes = TIMESTAMP;break;
+                case 30:
+                    l->dataTypes = VARCHAR;
+                    child = child->next;
+                    ran = child->tree;
+                    l->c_value = ran->str;break;
+                default:log_erro("未知的类型参数错误");
 
-
-
+            }
+            l->next = malloc_sqlcondition();
+            l = l->next;
+            sql = sql->next;
         }
-
-
     }
+    sql_oper_create_table(create_tb);
 }
 
 
