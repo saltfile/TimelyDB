@@ -780,11 +780,26 @@ packge* create_memte_tb(treenode *root){
 
 
 void test_lc(){
-    char *cres = "create database xxx";
-    scan_word *words = scanWordInit();
-    sqlsacnner(words,cres);
-    treenode *root = check_tree(words);
-    create_memte(root);
+    //使用 use语句
+    char *use = "use xxx";
+    scan_word *uword = scanWordInit();
+    sqlsacnner(uword,use);
+    treenode *uroot = check_tree(uword);
+    use_memte(uroot);
+
+
+    char *c_t = "create table aaa(age int,name varchar(25))";
+    scan_word *tword = scanWordInit();
+    sqlsacnner(tword,c_t);
+    treenode *troot = check_tree(uword);
+    create_memte_tb(troot);
+
+
+//    char *cres = "create database xxx";
+//    scan_word *words = scanWordInit();
+//    sqlsacnner(words,cres);
+//    treenode *root = check_tree(words);
+//    create_memte(root);
 //
 //    create_memte_tb(root);
 //
