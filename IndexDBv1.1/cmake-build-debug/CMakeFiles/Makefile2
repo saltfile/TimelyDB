@@ -55,19 +55,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /opt/IDE/CLion-2020.2.5/clion-2020.2.5/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake -E rm -f
+RM = /opt/IDE/CLion-2020.2.5/clion-2020.2.5/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1
+CMAKE_SOURCE_DIR = /opt/git_Pro/indexDb/IndexDBv1.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug
+CMAKE_BINARY_DIR = /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -222,14 +222,14 @@ CMakeFiles/IndexDBv1_1.dir/all: index/Engine/snappy/CMakeFiles/snappy.dir/all
 CMakeFiles/IndexDBv1_1.dir/all: index/primitive/CMakeFiles/primitive.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/IndexDBv1_1.dir/build.make CMakeFiles/IndexDBv1_1.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/IndexDBv1_1.dir/build.make CMakeFiles/IndexDBv1_1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=12,13 "Built target IndexDBv1_1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=12,13 "Built target IndexDBv1_1"
 .PHONY : CMakeFiles/IndexDBv1_1.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/IndexDBv1_1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 48
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 48
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/IndexDBv1_1.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/IndexDBv1_1.dir/rule
 
 # Convenience name for target.
@@ -252,14 +252,14 @@ grammar/CMakeFiles/grammar.dir/all: index/Engine/snappy/CMakeFiles/snappy.dir/al
 grammar/CMakeFiles/grammar.dir/all: index/primitive/CMakeFiles/primitive.dir/all
 	$(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/depend
 	$(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=21,22,23,24,25 "Built target grammar"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=21,22,23,24,25 "Built target grammar"
 .PHONY : grammar/CMakeFiles/grammar.dir/all
 
 # Build rule for subdir invocation for target.
 grammar/CMakeFiles/grammar.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 39
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 39
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar/CMakeFiles/grammar.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
 .PHONY : grammar/CMakeFiles/grammar.dir/rule
 
 # Convenience name for target.
@@ -279,14 +279,14 @@ grammar/CMakeFiles/grammar.dir/clean:
 Server/CMakeFiles/Server.dir/all:
 	$(MAKE) $(MAKESILENT) -f Server/CMakeFiles/Server.dir/build.make Server/CMakeFiles/Server.dir/depend
 	$(MAKE) $(MAKESILENT) -f Server/CMakeFiles/Server.dir/build.make Server/CMakeFiles/Server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=14,15,16,17,18,19,20 "Built target Server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=14,15,16,17,18,19,20 "Built target Server"
 .PHONY : Server/CMakeFiles/Server.dir/all
 
 # Build rule for subdir invocation for target.
 Server/CMakeFiles/Server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Server/CMakeFiles/Server.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
 .PHONY : Server/CMakeFiles/Server.dir/rule
 
 # Convenience name for target.
@@ -308,14 +308,14 @@ index/CMakeFiles/index.dir/all: index/Engine/snappy/CMakeFiles/snappy.dir/all
 index/CMakeFiles/index.dir/all: index/primitive/CMakeFiles/primitive.dir/all
 	$(MAKE) $(MAKESILENT) -f index/CMakeFiles/index.dir/build.make index/CMakeFiles/index.dir/depend
 	$(MAKE) $(MAKESILENT) -f index/CMakeFiles/index.dir/build.make index/CMakeFiles/index.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=26,27,28,29,30,31,32,33 "Built target index"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=26,27,28,29,30,31,32,33 "Built target index"
 .PHONY : index/CMakeFiles/index.dir/all
 
 # Build rule for subdir invocation for target.
 index/CMakeFiles/index.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 34
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/CMakeFiles/index.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
 .PHONY : index/CMakeFiles/index.dir/rule
 
 # Convenience name for target.
@@ -335,14 +335,14 @@ index/CMakeFiles/index.dir/clean:
 index/Engine/CMakeFiles/Engine.dir/all: index/Engine/snappy/CMakeFiles/snappy.dir/all
 	$(MAKE) $(MAKESILENT) -f index/Engine/CMakeFiles/Engine.dir/build.make index/Engine/CMakeFiles/Engine.dir/depend
 	$(MAKE) $(MAKESILENT) -f index/Engine/CMakeFiles/Engine.dir/build.make index/Engine/CMakeFiles/Engine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target Engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target Engine"
 .PHONY : index/Engine/CMakeFiles/Engine.dir/all
 
 # Build rule for subdir invocation for target.
 index/Engine/CMakeFiles/Engine.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/Engine/CMakeFiles/Engine.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
 .PHONY : index/Engine/CMakeFiles/Engine.dir/rule
 
 # Convenience name for target.
@@ -362,14 +362,14 @@ index/Engine/CMakeFiles/Engine.dir/clean:
 index/Engine/snappy/CMakeFiles/snappy.dir/all:
 	$(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/depend
 	$(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=44,45,46,47,48 "Built target snappy"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=44,45,46,47,48 "Built target snappy"
 .PHONY : index/Engine/snappy/CMakeFiles/snappy.dir/all
 
 # Build rule for subdir invocation for target.
 index/Engine/snappy/CMakeFiles/snappy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/Engine/snappy/CMakeFiles/snappy.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
 .PHONY : index/Engine/snappy/CMakeFiles/snappy.dir/rule
 
 # Convenience name for target.
@@ -389,14 +389,14 @@ index/Engine/snappy/CMakeFiles/snappy.dir/clean:
 index/primitive/CMakeFiles/primitive.dir/all:
 	$(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/depend
 	$(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=34,35,36,37,38,39,40,41,42,43 "Built target primitive"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles --progress-num=34,35,36,37,38,39,40,41,42,43 "Built target primitive"
 .PHONY : index/primitive/CMakeFiles/primitive.dir/all
 
 # Build rule for subdir invocation for target.
 index/primitive/CMakeFiles/primitive.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/primitive/CMakeFiles/primitive.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
 .PHONY : index/primitive/CMakeFiles/primitive.dir/rule
 
 # Convenience name for target.

@@ -59,19 +59,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /opt/IDE/CLion-2020.2.5/clion-2020.2.5/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake -E rm -f
+RM = /opt/IDE/CLion-2020.2.5/clion-2020.2.5/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1
+CMAKE_SOURCE_DIR = /opt/git_Pro/indexDb/IndexDBv1.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug
+CMAKE_BINARY_DIR = /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,7 +79,7 @@ CMAKE_BINARY_DIR = /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-bui
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/opt/IDE/CLion-2020.2.5/clion-2020.2.5/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -90,7 +90,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/IDE/CLion-2020.2.5/clion-2020.2.5/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -100,14 +100,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/grammar/CMakeFiles/progress.marks
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/grammar/CMakeFiles/progress.marks
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar/clean
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar/clean
 .PHONY : clean
 
 # The main clean target
@@ -117,22 +117,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar/preinstall
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar/preinstall
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 grammar/CMakeFiles/grammar.dir/rule:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar/CMakeFiles/grammar.dir/rule
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grammar/CMakeFiles/grammar.dir/rule
 .PHONY : grammar/CMakeFiles/grammar.dir/rule
 
 # Convenience name for target.
@@ -142,7 +142,7 @@ grammar: grammar/CMakeFiles/grammar.dir/rule
 
 # fast build rule for target.
 grammar/fast:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/build
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/build
 .PHONY : grammar/fast
 
 gammer_tree/gra_tree.o: gammer_tree/gra_tree.cpp.o
@@ -151,7 +151,7 @@ gammer_tree/gra_tree.o: gammer_tree/gra_tree.cpp.o
 
 # target to build an object file
 gammer_tree/gra_tree.cpp.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.o
 .PHONY : gammer_tree/gra_tree.cpp.o
 
 gammer_tree/gra_tree.i: gammer_tree/gra_tree.cpp.i
@@ -160,7 +160,7 @@ gammer_tree/gra_tree.i: gammer_tree/gra_tree.cpp.i
 
 # target to preprocess a source file
 gammer_tree/gra_tree.cpp.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.i
 .PHONY : gammer_tree/gra_tree.cpp.i
 
 gammer_tree/gra_tree.s: gammer_tree/gra_tree.cpp.s
@@ -169,7 +169,7 @@ gammer_tree/gra_tree.s: gammer_tree/gra_tree.cpp.s
 
 # target to generate assembly for a file
 gammer_tree/gra_tree.cpp.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/gammer_tree/gra_tree.cpp.s
 .PHONY : gammer_tree/gra_tree.cpp.s
 
 gammer_tree/list_fun.o: gammer_tree/list_fun.cpp.o
@@ -178,7 +178,7 @@ gammer_tree/list_fun.o: gammer_tree/list_fun.cpp.o
 
 # target to build an object file
 gammer_tree/list_fun.cpp.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.o
 .PHONY : gammer_tree/list_fun.cpp.o
 
 gammer_tree/list_fun.i: gammer_tree/list_fun.cpp.i
@@ -187,7 +187,7 @@ gammer_tree/list_fun.i: gammer_tree/list_fun.cpp.i
 
 # target to preprocess a source file
 gammer_tree/list_fun.cpp.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.i
 .PHONY : gammer_tree/list_fun.cpp.i
 
 gammer_tree/list_fun.s: gammer_tree/list_fun.cpp.s
@@ -196,7 +196,7 @@ gammer_tree/list_fun.s: gammer_tree/list_fun.cpp.s
 
 # target to generate assembly for a file
 gammer_tree/list_fun.cpp.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/gammer_tree/list_fun.cpp.s
 .PHONY : gammer_tree/list_fun.cpp.s
 
 log/log_fun.o: log/log_fun.cpp.o
@@ -205,7 +205,7 @@ log/log_fun.o: log/log_fun.cpp.o
 
 # target to build an object file
 log/log_fun.cpp.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.o
 .PHONY : log/log_fun.cpp.o
 
 log/log_fun.i: log/log_fun.cpp.i
@@ -214,7 +214,7 @@ log/log_fun.i: log/log_fun.cpp.i
 
 # target to preprocess a source file
 log/log_fun.cpp.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.i
 .PHONY : log/log_fun.cpp.i
 
 log/log_fun.s: log/log_fun.cpp.s
@@ -223,7 +223,7 @@ log/log_fun.s: log/log_fun.cpp.s
 
 # target to generate assembly for a file
 log/log_fun.cpp.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/log/log_fun.cpp.s
 .PHONY : log/log_fun.cpp.s
 
 word_anylysis/sqlScanner.o: word_anylysis/sqlScanner.cpp.o
@@ -232,7 +232,7 @@ word_anylysis/sqlScanner.o: word_anylysis/sqlScanner.cpp.o
 
 # target to build an object file
 word_anylysis/sqlScanner.cpp.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.o
 .PHONY : word_anylysis/sqlScanner.cpp.o
 
 word_anylysis/sqlScanner.i: word_anylysis/sqlScanner.cpp.i
@@ -241,7 +241,7 @@ word_anylysis/sqlScanner.i: word_anylysis/sqlScanner.cpp.i
 
 # target to preprocess a source file
 word_anylysis/sqlScanner.cpp.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.i
 .PHONY : word_anylysis/sqlScanner.cpp.i
 
 word_anylysis/sqlScanner.s: word_anylysis/sqlScanner.cpp.s
@@ -250,7 +250,7 @@ word_anylysis/sqlScanner.s: word_anylysis/sqlScanner.cpp.s
 
 # target to generate assembly for a file
 word_anylysis/sqlScanner.cpp.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f grammar/CMakeFiles/grammar.dir/build.make grammar/CMakeFiles/grammar.dir/word_anylysis/sqlScanner.cpp.s
 .PHONY : word_anylysis/sqlScanner.cpp.s
 
 # Help Target
@@ -285,6 +285,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

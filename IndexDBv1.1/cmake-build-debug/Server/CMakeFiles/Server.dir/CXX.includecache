@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/Server/crc/crc.cpp
+/opt/git_Pro/indexDb/IndexDBv1.1/Server/pack/req_dispose.cpp
 ../ser_drive.h
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/Server/ser_drive.h
+/opt/git_Pro/indexDb/IndexDBv1.1/Server/ser_drive.h
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/Server/ser_drive.h
+/opt/git_Pro/indexDb/IndexDBv1.1/Server/ser_drive.h
 error.h
 -
 stdio.h

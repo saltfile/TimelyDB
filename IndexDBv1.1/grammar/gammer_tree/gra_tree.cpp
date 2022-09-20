@@ -780,14 +780,14 @@ packge* create_memte_tb(treenode *root){
 
 
 void test_lc(){
-    char *cres = "create table tudent(age int,name varchar(255))";
+    char *cres = "create database xxx";
     scan_word *words = scanWordInit();
     sqlsacnner(words,cres);
     treenode *root = check_tree(words);
-
-    create_memte_tb(root);
-
-
+    create_memte(root);
+//
+//    create_memte_tb(root);
+//
 //    sql_operation* use_dataname=malloc_sqloperation();
 //    use_dataname->handler=USE;
 //    use_dataname->name = "aaa";

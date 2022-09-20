@@ -59,19 +59,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /opt/IDE/CLion-2020.2.5/clion-2020.2.5/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake -E rm -f
+RM = /opt/IDE/CLion-2020.2.5/clion-2020.2.5/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1
+CMAKE_SOURCE_DIR = /opt/git_Pro/indexDb/IndexDBv1.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug
+CMAKE_BINARY_DIR = /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,7 +79,7 @@ CMAKE_BINARY_DIR = /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-bui
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/IDE/CLion-2020.2.5/clion-2020.2.5/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -90,7 +90,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/opt/IDE/CLion-2020.2.5/clion-2020.2.5/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -100,14 +100,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine/snappy/CMakeFiles/progress.marks
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/Engine/snappy/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/index/Engine/snappy/CMakeFiles/progress.marks
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/Engine/snappy/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/Engine/snappy/clean
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/Engine/snappy/clean
 .PHONY : clean
 
 # The main clean target
@@ -117,22 +117,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/Engine/snappy/preinstall
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/Engine/snappy/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/Engine/snappy/preinstall
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/Engine/snappy/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 index/Engine/snappy/CMakeFiles/snappy.dir/rule:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/Engine/snappy/CMakeFiles/snappy.dir/rule
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/Engine/snappy/CMakeFiles/snappy.dir/rule
 .PHONY : index/Engine/snappy/CMakeFiles/snappy.dir/rule
 
 # Convenience name for target.
@@ -142,7 +142,7 @@ snappy: index/Engine/snappy/CMakeFiles/snappy.dir/rule
 
 # fast build rule for target.
 snappy/fast:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/build
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/build
 .PHONY : snappy/fast
 
 snappy-c.o: snappy-c.cc.o
@@ -151,7 +151,7 @@ snappy-c.o: snappy-c.cc.o
 
 # target to build an object file
 snappy-c.cc.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-c.cc.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-c.cc.o
 .PHONY : snappy-c.cc.o
 
 snappy-c.i: snappy-c.cc.i
@@ -160,7 +160,7 @@ snappy-c.i: snappy-c.cc.i
 
 # target to preprocess a source file
 snappy-c.cc.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-c.cc.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-c.cc.i
 .PHONY : snappy-c.cc.i
 
 snappy-c.s: snappy-c.cc.s
@@ -169,7 +169,7 @@ snappy-c.s: snappy-c.cc.s
 
 # target to generate assembly for a file
 snappy-c.cc.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-c.cc.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-c.cc.s
 .PHONY : snappy-c.cc.s
 
 snappy-sinksource.o: snappy-sinksource.cc.o
@@ -178,7 +178,7 @@ snappy-sinksource.o: snappy-sinksource.cc.o
 
 # target to build an object file
 snappy-sinksource.cc.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-sinksource.cc.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-sinksource.cc.o
 .PHONY : snappy-sinksource.cc.o
 
 snappy-sinksource.i: snappy-sinksource.cc.i
@@ -187,7 +187,7 @@ snappy-sinksource.i: snappy-sinksource.cc.i
 
 # target to preprocess a source file
 snappy-sinksource.cc.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-sinksource.cc.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-sinksource.cc.i
 .PHONY : snappy-sinksource.cc.i
 
 snappy-sinksource.s: snappy-sinksource.cc.s
@@ -196,7 +196,7 @@ snappy-sinksource.s: snappy-sinksource.cc.s
 
 # target to generate assembly for a file
 snappy-sinksource.cc.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-sinksource.cc.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-sinksource.cc.s
 .PHONY : snappy-sinksource.cc.s
 
 snappy-stubs-internal.o: snappy-stubs-internal.cc.o
@@ -205,7 +205,7 @@ snappy-stubs-internal.o: snappy-stubs-internal.cc.o
 
 # target to build an object file
 snappy-stubs-internal.cc.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-stubs-internal.cc.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-stubs-internal.cc.o
 .PHONY : snappy-stubs-internal.cc.o
 
 snappy-stubs-internal.i: snappy-stubs-internal.cc.i
@@ -214,7 +214,7 @@ snappy-stubs-internal.i: snappy-stubs-internal.cc.i
 
 # target to preprocess a source file
 snappy-stubs-internal.cc.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-stubs-internal.cc.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-stubs-internal.cc.i
 .PHONY : snappy-stubs-internal.cc.i
 
 snappy-stubs-internal.s: snappy-stubs-internal.cc.s
@@ -223,7 +223,7 @@ snappy-stubs-internal.s: snappy-stubs-internal.cc.s
 
 # target to generate assembly for a file
 snappy-stubs-internal.cc.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-stubs-internal.cc.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy-stubs-internal.cc.s
 .PHONY : snappy-stubs-internal.cc.s
 
 snappy.o: snappy.cc.o
@@ -232,7 +232,7 @@ snappy.o: snappy.cc.o
 
 # target to build an object file
 snappy.cc.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy.cc.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy.cc.o
 .PHONY : snappy.cc.o
 
 snappy.i: snappy.cc.i
@@ -241,7 +241,7 @@ snappy.i: snappy.cc.i
 
 # target to preprocess a source file
 snappy.cc.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy.cc.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy.cc.i
 .PHONY : snappy.cc.i
 
 snappy.s: snappy.cc.s
@@ -250,7 +250,7 @@ snappy.s: snappy.cc.s
 
 # target to generate assembly for a file
 snappy.cc.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy.cc.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/Engine/snappy/CMakeFiles/snappy.dir/build.make index/Engine/snappy/CMakeFiles/snappy.dir/snappy.cc.s
 .PHONY : snappy.cc.s
 
 # Help Target
@@ -285,6 +285,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

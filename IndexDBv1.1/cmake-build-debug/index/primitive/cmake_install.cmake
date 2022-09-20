@@ -1,4 +1,4 @@
-# Install script for directory: /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive
+# Install script for directory: /opt/git_Pro/indexDb/IndexDBv1.1/primitive
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

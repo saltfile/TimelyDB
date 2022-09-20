@@ -1,4 +1,4 @@
-# Install script for directory: /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/index
+# Install script for directory: /opt/git_Pro/indexDb/IndexDBv1.1/index
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,11 +39,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/Engine/cmake_install.cmake")
+  include("/opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/index/Engine/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/primitive/cmake_install.cmake")
+  include("/opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/index/primitive/cmake_install.cmake")
 endif()
 

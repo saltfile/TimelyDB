@@ -59,19 +59,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /opt/IDE/CLion-2020.2.5/clion-2020.2.5/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake -E rm -f
+RM = /opt/IDE/CLion-2020.2.5/clion-2020.2.5/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1
+CMAKE_SOURCE_DIR = /opt/git_Pro/indexDb/IndexDBv1.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug
+CMAKE_BINARY_DIR = /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,7 +79,7 @@ CMAKE_BINARY_DIR = /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-bui
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/IDE/CLion-2020.2.5/clion-2020.2.5/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -90,7 +90,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/opt/IDE/CLion-2020.2.5/clion-2020.2.5/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -100,14 +100,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/index/primitive/CMakeFiles/progress.marks
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/primitive/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/index/primitive/CMakeFiles/progress.marks
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/primitive/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/primitive/clean
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/primitive/clean
 .PHONY : clean
 
 # The main clean target
@@ -117,22 +117,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/primitive/preinstall
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/primitive/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/primitive/preinstall
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/primitive/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 index/primitive/CMakeFiles/primitive.dir/rule:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/primitive/CMakeFiles/primitive.dir/rule
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 index/primitive/CMakeFiles/primitive.dir/rule
 .PHONY : index/primitive/CMakeFiles/primitive.dir/rule
 
 # Convenience name for target.
@@ -142,7 +142,7 @@ primitive: index/primitive/CMakeFiles/primitive.dir/rule
 
 # fast build rule for target.
 primitive/fast:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/build
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/build
 .PHONY : primitive/fast
 
 DutyS.o: DutyS.cpp.o
@@ -151,7 +151,7 @@ DutyS.o: DutyS.cpp.o
 
 # target to build an object file
 DutyS.cpp.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/DutyS.cpp.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/DutyS.cpp.o
 .PHONY : DutyS.cpp.o
 
 DutyS.i: DutyS.cpp.i
@@ -160,7 +160,7 @@ DutyS.i: DutyS.cpp.i
 
 # target to preprocess a source file
 DutyS.cpp.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/DutyS.cpp.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/DutyS.cpp.i
 .PHONY : DutyS.cpp.i
 
 DutyS.s: DutyS.cpp.s
@@ -169,7 +169,7 @@ DutyS.s: DutyS.cpp.s
 
 # target to generate assembly for a file
 DutyS.cpp.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/DutyS.cpp.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/DutyS.cpp.s
 .PHONY : DutyS.cpp.s
 
 Filter.o: Filter.cpp.o
@@ -178,7 +178,7 @@ Filter.o: Filter.cpp.o
 
 # target to build an object file
 Filter.cpp.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/Filter.cpp.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/Filter.cpp.o
 .PHONY : Filter.cpp.o
 
 Filter.i: Filter.cpp.i
@@ -187,7 +187,7 @@ Filter.i: Filter.cpp.i
 
 # target to preprocess a source file
 Filter.cpp.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/Filter.cpp.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/Filter.cpp.i
 .PHONY : Filter.cpp.i
 
 Filter.s: Filter.cpp.s
@@ -196,7 +196,7 @@ Filter.s: Filter.cpp.s
 
 # target to generate assembly for a file
 Filter.cpp.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/Filter.cpp.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/Filter.cpp.s
 .PHONY : Filter.cpp.s
 
 Link_List.o: Link_List.cpp.o
@@ -205,7 +205,7 @@ Link_List.o: Link_List.cpp.o
 
 # target to build an object file
 Link_List.cpp.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/Link_List.cpp.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/Link_List.cpp.o
 .PHONY : Link_List.cpp.o
 
 Link_List.i: Link_List.cpp.i
@@ -214,7 +214,7 @@ Link_List.i: Link_List.cpp.i
 
 # target to preprocess a source file
 Link_List.cpp.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/Link_List.cpp.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/Link_List.cpp.i
 .PHONY : Link_List.cpp.i
 
 Link_List.s: Link_List.cpp.s
@@ -223,7 +223,7 @@ Link_List.s: Link_List.cpp.s
 
 # target to generate assembly for a file
 Link_List.cpp.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/Link_List.cpp.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/Link_List.cpp.s
 .PHONY : Link_List.cpp.s
 
 TestTraverse.o: TestTraverse.cpp.o
@@ -232,7 +232,7 @@ TestTraverse.o: TestTraverse.cpp.o
 
 # target to build an object file
 TestTraverse.cpp.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/TestTraverse.cpp.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/TestTraverse.cpp.o
 .PHONY : TestTraverse.cpp.o
 
 TestTraverse.i: TestTraverse.cpp.i
@@ -241,7 +241,7 @@ TestTraverse.i: TestTraverse.cpp.i
 
 # target to preprocess a source file
 TestTraverse.cpp.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/TestTraverse.cpp.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/TestTraverse.cpp.i
 .PHONY : TestTraverse.cpp.i
 
 TestTraverse.s: TestTraverse.cpp.s
@@ -250,7 +250,7 @@ TestTraverse.s: TestTraverse.cpp.s
 
 # target to generate assembly for a file
 TestTraverse.cpp.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/TestTraverse.cpp.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/TestTraverse.cpp.s
 .PHONY : TestTraverse.cpp.s
 
 demo_expmple.o: demo_expmple.cpp.o
@@ -259,7 +259,7 @@ demo_expmple.o: demo_expmple.cpp.o
 
 # target to build an object file
 demo_expmple.cpp.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/demo_expmple.cpp.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/demo_expmple.cpp.o
 .PHONY : demo_expmple.cpp.o
 
 demo_expmple.i: demo_expmple.cpp.i
@@ -268,7 +268,7 @@ demo_expmple.i: demo_expmple.cpp.i
 
 # target to preprocess a source file
 demo_expmple.cpp.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/demo_expmple.cpp.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/demo_expmple.cpp.i
 .PHONY : demo_expmple.cpp.i
 
 demo_expmple.s: demo_expmple.cpp.s
@@ -277,7 +277,7 @@ demo_expmple.s: demo_expmple.cpp.s
 
 # target to generate assembly for a file
 demo_expmple.cpp.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/demo_expmple.cpp.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/demo_expmple.cpp.s
 .PHONY : demo_expmple.cpp.s
 
 skt_requst.o: skt_requst.cpp.o
@@ -286,7 +286,7 @@ skt_requst.o: skt_requst.cpp.o
 
 # target to build an object file
 skt_requst.cpp.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/skt_requst.cpp.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/skt_requst.cpp.o
 .PHONY : skt_requst.cpp.o
 
 skt_requst.i: skt_requst.cpp.i
@@ -295,7 +295,7 @@ skt_requst.i: skt_requst.cpp.i
 
 # target to preprocess a source file
 skt_requst.cpp.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/skt_requst.cpp.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/skt_requst.cpp.i
 .PHONY : skt_requst.cpp.i
 
 skt_requst.s: skt_requst.cpp.s
@@ -304,7 +304,7 @@ skt_requst.s: skt_requst.cpp.s
 
 # target to generate assembly for a file
 skt_requst.cpp.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/skt_requst.cpp.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/skt_requst.cpp.s
 .PHONY : skt_requst.cpp.s
 
 sortData.o: sortData.cpp.o
@@ -313,7 +313,7 @@ sortData.o: sortData.cpp.o
 
 # target to build an object file
 sortData.cpp.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/sortData.cpp.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/sortData.cpp.o
 .PHONY : sortData.cpp.o
 
 sortData.i: sortData.cpp.i
@@ -322,7 +322,7 @@ sortData.i: sortData.cpp.i
 
 # target to preprocess a source file
 sortData.cpp.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/sortData.cpp.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/sortData.cpp.i
 .PHONY : sortData.cpp.i
 
 sortData.s: sortData.cpp.s
@@ -331,7 +331,7 @@ sortData.s: sortData.cpp.s
 
 # target to generate assembly for a file
 sortData.cpp.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/sortData.cpp.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/sortData.cpp.s
 .PHONY : sortData.cpp.s
 
 srceens.o: srceens.cpp.o
@@ -340,7 +340,7 @@ srceens.o: srceens.cpp.o
 
 # target to build an object file
 srceens.cpp.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/srceens.cpp.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/srceens.cpp.o
 .PHONY : srceens.cpp.o
 
 srceens.i: srceens.cpp.i
@@ -349,7 +349,7 @@ srceens.i: srceens.cpp.i
 
 # target to preprocess a source file
 srceens.cpp.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/srceens.cpp.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/srceens.cpp.i
 .PHONY : srceens.cpp.i
 
 srceens.s: srceens.cpp.s
@@ -358,7 +358,7 @@ srceens.s: srceens.cpp.s
 
 # target to generate assembly for a file
 srceens.cpp.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/srceens.cpp.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/srceens.cpp.s
 .PHONY : srceens.cpp.s
 
 strfactory.o: strfactory.cpp.o
@@ -367,7 +367,7 @@ strfactory.o: strfactory.cpp.o
 
 # target to build an object file
 strfactory.cpp.o:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/strfactory.cpp.o
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/strfactory.cpp.o
 .PHONY : strfactory.cpp.o
 
 strfactory.i: strfactory.cpp.i
@@ -376,7 +376,7 @@ strfactory.i: strfactory.cpp.i
 
 # target to preprocess a source file
 strfactory.cpp.i:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/strfactory.cpp.i
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/strfactory.cpp.i
 .PHONY : strfactory.cpp.i
 
 strfactory.s: strfactory.cpp.s
@@ -385,7 +385,7 @@ strfactory.s: strfactory.cpp.s
 
 # target to generate assembly for a file
 strfactory.cpp.s:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/strfactory.cpp.s
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(MAKE) $(MAKESILENT) -f index/primitive/CMakeFiles/primitive.dir/build.make index/primitive/CMakeFiles/primitive.dir/strfactory.cpp.s
 .PHONY : strfactory.cpp.s
 
 # Help Target
@@ -435,6 +435,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /opt/git_Pro/indexDb/IndexDBv1.1/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -67,7 +67,7 @@ public:
       u8 version = 0;
       u8 len[4];
       int alllen = 0;
-      string result;
+      string result = "";
 
       void solve_package(u8 *arr);
 

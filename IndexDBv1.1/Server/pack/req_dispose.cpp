@@ -59,7 +59,7 @@ string packge::GetResult() {
 void packge::create_package(string result, u8 head) {
 
     int str_len = result.size();
-    int all_len = str_len+9;
+    int all_len = str_len+9+1;//前九位协议头和消息体加上一位回车
     this->alllen = all_len;
     cout<<all_len<<"    "<<endl;
     u8 *res = to_Char(result);
@@ -92,9 +92,9 @@ void packge::create_package(string result, u8 head) {
     }
     //最后再异或
     this->all = fun_xor(this->all,all_len);
-    int aa = sizeof(this->all);
+    int aa = strlen((char *)res);
     cout<<endl;
-    this->result = result;
+    this->result = result+"\n";
     for(int i = 0;i < all_len;i++)
         printf("%d   ",this->all[i]);
 }

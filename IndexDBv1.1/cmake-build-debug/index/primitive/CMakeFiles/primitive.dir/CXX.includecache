@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/global_c.h
+/opt/git_Pro/indexDb/IndexDBv1.1/global_c.h
 stdio.h
 -
 stdlib.h
@@ -74,15 +74,15 @@ sys/epoll.h
 sys/mman.h
 -
 fstream
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/fstream
+/opt/git_Pro/indexDb/IndexDBv1.1/fstream
 iostream
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/iostream
+/opt/git_Pro/indexDb/IndexDBv1.1/iostream
 pwd.h
 -
 map
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/map
+/opt/git_Pro/indexDb/IndexDBv1.1/map
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/DutyS.cpp
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/DutyS.cpp
 string
 -
 list
@@ -90,9 +90,9 @@ list
 vector
 -
 primitive.h
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/primitive.h
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/primitive.h
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/Filter.cpp
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/Filter.cpp
 string
 -
 list
@@ -100,13 +100,13 @@ list
 vector
 -
 primitive.h
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/primitive.h
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/primitive.h
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/Link_List.cpp
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/Link_List.cpp
 primitive.h
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/primitive.h
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/primitive.h
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/TestTraverse.cpp
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/TestTraverse.cpp
 ctime
 -
 string
@@ -118,13 +118,13 @@ vector
 iostream
 -
 primitive.h
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/primitive.h
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/primitive.h
 bitset
 -
 algorithm
 -
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/demo_expmple.cpp
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/demo_expmple.cpp
 string
 -
 list
@@ -132,17 +132,17 @@ list
 vector
 -
 primitive.h
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/primitive.h
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/primitive.h
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/primitive.h
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/primitive.h
 vector
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/vector
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/vector
 bitset
 -
 ../global_c.h
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/global_c.h
+/opt/git_Pro/indexDb/IndexDBv1.1/global_c.h
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/skt_requst.cpp
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/skt_requst.cpp
 string
 -
 list
@@ -162,9 +162,9 @@ netinet/in.h
 cstring
 -
 primitive.h
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/primitive.h
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/primitive.h
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/sortData.cpp
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/sortData.cpp
 string
 -
 list
@@ -172,9 +172,9 @@ list
 vector
 -
 primitive.h
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/primitive.h
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/primitive.h
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/srceens.cpp
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/srceens.cpp
 string
 -
 list
@@ -182,9 +182,9 @@ list
 vector
 -
 primitive.h
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/primitive.h
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/primitive.h
 
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/strfactory.cpp
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/strfactory.cpp
 string
 -
 list
@@ -194,5 +194,5 @@ vector
 cstring
 -
 primitive.h
-/home/saltfish/下载/新/xin/indexTSDB/IndexDBv1.1/primitive/primitive.h
+/opt/git_Pro/indexDb/IndexDBv1.1/primitive/primitive.h
 
