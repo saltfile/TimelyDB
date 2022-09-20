@@ -793,7 +793,7 @@ void test_lc(){
     sqlsacnner(tword,c_t);
     treenode *troot = check_tree(uword);
     create_memte_tb(troot);
-
+    cout<<"这行代码为了刷成就"<<endl;
 
 //    char *cres = "create database xxx";
 //    scan_word *words = scanWordInit();
