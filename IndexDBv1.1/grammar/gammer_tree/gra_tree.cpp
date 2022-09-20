@@ -770,6 +770,7 @@ packge* create_memte_tb(treenode *root){
                 default:log_erro("未知的类型参数错误");
 
             }
+            if (i+1 < list_lens)
             l->next = malloc_sqlcondition();
             l = l->next;
             sql = sql->next;
@@ -791,10 +792,8 @@ void test_lc(){
     char *c_t = "create table aaa(age int,name varchar(25))";
     scan_word *tword = scanWordInit();
     sqlsacnner(tword,c_t);
-    treenode *troot = check_tree(uword);
+    treenode *troot = check_tree(tword);
     create_memte_tb(troot);
-    cout<<"这行代码为了刷成就"<<endl;
-
 //    char *cres = "create database xxx";
 //    scan_word *words = scanWordInit();
 //    sqlsacnner(words,cres);

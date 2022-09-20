@@ -114,8 +114,8 @@ char *mkdir_database(char * databasename){//创建数据库,并返回数据库�
 
 //新
 bool touch_table(char * databasename,char * tablename,char** columns,int columnSize){//创建表
-    int size_touch=sizeof(strlen("/home/")+strlen(username->pw_name)+strlen("/indexTSDB/")+strlen(databasename)
-                          +strlen("/")+strlen(tablename));
+    int size_touch=strlen("/home/")+strlen(username->pw_name)+strlen("/indexTSDB/")+strlen(databasename)
+                          +strlen("/")+strlen(tablename);
     char * touch=(char *)malloc(size_touch);
     memset(touch,0,size_touch);
     strcat(touch,"/home/");
