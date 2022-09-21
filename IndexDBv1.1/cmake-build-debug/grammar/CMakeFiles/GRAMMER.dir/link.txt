@@ -1,2 +1,0 @@
-/usr/bin/ar qc libGRAMMER.a  CMakeFiles/GRAMMER.dir/gammer_tree/gra_tree.cpp.o CMakeFiles/GRAMMER.dir/gammer_tree/list_fun.cpp.o CMakeFiles/GRAMMER.dir/word_anylysis/sqlScanner.cpp.o CMakeFiles/GRAMMER.dir/log/log_fun.cpp.o
-/usr/bin/ranlib libGRAMMER.a
