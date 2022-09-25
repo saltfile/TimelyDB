@@ -2,6 +2,7 @@
 // Created by zy on 2022/4/2.
 
 #include "index/database_index.h"
+#include "custom_pool/basic_function.h"
 #include "grammar/Myall.h"
 //#include "Server/ser_drive.h"
 //#include <cstring>
@@ -18,7 +19,7 @@ int main(){
 //    char *str =   "select id,age,name from aaa where age > 2 and id = 12 or xxx = xs";
 //    treenode *node =statement_parsing(str);
 test_lc();
-
+//test_pool();
 
 
 

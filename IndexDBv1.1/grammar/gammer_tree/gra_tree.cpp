@@ -4,6 +4,7 @@
 #include "../Myall.h"
 #include "../../index/database_index.h"
 #include "../../Server/ser_drive.h"
+#include "../../custom_pool/basic_function.h"
 #define TREE_LEN 4
 char abname[255];
 //被取走的树节点
@@ -728,6 +729,25 @@ packge* create_memte(treenode *root){
     return res;
 }
 
+
+packge* memte_insert(treenode* root){
+    packge* res = (packge *)malloc(sizeof(packge));
+    memset(res,0,sizeof(packge));
+
+    list* sql = root->nodelist->next;
+    treenode* p = sql->tree;
+
+    int list_lens = get_list_size(sql);
+
+    sql_operation* insert = malloc_sqloperation();
+    insert->handler = INSERTINTO;
+    insert->name = p->str;
+
+
+}
+
+
+
 packge* create_memte_tb(treenode *root){
     packge *res = (packge *)malloc(sizeof(packge));
     memset(res,0,sizeof(res));
@@ -782,18 +802,26 @@ packge* create_memte_tb(treenode *root){
 
 void test_lc(){
     //使用 use语句
-    char *use = "use xxx";
-    scan_word *uword = scanWordInit();
-    sqlsacnner(uword,use);
-    treenode *uroot = check_tree(uword);
-    use_memte(uroot);
 
+    char *inserts = "insert into tname (id,name,age,sex) values(num,asd,45,N)(num,asd,11,N)(num,asd,23,N)(num,asd,67,N)";
 
-    char *c_t = "create table aaa(age int,name varchar(25))";
-    scan_word *tword = scanWordInit();
-    sqlsacnner(tword,c_t);
-    treenode *troot = check_tree(tword);
-    create_memte_tb(troot);
+    scan_word* iword = scanWordInit();
+    sqlsacnner(iword,inserts);
+    treenode *iroot = check_tree(iword);
+    memte_insert(iroot);
+//    char *use = "use xxx";
+//    scan_word *uword = scanWordInit();
+//    sqlsacnner(uword,use);
+//    treenode *uroot = check_tree(uword);
+//    use_memte(uroot);
+//
+//
+//    char *c_t = "create table aaa(age int,name varchar(25))";
+//    scan_word *tword = scanWordInit();
+//    sqlsacnner(tword,c_t);
+//    treenode *troot = check_tree(tword);
+//    create_memte_tb(troot);
+//    test_pool();
 //    char *cres = "create database xxx";
 //    scan_word *words = scanWordInit();
 //    sqlsacnner(words,cres);
