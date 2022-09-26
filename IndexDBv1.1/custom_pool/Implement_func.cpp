@@ -92,8 +92,6 @@ void* admin(void* arg){
 
             }
         }
-
-
         //销毁线程
         //忙的线程*2小于存活的线程并且存活的线程小于最小线程数
         if (busy*2 < live&&live < pool->min_size){

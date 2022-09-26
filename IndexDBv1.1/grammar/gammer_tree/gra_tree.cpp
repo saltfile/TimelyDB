@@ -392,6 +392,7 @@ void sql_ins(scan_word *scan,treenode *root){
     add_list(sel,colomn);
     sel = sel->next;
     arrlen++;
+    int clonm_lens = get_list_size(slist);
 
     //values
     word = get_word(scan,arrlen);
@@ -449,11 +450,15 @@ void sql_ins(scan_word *scan,treenode *root){
         val_list->strtype = 258;
         val_list->strlen = strlen(val_list->str);
         val_list->nodelist = branch_258(scan,val_len);
+        int val_nums = get_list_size(val_list->nodelist);
+        if(val_nums != clonm_lens){
+            log_erro("值与列不匹配");
+            return;
+        }
         add_list(sel,val_list);
         arrlen++;
         sel = sel->next;
     }
-
     clear_cache(scan);
 }
 
@@ -737,11 +742,32 @@ packge* memte_insert(treenode* root){
     list* sql = root->nodelist->next;
     treenode* p = sql->tree;
 
-    int list_lens = get_list_size(sql);
-
     sql_operation* insert = malloc_sqloperation();
     insert->handler = INSERTINTO;
-    insert->name = p->str;
+    insert->name = str_copy(insert->name,p->str);
+    sql = sql->next;
+    list *colnms = sql->tree->nodelist;
+
+    sql = sql->next->next;
+    int colums_lens = get_list_size(colnms);
+    int val_lens = get_list_size(sql);
+    for (int i = 0; i < val_lens; ++i) {
+        //这是进入列值的循环
+        treenode* cls = sql->tree;
+        for (int j = 0; j < colums_lens; ++j) {
+
+        }
+
+
+
+        sql = sql->next;
+    }
+
+
+
+
+
+
 
 
 }
