@@ -751,13 +751,20 @@ packge* memte_insert(treenode* root){
     sql = sql->next->next;
     int colums_lens = get_list_size(colnms);
     int val_lens = get_list_size(sql);
+    condition *datalist = malloc_sqlcondition();
     for (int i = 0; i < val_lens; ++i) {
         //这是进入列值的循环
-        treenode* cls = sql->tree;
+        list* cls = sql->tree->nodelist;
+
+        insert->data_list = datalist;
         for (int j = 0; j < colums_lens; ++j) {
 
-        }
 
+
+
+
+
+        }
 
 
         sql = sql->next;

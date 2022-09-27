@@ -11,6 +11,7 @@
 //#include "rb_tree.h"
 
 #include "database_index.h"
+#include "../grammar/Myall.h"
 
 tuple_column* malloc_tuple_colum(void);
 /*sql.malloc
@@ -107,3 +108,29 @@ tuple_head* malloc_tuple_head(void){
     tupleHead->fileds=malloc_tuple_colum();
     return tupleHead;
 }
+
+void condition_add_insert(condition* root,char* c_name,TokenType c_symbol,char* c_value){
+    condition *p = root;
+    if (p == NULL)p = malloc_sqlcondition();
+    if (p->c_name==NULL){
+        p->c_name = str_copy(root->c_name,c_name);
+        p->c_symbol = c_symbol;
+        p->c_value = str_copy(root->c_value,c_value);
+        return;
+    }
+    while (p->next){
+        p = p->next;
+    }
+    condition* newptr = malloc_sqlcondition();
+    newptr->c_name = str_copy(newptr->c_name,c_name);
+    newptr->c_symbol = c_symbol;
+    newptr->c_value = str_copy(newptr->c_value,c_value);
+    p->next = newptr;
+}
+
+
+
+
+
+
+

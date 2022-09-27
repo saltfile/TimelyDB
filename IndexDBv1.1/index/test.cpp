@@ -42,8 +42,8 @@ int z_index(){
     (insert_sql->data_list->next)->c_name="name";
     (insert_sql->data_list->next)->c_symbol=Assignment;
     (insert_sql->data_list->next)->c_value="zhangsan";
-    (insert_sql->data_list->next)->dataTypes=VARCHAR;
-
+//    (insert_sql->data_list->next)->dataTypes=VARCHAR;
+//
 /*
  *
 func run(c *<-chan int8){
