@@ -751,30 +751,19 @@ packge* memte_insert(treenode* root){
     sql = sql->next->next;
     int colums_lens = get_list_size(colnms);
     int val_lens = get_list_size(sql);
-    condition *datalist = malloc_sqlcondition();
+    condition *datalist = NULL;
     for (int i = 0; i < val_lens; ++i) {
         //这是进入列值的循环
         list* cls = sql->tree->nodelist;
-
-        insert->data_list = datalist;
+        condition *min_list = malloc_sqlcondition();
         for (int j = 0; j < colums_lens; ++j) {
-
-
-
-
-
-
+            treenode* pt = get_list_node(colnms,j+1);
+            treenode* con = get_list_node(cls,j+1);
+            condition_add_insert(min_list,pt->str,Assignment,con->str);
         }
-
-
+        condition_add(datalist,min_list);
         sql = sql->next;
     }
-
-
-
-
-
-
 
 
 }
@@ -833,15 +822,64 @@ packge* create_memte_tb(treenode *root){
 }
 
 
+
+
+
+
 void test_lc(){
     //使用 use语句
 
-    char *inserts = "insert into tname (id,name,age,sex) values(num,asd,45,N)(num,asd,11,N)(num,asd,23,N)(num,asd,67,N)";
+    initCircularList(1000);
+    InitRootNode();
+    VfsNode  * databaseNode = createNode(1,"xxx",1,NULL,NULL,NULL);
+    databaseNode->filepath=(char *)malloc(sizeof("/home/saltfish/indexTSDB"));
+    databaseNode->filepath="/home/saltfish/indexTSDB";
+    VfsNode  * table1Node = createNode(2,"aaa",1,NULL,NULL,NULL);
+    VfsNode  * column1Node = createNode(3,"age|char*",1,NULL,NULL,NULL);
+    VfsNode  * column1Node2 = createNode(3,"name|char*",1,NULL,NULL,NULL);
 
-    scan_word* iword = scanWordInit();
-    sqlsacnner(iword,inserts);
-    treenode *iroot = check_tree(iword);
-    memte_insert(iroot);
+    VfsTree * vfs=createVfsTreeRoot();
+    addVfsTreeNode(vfs->root,databaseNode);
+    addVfsTreeNode(databaseNode,table1Node);
+    addVfsTreeNode(table1Node,column1Node);
+    addVfsTreeNode(table1Node,column1Node2);
+////
+
+
+
+    tuple_column* p = malloc_tuple_colum();
+    p->dataTypes = VARCHAR;
+    p->columnname = "age";
+    p->nextcolumn = malloc_tuple_colum();
+    p->nextcolumn->dataTypes = VARCHAR;
+    p->columnname = "name";
+
+
+    value_tuple* list = malloc_tuple();
+    list->value = "18";
+    list->timestamp = "15613216545";
+    list->next = malloc_tuple();
+    list->next->value = "xxx";
+    list->next->timestamp = "15613216545";
+//
+//    p->datalist = list;
+//    p->listtail = list;
+//
+//    p->nextcolumn->datalist = list->next;
+//    p->nextcolumn->datalist = list->next;
+
+    create_cir_nodelist("xxx","aaa",p,list);
+
+    scanf("%d");
+
+
+
+//    char *inserts = "insert into tname (id,name,age,sex) values(num,asd,45,N)(num,asd,11,N)(num,asd,23,N)(num,asd,67,N)";
+//
+//    scan_word* iword = scanWordInit();
+//    sqlsacnner(iword,inserts);
+//    treenode *iroot = check_tree(iword);
+//    memte_insert(iroot);
 //    char *use = "use xxx";
 //    scan_word *uword = scanWordInit();
 //    sqlsacnner(uword,use);

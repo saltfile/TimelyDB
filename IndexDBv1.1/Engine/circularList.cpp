@@ -44,8 +44,9 @@ int use_detect(){
  */
 int create_cir_nodelist(char* databasename,char * tablename,tuple_column *columns,value_tuple * datas) {
 //    char * databasename=(char *)pthread_getspecific(key_databasename);//获取数据库名
-    pid_t pid;
-    pid = fork();
+//    pid_t pid;
+    int pid = 0;
+//    pid = fork();
     if (pid<0){
         perror("[ERROR] fork write ahead log failed\n");
         return -1;
@@ -58,6 +59,7 @@ int create_cir_nodelist(char* databasename,char * tablename,tuple_column *column
         head_tuple *headtuple;
 //        pthread_myrwlock_wrlock();
         head_tuple *headTuple_index = list_head->next;//从头开始找
+        //TODO:2022-09-28 list_head在manger_writedisk之前自己的next指针指向了自己
         while (headTuple_index != NULL && headTuple_index != list_head->next) {
             if (headTuple_index->databasename != NULL
                 && headTuple_index->tablename != NULL
@@ -228,7 +230,7 @@ void * manager_writedisk(long int reserve_time){
         }while (headtuple_index!=NULL&&headtuple_index!=list_head->next);
         load_list_index->next=NULL;
 //        pthread_myrwlock_unlock();//放写锁
-
+        cout<<"我是闲置信息"<<load_list->databasename<<endl;
         if (load_ahead_log(load_list)==ITrue){
             pthread_t load;
             int iRet=pthread_create(&load, NULL, reinterpret_cast<void *(*)(void *)>(&load_disk_method),
@@ -355,7 +357,7 @@ CircularList *initCircularList(long int cyclelength){
         list_head->size=cyclelength;
     }
     pthread_t manager;
-    int reserve_time=2;
+    int reserve_time=1;
     int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
                             reinterpret_cast<void *>(reserve_time));
     if (iRet){
@@ -391,7 +393,8 @@ IBool insert_cir_node(head_tuple * headdata){
 //        pthread_myrwlock_unlock();
         return IFalse;
     }
-    if (list_head->is_fulied==1)list_tail=list_head->next; //没覆盖就继续新建节点
+    if (!list_head->is_fulied)
+        list_tail=list_head->next; //没覆盖就继续新建节点
 //    else list_head->earliest_time=list_tail->headdata->timestamp; //覆盖了就更新环上当前最早的数据时间
     list_tail->next=headdata;
     list_tail=list_tail->next;

@@ -241,6 +241,7 @@ tuple_column* malloc_tuple_colum(void);
 tuple_head* malloc_tuple_head(void);
 //添加
 void condition_add_insert(condition* root,char* c_name,TokenType c_symbol,char* c_value);
+void condition_add(condition* root,condition* ptr);
 ///////////////////////////////////////////test.h
 int z_index();
 #endif //INDEXDBV1_1_DATABASE_INDEX_H
