@@ -831,9 +831,10 @@ void test_lc(){
 
     initCircularList(1000);
     InitRootNode();
+
     VfsNode  * databaseNode = createNode(1,"xxx",1,NULL,NULL,NULL);
-    databaseNode->filepath=(char *)malloc(sizeof("/home/saltfish/indexTSDB"));
-    databaseNode->filepath="/home/saltfish/indexTSDB";
+    databaseNode->filepath=(char *)malloc(sizeof("/home/saltfish/indexTSDB/xxx/"));
+    databaseNode->filepath="/home/saltfish/indexTSDB/xxx/";
     VfsNode  * table1Node = createNode(2,"aaa",1,NULL,NULL,NULL);
     VfsNode  * column1Node = createNode(3,"age|char*",1,NULL,NULL,NULL);
     VfsNode  * column1Node2 = createNode(3,"name|char*",1,NULL,NULL,NULL);
@@ -852,15 +853,15 @@ void test_lc(){
     p->columnname = "age";
     p->nextcolumn = malloc_tuple_colum();
     p->nextcolumn->dataTypes = VARCHAR;
-    p->columnname = "name";
-
+    p->nextcolumn->columnname = "name";
 
     value_tuple* list = malloc_tuple();
     list->value = "18";
-    list->timestamp = "15613216545";
+
+    list->timestamp = "1561321654";
     list->next = malloc_tuple();
     list->next->value = "xxx";
-    list->next->timestamp = "15613216545";
+    list->next->timestamp = "1561321654";
 //
 //    p->datalist = list;
 //    p->listtail = list;
@@ -869,7 +870,7 @@ void test_lc(){
 //    p->nextcolumn->datalist = list->next;
 
     create_cir_nodelist("xxx","aaa",p,list);
-
+    manager_writedisk(1);
     scanf("%d");
 
 

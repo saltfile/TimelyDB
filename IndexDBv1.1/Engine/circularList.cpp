@@ -2,6 +2,7 @@
 // Created by maomao on 2021/8/26.
 ////#include "database_engine.h"
 //#include "global_c.h"
+#include "../grammar/Myall.h"
 #include "database_engine.h"
 #define strcompare(_p) (*reinterpret_cast<const uint32_t *>(_p))//比较字符串是否相等，比strcmp略快
 extern int write_ahead_log(char * timestamp,char * databasename,char * tablename,value_tuple * values);
@@ -43,6 +44,7 @@ int use_detect(){
  *
  */
 int create_cir_nodelist(char* databasename,char * tablename,tuple_column *columns,value_tuple * datas) {
+    //TODO:注:这里的fork开始同步预写日志
 //    char * databasename=(char *)pthread_getspecific(key_databasename);//获取数据库名
 //    pid_t pid;
     int pid = 0;
@@ -150,7 +152,7 @@ int create_cir_nodelist(char* databasename,char * tablename,tuple_column *column
 // * */
 void * manager_writedisk(long int reserve_time){
     int check_alive=0;
-
+    head_tuple * headtuple_index=list_head->next;//原链
     while (1){
 //        pthread_myrwlock_rdlock();
         if (list_head==NULL){
@@ -165,12 +167,13 @@ void * manager_writedisk(long int reserve_time){
 //            cout<<"活着继续检查"<<endl;
             check_alive=0;
         }
-        head_tuple * headtuple_index=list_head->next;//原链
+
         if (headtuple_index==NULL){
             perror("[ERROR] list_head.next is NULL\n");
             continue;
         }
         if(headtuple_index->min_time==NULL) {
+            headtuple_index = headtuple_index->next;
 //            cout<<"min_time Wei null"<<endl;
             continue;
         };
@@ -181,7 +184,8 @@ void * manager_writedisk(long int reserve_time){
         head_tuple * load_list=(head_tuple *)malloc(sizeof(head_tuple));//准备落盘的数据链的链头
         head_tuple * load_list_index=load_list;
         do{//遍历当前表下的列
-            if (atol(headtuple_index->min_time)-flush_cond<=0){//符合flush条件
+            long times = atol(headtuple_index->min_time)-flush_cond;
+            if (times<=0){//符合flush条件
                 //复制一份元数据,当数据链上没有数据时元数据结构要free
                 load_list_index->databasename=(char *)malloc(strlen(headtuple_index->databasename));
                 load_list_index->databasename=headtuple_index->databasename;
@@ -192,7 +196,6 @@ void * manager_writedisk(long int reserve_time){
                 //复制列的元数据
                 tuple_column * flush_list=(tuple_column *)malloc(sizeof(tuple_column));
                 load_list_index->fileds=flush_list;
-
                 while (flush_list_index!=NULL){//遍历当前列的数据
                     value_tuple * flush_value=flush_list_index->datalist;
                     value_tuple * cut_value_list=flush_value;//当前符合条件的数据链
@@ -212,9 +215,11 @@ void * manager_writedisk(long int reserve_time){
                     //填充列的数据链和复制列的元数据
                     flush_list->datalist=cut_value_list;
 
-
+                    flush_list->columnname = str_copy(flush_list->columnname,flush_list_index->columnname);
                     flush_list_index=flush_list_index->nextcolumn;
+
                     if (flush_list_index!=NULL){
+
                         flush_list->nextcolumn=(tuple_column *)malloc(sizeof(tuple_column));
                         flush_list=flush_list->nextcolumn;
                     } else{
@@ -352,18 +357,19 @@ CircularList *initCircularList(long int cyclelength){
         list_head->next=(head_tuple *)malloc(sizeof(head_tuple));
 
         list_tail=list_head->next;
-        list_tail->next=list_head->next;
+//        list_tail->next=list_head->next;
     }else {
         list_head->size=cyclelength;
     }
     pthread_t manager;
     int reserve_time=1;
-    int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
-                            reinterpret_cast<void *>(reserve_time));
-    if (iRet){
-        perror("[ERROR] pthread join error\n");
-        return NULL;
-    }
+//    int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
+//                            reinterpret_cast<void *>(reserve_time));
+//    if (iRet){
+//        perror("[ERROR] pthread join error\n");
+//        return NULL;
+//    }
+
     printf("the thread id is %ld\n",manager);
     return list_head;
 
