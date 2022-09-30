@@ -128,16 +128,17 @@ void condition_add_insert(condition* root,char* c_name,TokenType c_symbol,char* 
     p->next = newptr;
 }
 
-void condition_add(condition* root,condition* ptr){
+condition* condition_add(condition* root,condition* ptr){
     condition* p = root;
     if (p == NULL){
         p = ptr;
-        return;
+        return p;
     }
     while (p->next){
         p = p ->next;
     }
     p->next = ptr;
+    return p;
 }
 
 

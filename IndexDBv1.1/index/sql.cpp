@@ -100,14 +100,12 @@ void sql_oper_insrtinto(sql_operation* sql){
     }
     printf("插入语句：%d\n", sizeof(tupleHead));
 
-    create_skip_index(tupleHead);//创建跳表索引（一级索引）
-
-    create_rbtree_index(tupleHead);//创建rbtree （二级索引）
+//    create_skip_index(tupleHead);//创建跳表索引（一级索引）
+//
+//    create_rbtree_index(tupleHead);//创建rbtree （二级索引）
 
     //执行循环列表的插入
     create_cir_nodelist(tupleHead->databasename,tupleHead->tablename,tupleHead->fileds,tupleHead->fileds->datalist);
-
-
 
 }
 /*删除数据

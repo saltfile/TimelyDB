@@ -747,7 +747,7 @@ packge* memte_insert(treenode* root){
     insert->name = str_copy(insert->name,p->str);
     sql = sql->next;
     list *colnms = sql->tree->nodelist;
-
+//TODO:09-30 这里的时间戳部分赋值出现问题，这里需要添加一个对应的获取时间戳函数或者直接time
     sql = sql->next->next;
     int colums_lens = get_list_size(colnms);
     int val_lens = get_list_size(sql);
@@ -761,10 +761,12 @@ packge* memte_insert(treenode* root){
             treenode* con = get_list_node(cls,j+1);
             condition_add_insert(min_list,pt->str,Assignment,con->str);
         }
-        condition_add(datalist,min_list);
+        datalist = condition_add(datalist,min_list);
         sql = sql->next;
     }
 
+    insert->data_list = datalist;
+    sql_oper_insrtinto(insert);
 
 }
 
@@ -827,15 +829,13 @@ packge* create_memte_tb(treenode *root){
 
 
 void test_lc(){
-    //使用 use语句
-
     initCircularList(1000);
     InitRootNode();
 
     VfsNode  * databaseNode = createNode(1,"xxx",1,NULL,NULL,NULL);
     databaseNode->filepath=(char *)malloc(sizeof("/home/saltfish/indexTSDB/xxx/"));
     databaseNode->filepath="/home/saltfish/indexTSDB/xxx/";
-    VfsNode  * table1Node = createNode(2,"aaa",1,NULL,NULL,NULL);
+    VfsNode  * table1Node = createNode(2,"tname",1,NULL,NULL,NULL);
     VfsNode  * column1Node = createNode(3,"age|char*",1,NULL,NULL,NULL);
     VfsNode  * column1Node2 = createNode(3,"name|char*",1,NULL,NULL,NULL);
 
@@ -844,55 +844,100 @@ void test_lc(){
     addVfsTreeNode(databaseNode,table1Node);
     addVfsTreeNode(table1Node,column1Node);
     addVfsTreeNode(table1Node,column1Node2);
-////
+
+    char *use = "use xxx";
+    scan_word *uword = scanWordInit();
+    sqlsacnner(uword,use);
+    treenode *uroot = check_tree(uword);
+    use_memte(uroot);
+
+//
+//    char *c_t = "create table tname(age int,name varchar(25))";
+//    scan_word *tword = scanWordInit();
+//    sqlsacnner(tword,c_t);
+//    treenode *troot = check_tree(tword);
+//    create_memte_tb(troot);
 
 
 
-    tuple_column* p = malloc_tuple_colum();
-    p->dataTypes = VARCHAR;
-    p->columnname = "age";
-    p->nextcolumn = malloc_tuple_colum();
-    p->nextcolumn->dataTypes = VARCHAR;
-    p->nextcolumn->columnname = "name";
 
-    value_tuple* list = malloc_tuple();
-    list->value = "18";
 
-    list->timestamp = "1561321654";
-    list->next = malloc_tuple();
-    list->next->value = "xxx";
-    list->next->timestamp = "1561321654";
+
+
+
+    char *inserts = "insert into tname (age,name) values(45,xiaoming)";
+
+    scan_word* iword = scanWordInit();
+    sqlsacnner(iword,inserts);
+    treenode *iroot = check_tree(iword);
+    memte_insert(iroot);
+
+    //z最后落盘
+    manager_writedisk(1);
+    scanf("%d");
+
+
+
+
+
+
+
+
+
+
+
+    //使用 use语句
+
+//    initCircularList(1000);
+//    InitRootNode();
+//
+//    VfsNode  * databaseNode = createNode(1,"xxx",1,NULL,NULL,NULL);
+//    databaseNode->filepath=(char *)malloc(sizeof("/home/saltfish/indexTSDB/xxx/"));
+//    databaseNode->filepath="/home/saltfish/indexTSDB/xxx/";
+//    VfsNode  * table1Node = createNode(2,"aaa",1,NULL,NULL,NULL);
+//    VfsNode  * column1Node = createNode(3,"age|char*",1,NULL,NULL,NULL);
+//    VfsNode  * column1Node2 = createNode(3,"name|char*",1,NULL,NULL,NULL);
+//
+//    VfsTree * vfs=createVfsTreeRoot();
+//    addVfsTreeNode(vfs->root,databaseNode);
+//    addVfsTreeNode(databaseNode,table1Node);
+//    addVfsTreeNode(table1Node,column1Node);
+//    addVfsTreeNode(table1Node,column1Node2);
+//////
+//
+//
+//
+//    tuple_column* p = malloc_tuple_colum();
+//    p->dataTypes = VARCHAR;
+//    p->columnname = "age";
+//    p->nextcolumn = malloc_tuple_colum();
+//    p->nextcolumn->dataTypes = VARCHAR;
+//    p->nextcolumn->columnname = "name";
+//
+//    value_tuple* list = malloc_tuple();
+//    list->value = "18";
+//
+//    list->timestamp = "1561321654";
+//    list->next = malloc_tuple();
+//    list->next->value = "xxx";
+//    list->next->timestamp = "1561321654";
 //
 //    p->datalist = list;
 //    p->listtail = list;
 //
 //    p->nextcolumn->datalist = list->next;
 //    p->nextcolumn->datalist = list->next;
-
-    create_cir_nodelist("xxx","aaa",p,list);
-    manager_writedisk(1);
-    scanf("%d");
-
-
-
-//    char *inserts = "insert into tname (id,name,age,sex) values(num,asd,45,N)(num,asd,11,N)(num,asd,23,N)(num,asd,67,N)";
 //
-//    scan_word* iword = scanWordInit();
-//    sqlsacnner(iword,inserts);
-//    treenode *iroot = check_tree(iword);
-//    memte_insert(iroot);
-//    char *use = "use xxx";
-//    scan_word *uword = scanWordInit();
-//    sqlsacnner(uword,use);
-//    treenode *uroot = check_tree(uword);
-//    use_memte(uroot);
+//    create_cir_nodelist("xxx","aaa",p,list);
 //
 //
-//    char *c_t = "create table aaa(age int,name varchar(25))";
-//    scan_word *tword = scanWordInit();
-//    sqlsacnner(tword,c_t);
-//    treenode *troot = check_tree(tword);
-//    create_memte_tb(troot);
+
+
+
+//
+//
+//
+
 //    test_pool();
 //    char *cres = "create database xxx";
 //    scan_word *words = scanWordInit();

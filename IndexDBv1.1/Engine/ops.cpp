@@ -150,6 +150,7 @@ bool touch_table(char * databasename,char * tablename,char** columns,int columnS
         fwrite(columns[i],strlen(columns[i]),1,write);
         fwrite(";",1,1,write);
     }
+    fflush(write);
     return true;
 //    fclose(write);
 }

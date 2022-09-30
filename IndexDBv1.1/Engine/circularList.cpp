@@ -46,8 +46,8 @@ int use_detect(){
 int create_cir_nodelist(char* databasename,char * tablename,tuple_column *columns,value_tuple * datas) {
     //TODO:注:这里的fork开始同步预写日志
 //    char * databasename=(char *)pthread_getspecific(key_databasename);//获取数据库名
+int pid = 0;
 //    pid_t pid;
-    int pid = 0;
 //    pid = fork();
     if (pid<0){
         perror("[ERROR] fork write ahead log failed\n");
@@ -347,6 +347,7 @@ void * manager_full_writedisk(){
 CircularList *initCircularList(long int cyclelength){
     if (list_head==NULL){
         list_head=(CircularList *)malloc(sizeof(CircularList));
+        memset(list_head,0,sizeof(CircularList));
         if (list_head==NULL){
             perror("[ERROR] init circularlist fail\n");
             return NULL;
