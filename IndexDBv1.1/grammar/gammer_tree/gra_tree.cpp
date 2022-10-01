@@ -745,9 +745,11 @@ packge* memte_insert(treenode* root){
     sql_operation* insert = malloc_sqloperation();
     insert->handler = INSERTINTO;
     insert->name = str_copy(insert->name,p->str);
+    insert->timestamp = get_time();
     sql = sql->next;
     list *colnms = sql->tree->nodelist;
 //TODO:09-30 这里的时间戳部分赋值出现问题，这里需要添加一个对应的获取时间戳函数或者直接time
+
     sql = sql->next->next;
     int colums_lens = get_list_size(colnms);
     int val_lens = get_list_size(sql);

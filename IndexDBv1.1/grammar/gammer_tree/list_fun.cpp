@@ -147,4 +147,15 @@ char * str_merge(char *str,char * merstr){
     }
     return res;
 }
+//获取时间戳
+char *get_time(){
+    char *ptr = (char *)malloc(20);
+    memset(ptr,0,20);
+    time_t time1;
+    time(&time1);
+    sprintf(ptr, "%ld", time1-2);
 
+
+
+    return ptr;
+}

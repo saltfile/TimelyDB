@@ -182,6 +182,7 @@ void * manager_writedisk(long int reserve_time){
 
 //        pthread_myrwlock_wrlock();//加写锁
         head_tuple * load_list=(head_tuple *)malloc(sizeof(head_tuple));//准备落盘的数据链的链头
+        memset(load_list,0,sizeof(head_tuple));
         head_tuple * load_list_index=load_list;
         do{//遍历当前表下的列
             long times = atol(headtuple_index->min_time)-flush_cond;

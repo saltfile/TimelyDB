@@ -156,7 +156,7 @@ void  test_lc();
 
 
 
-
+char *get_time();
 
 
 

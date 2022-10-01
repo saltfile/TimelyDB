@@ -37,9 +37,10 @@ void * load_disk_method(head_tuple * load_list){
         char * table_struct_begin;
         int ts_offset=0;
         if (size==0){
-            ts_offset+=strlen(column->columnname);
+            char *head_con = "timestamp;";
+            ts_offset+=strlen(head_con);
             table_struct=(char *)malloc(ts_offset);
-            strcat(table_struct,column->columnname);
+            strcat(table_struct,head_con);
             table_struct_begin=table_struct;
         }//如果文件是空的就添加文件的结构
 
@@ -58,6 +59,7 @@ void * load_disk_method(head_tuple * load_list){
         FILE *write=fopen(load_base_path,"a");
         fwrite(table_struct_begin,strlen(table_struct_begin),1,write);
         fwrite("\n",1,1,write);
+        fflush(write);
 //        ofstream file(load_base_path,ios::app);
 //        file<<table_struct_begin;
 //        file<<"\n";
@@ -96,19 +98,19 @@ void * load_disk_method(head_tuple * load_list){
                 snappy::Compress(input_begin,input_offset,&output);
                 //TODO:09-29 table_struct_begin 列名重复
                 fwrite(output.data(),output.length(),1,write);
-                fclose(write);
+                fflush(write);
 //                file<<output;
 
 //                dataNode->indexEntry->Size=output.size();
                 //数据落盘和为索引提供偏移量和偏移长度
-                char *p = datanode->timestamp;
-                datanode->timestamp = NULL;
-                free(p);
-                if (datanode->value)
-                free(datanode->value);
-                value_tuple *temp=datanode;
+//                char *p = datanode->timestamp;
+//                datanode->timestamp = NULL;
+//                free(p);
+//                if (datanode->value)
+//                free(datanode->value);
+//                value_tuple *temp=datanode;
                 datanode=datanode->next;
-                free(temp);
+//                free(temp);
 
                 input=input_begin;
                 memset(input,0,input_offset);
@@ -119,12 +121,13 @@ void * load_disk_method(head_tuple * load_list){
 //
             free(tempcolumn);
         }
-        
-        free(input);
 
+        free(input);
+        //TODO:10-01 这里的内存处理需要释放
         head_tuple * tempheadtuple=load_list;
         load_list=load_list->next;
         free(tempheadtuple);
+        fclose(write);
     }
 
     exit(0);
