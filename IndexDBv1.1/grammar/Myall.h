@@ -12,6 +12,7 @@
 #include <vector>
 #include <iostream>
 #include <time.h>
+#include "../Server/ser_drive.h";
 using namespace std;
 
 #define BUF_LEN 1024
@@ -150,12 +151,23 @@ treenode *init_sel();
 void  test_lc();
 
 
+//最后的包解析封装
+//建表语句解析
+packge* create_memte_tb(treenode *root);
+//插入语句解析
+packge* memte_insert(treenode* root);
+//建库语句
+packge* create_memte(treenode *root);
+//use语句解析
+packge * use_memte(treenode *root);
 
 
 
 
 
 
+
+//获取当前时间的时间戳
 char *get_time();
 
 

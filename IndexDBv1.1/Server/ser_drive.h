@@ -152,4 +152,8 @@ void send_runtable(int new_fd,char *buf);
 void rec_runtable(int epollfd,int fd,char *buf);
 void handler_accpet(int epollfd,int listenfd);
 int epollser_start(int port);
+
+
+int test_ser();
+
 #endif //SERVER_SER_DRIVE_H

@@ -3,8 +3,8 @@
 
 #include "index/database_index.h"
 #include "custom_pool/basic_function.h"
-#include "grammar/Myall.h"
-//#include "Server/ser_drive.h"
+//#include "grammar/Myall.h"
+#include "./Server/ser_drive.h"
 //#include <cstring>
 //#include "index/test.h"
 //#include <bitset>
@@ -18,11 +18,11 @@ int main(){
 //    char *sss = "insert into tname (id,name,age,sex) values(num,asd,45,N)(num,asd,11,N)(num,asd,23,N)(num,asd,67,N)";
 //    char *str =   "select id,age,name from aaa where age > 2 and id = 12 or xxx = xs";
 //    treenode *node =statement_parsing(str);
-test_lc();
+
 //test_pool();
 
 
-
+    test_ser();
 
 //    epollser_start(8686);
 //    z_index();

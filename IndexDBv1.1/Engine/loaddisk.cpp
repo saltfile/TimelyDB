@@ -30,7 +30,7 @@ void * load_disk_method(head_tuple * load_list){
         //为获取文件路径 load_base_path
 
 
-
+        FILE *write=fopen(load_base_path,"a");
         tuple_column* column=load_list->fileds;
         tuple_column * column_begin=column;
         char * table_struct;
@@ -42,7 +42,7 @@ void * load_disk_method(head_tuple * load_list){
             table_struct=(char *)malloc(ts_offset);
             strcat(table_struct,head_con);
             table_struct_begin=table_struct;
-        }//如果文件是空的就添加文件的结构
+
 
         while (column!=NULL){
 
@@ -56,10 +56,11 @@ void * load_disk_method(head_tuple * load_list){
         column = column->nextcolumn;
         }
 
-        FILE *write=fopen(load_base_path,"a");
+
         fwrite(table_struct_begin,strlen(table_struct_begin),1,write);
         fwrite("\n",1,1,write);
         fflush(write);
+        }//如果文件是空的就添加文件的结构
 //        ofstream file(load_base_path,ios::app);
 //        file<<table_struct_begin;
 //        file<<"\n";
@@ -96,7 +97,7 @@ void * load_disk_method(head_tuple * load_list){
 //                dataNode->indexEntry->Offset=size;
                 string output;
                 snappy::Compress(input_begin,input_offset,&output);
-                //TODO:09-29 table_struct_begin 列名重复
+                //TODO:09-29 table_struct_begin 列名重复      解决
                 fwrite(output.data(),output.length(),1,write);
                 fflush(write);
 //                file<<output;
