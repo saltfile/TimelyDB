@@ -129,6 +129,16 @@ void use_fun();
 char *str_copy(char *str,char *arr);
 char * str_merge(char *str,char * merstr);
 void tree_trim(treenode *root);
+//字符串分割的长度
+int spilt_size(char *a,char *b);
+//字符串分割
+char **split(char *str,char *dent);
+
+
+
+
+
+
 
 
 list * branch_245(scan_word *scan,int arrlen);

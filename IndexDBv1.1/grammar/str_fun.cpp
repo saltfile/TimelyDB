@@ -33,3 +33,47 @@ char * str_merge(char *str,char * merstr){
     }
     return res;
 }
+
+
+
+int spilt_size(char *a,char *b){
+    char *str = a;
+    char *dent = b;
+    int strlens = strlen(str);
+    char  ch[strlens];
+    strcpy(ch,str);
+    char* str1 = strtok(ch, dent);
+    int i = 0;
+    while (str1 != NULL)
+    {
+        str1 = strtok(NULL, dent);
+        if (str1!=NULL){
+            i++;
+        }
+    }
+    return i;
+}
+
+char **split(char *str,char *dent){
+    int size = spilt_size(str,dent);
+    int strlens = strlen(str);
+    char  ch[strlens];
+    strcpy(ch,str);
+    char* str1 = strtok(ch, dent);
+    char **res =  (char**) malloc(size * sizeof(char*));
+    memset(res,0,sizeof(res));
+    int i = 0;
+    res[i] = str_copy(res[i],str1);
+    while (str1 != NULL)
+    {
+        str1 = strtok(NULL, dent);
+        if (str1!=NULL){
+            i++;
+            res[i] = str_copy(res[i],str1);
+        }
+    }
+    return res;
+}
+
+
+

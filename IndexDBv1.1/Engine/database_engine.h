@@ -5,7 +5,7 @@
 #ifndef G__TEST_DATABASE_ENGINE_H
 #define G__TEST_DATABASE_ENGINE_H
 #pragma once
-
+#include <dirent.h>
 #include "../global_c.h"
 #include "../snappy/snappy.h"
 //#include "../index/database_index.h"
@@ -233,6 +233,20 @@ IBool load_ahead_log(head_tuple * load_list);
 
 passwd* get_user();
 
+
+
+
+//查看数据库的数量
+int get_databse_num();
+//获取所有数据库名字
+char** find_database();
+//获取所有表名
+char ** find_tables(char *database_path);
+int get_tables_num();
+
+
+
+void engine_init(int mem_size);
 
 
 #endif //G__TEST_DATABASE_ENGINE_H

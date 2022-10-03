@@ -12,28 +12,31 @@ int test_ser() {
 //pa->result = "sucssfly of creat databases : xxxx";
 
 
+engine_init(1000);
 
-    initCircularList(1000);
-    InitRootNode();
 
-    VfsNode  * databaseNode = createNode(1,"xxx",1,NULL,NULL,NULL);
-    databaseNode->filepath=(char *)malloc(sizeof("/home/saltfish/indexTSDB/xxx/"));
-    databaseNode->filepath="/home/saltfish/indexTSDB/xxx/";
-    VfsNode  * table1Node = createNode(2,"tname",1,NULL,NULL,NULL);
-    VfsNode  * column1Node = createNode(3,"age|char*",1,NULL,NULL,NULL);
-    VfsNode  * column1Node2 = createNode(3,"name|char*",1,NULL,NULL,NULL);
 
-    VfsTree * vfs=createVfsTreeRoot();
-    addVfsTreeNode(vfs->root,databaseNode);
-    addVfsTreeNode(databaseNode,table1Node);
-    addVfsTreeNode(table1Node,column1Node);
-    addVfsTreeNode(table1Node,column1Node2);
+//    initCircularList(1000);
+//    InitRootNode();
+//
+//    VfsNode  * databaseNode = createNode(1,"xxx",1,NULL,NULL,NULL);
+//    databaseNode->filepath=(char *)malloc(sizeof("/home/saltfish/indexTSDB/xxx/"));
+//    databaseNode->filepath="/home/saltfish/indexTSDB/xxx/";
+//    VfsNode  * table1Node = createNode(2,"tname",1,NULL,NULL,NULL);
+//    VfsNode  * column1Node = createNode(3,"age|char*",1,NULL,NULL,NULL);
+//    VfsNode  * column1Node2 = createNode(3,"name|char*",1,NULL,NULL,NULL);
+//
+//    VfsTree * vfs=createVfsTreeRoot();
+//    addVfsTreeNode(vfs->root,databaseNode);
+//    addVfsTreeNode(databaseNode,table1Node);
+//    addVfsTreeNode(table1Node,column1Node);
+//    addVfsTreeNode(table1Node,column1Node2);
 
-    char *use = "use xxx";
-    scan_word *uword = scanWordInit();
-    sqlsacnner(uword,use);
-    treenode *uroot = check_tree(uword);
-    use_memte(uroot);
+//    char *use = "use xxx";
+//    scan_word *uword = scanWordInit();
+//    sqlsacnner(uword,use);
+//    treenode *uroot = check_tree(uword);
+//    use_memte(uroot);
 
 //
 //    char *c_t = "create table tname(age int,name varchar(25))";
@@ -49,16 +52,16 @@ int test_ser() {
 
 
 
-    char *inserts = "insert into tname (age,name) values(45,xiaoming)";
-
-    scan_word* iword = scanWordInit();
-    sqlsacnner(iword,inserts);
-    treenode *iroot = check_tree(iword);
-    memte_insert(iroot);
-
-    //z最后落盘
-    manager_writedisk(1);
-    scanf("%d");
+//    char *inserts = "insert into tname (age,name) values(45,xiaoming)";
+//
+//    scan_word* iword = scanWordInit();
+//    sqlsacnner(iword,inserts);
+//    treenode *iroot = check_tree(iword);
+//    memte_insert(iroot);
+//
+//    //z最后落盘
+//    manager_writedisk(1);
+//    scanf("%d");
 
 
 
