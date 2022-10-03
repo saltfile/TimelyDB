@@ -64,10 +64,30 @@ void engine_init(int mem_size){
     char *aaa = "tanme.tsdb";
     for (int i = 0; i < get_databse_num(); ++i) {
         cout<<endl<<databases[i]<<endl;
+        //数据库地址
+        char *base = str_copy(base,INDEX_PATH);
+        char *path = str_merge(base,"/");
+        path = str_merge(path,databases[i]);
 
-        char **tbs = find_tables(databases[i]);
+        //表信息地址
+        char **tbs = find_tables(path);
         for (int j = 0; j < get_tables_num(); ++j) {
-            cout<<endl<<"表  : "<<tbs[i];
+            char *tables = str_merge("",path);
+            tables = str_merge(tables,"/");
+            tables = str_merge(tables,tbs[i]);
+            tables = str_merge(tables,".tsdb");
+
+            //列信息地址
+            conlum_apply(tables);
+
+
+
+
+
+
+
+
+
         }
 
 
@@ -162,9 +182,7 @@ char** find_database(){
 
         if (strcmp(filename->d_name,".")&&strcmp(filename->d_name,"..")){
             struct stat buf;
-            char *base = str_copy(base,INDEX_PATH);
-            char *path = str_merge(base,"/");
-            path = str_merge(path,filename->d_name);
+            char* path = str_copy(path,filename->d_name);
             res[i] = path;
             i++;
         }
@@ -213,20 +231,22 @@ char ** find_tables(char *database_path){
 //查到所有列
 char **conlum_apply(char* clonms_path){
     FILE * file = fopen(clonms_path,"r");
-
-
-
-
-
-
-
-
-
-
-
-
-
+    char *buff = (char *)malloc(1024);
+    memset(buff,0,1024);
+    fscanf(file, "%s", buff);
+    cout<<buff;
     fclose(file);
+    int lens = spilt_size_gar(buff,";");
+    char **res = split_gar(buff,";");
+    for (int i = 0; i < lens; ++i) {
+        res[i] = str_merge(res[i], "|char*");
+    }
+    return res;
+
+
+
+
+
 }
 
 

@@ -18,18 +18,7 @@ using namespace std;
 struct stu{
     char * name;
 };
-char ** split(char * src,char * flag){
-    char ** ptr;
-    char * part=strtok(src,flag);
-//    char * part=src;
-    *ptr=part;
-    char ** result=ptr++;
-    while (part!=NULL) {
-        part=strtok(NULL,flag);
-        *ptr++ = part;
-    }
-    return result;
-}
+
 //void Hl(char * one,char * two){
 ////    char *
 //    char * result=(char *)malloc(strlen(one));

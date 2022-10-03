@@ -36,7 +36,7 @@ char * str_merge(char *str,char * merstr){
 
 
 
-int spilt_size(char *a,char *b){
+int spilt_size_gar(char *a,char *b){
     char *str = a;
     char *dent = b;
     int strlens = strlen(str);
@@ -51,11 +51,12 @@ int spilt_size(char *a,char *b){
             i++;
         }
     }
-    return i;
+
+    return i+1;
 }
 
-char **split(char *str,char *dent){
-    int size = spilt_size(str,dent);
+char **split_gar(char *str,char *dent){
+    int size = spilt_size_gar(str,dent);
     int strlens = strlen(str);
     char  ch[strlens];
     strcpy(ch,str);
