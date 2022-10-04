@@ -243,6 +243,7 @@ char** find_database();
 //获取所有表名
 char ** find_tables(char *database_path);
 int get_tables_num();
+int get_conlum_size(char *conms_path);
 char **conlum_apply(char* clonms_path);
 
 

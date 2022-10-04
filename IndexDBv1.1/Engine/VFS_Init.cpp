@@ -8,8 +8,8 @@
 
 
 
-
-void List(char *path)
+//后期检测文件的功能函数
+void chaeck_fun(char *path)
 {
 
 
@@ -38,9 +38,7 @@ void List(char *path)
 
 
 void engine_init(int mem_size){
-    //这是开启内存环
-//    initCircularList(mem_size);
-//    InitRootNode();
+
 //
 //    VfsNode  * databaseNode = createNode(1,"xxx",1,NULL,NULL,NULL);
 //    databaseNode->filepath=(char *)malloc(sizeof("/home/saltfish/indexTSDB/xxx/"));
@@ -56,8 +54,13 @@ void engine_init(int mem_size){
 //    addVfsTreeNode(table1Node,column1Node2);
 //      List("/home/saltfish/indexTSDB/xxx/tname.tsdb");
       //拿到所有数据库
-      char** databases = find_database();
 
+
+    //这是开启内存环
+    initCircularList(mem_size);
+    InitRootNode();
+
+      char** databases = find_database();
 
 
     //拿到数据库中的所有表
@@ -69,40 +72,37 @@ void engine_init(int mem_size){
         char *path = str_merge(base,"/");
         path = str_merge(path,databases[i]);
 
+
+        //初始化第一层的数据库节点
+        VfsNode  * databaseNode = createNode(1,databases[i],i+1,NULL,NULL,NULL);
+        databaseNode->filepath=(char *)malloc(strlen(path));
+        memset(databaseNode->filepath,0,strlen(path));
+        databaseNode->filepath = str_copy(databaseNode->filepath,path);
+        //文件树加节点:库->表->列
+        VfsTree * vfs=createVfsTreeRoot();
+        addVfsTreeNode(vfs->root,databaseNode);
         //表信息地址
         char **tbs = find_tables(path);
         for (int j = 0; j < get_tables_num(); ++j) {
+            VfsNode  * table1Node = createNode(2,tbs[j],i+1,NULL,NULL,NULL);
+            addVfsTreeNode(databaseNode,table1Node);
+
+
             char *tables = str_merge("",path);
             tables = str_merge(tables,"/");
             tables = str_merge(tables,tbs[i]);
             tables = str_merge(tables,".tsdb");
 
             //列信息地址
-            conlum_apply(tables);
+            char **cums = conlum_apply(tables);
 
-
-
-
-
-
-
-
-
+            for (int k = 0; k < get_conlum_size(tables); ++k) {
+                VfsNode  * columnNode = createNode(3,cums[k],i+1,NULL,NULL,NULL);
+                addVfsTreeNode(table1Node,columnNode);
+            }
         }
 
-
-
-
-
-
-
-
     }
-
-
-
-
-
 }
 
 
@@ -228,6 +228,17 @@ char ** find_tables(char *database_path){
     return res;
 
 }
+int get_conlum_size(char *conms_path){
+    FILE * file = fopen(conms_path,"r");
+    char *buff = (char *)malloc(1024);
+    memset(buff,0,1024);
+    fscanf(file, "%s", buff);
+    fclose(file);
+    int lens = spilt_size_gar(buff,";");
+    return lens;
+}
+
+
 //查到所有列
 char **conlum_apply(char* clonms_path){
     FILE * file = fopen(clonms_path,"r");
