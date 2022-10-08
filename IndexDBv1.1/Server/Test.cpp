@@ -4,6 +4,7 @@
 #include "ser_drive.h"
 
 int test_ser() {
+    epollser_start(8991);
 //    ser_start(8686);
 
 //packge *pa = (packge *)malloc(sizeof(packge));
@@ -12,7 +13,7 @@ int test_ser() {
 //pa->result = "sucssfly of creat databases : xxxx";
 
 
-engine_init(1000);
+//engine_init(1000);
 
 
 

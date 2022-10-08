@@ -67,13 +67,13 @@ public:
       u8 version = 0;
       u8 len[4];
       int alllen = 0;
-      string result = "";
+      char* result;
 
       void solve_package(u8 *arr);
 
-      void create_package(string result,u8 head);
+      void create_package(char* result,u8 head);
 
-      string GetResult();
+      char* GetResult();
 
 };
 //拥来实验的无所谓的函数
@@ -121,7 +121,7 @@ u8* fun_xor(u8 *bytes,int size);
 
 
 //读取协议报文
-string get_Result(u8 *bytes);
+char* get_Result(u8 *bytes);
 
 
 

@@ -37,6 +37,7 @@ void run_epoll(int listenfd){
     memset(buf,0,4096);
     /*创建一个描述符*/
     epollfd = epoll_create(1024);
+
     /*添加监听描述符事件*/
     add_event(epollfd,listenfd,EPOLLIN);
     while(1){
