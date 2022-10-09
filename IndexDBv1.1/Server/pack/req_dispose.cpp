@@ -35,7 +35,7 @@ void packge::solve_package(u8 *arr) {
     if(lens == lenRe && crc == crcRe){
         this->alllen = lenRe;
         char *resp = get_Result(arr);
-        this->result = str_copy(this->result,resp);
+        this->result = str_copy_ser(this->result,resp);
     } else{
         this->result = "err";
     }
@@ -59,11 +59,13 @@ char* packge::GetResult() {
 
 void packge::create_package(char* result, u8 head) {
 
-    int str_len = strlen(result);
-    int all_len = str_len+9+1;//前九位协议头和消息体加上一位回车
+
+
+    u8 *res = to_Char(result);
+    int str_len = strlen((char*)res);
+    int all_len = str_len+9;//前九位协议头和消息体加上一位回车
     this->alllen = all_len;
     cout<<all_len<<"    "<<endl;
-    u8 *res = to_Char(result);
     this->all = (u8 *)malloc(sizeof(u8)*all_len);
     memset(this->all,0,sizeof(all_len));
     //协议安装协议头
@@ -95,7 +97,7 @@ void packge::create_package(char* result, u8 head) {
     this->all = fun_xor(this->all,all_len);
     int aa = strlen((char *)res);
     cout<<endl;
-    this->result = str_copy(this->result,result);
+    this->result = str_copy_ser(this->result,result);
     for(int i = 0;i < all_len;i++)
         printf("%d   ",this->all[i]);
 }
@@ -165,7 +167,7 @@ char* get_Result(u8 *bytes){
     //这里的0表示结束符为了能将char *转成字符串
     str_result_char[str_size] = 0;
 //    string str_result_string = str_result_char;
-char* res = str_copy(res,str_result_char);
+char* res = str_copy_ser(res,str_result_char);
     return res;
 }
 

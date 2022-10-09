@@ -27,10 +27,6 @@ char * str_merge(char *str,char * merstr){
         char s =  merstr[i];
         res[i+strlen(str)] = s;
     }
-    char *p = str;
-    if(strlen(str)!=0){
-        free(p);
-    }
     return res;
 }
 

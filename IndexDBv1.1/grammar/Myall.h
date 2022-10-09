@@ -169,9 +169,10 @@ packge* memte_insert(treenode* root);
 //建库语句
 packge* create_memte(treenode *root);
 //use语句解析
-packge * use_memte(treenode *root);
+char * use_memte(treenode *root);
 
-
+//最终解析
+char* use_handle(char* sentence);
 
 
 

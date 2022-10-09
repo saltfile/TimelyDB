@@ -193,7 +193,6 @@ bool sql_oper_use(sql_operation* sql){
         return false;
         } else{
         tupleHead->databasename=sql->name;
-           cout<<"\nOK ! 1 ROW";
         return true;
         }
 }

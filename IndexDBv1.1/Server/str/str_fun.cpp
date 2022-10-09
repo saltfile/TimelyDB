@@ -3,7 +3,7 @@
 //
 #include "../ser_drive.h"
 
-char * str_copy(char *str,char *arr){
+char * str_copy_ser(char *str,char *arr){
     str = (char *)malloc(strlen(arr)+1);
     memset(str,0,strlen(arr)+1);
     for(int i = 0;i < strlen(arr);i++){
@@ -14,7 +14,7 @@ char * str_copy(char *str,char *arr){
 }
 
 
-char * str_merge(char *str,char * merstr){
+char * str_merge_ser(char *str,char * merstr){
     merstr+='\0';
     char * res = (char *)malloc(strlen(str)+strlen(merstr)+1);
     memset(res,0,strlen(str)+strlen(merstr)+1);
@@ -61,13 +61,13 @@ char **split(char *str,char *dent){
     char **res =  (char**) malloc(size * sizeof(char*));
     memset(res,0,sizeof(res));
     int i = 0;
-    res[i] = str_copy(res[i],str1);
+    res[i] = str_copy_ser(res[i],str1);
     while (str1 != NULL)
     {
         str1 = strtok(NULL, dent);
         if (str1!=NULL){
             i++;
-        res[i] = str_copy(res[i],str1);
+        res[i] = str_copy_ser(res[i],str1);
         }
     }
     return res;

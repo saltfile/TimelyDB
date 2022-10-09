@@ -3,7 +3,7 @@
 //
 
 #include "../ser_drive.h"
-
+#include "../../grammar/Myall.h"
 /**
  * TODO:用来检测数组内容的长度
  * @param buf被检测的数组
@@ -134,7 +134,7 @@ void rec_runtable(int epollfd,int fd,char *buf)
                 case 6 :packge2->create_package("succses",MESS_SUCCESS);break;
                 case 7 :packge2->create_package("succses",MESS_SUCCESS);break;
                 case 8 :packge2->create_package("succses",MESS_SUCCESS);break;
-                case 9 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 9 :packge2->create_package(use_handle(packge1->result),MESS_SUCCESS);break;
                 case 10 :packge2->create_package("succses",MESS_SUCCESS);break;
                 case 11 :packge2->create_package("succses",MESS_SUCCESS);break;
                 case 12 :packge2->create_package("succses",MESS_SUCCESS);break;
