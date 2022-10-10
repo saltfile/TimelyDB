@@ -83,14 +83,15 @@ void engine_init(int mem_size){
         addVfsTreeNode(vfs->root,databaseNode);
         //表信息地址
         char **tbs = find_tables(path);
-        for (int j = 0; j < get_tables_num(); ++j) {
+        int lens = get_tables_num(path);
+        for (int j = 0; j < lens; j++) {
             VfsNode  * table1Node = createNode(2,tbs[j],i+1,NULL,NULL,NULL);
             addVfsTreeNode(databaseNode,table1Node);
 
 
             char *tables = str_merge("",path);
             tables = str_merge(tables,"/");
-            tables = str_merge(tables,tbs[i]);
+            tables = str_merge(tables,tbs[j]);
             tables = str_merge(tables,".tsdb");
 
             //列信息地址
@@ -138,13 +139,13 @@ int get_databse_num(){
 }
 
 
-int get_tables_num(){
+int get_tables_num(char *database_path){
 
 
     DIR * dp;
     struct dirent *filename;
 
-    dp = opendir(INDEX_PATH);
+    dp = opendir(database_path);
     if (!dp)
     {
         fprintf(stderr,"open directory error\n");
@@ -198,7 +199,7 @@ char** find_database(){
 
 char ** find_tables(char *database_path){
 
-    int size = get_databse_num();
+    int size = get_tables_num(database_path);
     char **res =  (char**) malloc(size * sizeof(char*));
     memset(res,0,sizeof(res));
 

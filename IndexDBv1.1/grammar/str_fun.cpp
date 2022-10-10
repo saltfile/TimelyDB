@@ -74,3 +74,35 @@ char **split_gar(char *str,char *dent){
 
 
 
+int max_strarr(char** arr,int len){
+    if (arr == NULL){
+        return 0;
+    }
+    if (len < 0){
+        return 0;
+    }
+    int len_arr[len];
+    for (int i = 0; i < len; ++i) {
+        len_arr[i] = strlen(arr[i]);
+    }
+
+    return 0;
+
+
+}
+
+char* spell_char(char arr,int len){
+    char* res = (char*)malloc(len+1);
+    memset(res,0,len+1);
+    for (int i = 0; i < len; ++i) {
+        res[i] = arr;
+    }
+    return res;
+}
+
+
+
+
+
+
+

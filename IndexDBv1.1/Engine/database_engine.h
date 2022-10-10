@@ -242,11 +242,11 @@ int get_databse_num();
 char** find_database();
 //获取所有表名
 char ** find_tables(char *database_path);
-int get_tables_num();
+int get_tables_num(char *database_path);
 int get_conlum_size(char *conms_path);
 char **conlum_apply(char* clonms_path);
 
-
+char*show_database_panle();
 void engine_init(int mem_size);
 
 

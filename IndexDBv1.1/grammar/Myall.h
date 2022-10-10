@@ -133,9 +133,10 @@ void tree_trim(treenode *root);
 int spilt_size_gar(char *a,char *b);
 //字符串分割
 char **split_gar(char *str,char *dent);
-
-
-
+//检测在字符串数组中最长字符串的长度
+int max_strarr(char** arr,int len);
+//拼字符串结果用的
+char* spell_char(char arr,int len);
 
 
 
@@ -174,7 +175,7 @@ char * use_memte(treenode *root);
 //最终解析
 char* use_handle(char* sentence);
 
-
+char* show_DB_handle(char* sentence);
 
 
 

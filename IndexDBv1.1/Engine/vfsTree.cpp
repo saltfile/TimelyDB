@@ -2,6 +2,7 @@
 // Created by maomao on 2021/8/20.
 //
 #include "database_engine.h"
+#include "../grammar/Myall.h"
 //#include "vfsTree.h"
 //#include "global_c.h"
 VfsTree *vfsTreeRoot;
@@ -10,6 +11,11 @@ VfsNode *root;
 VfsTree * createVfsTreeRoot(){
     return vfsTreeRoot;
 }
+
+
+
+
+
 
 
 char* nameComplete;
@@ -222,6 +228,49 @@ IBool removeNode(ChildList *list,char* name)
     }
 
 }
+
+char*show_database_panle(){
+    childList* p = vfsTreeRoot->root->cList;
+    if (p->size == 0){
+        return "This is empty\n";
+    }
+    vfsNode* phead = p->head;
+    char** res_db = (char**)malloc(sizeof(char*)*p->size);
+    memset(res_db,0,sizeof(res_db));
+    int push_lens = 0;
+
+    for (int i = 0; i < p->size; ++i) {
+        cout<<"=>"<<phead->name<<endl;
+        if (strlen(phead->name)>push_lens){
+            push_lens = strlen(phead->name);
+        }
+        res_db[i] = str_copy(res_db[i],phead->name);
+       phead = phead->next;
+    }
+    char* result = NULL;
+
+    char* head = spell_char('*',push_lens+4);
+    head = str_merge(head,"\n");
+    result = str_copy(result,head);
+
+    for (int i = 0; i < p->size; ++i) {
+        char* start = "* ";
+        start = str_merge(start,res_db[i]);
+        int cloum_s = push_lens-strlen(res_db[i]);
+        int space_s = 1;
+        char* space = spell_char(' ',space_s+cloum_s);
+        start = str_merge(start,space);
+        start = str_merge(start,"*\n");
+        start = str_merge(start,head);
+        result = str_merge(result,start);
+    }
+
+    return result;
+    
+}
+
+
+
 
 //销毁链表
 void  deleteList(ChildList *list)

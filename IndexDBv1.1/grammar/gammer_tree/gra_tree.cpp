@@ -699,20 +699,55 @@ void tree_trim(treenode *root){
 
 }
 
+char* use_handle(char* sentence){
+    char** sent = split_gar(sentence,"\n");
+    scan_word *words = scanWordInit();
+    sqlsacnner(words,sent[0]);
+    treenode *use = check_tree(words);
+    if (use){
+    char *res = use_memte(use);
+    return res;
+    } else{
+        char* res = "Use syntax error";
+        return res;
+    }
+
+}
+
+
+char* show_DB_handle(char* sentence){
+    char** sent = split_gar(sentence,"\n");
+    char* res = NULL;
+    if (strcmp(sent[0],"show databases") == 0){
+        res = show_database_panle();
+        return res;
+    } else{
+        res = "Statement or server error!!";
+        return res;
+    }
+
+}
 
 
 
-packge * use_memte(treenode *root){
-    packge *res = (packge *)malloc(sizeof(packge));
-    memset(res,0,sizeof(res));
+
+
+char* use_memte(treenode *root){
+    char* res;
     sql_operation* use_dataname=malloc_sqloperation();
     use_dataname->handler=USE;
     use_dataname->name = root->nodelist->tree->str;
     bool b =  sql_oper_use(use_dataname);
+
     if (b){
-        res->create_package("Database changed",MESS_SUCCESS);
+        res = "OK!! Database selected for ";
+        char* name = root->nodelist->tree->str;
+        res = str_merge(res,name);
     } else{
-        res->create_package("Unknown database",OPER_FAIL);
+
+        res = "Not found Database ";
+        char* name = root->nodelist->tree->str;
+        res = str_merge(res,name);
     }
     return res;
 }
@@ -896,10 +931,10 @@ void test_lc(){
 //
 
 //    test_pool();
-//    char *cres = "create database xxx";
-//    scan_word *words = scanWordInit();
+    char *cres = "create database xxx";
+    scan_word *words = scanWordInit();
 //    sqlsacnner(words,cres);
-//    treenode *root = check_tree(words);
+    treenode *root = check_tree(words);
 //    create_memte(root);
 //
 //    create_memte_tb(root);
