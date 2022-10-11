@@ -32,7 +32,7 @@ void packge::solve_package(u8 *arr) {
     //获取协议版本
     this->version = arr[3];
 
-    if(lens == lenRe && crc == crcRe){
+    if(!(lens < lenRe) && crc == crcRe){
         this->alllen = lenRe;
         char *resp = get_Result(arr);
         this->result = str_copy_ser(this->result,resp);

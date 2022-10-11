@@ -164,11 +164,11 @@ void  test_lc();
 
 //最后的包解析封装
 //建表语句解析
-packge* create_memte_tb(treenode *root);
+char* create_memte_tb(treenode *root);
 //插入语句解析
 packge* memte_insert(treenode* root);
 //建库语句
-packge* create_memte(treenode *root);
+char* create_memte(treenode *root);
 //use语句解析
 char * use_memte(treenode *root);
 
@@ -177,7 +177,7 @@ char* use_handle(char* sentence);
 
 char* show_DB_handle(char* sentence);
 
-
+char* create_handle(char* sentence);
 
 //获取当前时间的时间戳
 char *get_time();

@@ -3,7 +3,7 @@
 //
 
 #include "database_index.h"
-
+#include "../grammar/Myall.h"
 static tuple_head  *tupleHead=malloc_tuple_head();//这里可以设计为锁，不use databasename的时候，这个databasename不会变。
 static  skip_list * skipList;
 static  RBRoot * rbRoot;
@@ -210,6 +210,7 @@ bool sql_oper_create_table(sql_operation* sql){
     if (tupleHead->databasename==NULL){
         perror("[ERROR] databaseName  can't be NULL\n");
         perror(" 先use databasename");
+        return false;
     }
     tupleHead->tablename=sql->name;
     //建表,jjs那边需要的一些参数
@@ -239,6 +240,7 @@ bool sql_oper_create_table(sql_operation* sql){
     rbRoot= rbTree_init(swar); //在创建表的时候就，初始化对应的rbtree，并且放进rbtree_map里面
 
     set_map_node(swar,sql);//存放表结构？忘记了
+    return true;
 }
 
 
@@ -252,6 +254,15 @@ bool sql_oper_create_database(sql_operation* sql){
 
     if (sql->name==NULL)  perror("[ERROR] create database false,databaseName  can't be NULL\n");
     char *path = mkdir_database(sql->name);
+    //初始化完成
+    VfsNode  * databaseNode = createNode(1,sql->name,1,NULL,NULL,NULL);
+    databaseNode->filepath=(char *)malloc(strlen(path));
+    memset(databaseNode->filepath,0,strlen(path));
+    databaseNode->filepath = str_copy(databaseNode->filepath,path);
+    //更新树节点
+    VfsTree * vfs=createVfsTreeRoot();
+    addVfsTreeNode(vfs->root,databaseNode);
+
     if (path!=NULL){
         return true;
     } else{

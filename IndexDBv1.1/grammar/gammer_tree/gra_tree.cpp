@@ -728,7 +728,23 @@ char* show_DB_handle(char* sentence){
 
 }
 
+char* create_handle(char* sentence){
+    char** sent = split_gar(sentence,"\n");
+    scan_word *words = scanWordInit();
+    sqlsacnner(words,sent[0]);
+    treenode *create = check_tree(words);
+    if (create==NULL){return "Syntax error&service exception！！";}
+    char*res = NULL;
+    switch (create->strtype) {
+        case 23:res = create_memte(create);break;
+        case 24:res = create_memte_tb(create);break;
+        default:res = "Syntax error&service exception！！";
+    }
 
+    return res;
+
+
+}
 
 
 
@@ -754,19 +770,19 @@ char* use_memte(treenode *root){
 
 
 
-packge* create_memte(treenode *root){
-    packge *res = (packge *)malloc(sizeof(packge));
-    memset(res,0,sizeof(res));
+char* create_memte(treenode *root){
     sql_operation *create_database = malloc_sqloperation();
     create_database->handler = CREATE_DATABASE;
     create_database->name = root->nodelist->tree->str;
     bool b = sql_oper_create_database(create_database);
     if (b){
-        res->create_package("Successfully created",MESS_SUCCESS);
+        char* res = "Database created successfully of ";
+        res = str_merge(res,create_database->name);
+        return res;
     } else{
-        res->create_package("Error:Duplicate database or other errors already exist",OPER_FAIL);
+        char* res = "Syntax error&service exception！！";
+        return res;
     }
-    return res;
 }
 
 
@@ -809,12 +825,7 @@ packge* memte_insert(treenode* root){
 
 
 
-packge* create_memte_tb(treenode *root){
-    packge *res = (packge *)malloc(sizeof(packge));
-    memset(res,0,sizeof(res));
-
-
-
+char* create_memte_tb(treenode *root){
     list *sql = root->nodelist;
     treenode *p = sql->tree;
 
@@ -857,7 +868,15 @@ packge* create_memte_tb(treenode *root){
             sql = sql->next;
         }
     }
-    sql_oper_create_table(create_tb);
+
+    if(sql_oper_create_table(create_tb)){
+    char* res = "Table created successfully of ";
+    res = str_merge(res,create_tb->name);
+        return res;
+    } else{
+        char* res = "Syntax error&service exception！！";
+        return res;
+    }
 }
 
 

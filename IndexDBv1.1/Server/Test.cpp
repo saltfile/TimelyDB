@@ -6,6 +6,12 @@
 int test_ser() {
     engine_init(1000);
 
+//    cout<<show_DB_handle("show databases")<<endl;
+//    cout<<create_handle("create database xxxs")<<endl;
+//    cout<<show_DB_handle("show databases")<<endl;
+//    cout<<use_handle("use xxxs");
+//    cout<<create_handle("create table hgf(age int,name varchar(25),shengao float)")<<endl;
+
     epollser_start(8994);
 //    ser_start(8686);
 
@@ -42,7 +48,7 @@ int test_ser() {
 //    use_memte(uroot);
 
 //
-//    char *c_t = "create table tname(age int,name varchar(25))";
+//    char *c_t = "create table tname(age int,name varchar(25),shengao float)";
 //    scan_word *tword = scanWordInit();
 //    sqlsacnner(tword,c_t);
 //    treenode *troot = check_tree(tword);

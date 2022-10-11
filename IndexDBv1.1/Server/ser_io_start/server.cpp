@@ -128,7 +128,7 @@ void rec_runtable(int epollfd,int fd,char *buf)
                 case 0 :packge2->create_package(packge1->result,MESS_SUCCESS);break;
                 case 1 :packge2->create_package("err is del user",MESS_SUCCESS);break;
                 case 2 :packge2->create_package("succses",MESS_SUCCESS);break;
-                case 3 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 3 :packge2->create_package(create_handle(packge1->result),MESS_SUCCESS);break;
                 case 4 :packge2->create_package("succses",MESS_SUCCESS);break;
                 case 5 :packge2->create_package("succses",MESS_SUCCESS);break;
                 case 6 :packge2->create_package("succses",MESS_SUCCESS);break;
