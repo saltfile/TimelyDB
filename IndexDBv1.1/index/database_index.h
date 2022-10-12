@@ -172,7 +172,7 @@ int print_list(skip_list *sl);
 
 //返回list中所有的元素
 void put_CharList(datalist* list);
-
+char* back_dbname();
 //从map中查找调表
 skip_list *find_skiptable(char* database_tablename);
 ////////////////////////////////////////////////////////////sql.h

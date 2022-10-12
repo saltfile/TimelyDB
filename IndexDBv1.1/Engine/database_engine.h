@@ -248,6 +248,5 @@ char **conlum_apply(char* clonms_path);
 
 char*show_database_panle();
 void engine_init(int mem_size);
-
-
+char* show_table_panle();
 #endif //G__TEST_DATABASE_ENGINE_H

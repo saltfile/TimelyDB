@@ -176,9 +176,11 @@ char * use_memte(treenode *root);
 char* use_handle(char* sentence);
 
 char* show_DB_handle(char* sentence);
+char* show_Table_handle(char* sentence);
+
+
 
 char* create_handle(char* sentence);
-
 //获取当前时间的时间戳
 char *get_time();
 

@@ -172,7 +172,7 @@ void sql_oper_drop_database(sql_operation* sql){
     rm_table(tupleHead->databasename,sql->name);
     rm_database(sql->name);
 }
-
+//TODO:记得后面加锁
 /*use databasename
  * */
 bool sql_oper_use(sql_operation* sql){
@@ -195,6 +195,20 @@ bool sql_oper_use(sql_operation* sql){
         tupleHead->databasename=sql->name;
         return true;
         }
+}
+
+
+//show tables查看各个数据库所存在的表
+char* back_dbname(){
+    if (tupleHead == nullptr) {
+        return NULL;
+    }
+    if (tupleHead->databasename != NULL){
+    char* res = str_copy(res,tupleHead->databasename);
+    return res;
+    } else{
+        return NULL;
+    }
 }
 
 

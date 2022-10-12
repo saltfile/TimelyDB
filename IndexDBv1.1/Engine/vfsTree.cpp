@@ -3,6 +3,7 @@
 //
 #include "database_engine.h"
 #include "../grammar/Myall.h"
+#include "../index/database_index.h"
 //#include "vfsTree.h"
 //#include "global_c.h"
 VfsTree *vfsTreeRoot;
@@ -229,11 +230,19 @@ IBool removeNode(ChildList *list,char* name)
 
 }
 
+
+char* show_table_panle(){
+    char*res = back_dbname();
+}
+
+
+
 char*show_database_panle(){
-    childList* p = vfsTreeRoot->root->cList;
-    if (p->size == 0){
+    if ( vfsTreeRoot->root->cList == NULL){
         return "This is empty\n";
     }
+    childList* p = vfsTreeRoot->root->cList;
+
     vfsNode* phead = p->head;
     char** res_db = (char**)malloc(sizeof(char*)*p->size);
     memset(res_db,0,sizeof(res_db));

@@ -66,7 +66,11 @@ void send_runtable(int sockfd,u8 *cp,int len)
 
          查看表信息               7                    -249
 
+
+
        查看数据库信息              8                    -248
+
+      查看数据库中的表信息          14
 
          切换数据库               9                    -247
 
@@ -77,6 +81,8 @@ void send_runtable(int sockfd,u8 *cp,int len)
           查询语句               12                    -244
 
          alter语句              13                    -243
+
+
 
 
 

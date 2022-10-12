@@ -133,6 +133,7 @@ void rec_runtable(int epollfd,int fd,char *buf)
                 case 5 :packge2->create_package("succses",MESS_SUCCESS);break;
                 case 6 :packge2->create_package("succses",MESS_SUCCESS);break;
                 case 7 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 14:packge2->create_package("succses",MESS_SUCCESS);break;
                 case 8 :packge2->create_package(show_DB_handle(packge1->result),MESS_SUCCESS);break;
                 case 9 :packge2->create_package(use_handle(packge1->result),MESS_SUCCESS);break;
                 case 10 :packge2->create_package("succses",MESS_SUCCESS);break;

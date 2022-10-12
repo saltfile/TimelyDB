@@ -17,6 +17,6 @@ aux_source_directory(./index index)
 #aux_source_directory(./primitive primitive)
 AUX_SOURCE_DIRECTORY(. indexDB)
 add_executable(IndexDBv1_1  ${indexDB} )
-TARGET_LINK_LIBRARIES(IndexDBv1_1  Server grammar Server custom_pool Engine index grammar pthread)
+TARGET_LINK_LIBRARIES(IndexDBv1_1  Server grammar Server custom_pool index Engine index grammar pthread)
 
 

@@ -284,16 +284,20 @@ void sql_create_tb(scan_word *scan,treenode *root){
                     int all = get_wordlen(scan);
                     if (all > arrlen+1){
                         log_erro("末尾检测到违法字符");
+                        free(p);
                         break;
                     }else{
                         break;
                     }
                 }
-            } else {log_erro("表列名与表列类型之间有语法错误");break;}
+            } else {log_erro("表列名与表列类型之间有语法错误");
+                free(p);
+            break;}
         }
     }
         else{
             log_erro("语句缺少 \"()\"");
+            free(p);
         }
 
     }
@@ -653,9 +657,6 @@ void sql_sel(scan_word *scan,treenode *root){
 
 
 
-
-
-
 void sel_254(treenode *node){
     treenode *p = node;
     char *str = p->str;
@@ -715,6 +716,20 @@ char* use_handle(char* sentence){
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 char* show_DB_handle(char* sentence){
     char** sent = split_gar(sentence,"\n");
     char* res = NULL;
@@ -728,12 +743,35 @@ char* show_DB_handle(char* sentence){
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+char* show_Table_handle(char* sentence){
+    char** sent = split_gar(sentence,"\n");
+    char* res = NULL;
+    show_table_panle();
+    return NULL;
+}
+
+
+
+
+
 char* create_handle(char* sentence){
     char** sent = split_gar(sentence,"\n");
     scan_word *words = scanWordInit();
     sqlsacnner(words,sent[0]);
     treenode *create = check_tree(words);
-    if (create==NULL){return "Syntax error&service exception！！";}
+    if (create==NULL){return "Error: syntax error between statements, please try again";}
     char*res = NULL;
     switch (create->strtype) {
         case 23:res = create_memte(create);break;
@@ -826,6 +864,7 @@ packge* memte_insert(treenode* root){
 
 
 char* create_memte_tb(treenode *root){
+
     list *sql = root->nodelist;
     treenode *p = sql->tree;
 
@@ -952,7 +991,7 @@ void test_lc(){
 //    test_pool();
     char *cres = "create database xxx";
     scan_word *words = scanWordInit();
-//    sqlsacnner(words,cres);
+    sqlsacnner(words,cres);
     treenode *root = check_tree(words);
 //    create_memte(root);
 //
