@@ -757,9 +757,12 @@ char* show_DB_handle(char* sentence){
 
 char* show_Table_handle(char* sentence){
     char** sent = split_gar(sentence,"\n");
+    if (strcmp(sent[0],"show tables") != 0){
+        return "Error: syntax error";
+    }
     char* res = NULL;
-    show_table_panle();
-    return NULL;
+    res = str_copy(res,show_table_panle());
+    return res;
 }
 
 

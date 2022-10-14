@@ -10,13 +10,13 @@ int test_ser() {
 //    cout<<create_handle("create database xxxs")<<endl;
 //    cout<<show_DB_handle("show databases")<<endl;
 //    cout<<use_handle("use com");
-//    cout<<create_handle("create table ");
+//    cout<<create_handle("create table xxx(age int)");
 //    cout<<show_Table_handle("show tables");
 
 
 //    cout<<create_handle("create table hgf(age int,name varchar(25),shengao float)")<<endl;
 
-    epollser_start(8995);
+    epollser_start(8994);
 //    ser_start(8686);
 
 //packge *pa = (packge *)malloc(sizeof(packge));

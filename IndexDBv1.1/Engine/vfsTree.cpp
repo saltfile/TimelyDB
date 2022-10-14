@@ -230,9 +230,63 @@ IBool removeNode(ChildList *list,char* name)
 
 }
 
-
+//TODO:10-12  完成后续show table操作
 char* show_table_panle(){
     char*res = back_dbname();
+    if (res == NULL){
+        return "Error: Please use or check whether the statement is correct!";
+    }
+    vfsTree * p = vfsTreeRoot;
+    vfsNode*DB_list = p->root->cList->head;
+    vfsNode *DB;
+    while (DB_list){
+
+        if (strcmp(DB_list->name,res) == 0){
+            DB = DB_list;
+            break;
+        }
+        DB_list = DB_list->next;
+    }
+    if (DB == nullptr){
+        return "Error: database exception";
+    }
+if (DB->cList == NULL){
+    return "This is Empty";
+}
+    vfsNode* table_list = DB->cList->head;
+
+    char** res_db = (char**)malloc(sizeof(char*)*DB->cList->size);
+    memset(res_db,0,sizeof(res_db));
+    int push_lens = 0;
+    for (int i = 0; i < DB->cList->size; ++i) {
+        if (strlen(table_list->name)>push_lens){
+            push_lens = strlen(table_list->name);
+        }
+        res_db[i] = str_copy(res_db[i],table_list->name);
+        table_list = table_list->next;
+    }
+    char* result = NULL;
+    char* head = spell_char('*',push_lens+4);
+    head = str_merge(head,"\n");
+    result = str_copy(result,head);
+    for (int i = 0; i < DB->cList->size; ++i) {
+        char* start = "* ";
+        start = str_merge(start,res_db[i]);
+        int cloum_s = push_lens-strlen(res_db[i]);
+        int space_s = 1;
+        char* space = spell_char(' ',space_s+cloum_s);
+        start = str_merge(start,space);
+        start = str_merge(start,"*\n");
+        start = str_merge(start,head);
+        result = str_merge(result,start);
+    }
+
+    return result;
+
+
+
+
+
 }
 
 
