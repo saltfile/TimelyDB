@@ -837,6 +837,7 @@ list * branch_256(scan_word *scan,int arrlen,int num){
 }
 list * branch_257(scan_word *scan,int arrlen){
     list *res = (list *)malloc(sizeof(list));
+    memset(res,0,sizeof(list));
    sqlitWord *p = scan->word;
    p = p+arrlen+1;
     while (p->num != 41){

@@ -425,7 +425,7 @@ void sql_ins(scan_word *scan,treenode *root){
             break;
         }
         word = get_word(scan,arrlen);
-        int val_len;
+        int val_len = 0;
         char *val_str = "\0";
         if (word.num == 40){
             val_len = arrlen;
@@ -827,9 +827,12 @@ char* create_memte(treenode *root){
 }
 
 
-packge* memte_insert(treenode* root){
-    packge* res = (packge *)malloc(sizeof(packge));
-    memset(res,0,sizeof(packge));
+
+
+
+
+
+char* memte_insert(treenode* root){
 
     list* sql = root->nodelist->next;
     treenode* p = sql->tree;
@@ -861,6 +864,9 @@ packge* memte_insert(treenode* root){
 
     insert->data_list = datalist;
     sql_oper_insrtinto(insert);
+    //TODO:这里是测试，后面要将落盘等等做异步
+//    manager_writedisk(1);
+
 
 }
 

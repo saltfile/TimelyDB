@@ -45,10 +45,10 @@ int use_detect(){
  */
 int create_cir_nodelist(char* databasename,char * tablename,tuple_column *columns,value_tuple * datas) {
     //TODO:注:这里的fork开始同步预写日志
-//    char * databasename=(char *)pthread_getspecific(key_databasename);//获取数据库名
-int pid = 0;
-//    pid_t pid;
-//    pid = fork();
+//    databasename=(char *)pthread_getspecific(key_databasename);//获取数据库名
+//int pid = 0;
+//TODO：解决这里的插入及日志问题
+pid_t pid=fork();
     if (pid<0){
         perror("[ERROR] fork write ahead log failed\n");
         return -1;

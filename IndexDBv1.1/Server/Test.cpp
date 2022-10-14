@@ -5,7 +5,13 @@
 
 int test_ser() {
     engine_init(1000);
+    char *inserts = "insert into item(age,name)values(45,xiaoming)";
 
+    cout<<use_handle("use com");
+    scan_word* iword = scanWordInit();
+    sqlsacnner(iword,inserts);
+    treenode *iroot = check_tree(iword);
+    memte_insert(iroot);
 //    cout<<show_DB_handle("show databases")<<endl;
 //    cout<<create_handle("create database xxxs")<<endl;
 //    cout<<show_DB_handle("show databases")<<endl;
@@ -16,7 +22,7 @@ int test_ser() {
 
 //    cout<<create_handle("create table hgf(age int,name varchar(25),shengao float)")<<endl;
 
-    epollser_start(8994);
+//    epollser_start(8994);
 //    ser_start(8686);
 
 //packge *pa = (packge *)malloc(sizeof(packge));
@@ -65,7 +71,7 @@ int test_ser() {
 
 
 
-//    char *inserts = "insert into tname (age,name) values(45,xiaoming)";
+//    char *inserts = "insert into tname(age,name)values(45,xiaoming)";
 //
 //    scan_word* iword = scanWordInit();
 //    sqlsacnner(iword,inserts);

@@ -207,7 +207,7 @@ struct sql_operation{
 
 };
 
-void sql_oper_insrtinto(sql_operation* sql);
+char* sql_oper_insrtinto(sql_operation* sql);
 void sql_oper_delete(sql_operation* sql);
 void sql_oper_select(sql_operation* sql);
 void sql_oper_drop_table(sql_operation* sql);

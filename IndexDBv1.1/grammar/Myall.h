@@ -166,7 +166,7 @@ void  test_lc();
 //建表语句解析
 char* create_memte_tb(treenode *root);
 //插入语句解析
-packge* memte_insert(treenode* root);
+char* memte_insert(treenode* root);
 //建库语句
 char* create_memte(treenode *root);
 //use语句解析

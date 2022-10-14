@@ -82,7 +82,7 @@ tuple_column* judge_nextcolum(tuple_column* tupleColum, condition* sql, char* sq
 
 /*插入数据
  * */
-void sql_oper_insrtinto(sql_operation* sql){
+char* sql_oper_insrtinto(sql_operation* sql){
     tupleHead->tablename=sql->name;
     tuple_column* column_node=malloc_tuple_colum();
     column_node->columnname=sql->data_list->c_name;
@@ -103,10 +103,17 @@ void sql_oper_insrtinto(sql_operation* sql){
 //    create_skip_index(tupleHead);//创建跳表索引（一级索引）
 //
 //    create_rbtree_index(tupleHead);//创建rbtree （二级索引）
+if (tupleHead->databasename == NULL){
+    char* res = "Error: Please use a database";
+    return res;
+}
 
     //执行循环列表的插入
     create_cir_nodelist(tupleHead->databasename,tupleHead->tablename,tupleHead->fileds,tupleHead->fileds->datalist);
-
+    char* res = "Successfully inserted 1 * row into ";
+    str_merge(res,tupleHead->tablename);
+    str_merge(res,"table !!");
+    return res;
 }
 /*删除数据
  * */
