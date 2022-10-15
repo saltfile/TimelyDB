@@ -6,12 +6,13 @@
 int test_ser() {
     engine_init(1000);
     char *inserts = "insert into item(age,name)values(45,xiaoming)";
-
+//
     cout<<use_handle("use com");
     scan_word* iword = scanWordInit();
     sqlsacnner(iword,inserts);
     treenode *iroot = check_tree(iword);
     memte_insert(iroot);
+//    scanf("");
 //    cout<<show_DB_handle("show databases")<<endl;
 //    cout<<create_handle("create database xxxs")<<endl;
 //    cout<<show_DB_handle("show databases")<<endl;

@@ -863,11 +863,16 @@ char* memte_insert(treenode* root){
     }
 
     insert->data_list = datalist;
-    sql_oper_insrtinto(insert);
+    char *res = sql_oper_insrtinto(insert);
+    int mes_len = spilt_size_gar(res," ");
+    char** mes = split_gar(res," ");
+    if (strcmp(mes[0],"Successfully")==0){
     //TODO:这里是测试，后面要将落盘等等做异步
 //    manager_writedisk(1);
-
-
+        return res;
+    } else{
+        return res;
+    }
 }
 
 

@@ -33,7 +33,7 @@ void * update_meta_log(char * timestamp){
         strcat(initmessage,timestamp);
         strcat(initmessage,"\nfile_path=");
         strcat(initmessage,log_path);
-        strcat(initmessage,"log1.txt");
+        strcat(initmessage,"log1.txt\n");
         fputs(initmessage,fp);
         memset(file_path,0,strlen(file_path));
         strcat(file_path,log_path);
@@ -51,6 +51,7 @@ void * update_meta_log(char * timestamp){
         ivalue++;
         sprintf(value,"%d",ivalue);
         char * newfilename=(char *)malloc(3+valuesize);
+        memset(newfilename,0,sizeof(newfilename));
         strcat(newfilename,"log");
         strcat(newfilename,value);
         strcat(newfilename,".txt");
@@ -59,6 +60,7 @@ void * update_meta_log(char * timestamp){
 
 
         char * updatemessage=(char *)malloc(124+valuesize);
+        memset(updatemessage,0,sizeof(updatemessage));
         strcat(updatemessage,"file_number=");
         strcat(updatemessage,value);
         strcat(updatemessage,"\n");

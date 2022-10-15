@@ -109,7 +109,11 @@ if (tupleHead->databasename == NULL){
 }
 
     //执行循环列表的插入
-    create_cir_nodelist(tupleHead->databasename,tupleHead->tablename,tupleHead->fileds,tupleHead->fileds->datalist);
+    int aaa = create_cir_nodelist(tupleHead->databasename,tupleHead->tablename,tupleHead->fileds,tupleHead->fileds->datalist);
+cout<<aaa<<endl;
+
+
+
     char* res = "Successfully inserted 1 * row into ";
     str_merge(res,tupleHead->tablename);
     str_merge(res,"table !!");

@@ -365,6 +365,7 @@ CircularList *initCircularList(long int cyclelength){
     }
     pthread_t manager;
     int reserve_time=1;
+
 //    int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
 //                            reinterpret_cast<void *>(reserve_time));
 //    if (iRet){
