@@ -167,12 +167,14 @@ void * manager_writedisk(long int reserve_time){
 //            cout<<"活着继续检查"<<endl;
             check_alive=0;
         }
-
+//TODO：这里需要更新一个函数查看headtuple_index除了next 不为空的函数
         if (headtuple_index==NULL){
-            perror("[ERROR] list_head.next is NULL\n");
+            sleep(reserve_time);
+//            perror("[ERROR] list_head.next is NULL\n");
             continue;
         }
         if(headtuple_index->min_time==NULL) {
+//            if (headtuple_index->next != NULL)
             headtuple_index = headtuple_index->next;
 //            cout<<"min_time Wei null"<<endl;
             continue;
@@ -364,14 +366,14 @@ CircularList *initCircularList(long int cyclelength){
         list_head->size=cyclelength;
     }
     pthread_t manager;
-    int reserve_time=1;
+    int reserve_time=2;
 
-//    int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
-//                            reinterpret_cast<void *>(reserve_time));
-//    if (iRet){
-//        perror("[ERROR] pthread join error\n");
-//        return NULL;
-//    }
+    int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
+                            reinterpret_cast<void *>(reserve_time));
+    if (iRet){
+        perror("[ERROR] pthread join error\n");
+        return NULL;
+    }
 
     printf("the thread id is %ld\n",manager);
     return list_head;

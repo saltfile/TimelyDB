@@ -110,7 +110,9 @@ if (tupleHead->databasename == NULL){
 
     //执行循环列表的插入
     int aaa = create_cir_nodelist(tupleHead->databasename,tupleHead->tablename,tupleHead->fileds,tupleHead->fileds->datalist);
-cout<<aaa<<endl;
+//    if (aaa == 2|| aaa == 3){
+//    pthread_exit(NULL);
+//    }
 
 
 

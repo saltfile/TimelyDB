@@ -12,7 +12,10 @@ int test_ser() {
     sqlsacnner(iword,inserts);
     treenode *iroot = check_tree(iword);
     memte_insert(iroot);
-//    scanf("");
+
+
+    int a = 1;
+    scanf("%d",&a);
 //    cout<<show_DB_handle("show databases")<<endl;
 //    cout<<create_handle("create database xxxs")<<endl;
 //    cout<<show_DB_handle("show databases")<<endl;
