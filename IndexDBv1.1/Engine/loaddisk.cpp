@@ -14,15 +14,21 @@
  *
  * */
 void * load_disk_method(head_tuple * load_list){
-    while (load_list!=NULL){
-        VfsNode * basenode=findDataBaseByName(load_list->databasename);
+    head_tuple * p =load_list;
+    while (p!=NULL){
+        VfsNode * basenode=findDataBaseByName(p->databasename);
+        if (basenode == NULL){
+            p = p->next;
+            continue;
+        }
         int offset=strlen(basenode->filepath);
         char * load_base_path=NULL;//落盘的文件路径
-        VfsNode * tablenode=findNodeByName(basenode->cList,load_list->tablename);
+        VfsNode * tablenode=findNodeByName(basenode->cList,p->tablename);
         //注:修改
         load_base_path = str_copy(load_base_path,basenode->filepath);
+        load_base_path = str_merge(load_base_path,"/");
 //        strcat(load_base_path,basenode->filepath);
-        memcpy(load_base_path+offset,tablenode->name,strlen(tablenode->name));
+        memcpy(load_base_path+offset+1,tablenode->name,strlen(tablenode->name));
         struct stat statbuf;
         stat(load_base_path,&statbuf);
         int size=statbuf.st_size;
@@ -30,16 +36,16 @@ void * load_disk_method(head_tuple * load_list){
 
 
         FILE *write=fopen(load_base_path,"a");
-        tuple_column* column=load_list->fileds;
+        tuple_column* column=p->fileds;
         tuple_column * column_begin=column;
         char * table_struct;
         char * table_struct_begin;
         int ts_offset=0;
         if (size==0){
             char *head_con = "timestamp;";
-            ts_offset+=strlen(head_con);
+//            ts_offset+=strlen(head_con);
             table_struct=(char *)malloc(ts_offset);
-            strcat(table_struct,head_con);
+//            strcat(table_struct,head_con);
             table_struct_begin=table_struct;
 
 
@@ -67,7 +73,7 @@ void * load_disk_method(head_tuple * load_list){
 
         column=column_begin;
 
-        char * input=(char *)malloc(strlen(load_list->fileds->datalist->timestamp));//
+        char * input=(char *)malloc(strlen(p->fileds->datalist->timestamp));//
         char * input_begin=input;
         long int input_offset=0;
         while (column!=NULL){
@@ -86,8 +92,8 @@ void * load_disk_method(head_tuple * load_list){
                 input_offset++;
                 //拼待压缩的数据input和长度input_offset
 
-                char * database_tablename=load_list->databasename;
-//                strcat(database_tablename,load_list->tablename);
+                char * database_tablename=p->databasename;
+//                strcat(database_tablename,p->tablename);
 //                skip_list * list= find_skiptable(database_tablename);
 //                data_node * dataNode=find_x_from_skip_list(list,atoi(datanode->timestamp));
                 struct stat statbuf;
@@ -124,11 +130,11 @@ void * load_disk_method(head_tuple * load_list){
 
         free(input);
         //TODO:10-01 这里的内存处理需要释放
-        head_tuple * tempheadtuple=load_list;
-        load_list=load_list->next;
+        head_tuple * tempheadtuple=p;
+        p=p->next;
         free(tempheadtuple);
         fclose(write);
     }
 
-    exit(0);
+    pthread_exit(0);
 }

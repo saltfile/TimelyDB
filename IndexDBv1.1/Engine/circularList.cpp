@@ -153,6 +153,7 @@ int pid = 0;
 
 
 bool task_head_t(head_tuple* root){
+    if (root == NULL)return true;
     head_tuple *p = root;
     bool db_name = p->databasename == NULL;
     bool tb_name = p->tablename == NULL;
@@ -199,6 +200,10 @@ void * manager_writedisk(long int reserve_time){
         }
 //TODO：这里需要更新一个函数查看headtuple_index除了next 不为空的函数
         if (task_head_t(headtuple_index)){
+            if (headtuple_index == NULL){
+                sleep(reserve_time);
+                continue;
+            }
             if (headtuple_index->next!=NULL)
                 headtuple_index = headtuple_index->next;
             sleep(reserve_time);
@@ -262,14 +267,16 @@ void * manager_writedisk(long int reserve_time){
                     }
                 }
             }
-            if (headtuple_index->next !=NULL)
+//            if (headtuple_index->next !=NULL)
             headtuple_index=headtuple_index->next;
             if (headtuple_index!=NULL&&headtuple_index!=list_head->next){
                 load_list_index->next=(head_tuple *)malloc(sizeof(head_tuple));
                 load_list_index=load_list_index->next;
             }
             //TODO:修改headtuple_index!=NULL&&headtuple_index!=list_head->next)
-        }while (headtuple_index->next!=NULL&&headtuple_index!=list_head->next);
+            bool _a = headtuple_index!=NULL;
+            bool b = headtuple_index!=list_head->next;
+        }while (headtuple_index!=NULL&&headtuple_index!=list_head->next);
         load_list_index->next=NULL;
 //        pthread_myrwlock_unlock();//放写锁
         cout<<"我是闲置信息"<<load_list->databasename<<endl;

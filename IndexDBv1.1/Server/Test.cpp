@@ -6,13 +6,17 @@
 int test_ser() {
     engine_init(1000);
     char *inserts = "insert into item(age,name)values(45,xiaoming)";
+    char *insert1 = "insert into item(age,name)values(43,xiao)";
 //
     cout<<use_handle("use com");
     scan_word* iword = scanWordInit();
     sqlsacnner(iword,inserts);
     treenode *iroot = check_tree(iword);
     memte_insert(iroot);
-
+    scan_word* wors2 = scanWordInit();
+    sqlsacnner(wors2,insert1);
+    treenode *our = check_tree(wors2);
+    memte_insert(our);
 
     int a = 1;
     scanf("%d",&a);
