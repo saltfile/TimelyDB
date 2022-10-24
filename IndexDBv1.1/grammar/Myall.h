@@ -117,6 +117,7 @@ typedef  struct colnm{
     int type;
     int end;
     char *str;
+
 };
 
 colnm *get_colnm(scan_word *scan);

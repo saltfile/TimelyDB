@@ -46,9 +46,9 @@ int use_detect(){
 int create_cir_nodelist(char* databasename,char * tablename,tuple_column *columns,value_tuple * datas) {
     //TODO:注:这里的fork开始同步预写日志
 //    databasename=(char *)pthread_getspecific(key_databasename);//获取数据库名
-//int pid = 0;
+int pid = 0;
 //TODO：解决这里的插入及日志问题
-pid_t pid=fork();
+//pid_t pid=fork();
     if (pid<0){
         perror("[ERROR] fork write ahead log failed\n");
         return -1;
@@ -63,6 +63,7 @@ pid_t pid=fork();
         head_tuple *headTuple_index = list_head->next;//从头开始找
         //TODO:2022-09-28 list_head在manger_writedisk之前自己的next指针指向了自己
         while (headTuple_index != NULL && headTuple_index != list_head->next) {
+            cout<<"这里"<<endl;
             if (headTuple_index->databasename != NULL
                 && headTuple_index->tablename != NULL
                 && strcompare((headTuple_index->databasename)) == strcompare(databasename)
@@ -128,6 +129,7 @@ pid_t pid=fork();
         headtuple->min_time = datas->timestamp;
         headtuple->max_time = (char *) malloc(15);
         headtuple->max_time = datas->timestamp;
+        cout<<"这里2"<<endl;
 
         while (datas != NULL) {
             tuple_column_index->datalist = datas;
@@ -140,11 +142,39 @@ pid_t pid=fork();
                 tuple_column_index->listtail = tuple_column_index->datalist;
             }
         }
+        if (list_head->next!=NULL)
+        cout<<list_head->next->databasename<<endl;
+        cout<<"xxx"<<endl;
 //        pthread_myrwlock_unlock();
 //        exit(0);
         return 3;
     }
 }
+
+
+bool task_head_t(head_tuple* root){
+    head_tuple *p = root;
+    bool db_name = p->databasename == NULL;
+    bool tb_name = p->tablename == NULL;
+    bool filte = p->fileds == NULL;
+    bool mintime = p->min_time == NULL;
+    bool maxtime = p->max_time == NULL;
+    return db_name&&tb_name&&filte&&mintime&&maxtime;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 ///**
 // * 保留策略
 // * 数据到点落盘
@@ -168,17 +198,19 @@ void * manager_writedisk(long int reserve_time){
             check_alive=0;
         }
 //TODO：这里需要更新一个函数查看headtuple_index除了next 不为空的函数
-        if (headtuple_index==NULL){
+        if (task_head_t(headtuple_index)){
+            if (headtuple_index->next!=NULL)
+                headtuple_index = headtuple_index->next;
             sleep(reserve_time);
 //            perror("[ERROR] list_head.next is NULL\n");
             continue;
         }
-        if(headtuple_index->min_time==NULL) {
-//            if (headtuple_index->next != NULL)
-            headtuple_index = headtuple_index->next;
-//            cout<<"min_time Wei null"<<endl;
-            continue;
-        };
+//        if(headtuple_index->min_time==NULL) {
+////            if (headtuple_index->next != NULL)
+//            headtuple_index = headtuple_index->next;
+////            cout<<"min_time Wei null"<<endl;
+//            continue;
+//        };
         time_t flush_cond=time(NULL)-reserve_time;//需要执行回收的是时间条件 当前时间减去周期时间
 //        pthread_myrwlock_unlock();//放读锁
 
@@ -230,12 +262,14 @@ void * manager_writedisk(long int reserve_time){
                     }
                 }
             }
+            if (headtuple_index->next !=NULL)
             headtuple_index=headtuple_index->next;
             if (headtuple_index!=NULL&&headtuple_index!=list_head->next){
                 load_list_index->next=(head_tuple *)malloc(sizeof(head_tuple));
                 load_list_index=load_list_index->next;
             }
-        }while (headtuple_index!=NULL&&headtuple_index!=list_head->next);
+            //TODO:修改headtuple_index!=NULL&&headtuple_index!=list_head->next)
+        }while (headtuple_index->next!=NULL&&headtuple_index!=list_head->next);
         load_list_index->next=NULL;
 //        pthread_myrwlock_unlock();//放写锁
         cout<<"我是闲置信息"<<load_list->databasename<<endl;

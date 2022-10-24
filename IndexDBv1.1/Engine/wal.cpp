@@ -16,6 +16,7 @@ char * file_path=(char *)malloc(100);//当前日志文件路径
  *
  * */
 void * update_meta_log(char * timestamp){
+
     struct stat statbuf;
     stat(meta_log,&statbuf);
     int size=statbuf.st_size;
@@ -35,9 +36,12 @@ void * update_meta_log(char * timestamp){
         strcat(initmessage,log_path);
         strcat(initmessage,"log1.txt\n");
         fputs(initmessage,fp);
+        fflush(fp);
         memset(file_path,0,strlen(file_path));
         strcat(file_path,log_path);
         strcat(file_path,"log1.txt");
+        fclose(fp);
+
     } else{ //追加
         char * context=read_meta_log();
         int contextlen=strlen(context);
@@ -55,6 +59,7 @@ void * update_meta_log(char * timestamp){
         strcat(newfilename,"log");
         strcat(newfilename,value);
         strcat(newfilename,".txt");
+        memset(file_path,0,strlen(file_path));
         strcat(file_path,log_path);
         strcat(file_path,newfilename);
 

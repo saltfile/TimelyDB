@@ -14,7 +14,6 @@
  *
  * */
 void * load_disk_method(head_tuple * load_list){
-    cout<<"iasdjaodifhsljfa"<<endl;
     while (load_list!=NULL){
         VfsNode * basenode=findDataBaseByName(load_list->databasename);
         int offset=strlen(basenode->filepath);
