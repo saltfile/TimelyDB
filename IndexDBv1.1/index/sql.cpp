@@ -110,7 +110,7 @@ if (tupleHead->databasename == NULL){
 
     //执行循环列表的插入
     int aaa = create_cir_nodelist(tupleHead->databasename,tupleHead->tablename,tupleHead->fileds,tupleHead->fileds->datalist);
-cout<<"fork:"<<aaa<<endl;
+    cout<<"fork:"<<aaa<<endl;
 //    if (aaa == 2|| aaa == 3){
 //    pthread_exit(NULL);
 //    }
@@ -138,7 +138,7 @@ void sql_oper_delete(sql_operation* sql){
         }
         // 判断这样的情况 ：where timestamp=xxxx and id>10
         if (symbol==Assignment || symbol==NULL) delete_skip_index(swar, sql->timestamp);//一级索引查找
-            //对于一级索引的值进行，刘创操作
+            //对于一级索引的值进行，saltfish操作
         else delete_rbtree_index(swar,sql,tupleHead);//删除二级索引（红黑树）
 
     } else delete_rbtree_index(swar,sql,tupleHead);//删除二级索引，二级索引查找一级索引，一级索引去环形列表or vfs查询

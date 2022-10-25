@@ -61,8 +61,9 @@ int pid = 0;
         head_tuple *headtuple;
 //        pthread_myrwlock_wrlock();
         head_tuple *headTuple_index = list_head->next;//从头开始找
-        //TODO:2022-09-28 list_head在manger_writedisk之前自己的next指针指向了自己
-        while (headTuple_index != NULL && headTuple_index != list_head->next) {
+        //TODO:2022-10-25   while 原：(headTuple_index != NULL && headTuple_index != list_head->next)
+        if (headTuple_index->next != NULL){
+        while (headTuple_index != NULL) {
             cout<<"这里"<<endl;
             if (headTuple_index->databasename != NULL
                 && headTuple_index->tablename != NULL
@@ -93,7 +94,7 @@ int pid = 0;
                     }while (columns!=NULL&&tupleColumn!=NULL);//遍历插入的每条列
                     return NULL;
                 }
-                while (tupleColumn != NULL) {//正常的新数据,一条数据
+                while (datas != NULL) {//正常的新数据,一条数据
                     tupleColumn->listtail->next = datas;
                     tupleColumn->listtail = tupleColumn->listtail->next;
                     datas = datas->next;
@@ -102,6 +103,8 @@ int pid = 0;
                 return 2;
             }
             headTuple_index = headTuple_index->next;
+        }
+
         }
 //        pthread_myrwlock_unlock();
 
@@ -224,6 +227,7 @@ void * manager_writedisk(long int reserve_time){
         memset(load_list,0,sizeof(head_tuple));
         head_tuple * load_list_index=load_list;
         do{//遍历当前表下的列
+            if (headtuple_index->min_time == NULL)continue;
             long times = atol(headtuple_index->min_time)-flush_cond;
             if (times<=0){//符合flush条件
                 //复制一份元数据,当数据链上没有数据时元数据结构要free
@@ -231,7 +235,7 @@ void * manager_writedisk(long int reserve_time){
                 load_list_index->databasename=headtuple_index->databasename;
                 load_list_index->tablename=(char *)malloc(strlen(headtuple_index->tablename));
                 load_list_index->tablename=headtuple_index->tablename;
-
+                //TODO:2022-10-25 在插入完成后这里的值依然调用不到 未解决
                 tuple_column * flush_list_index=headtuple_index->fileds;//要flush列的指针
                 //复制列的元数据
                 tuple_column * flush_list=(tuple_column *)malloc(sizeof(tuple_column));
@@ -407,7 +411,7 @@ CircularList *initCircularList(long int cyclelength){
         list_head->size=cyclelength;
     }
     pthread_t manager;
-    int reserve_time=2;
+    int reserve_time=60;
 
     int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
                             reinterpret_cast<void *>(reserve_time));

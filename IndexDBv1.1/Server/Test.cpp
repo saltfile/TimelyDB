@@ -6,7 +6,7 @@
 int test_ser() {
     engine_init(1000);
     char *inserts = "insert into item(age,name)values(45,xiaoming)";
-    char *insert1 = "insert into item(age,name)values(43,xiao)";
+    char *insert1 = "insert into item(age,name)values(43,aaaaa)";
 //
     cout<<use_handle("use com");
     scan_word* iword = scanWordInit();
