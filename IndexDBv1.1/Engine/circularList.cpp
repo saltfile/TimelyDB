@@ -235,7 +235,8 @@ void * manager_writedisk(long int reserve_time){
                 load_list_index->databasename=headtuple_index->databasename;
                 load_list_index->tablename=(char *)malloc(strlen(headtuple_index->tablename));
                 load_list_index->tablename=headtuple_index->tablename;
-                //TODO:2022-10-25 在插入完成后这里的值依然调用不到 未解决
+                //TODO:2022-10-25 在插入完成后这里的值依然调用不到
+                //TODO:2022-10-26 明天要完成插入后值被穿丢的情况 未解决
                 tuple_column * flush_list_index=headtuple_index->fileds;//要flush列的指针
                 //复制列的元数据
                 tuple_column * flush_list=(tuple_column *)malloc(sizeof(tuple_column));
@@ -244,9 +245,11 @@ void * manager_writedisk(long int reserve_time){
                     value_tuple * flush_value=flush_list_index->datalist;
                     value_tuple * cut_value_list=flush_value;//当前符合条件的数据链
                     while (flush_value!=NULL&&atol(flush_value->timestamp)-flush_cond<=0) {//遍历数据,当前节点符合条件
+                        if (flush_value->next!=NULL)
+                        long a = atol(flush_value->next->timestamp)-flush_cond;
                         if (flush_value->next!=NULL&&
                         flush_value->next->timestamp!=NULL
-                        &&atol(flush_value->next->timestamp-flush_cond)>0){//说明要截取落盘的链到此为止
+                         &&atol(flush_value->next->timestamp)-flush_cond > 0){//说明要截取落盘的链到此为止
 
                             flush_list_index->datalist=flush_value->next;
                             headtuple_index->min_time=flush_list_index->datalist->timestamp;
