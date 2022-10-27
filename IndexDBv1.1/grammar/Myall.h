@@ -119,7 +119,6 @@ typedef  struct colnm{
     char *str;
 
 };
-
 colnm *get_colnm(scan_word *scan);
 colnm *get_andcolum(scan_word *scan,int len);
 void use_fun();
@@ -179,7 +178,7 @@ char* use_handle(char* sentence);
 char* show_DB_handle(char* sentence);
 char* show_Table_handle(char* sentence);
 
-
+char* insert_handle(char* sentence);
 
 char* create_handle(char* sentence);
 //获取当前时间的时间戳

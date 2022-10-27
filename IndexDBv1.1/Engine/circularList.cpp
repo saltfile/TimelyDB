@@ -95,10 +95,11 @@ int pid = 0;
                     return NULL;
                 }
                 while (datas != NULL) {//正常的新数据,一条数据
+
                     tupleColumn->listtail->next = datas;
                     tupleColumn->listtail = tupleColumn->listtail->next;
-                    datas = datas->next;
                     tupleColumn = tupleColumn->nextcolumn;
+                    datas = datas->next;
                 }
                 return 2;
             }
@@ -414,16 +415,16 @@ CircularList *initCircularList(long int cyclelength){
         list_head->size=cyclelength;
     }
     pthread_t manager;
-    int reserve_time=60;
-
-    int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
-                            reinterpret_cast<void *>(reserve_time));
-    if (iRet){
-        perror("[ERROR] pthread join error\n");
-        return NULL;
-    }
-
-    printf("the thread id is %ld\n",manager);
+//    int reserve_time=60;
+//
+//    int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
+//                            reinterpret_cast<void *>(reserve_time));
+//    if (iRet){
+//        perror("[ERROR] pthread join error\n");
+//        return NULL;
+//    }
+//
+//    printf("the thread id is %ld\n",manager);
     return list_head;
 
 }

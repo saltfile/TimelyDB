@@ -786,7 +786,18 @@ char* create_handle(char* sentence){
 
 
 }
-
+char* insert_handle(char* sentence){
+    char** sent = split_gar(sentence,"\n");
+    scan_word *words = scanWordInit();
+    sqlsacnner(words,sent[0]);
+    scan_word* iword = scanWordInit();
+    sqlsacnner(iword,sent[0]);
+    treenode *create = check_tree(iword);
+    char* res = NULL;
+    if (create==NULL){return "Error: syntax error between statements, please try again";}
+    res = memte_insert(create);
+    return res;
+}
 
 
 char* use_memte(treenode *root){

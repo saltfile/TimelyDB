@@ -81,7 +81,7 @@ void engine_init(int mem_size){
         //文件树加节点:库->表->列
         VfsTree * vfs=createVfsTreeRoot();
         addVfsTreeNode(vfs->root,databaseNode);
-        //表信息地址
+        //表信息地址rand()rand()
         char **tbs = find_tables(path);
         int lens = get_tables_num(path);
         for (int j = 0; j < lens; j++) {

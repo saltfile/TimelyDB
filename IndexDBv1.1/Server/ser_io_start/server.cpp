@@ -140,6 +140,7 @@ void rec_runtable(int epollfd,int fd,char *buf)
                 case 11 :packge2->create_package("succses",MESS_SUCCESS);break;
                 case 12 :packge2->create_package("succses",MESS_SUCCESS);break;
                 case 13 :packge2->create_package("succses",MESS_SUCCESS);break;
+                case 15 :packge2->create_package(insert_handle(packge1->result),MESS_SUCCESS);break;
                 default:packge2->create_package("error",CONN_FAIL);
             }
             cout<<"解析*1"<<endl;

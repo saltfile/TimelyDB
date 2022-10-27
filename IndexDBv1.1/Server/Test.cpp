@@ -7,7 +7,7 @@ int test_ser() {
     engine_init(1000);
     char *inserts = "insert into item(age,name)values(45,xiaoming)";
     char *insert1 = "insert into item(age,name)values(43,aaaaa)";
-//
+
     cout<<use_handle("use com");
     scan_word* iword = scanWordInit();
     sqlsacnner(iword,inserts);
@@ -17,9 +17,9 @@ int test_ser() {
     sqlsacnner(wors2,insert1);
     treenode *our = check_tree(wors2);
     memte_insert(our);
-
-    int a = 1;
-    scanf("%d",&a);
+//
+//    int a = 1;
+//    scanf("%d",&a);
 //    cout<<show_DB_handle("show databases")<<endl;
 //    cout<<create_handle("create database xxxs")<<endl;
 //    cout<<show_DB_handle("show databases")<<endl;
