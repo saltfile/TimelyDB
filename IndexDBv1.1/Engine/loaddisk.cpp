@@ -76,57 +76,80 @@ void * load_disk_method(head_tuple * load_list){
         char * input=(char *)malloc(strlen(p->fileds->datalist->timestamp));//
         char * input_begin=input;
         long int input_offset=0;
+        load_lists *lists = (load_lists *)malloc(sizeof(load_lists));
+        memset(lists,0,sizeof(load_lists));
+        //重构,结构不对
         while (column!=NULL){
             value_tuple * datanode=column->datalist;
-            while (datanode!=NULL){
 
-                int timestamp_len=strlen(datanode->timestamp);
-                int value_len=strlen((char *)datanode->value);
-                memcpy(input+input_offset,datanode->timestamp,timestamp_len);
-                input_offset+=timestamp_len;
-                memcpy(input+input_offset,";",1);
-                input_offset++;
-                memcpy(input+input_offset,(char *)datanode->value,value_len);
-                input_offset+=value_len;
-                memcpy(input+input_offset,"\n",1);
-                input_offset++;
-                //拼待压缩的数据input和长度input_offset
-
-                char * database_tablename=p->databasename;
-//                strcat(database_tablename,p->tablename);
-//                skip_list * list= find_skiptable(database_tablename);
-//                data_node * dataNode=find_x_from_skip_list(list,atoi(datanode->timestamp));
-                struct stat statbuf;
-                stat(load_base_path,&statbuf);
-                size=statbuf.st_size;
-//                dataNode->indexEntry->Offset=size;
-                string output;
-                snappy::Compress(input_begin,input_offset,&output);
-                //TODO:09-29 table_struct_begin 列名重复      解决
-                fwrite(output.data(),output.length(),1,write);
-                fflush(write);
-//                file<<output;
-
-//                dataNode->indexEntry->Size=output.size();
-                //数据落盘和为索引提供偏移量和偏移长度
-//                char *p = datanode->timestamp;
-//                datanode->timestamp = NULL;
-//                free(p);
-//                if (datanode->value)
-//                free(datanode->value);
-//                value_tuple *temp=datanode;
-                datanode=datanode->next;
-//                free(temp);
-
-                input=input_begin;
-                memset(input,0,input_offset);
-                input_offset=0;
+            if (lists->tail == NULL){
+                load_node *new_node = (load_node*)malloc(sizeof(load_node));
+                memset(new_node,0,sizeof(load_node));
+                new_node->data = column->datalist;
+                lists->next = new_node;
+                lists->tail = lists->next;
+                lists->head = lists->next;
+            } else{
+                load_node *new_node = (load_node*)malloc(sizeof(load_node));
+                memset(new_node,0,sizeof(load_node));
+                new_node->data = column->datalist;
+                lists->tail->next = new_node;
+                lists->tail = lists->tail->next;
             }
             tuple_column * tempcolumn=column;
             column=column->nextcolumn;
-//
+
             free(tempcolumn);
         }
+
+
+//            while (datanode!=NULL){
+//
+//                int timestamp_len=strlen(datanode->timestamp);
+//                int value_len=strlen((char *)datanode->value);
+//                memcpy(input+input_offset,datanode->timestamp,timestamp_len);
+//                input_offset+=timestamp_len;
+//                memcpy(input+input_offset,";",1);
+//                input_offset++;
+//                memcpy(input+input_offset,(char *)datanode->value,value_len);
+//                input_offset+=value_len;
+//                memcpy(input+input_offset,"\n",1);
+//                input_offset++;
+//                //拼待压缩的数据input和长度input_offset
+//
+//                char * database_tablename=p->databasename;
+////                strcat(database_tablename,p->tablename);
+////                skip_list * list= find_skiptable(database_tablename);
+////                data_node * dataNode=find_x_from_skip_list(list,atoi(datanode->timestamp));
+//                struct stat statbuf;
+//                stat(load_base_path,&statbuf);
+//                size=statbuf.st_size;
+////                dataNode->indexEntry->Offset=size;
+//                string output;
+//                snappy::Compress(input_begin,input_offset,&output);
+//                //TODO:09-29 table_struct_begin 列名重复      解决
+//                fwrite(output.data(),output.length(),1,write);
+//                fflush(write);
+////                file<<output;
+//
+////                dataNode->indexEntry->Size=output.size();
+//                //数据落盘和为索引提供偏移量和偏移长度
+////                char *p = datanode->timestamp;
+////                datanode->timestamp = NULL;
+////                free(p);
+////                if (datanode->value)
+////                free(datanode->value);
+////                value_tuple *temp=datanode;
+//                datanode=datanode->next;
+////                free(temp);
+//
+//                input=input_begin;
+//                memset(input,0,input_offset);
+//                input_offset=0;
+//            }
+
+//
+
 
         free(input);
         //TODO:10-01 这里的内存处理需要释放

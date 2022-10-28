@@ -94,13 +94,27 @@ int pid = 0;
                     }while (columns!=NULL&&tupleColumn!=NULL);//遍历插入的每条列
                     return NULL;
                 }
-                while (datas != NULL) {//正常的新数据,一条数据
+//                while (datas != NULL) {
+//                    datas = datas->next;//正常的新数据,一条数据
+                    while (tupleColumn != NULL&&columns != NULL) {
+                        if (tupleColumn->listtail != NULL){
+                            tupleColumn->listtail->next = columns->datalist;
+                            tupleColumn->listtail = tupleColumn->listtail->next;
+                        } else{
 
-                    tupleColumn->listtail->next = datas;
-                    tupleColumn->listtail = tupleColumn->listtail->next;
+                            tupleColumn->datalist->next = columns->datalist;
+
+                        }
+
+
+
+                        columns = columns->nextcolumn;
                     tupleColumn = tupleColumn->nextcolumn;
-                    datas = datas->next;
-                }
+
+                    }
+//                    datas = datas->next;
+//                    tupleColumn->listtail = tupleColumn->listtail->next;
+//                }
                 return 2;
             }
             headTuple_index = headTuple_index->next;
@@ -135,16 +149,21 @@ int pid = 0;
         headtuple->max_time = datas->timestamp;
         cout<<"这里2"<<endl;
 
-        while (datas != NULL) {
-            tuple_column_index->datalist = datas;
-            datas = datas->next;
-            tuple_column_index->datalist->next = NULL;
-            if (datas != NULL) {
+        while (tuple_column_index != NULL) {
+            tuple_column_index->listtail = tuple_column_index->datalist;
+            tuple_column_index = tuple_column_index->nextcolumn;
+//            tuple_column_index->datalist = datas;
+//            datas = datas->next;
+//            tuple_column_index->datalist->next = NULL;
 
-                tuple_column_index = tuple_column_index->nextcolumn;
-            } else {
-                tuple_column_index->listtail = tuple_column_index->datalist;
-            }
+
+
+//            if (datas != NULL) {
+//
+//                tuple_column_index = tuple_column_index->nextcolumn;
+//            } else {
+//                tuple_column_index->listtail = tuple_column_index->datalist;
+//            }
         }
         if (list_head->next!=NULL)
         cout<<list_head->next->databasename<<endl;
@@ -415,16 +434,16 @@ CircularList *initCircularList(long int cyclelength){
         list_head->size=cyclelength;
     }
     pthread_t manager;
-//    int reserve_time=60;
-//
-//    int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
-//                            reinterpret_cast<void *>(reserve_time));
-//    if (iRet){
-//        perror("[ERROR] pthread join error\n");
-//        return NULL;
-//    }
-//
-//    printf("the thread id is %ld\n",manager);
+    int reserve_time=5;
+
+    int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
+                            reinterpret_cast<void *>(reserve_time));
+    if (iRet){
+        perror("[ERROR] pthread join error\n");
+        return NULL;
+    }
+
+    printf("the thread id is %ld\n",manager);
     return list_head;
 
 }

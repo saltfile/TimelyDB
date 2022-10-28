@@ -236,6 +236,10 @@ passwd* get_user();
 
 
 
+
+
+
+
 //查看数据库的数量
 int get_databse_num();
 //获取所有数据库名字
@@ -249,4 +253,21 @@ char **conlum_apply(char* clonms_path);
 char*show_database_panle();
 void engine_init(int mem_size);
 char* show_table_panle();
+
+
+typedef struct load_node{
+    value_tuple *data;
+    load_node *next;
+}load_node;
+
+//落盘
+typedef struct load_lists{
+    load_node *head;
+    load_node *tail;
+    load_node *next;
+}load_lists;
+
+
+
+
 #endif //G__TEST_DATABASE_ENGINE_H
