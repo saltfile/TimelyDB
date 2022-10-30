@@ -230,6 +230,7 @@ int write_ahead_log(char * timestamp,char * databasename,char * tablename,value_
 IBool load_ahead_log(head_tuple * load_list);
 //////////////////////////////////////////////////////////////////
 //
+void add_value(value_tuple *root,char *timestamp,char* value);
 
 passwd* get_user();
 
@@ -262,6 +263,7 @@ typedef struct load_node{
 
 //落盘
 typedef struct load_lists{
+    int size;
     load_node *head;
     load_node *tail;
     load_node *next;

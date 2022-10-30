@@ -92,6 +92,8 @@ rbtree_result_timestamp* malloc_rb_timestamp(void){
 value_tuple * malloc_tuple(void){
     value_tuple* tuple;
     tuple= (value_tuple*)malloc(sizeof(tuple));
+    memset(tuple,0,sizeof(value_tuple));
+
     return tuple;
 }
 tuple_column* malloc_tuple_colum(void){
