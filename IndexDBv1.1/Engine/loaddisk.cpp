@@ -153,8 +153,6 @@ void * load_disk_method(head_tuple * load_list){
                 hs->data = hs->data->next;
                 hs = hs->next;
             }
-
-
         }
 
 

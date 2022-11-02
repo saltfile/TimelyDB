@@ -224,12 +224,13 @@ void * manager_writedisk(long int reserve_time){
 //TODO：这里需要更新一个函数查看headtuple_index除了next 不为空的函数
         if (task_head_t(headtuple_index)){
             if (headtuple_index == NULL){
+                //TODO:抛错
                 sleep(reserve_time);
                 continue;
             }
             if (headtuple_index->next!=NULL)
                 headtuple_index = headtuple_index->next;
-            sleep(reserve_time);
+//            sleep(reserve_time);
 //            perror("[ERROR] list_head.next is NULL\n");
             continue;
         }
@@ -426,6 +427,7 @@ CircularList *initCircularList(long int cyclelength){
 //        list_head->index=0;
         printf("cyclelength is %d\n",cyclelength);
         list_head->size=cyclelength;
+        //循环建立
         list_head->next=(head_tuple *)malloc(sizeof(head_tuple));
 
         list_tail=list_head->next;
