@@ -428,8 +428,12 @@ CircularList *initCircularList(long int cyclelength){
         printf("cyclelength is %d\n",cyclelength);
         list_head->size=cyclelength;
         //循环建立
-        list_head->next=(head_tuple *)malloc(sizeof(head_tuple));
+        //TODO:11-09由于前面的系统崩了导致我这里的代码出了问题，更新初始化的问题也没更新上，哎，加油吧
 
+
+
+        list_head->next=(head_tuple *)malloc(sizeof(head_tuple));
+        memset(list_head->next,0,sizeof(head_tuple));
         list_tail=list_head->next;
 //        list_tail->next=list_head->next;
     }else {

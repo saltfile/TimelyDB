@@ -60,6 +60,7 @@ char *mkdir_database(char * databasename){//创建数据库,并返回数据库�
     }
     int yy = strlen("/home/")+strlen(username->pw_name)+strlen("/indexTSDB/")+strlen(databasename);
     char *path=(char *)malloc(yy);
+
     memset(path,0,yy);
     strcat(path,"/home/");
     strcat(path,username->pw_name);
