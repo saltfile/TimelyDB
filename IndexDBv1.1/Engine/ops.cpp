@@ -8,7 +8,7 @@
 struct passwd *username=getpwuid(getuid());
 IBool isinit;
 void mkdir_indexdb(){//初始化数据库
-    int size_mkdir=sizeof(strlen("/home/")+strlen(username->pw_name)+strlen("/indexTSDB/"));
+    int size_mkdir=strlen("/home/")+strlen(username->pw_name)+strlen("/indexTSDB/");
 
     char * path=(char *)malloc(size_mkdir);
     memset(path,0,size_mkdir);
