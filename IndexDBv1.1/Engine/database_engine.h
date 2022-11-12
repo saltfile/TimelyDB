@@ -269,7 +269,7 @@ typedef struct load_lists{
     load_node *next;
 }load_lists;
 
-
+bool task_head_t(head_tuple* root);
 
 
 #endif //G__TEST_DATABASE_ENGINE_H

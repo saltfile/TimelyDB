@@ -29,6 +29,36 @@ int  use_database(char * databasename){
     return 0;
 }
 
+
+head_tuple *add_htuple_null(head_tuple *root){
+    head_tuple *sd = root;
+
+    if (sd == NULL){
+        sd  = (head_tuple *) malloc(sizeof(head_tuple));
+        memset(sd,0, sizeof(head_tuple));
+        return sd;
+    }
+
+
+
+    while (sd->next){
+        sd = sd->next;
+    }
+    head_tuple *node = (head_tuple *) malloc(sizeof(head_tuple));
+    memset(node,0, sizeof(head_tuple));
+    sd->next = node;
+    return root;
+}
+
+head_tuple *sreach_tail(head_tuple *root){
+    head_tuple *p = root;
+    while (p->next){
+        p = p->next;
+    }
+    return p;
+}
+
+
 int use_detect(){
     return (pthread_setspecific(key_databasename,databasename));
 }
@@ -63,8 +93,10 @@ int pid = 0;
         head_tuple *headTuple_index = list_head->next;//从头开始找
         //TODO:2022-10-25   while 原：(headTuple_index != NULL && headTuple_index != list_head->next)
         if (headTuple_index->next != NULL){
-        while (headTuple_index != NULL) {
-            cout<<"这里"<<endl;
+
+//        while (headTuple_index != NULL) {
+            while (!task_head_t(headTuple_index)) {
+//            cout<<"这里"<<endl;
             if (headTuple_index->databasename != NULL
                 && headTuple_index->tablename != NULL
                 && strcompare((headTuple_index->databasename)) == strcompare(databasename)
@@ -432,10 +464,14 @@ CircularList *initCircularList(long int cyclelength){
 
 
 
-        list_head->next=(head_tuple *)malloc(sizeof(head_tuple));
-        memset(list_head->next,0,sizeof(head_tuple));
-        list_tail=list_head->next;
-//        list_tail->next=list_head->next;
+//        list_head->next=
+
+        for (int i = 0; i < cyclelength; ++i) {
+            list_head->next = add_htuple_null(list_head->next);
+        }
+
+        list_tail= sreach_tail(list_head->next);
+        list_tail->next = list_head->next;
     }else {
         list_head->size=cyclelength;
     }
