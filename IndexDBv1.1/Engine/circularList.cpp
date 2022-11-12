@@ -329,7 +329,8 @@ void * manager_writedisk(long int reserve_time){
             }
 //            if (headtuple_index->next !=NULL)
             headtuple_index=headtuple_index->next;
-            if (headtuple_index!=NULL&&headtuple_index!=list_head->next){
+            //TODO:11-12  这里额list_head变成空的所以需要写一个清空head_tuple的值
+            if (headtuple_index != NULL&&headtuple_index != list_head->next){
                 load_list_index->next=(head_tuple *)malloc(sizeof(head_tuple));
                 load_list_index=load_list_index->next;
             }
