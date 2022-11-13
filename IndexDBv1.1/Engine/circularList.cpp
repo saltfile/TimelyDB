@@ -184,18 +184,6 @@ int pid = 0;
         while (tuple_column_index != NULL) {
             tuple_column_index->listtail = tuple_column_index->datalist;
             tuple_column_index = tuple_column_index->nextcolumn;
-//            tuple_column_index->datalist = datas;
-//            datas = datas->next;
-//            tuple_column_index->datalist->next = NULL;
-
-
-
-//            if (datas != NULL) {
-//
-//                tuple_column_index = tuple_column_index->nextcolumn;
-//            } else {
-//                tuple_column_index->listtail = tuple_column_index->datalist;
-//            }
         }
         if (list_head->next!=NULL)
         cout<<list_head->next->databasename<<endl;
@@ -218,9 +206,50 @@ bool task_head_t(head_tuple* root){
     return db_name&&tb_name&&filte&&mintime&&maxtime;
 
 }
+//void free
+void free_val_tupl(value_tuple *p){
+    while (p->next){
+
+        value_tuple *as = p;
+        p = p->next;
+        free(as);
+        as = NULL;
+    }
+    value_tuple *as = p;
+    as = NULL;
+}
 
 
 
+
+void free_tup_conlum(tuple_column *ptr){
+    while (ptr->nextcolumn){
+        tuple_column *as = ptr;
+        ptr = ptr->nextcolumn;
+        free_val_tupl(as->datalist);
+        free_val_tupl(as->listtail);
+        free(as);
+        as = NULL;
+    }
+    tuple_column *as = ptr;
+    as = NULL;
+}
+//后期用来清除节点中已经落盘之后的函数
+void clear_head_t(head_tuple* root){
+    char *dname = root->databasename;
+    free(dname);
+    root->databasename = NULL;
+    char *table = root->tablename;
+    free(table);
+    root->tablename = NULL;
+    char *mtime = root->min_time;
+    free(mtime);
+    root->min_time = NULL;
+    char*matime = root->max_time;
+    free(matime);
+    root->max_time = NULL;
+    free_tup_conlum(root->fileds);
+}
 
 
 
@@ -266,6 +295,13 @@ void * manager_writedisk(long int reserve_time){
 //            perror("[ERROR] list_head.next is NULL\n");
             continue;
         }
+
+
+
+
+
+
+
 //        if(headtuple_index->min_time==NULL) {
 ////            if (headtuple_index->next != NULL)
 //            headtuple_index = headtuple_index->next;
@@ -289,7 +325,7 @@ void * manager_writedisk(long int reserve_time){
                 load_list_index->tablename=(char *)malloc(strlen(headtuple_index->tablename));
                 load_list_index->tablename=headtuple_index->tablename;
                 //TODO:2022-10-25 在插入完成后这里的值依然调用不到
-                //TODO:2022-10-26 明天要完成插入后值被穿丢的情况 未解决
+                //TODO:2022-10-26 明天要完成插入后值被穿丢的情况
                 tuple_column * flush_list_index=headtuple_index->fileds;//要flush列的指针
                 //复制列的元数据
                 tuple_column * flush_list=(tuple_column *)malloc(sizeof(tuple_column));
@@ -476,17 +512,17 @@ CircularList *initCircularList(long int cyclelength){
     }else {
         list_head->size=cyclelength;
     }
-    pthread_t manager;
-    int reserve_time=5;
+//    pthread_t manager;
+//    int reserve_time=5;
+//
+//    int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
+//                            reinterpret_cast<void *>(reserve_time));
+//    if (iRet){
+//        perror("[ERROR] pthread join error\n");
+//        return NULL;
+//    }
 
-    int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
-                            reinterpret_cast<void *>(reserve_time));
-    if (iRet){
-        perror("[ERROR] pthread join error\n");
-        return NULL;
-    }
-
-    printf("the thread id is %ld\n",manager);
+//    printf("the thread id is %ld\n",manager);
     return list_head;
 
 }
