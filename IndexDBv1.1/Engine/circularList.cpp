@@ -195,6 +195,130 @@ int pid = 0;
 }
 
 
+
+//旧版函数
+//int create_cir_nodelist(char* databasename,char * tablename,tuple_column *columns,value_tuple * datas) {
+//    //TODO:注:这里的fork开始同步预写日志
+////    databasename=(char *)pthread_getspecific(key_databasename);//获取数据库名
+//    int pid = 0;
+////TODO：解决这里的插入及日志问题
+////pid_t pid=fork();
+//    if (pid<0){
+//        perror("[ERROR] fork write ahead log failed\n");
+//        return -1;
+//    }
+//    if (pid != 0) {
+//        if (write_ahead_log(datas->timestamp,databasename,tablename,datas)==1)return 1; //预写日志
+//        else perror("[ERROR] write ahead log failed\n");
+//    } else {//执行插入语句操作
+//        cout<<"insert start"<<endl;
+//        head_tuple *headtuple;
+////        pthread_myrwlock_wrlock();
+//        head_tuple *headTuple_index = list_head->next;//从头开始找
+//        //TODO:2022-10-25   while 原：(headTuple_index != NULL && headTuple_index != list_head->next)
+//        if (headTuple_index->next != NULL){
+//
+////        while (headTuple_index != NULL) {
+//            while (!task_head_t(headTuple_index)) {
+////            cout<<"这里"<<endl;
+//                if (headTuple_index->databasename != NULL
+//                    && headTuple_index->tablename != NULL
+//                    && strcompare((headTuple_index->databasename)) == strcompare(databasename)
+//                    && strcompare((headTuple_index->tablename)) == strcompare(tablename)
+//                        ) { //如果原环上有数据就往后插入
+//                    tuple_column *tupleColumn = headTuple_index->fileds;
+//                    if (strcmp(headTuple_index->max_time,datas->timestamp)<=0) {//正常的数据
+//                        headTuple_index->max_time = datas->timestamp;
+//                    } else{//已经落盘的数据，插入回内存环,多条数据
+//                        do {
+//                            value_tuple *datas_begin = datas;
+//                            while (datas != NULL && datas->timestamp!=NULL &&
+//                                   strcmp(tupleColumn->datalist->timestamp, datas->timestamp) > 0) {//将数据插入到前部分
+//                                if (datas->next != NULL)
+//                                    datas = datas->next;
+//                            }
+//                            datas->next = tupleColumn->datalist;
+//                            tupleColumn->datalist = datas_begin;
+//
+//                            columns=columns->nextcolumn;//重新入环的数据列
+//                            if (columns!=NULL){
+//                                if (columns->datalist!=NULL){
+//                                    datas=columns->datalist;
+//                                }
+//                            }
+//                            tupleColumn=tupleColumn->nextcolumn;//原环的数据列
+//                        }while (columns!=NULL&&tupleColumn!=NULL);//遍历插入的每条列
+//                        return NULL;
+//                    }
+////                while (datas != NULL) {
+////                    datas = datas->next;//正常的新数据,一条数据
+//                    while (tupleColumn != NULL&&columns != NULL) {
+//                        if (tupleColumn->listtail != NULL){
+//                            tupleColumn->listtail->next = columns->datalist;
+//                            tupleColumn->listtail = tupleColumn->listtail->next;
+//                        } else{
+//
+//                            tupleColumn->datalist->next = columns->datalist;
+//
+//                        }
+//
+//
+//
+//                        columns = columns->nextcolumn;
+//                        tupleColumn = tupleColumn->nextcolumn;
+//
+//                    }
+////                    datas = datas->next;
+////                    tupleColumn->listtail = tupleColumn->listtail->next;
+////                }
+//                    return 2;
+//                }
+//                headTuple_index = headTuple_index->next;
+//            }
+//
+//        }
+////        pthread_myrwlock_unlock();
+//
+//        headtuple = (head_tuple *) malloc(sizeof(head_tuple)); //初始化 元数据 节点
+//
+//        if (headtuple==NULL){//说明内存已经无法分配了
+////            pthread_myrwlock_wrlock();
+//            manager_full_writedisk();
+////            pthread_myrwlock_unlock();
+//        }
+//        if (list_head != NULL) { //链表初始化完成才能插入节点
+//            insert_cir_node(headtuple);
+//        } else {
+//            perror("[ERROR] circular list has not been created\n");
+//        }
+//
+////        pthread_myrwlock_wrlock();
+//        headtuple->fileds = columns;//初始化 属性 节点
+//        tuple_column *tuple_column_index = headtuple->fileds;
+//        headtuple->databasename = (char *) malloc(strlen(databasename));
+//        headtuple->databasename = databasename;
+//        headtuple->tablename = (char *) malloc(strlen(tablename));
+//        headtuple->tablename = tablename;
+//        headtuple->min_time = (char *) malloc(15);
+//        headtuple->min_time = datas->timestamp;
+//        headtuple->max_time = (char *) malloc(15);
+//        headtuple->max_time = datas->timestamp;
+//        cout<<"这里2"<<endl;
+//
+//        while (tuple_column_index != NULL) {
+//            tuple_column_index->listtail = tuple_column_index->datalist;
+//            tuple_column_index = tuple_column_index->nextcolumn;
+//        }
+//        if (list_head->next!=NULL)
+//            cout<<list_head->next->databasename<<endl;
+//        cout<<"xxx"<<endl;
+////        pthread_myrwlock_unlock();
+////        exit(0);
+//        return 3;
+//    }
+//}
+
+
 bool task_head_t(head_tuple* root){
     if (root == NULL)return true;
     head_tuple *p = root;
