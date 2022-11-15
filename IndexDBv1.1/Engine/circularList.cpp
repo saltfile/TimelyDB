@@ -73,7 +73,7 @@ int use_detect(){
  * {@param tablename}表名
  * {@param columns}列列表
  * {@param datas}参数列表(数据列表)
- *
+ * 这里需要规划一下，当节点插入时应该合理插入并且做校验
  */
 int create_cir_nodelist(char* databasename,char * tablename,tuple_column *columns,value_tuple * datas) {
     //TODO:注:这里的fork开始同步预写日志
