@@ -19,8 +19,6 @@ int test_ser() {
     treenode *our = check_tree(wors2);
     memte_insert(our);
 //
-    sleep(10);
-
     memte_insert(our);
     memte_insert(our);
     memte_insert(our);

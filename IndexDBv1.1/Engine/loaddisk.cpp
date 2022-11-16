@@ -24,6 +24,20 @@
     }
     return res;
 }
+void add_value_node(value_tuple *root,value_tuple *new_node){
+    value_tuple *p = root;
+    if (p->timestamp == NULL){
+//         p = malloc_tuple();
+
+        p->timestamp = str_copy(p->timestamp,new_node->timestamp);
+        p->value = str_copy(p->value,new_node->value);
+        return;
+    }
+    while (p->next){
+        p = p->next;
+    }
+    p->next = new_node;
+}
 
 void add_value(value_tuple *root,char *timestamp,char* value){
      int st_len = strlen(timestamp);
@@ -42,8 +56,6 @@ void add_value(value_tuple *root,char *timestamp,char* value){
      n_node->value = str_copy(n_node->value,value);
      n_node->timestamp = str_copy(n_node->timestamp,timestamp);
      p->next = n_node;
-
-
  }
 
 

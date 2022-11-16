@@ -270,6 +270,14 @@ typedef struct load_lists{
 }load_lists;
 
 bool task_head_t(head_tuple* root);
+//  清空所有的数据除了next
+void clear_head_t(head_tuple* root);
+
+void add_value_node(value_tuple *root,value_tuple *new_node);
+
+
+
+void free_string(char* root);
 
 
 #endif //G__TEST_DATABASE_ENGINE_H

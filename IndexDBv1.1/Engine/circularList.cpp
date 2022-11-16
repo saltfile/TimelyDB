@@ -66,6 +66,31 @@ int use_detect(){
 }
 
 
+char* marge_colum(tuple_column * root,tuple_column * new_node){
+    tuple_column *rps = root;
+    tuple_column *nps = new_node;
+    char *res = (char *) malloc(strlen(new_node->datalist->timestamp));
+    memset(res,0, strlen(new_node->datalist->timestamp));
+    strcpy(res,new_node->datalist->timestamp);
+    while (rps!=NULL&&nps!=NULL) {
+        add_value_node(rps->datalist, nps->datalist);
+        rps = rps->nextcolumn;
+        nps = nps->nextcolumn;
+    }
+
+    return res;
+
+}
+
+
+
+
+
+
+
+
+
+
 /*创建一条insert into 插入的数据链
 * 此函数对接给insert语句解析之后调用的
  * 该数据链会挂载到节点上
@@ -75,6 +100,7 @@ int use_detect(){
  * {@param datas}参数列表(数据列表)
  * 这里需要规划一下，当节点插入时应该合理插入并且做校验
  */
+//新版函数
 int create_cir_nodelist(char* databasename,char * tablename,tuple_column *columns,value_tuple * datas) {
     //TODO:注:这里的fork开始同步预写日志
 //    databasename=(char *)pthread_getspecific(key_databasename);//获取数据库名
@@ -93,19 +119,23 @@ int pid = 0;
         head_tuple *headtuple;
 //        pthread_myrwlock_wrlock();
         head_tuple *headTuple_index = list_head->next;//从头开始找
-        while (!task_head_t(headTuple_index)){
-
-
-
-
-
-
-
-
-
-
+        for (int i = 0; i < list_head->size; ++i) {
+            if (!task_head_t(headTuple_index)) {
+                if (strcmp(databasename, headTuple_index->databasename) == 0 &&
+                    strcmp(tablename, headTuple_index->tablename) == 0) {
+                    char *max = marge_colum(headTuple_index->fileds,columns);
+                    if (strcmp(max,headTuple_index->max_time)!=0){
+                        free_string(headTuple_index->max_time);
+                        headTuple_index->max_time = str_copy(headTuple_index->max_time,max);
+                    }
+                    return 2;
+                }
+                headTuple_index = headTuple_index->next;
+            }
         }
+        //要么创建新节点，要么链头覆盖
         if (task_head_t(headTuple_index)){
+            // 空的创建新节点
             headTuple_index->databasename = (char *) malloc(strlen(databasename)+1);
             strcpy(headTuple_index->databasename,databasename);
 
@@ -119,7 +149,24 @@ int pid = 0;
             strcpy(headTuple_index->min_time,datas->timestamp);
             strcpy(headTuple_index->max_time,datas->timestamp);
             return 3;
+        } else{
+            //覆盖先清空
+            clear_head_t(headTuple_index);
+            headTuple_index->databasename = (char *) malloc(strlen(databasename)+1);
+            strcpy(headTuple_index->databasename,databasename);
+
+            headTuple_index->tablename = (char *) malloc(strlen(tablename)+1);
+            strcpy(headTuple_index->tablename,tablename);
+
+            headTuple_index->fileds = columns;
+
+            headTuple_index->min_time = (char *) malloc(strlen(datas->timestamp)+1);
+            headTuple_index->max_time = (char *) malloc(strlen(datas->timestamp)+1);
+            strcpy(headTuple_index->min_time,datas->timestamp);
+            strcpy(headTuple_index->max_time,datas->timestamp);
+            return 4;
         }
+        return -1;
     }
 }
 
@@ -272,7 +319,13 @@ void free_val_tupl(value_tuple *p){
     as = NULL;
 }
 
-
+void free_string(char* root){
+    if (root){
+        char *p = root;
+        free(p);
+        root = NULL;
+    }
+}
 
 
 void free_tup_conlum(tuple_column *ptr){
