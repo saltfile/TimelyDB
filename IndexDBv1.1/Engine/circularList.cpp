@@ -60,6 +60,114 @@ head_tuple *sreach_tail(head_tuple *root){
     return p;
 }
 
+value_tuple *value_tuple_add(value_tuple* root,char *timestamp,char*value){
+    value_tuple *p = root;
+    if (p == NULL){
+        p = (value_tuple*) malloc(sizeof(value_tuple));
+        memset(p,0, sizeof(value_tuple));
+        p->timestamp = (char*) malloc(strlen(timestamp)+1);
+        memset(p->timestamp,0, strlen(timestamp)+1);
+        strcpy(p->timestamp,timestamp);
+        p->value = (char*) malloc(strlen(value)+1);
+        memset(p->value,0, strlen(value)+1);
+        strcpy(p->value,value);
+        return p;
+    }
+    while (p->next){
+        p = p->next;
+    }
+    value_tuple *new_node = (value_tuple*) malloc(sizeof(value_tuple));
+    memset(new_node,0, sizeof(value_tuple));
+    new_node->timestamp = (char*) malloc(strlen(timestamp)+1);
+    memset(new_node->timestamp,0, strlen(timestamp)+1);
+    strcpy(new_node->timestamp,timestamp);
+    new_node->value = (char*) malloc(strlen(value)+1);
+    memset(new_node->value,0, strlen(value)+1);
+    strcpy(new_node->value,value);
+    p->next = new_node;
+    return root;
+}
+value_tuple *value_tuple_data_copy(value_tuple*root,value_tuple * datalist){
+    value_tuple * d = datalist;
+    while (d){
+        root = value_tuple_add(root,d->timestamp,d->value);
+        d = d->next;
+    }
+    return root;
+}
+
+tuple_column *fileds_add(tuple_column *root,char*cname,value_tuple*datalist){
+    tuple_column *p = root;
+    if (p == NULL){
+        p = (tuple_column*) malloc(sizeof(tuple_column));
+        memset(p,0, sizeof(tuple_column));
+        p->columnname = (char*) malloc(strlen(cname)+1);
+        memset(p->columnname,0, strlen(cname+1));
+        strcpy(p->columnname,cname);
+        p->datalist = datalist;
+        return p;
+    }
+    while (p->nextcolumn){
+        p = p->nextcolumn;
+    }
+    tuple_column *new_node = (tuple_column*) malloc(sizeof(tuple_column));
+    new_node->columnname = (char*) malloc(strlen(cname)+1);
+    memset(new_node->columnname,0, strlen(cname)+1);
+    strcpy(new_node->columnname,cname);
+    new_node->datalist = datalist;
+    p->nextcolumn = new_node;
+    return root;
+}
+
+
+
+
+tuple_column* flieds_data_copy(tuple_column * copied){
+    tuple_column *p = NULL;
+    tuple_column *c = copied;
+    while (c){
+        value_tuple *data = NULL;
+        data = value_tuple_data_copy(data,copied->datalist);
+        p = fileds_add(p, c->columnname,data);
+        c = c->nextcolumn;
+    }
+    return p;
+}
+
+
+
+
+
+
+
+void head_tuple_data_copy(head_tuple * root, head_tuple *copied){
+    head_tuple *p = root;
+    if (p == NULL){
+        add_htuple_null(p);
+    }
+    //下面是数据拷贝
+    root->databasename = (char*) malloc(strlen(copied->databasename)+1);
+    memset(root->databasename,0,strlen(copied->databasename)+1);
+    strcpy(root->databasename,copied->databasename);
+
+    root->tablename = (char*) malloc(strlen(copied->tablename)+1);
+    memset(root->tablename,0, strlen(copied->tablename)+1);
+    strcpy(root->tablename,copied->tablename);
+
+    root->max_time = (char*) malloc(strlen(copied->max_time)+1);
+    memset(root->max_time,0, strlen(copied->max_time)+1);
+    strcpy(root->max_time,copied->max_time);
+
+    root->min_time = (char*) malloc(strlen(copied->min_time)+1);
+    memset(root->min_time,0, strlen(copied->min_time)+1);
+    strcpy(root->min_time,copied->min_time);
+
+    root->fileds = flieds_data_copy(copied->fileds);
+
+}
+
+
+
 
 int use_detect(){
     return (pthread_setspecific(key_databasename,databasename));
@@ -366,11 +474,12 @@ void clear_head_t(head_tuple* root){
 
 
 
-///**
-// * 保留策略
-// * 数据到点落盘
-// * {@param reserve_time}落盘时间周期
-// * */
+/**
+ * 新版函数更新
+ * 保留策略
+ * 数据到点落盘
+ * {@param reserve_time}落盘时间周期
+ * */
 void * manager_writedisk(long int reserve_time){
     int check_alive=0;
     head_tuple * headtuple_index=list_head->next;//原链
@@ -397,92 +506,17 @@ void * manager_writedisk(long int reserve_time){
             }
             if (headtuple_index->next!=NULL)
                 headtuple_index = headtuple_index->next;
-//            sleep(reserve_time);
-//            perror("[ERROR] list_head.next is NULL\n");
             continue;
         }
-
-
-
-
-
-
-
-//        if(headtuple_index->min_time==NULL) {
-////            if (headtuple_index->next != NULL)
-//            headtuple_index = headtuple_index->next;
-////            cout<<"min_time Wei null"<<endl;
-//            continue;
-//        };
         time_t flush_cond=time(NULL)-reserve_time;//需要执行回收的是时间条件 当前时间减去周期时间
-//        pthread_myrwlock_unlock();//放读锁
-
-//        pthread_myrwlock_wrlock();//加写锁
+        //将信息拷贝到需要落盘的链节上
         head_tuple * load_list=(head_tuple *)malloc(sizeof(head_tuple));//准备落盘的数据链的链头
         memset(load_list,0,sizeof(head_tuple));
         head_tuple * load_list_index=load_list;
-        do{//遍历当前表下的列
-            if (headtuple_index->min_time == NULL)continue;
-            long times = atol(headtuple_index->min_time)-flush_cond;
-            if (times<=0){//符合flush条件
-                //复制一份元数据,当数据链上没有数据时元数据结构要free
-                load_list_index->databasename=(char *)malloc(strlen(headtuple_index->databasename));
-                load_list_index->databasename=headtuple_index->databasename;
-                load_list_index->tablename=(char *)malloc(strlen(headtuple_index->tablename));
-                load_list_index->tablename=headtuple_index->tablename;
-                //TODO:2022-10-25 在插入完成后这里的值依然调用不到
-                //TODO:2022-10-26 明天要完成插入后值被穿丢的情况
-                tuple_column * flush_list_index=headtuple_index->fileds;//要flush列的指针
-                //复制列的元数据
-                tuple_column * flush_list=(tuple_column *)malloc(sizeof(tuple_column));
-                load_list_index->fileds=flush_list;
-                while (flush_list_index!=NULL){//遍历当前列的数据
-                    value_tuple * flush_value=flush_list_index->datalist;
-                    value_tuple * cut_value_list=flush_value;//当前符合条件的数据链
-                    while (flush_value!=NULL&&atol(flush_value->timestamp)-flush_cond<=0) {//遍历数据,当前节点符合条件
-                        if (flush_value->next!=NULL)
-                        long a = atol(flush_value->next->timestamp)-flush_cond;
-                        if (flush_value->next!=NULL&&
-                        flush_value->next->timestamp!=NULL
-                         &&atol(flush_value->next->timestamp)-flush_cond > 0){//说明要截取落盘的链到此为止
-
-                            flush_list_index->datalist=flush_value->next;
-                            headtuple_index->min_time=flush_list_index->datalist->timestamp;
-                            flush_value->next=NULL;
-
-                            break;
-                        }
-                        flush_value=flush_value->next;
-                    }
-                    //填充列的数据链和复制列的元数据
-                    flush_list->datalist=cut_value_list;
-
-                    flush_list->columnname = str_copy(flush_list->columnname,flush_list_index->columnname);
-                    flush_list_index=flush_list_index->nextcolumn;
-
-                    if (flush_list_index!=NULL){
-
-                        flush_list->nextcolumn=(tuple_column *)malloc(sizeof(tuple_column));
-                        flush_list=flush_list->nextcolumn;
-                    } else{
-                        flush_list->nextcolumn=NULL;
-                    }
-                }
-            }
-//            if (headtuple_index->next !=NULL)
-            headtuple_index=headtuple_index->next;
-            //TODO:11-12  这里额list_head变成空的所以需要写一个清空head_tuple的值
-            if (headtuple_index != NULL&&headtuple_index != list_head->next){
-                load_list_index->next=(head_tuple *)malloc(sizeof(head_tuple));
-                load_list_index=load_list_index->next;
-            }
-            //TODO:修改headtuple_index!=NULL&&headtuple_index!=list_head->next)
-            bool _a = headtuple_index!=NULL;
-            bool b = headtuple_index!=list_head->next;
-        }while (headtuple_index!=NULL&&headtuple_index!=list_head->next);
-        load_list_index->next=NULL;
-//        pthread_myrwlock_unlock();//放写锁
-        cout<<"我是闲置信息"<<load_list->databasename<<endl;
+        long times = atol(headtuple_index->min_time)-flush_cond;
+        if (times <= 0){
+            head_tuple_data_copy(load_list,headtuple_index);
+        }
         if (load_ahead_log(load_list)==ITrue){
             pthread_t load;
             int iRet=pthread_create(&load, NULL, reinterpret_cast<void *(*)(void *)>(&load_disk_method),

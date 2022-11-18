@@ -278,6 +278,6 @@ void add_value_node(value_tuple *root,value_tuple *new_node);
 
 
 void free_string(char* root);
-
-
+//关于节点数据之间的拷贝
+void head_tuple_data_copy(head_tuple * root, head_tuple *copied);
 #endif //G__TEST_DATABASE_ENGINE_H
