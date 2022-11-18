@@ -7,7 +7,7 @@ int test_ser() {
     engine_init(5);
 //        epollser_start(8996);
     char *inserts = "insert into item(age,name)values(45,xiaoming)";
-    char *insert1 = "insert into item(age,name)values(43,aaaaa)";
+    char *insert1 = "insert into hgf(age,name)values(43,aaaaa)";
 
     cout<<use_handle("use com");
     scan_word* iword = scanWordInit();

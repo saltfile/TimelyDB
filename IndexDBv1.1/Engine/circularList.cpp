@@ -65,7 +65,7 @@ int use_detect(){
     return (pthread_setspecific(key_databasename,databasename));
 }
 
-
+//后期将这里改成尾插入方式改进
 char* marge_colum(tuple_column * root,tuple_column * new_node){
     tuple_column *rps = root;
     tuple_column *nps = new_node;
@@ -496,6 +496,147 @@ void * manager_writedisk(long int reserve_time){
     }
 }
 
+
+
+
+
+
+
+
+
+// 旧版函数
+//void * manager_writedisk(long int reserve_time){
+//    int check_alive=0;
+//    head_tuple * headtuple_index=list_head->next;//原链
+//    while (1){
+////        pthread_myrwlock_rdlock();
+//        if (list_head==NULL){
+//            check_alive++;
+//            if (check_alive>=8){ //如果管理线程检测8次环上都无数据就默认系统关闭退出程序
+//                exit(0);
+//            }
+////            pthread_myrwlock_unlock();
+//            sleep(reserve_time);
+//            continue;
+//        } else {
+////            cout<<"活着继续检查"<<endl;
+//            check_alive=0;
+//        }
+////TODO：这里需要更新一个函数查看headtuple_index除了next 不为空的函数
+//        if (task_head_t(headtuple_index)){
+//            if (headtuple_index == NULL){
+//                //TODO:抛错
+//                sleep(reserve_time);
+//                continue;
+//            }
+//            if (headtuple_index->next!=NULL)
+//                headtuple_index = headtuple_index->next;
+////            sleep(reserve_time);
+////            perror("[ERROR] list_head.next is NULL\n");
+//            continue;
+//        }
+//
+//
+//
+//
+//
+//
+//
+////        if(headtuple_index->min_time==NULL) {
+//////            if (headtuple_index->next != NULL)
+////            headtuple_index = headtuple_index->next;
+//////            cout<<"min_time Wei null"<<endl;
+////            continue;
+////        };
+//        time_t flush_cond=time(NULL)-reserve_time;//需要执行回收的是时间条件 当前时间减去周期时间
+////        pthread_myrwlock_unlock();//放读锁
+//
+////        pthread_myrwlock_wrlock();//加写锁
+//        head_tuple * load_list=(head_tuple *)malloc(sizeof(head_tuple));//准备落盘的数据链的链头
+//        memset(load_list,0,sizeof(head_tuple));
+//        head_tuple * load_list_index=load_list;
+//        do{//遍历当前表下的列
+//            if (headtuple_index->min_time == NULL)continue;
+//            long times = atol(headtuple_index->min_time)-flush_cond;
+//            if (times<=0){//符合flush条件
+//                //复制一份元数据,当数据链上没有数据时元数据结构要free
+//                load_list_index->databasename=(char *)malloc(strlen(headtuple_index->databasename));
+//                load_list_index->databasename=headtuple_index->databasename;
+//                load_list_index->tablename=(char *)malloc(strlen(headtuple_index->tablename));
+//                load_list_index->tablename=headtuple_index->tablename;
+//                //TODO:2022-10-25 在插入完成后这里的值依然调用不到
+//                //TODO:2022-10-26 明天要完成插入后值被穿丢的情况
+//                tuple_column * flush_list_index=headtuple_index->fileds;//要flush列的指针
+//                //复制列的元数据
+//                tuple_column * flush_list=(tuple_column *)malloc(sizeof(tuple_column));
+//                load_list_index->fileds=flush_list;
+//                while (flush_list_index!=NULL){//遍历当前列的数据
+//                    value_tuple * flush_value=flush_list_index->datalist;
+//                    value_tuple * cut_value_list=flush_value;//当前符合条件的数据链
+//                    while (flush_value!=NULL&&atol(flush_value->timestamp)-flush_cond<=0) {//遍历数据,当前节点符合条件
+//                        if (flush_value->next!=NULL)
+//                            long a = atol(flush_value->next->timestamp)-flush_cond;
+//                        if (flush_value->next!=NULL&&
+//                            flush_value->next->timestamp!=NULL
+//                            &&atol(flush_value->next->timestamp)-flush_cond > 0){//说明要截取落盘的链到此为止
+//
+//                            flush_list_index->datalist=flush_value->next;
+//                            headtuple_index->min_time=flush_list_index->datalist->timestamp;
+//                            flush_value->next=NULL;
+//
+//                            break;
+//                        }
+//                        flush_value=flush_value->next;
+//                    }
+//                    //填充列的数据链和复制列的元数据
+//                    flush_list->datalist=cut_value_list;
+//
+//                    flush_list->columnname = str_copy(flush_list->columnname,flush_list_index->columnname);
+//                    flush_list_index=flush_list_index->nextcolumn;
+//
+//                    if (flush_list_index!=NULL){
+//
+//                        flush_list->nextcolumn=(tuple_column *)malloc(sizeof(tuple_column));
+//                        flush_list=flush_list->nextcolumn;
+//                    } else{
+//                        flush_list->nextcolumn=NULL;
+//                    }
+//                }
+//            }
+////            if (headtuple_index->next !=NULL)
+//            headtuple_index=headtuple_index->next;
+//            //TODO:11-12  这里额list_head变成空的所以需要写一个清空head_tuple的值
+//            if (headtuple_index != NULL&&headtuple_index != list_head->next){
+//                load_list_index->next=(head_tuple *)malloc(sizeof(head_tuple));
+//                load_list_index=load_list_index->next;
+//            }
+//            //TODO:修改headtuple_index!=NULL&&headtuple_index!=list_head->next)
+//            bool _a = headtuple_index!=NULL;
+//            bool b = headtuple_index!=list_head->next;
+//        }while (headtuple_index!=NULL&&headtuple_index!=list_head->next);
+//        load_list_index->next=NULL;
+////        pthread_myrwlock_unlock();//放写锁
+//        cout<<"我是闲置信息"<<load_list->databasename<<endl;
+//        if (load_ahead_log(load_list)==ITrue){
+//            pthread_t load;
+//            int iRet=pthread_create(&load, NULL, reinterpret_cast<void *(*)(void *)>(&load_disk_method),
+//                                    reinterpret_cast<void *>(load_list));
+//            if (iRet){
+//                perror("[ERROR] load disk pthread join error\n");
+//                return NULL;
+//            }
+//        }
+//        sleep(reserve_time);
+//    }
+//}
+
+
+
+
+
+
+
+
 /**
  * 环满落盘策略
  *  将环上全部数据落盘
@@ -618,17 +759,17 @@ CircularList *initCircularList(long int cyclelength){
     }else {
         list_head->size=cyclelength;
     }
-//    pthread_t manager;
-//    int reserve_time=5;
-//
-//    int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
-//                            reinterpret_cast<void *>(reserve_time));
-//    if (iRet){
-//        perror("[ERROR] pthread join error\n");
-//        return NULL;
-//    }
+    pthread_t manager;
+    int reserve_time=5;
 
-//    printf("the thread id is %ld\n",manager);
+    int iRet=pthread_create(&manager, NULL, reinterpret_cast<void *(*)(void *)>(&manager_writedisk),
+                            reinterpret_cast<void *>(reserve_time));
+    if (iRet){
+        perror("[ERROR] pthread join error\n");
+        return NULL;
+    }
+
+    printf("the thread id is %ld\n",manager);
     return list_head;
 
 }
