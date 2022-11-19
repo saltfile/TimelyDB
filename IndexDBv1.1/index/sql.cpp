@@ -110,10 +110,10 @@ char* sql_oper_insrtinto(sql_operation* sql){
 //    create_skip_index(tupleHead);//创建跳表索引（一级索引）
 //
 //    create_rbtree_index(tupleHead);//创建rbtree （二级索引）
-if (tupleHead->databasename == NULL){
-    char* res = "Error: Please use a database";
-    return res;
-}
+//if (tupleHead->databasename == NULL){
+//    char* res = "Error: Please use a database";
+//    return res;
+//}
 
     //执行循环列表的插入
     int aaa = create_cir_nodelist(tupleHead->databasename,tupleHead->tablename,tupleHead->fileds,tupleHead->fileds->datalist);

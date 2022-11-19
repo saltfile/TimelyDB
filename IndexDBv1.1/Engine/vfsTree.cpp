@@ -400,6 +400,18 @@ IBool addVfsTreeNode(VfsNode *parentNode,VfsNode* childNode)
 
     return ITrue;
 }
+//根据名称查找表 -1 找不到这个表
+VfsNode *find_table_by_name(char* tab){
+    char*dbname=back_dbname();
+    if (dbname == NULL){return NULL;}
+    VfsNode *tab_list = findDataBaseByName(dbname);
+    VfsNode *ss =findNodeByName(tab_list->cList,tab);
+    if (ss == NULL)return NULL;
+    return ss;
+}
+
+
+
 
 //根据名称查找数据库
 VfsNode* findDataBaseByName(char* dbName)

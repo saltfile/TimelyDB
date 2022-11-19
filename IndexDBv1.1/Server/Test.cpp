@@ -7,7 +7,7 @@ int test_ser() {
     engine_init(5);
 
     //检测列表行的值是否正确
-
+//    find_table_by_name("com","item");
 
 
 
@@ -18,7 +18,8 @@ int test_ser() {
 //    char *inserts = "insert into item(age,name)values(45,xiaoming)";
 //    char *insert1 = "insert into hgf(age,name)values(43,aaaaa)";
 
-//    cout<<use_handle("use com");
+//    use_handle("use com");
+//    insert_handle(insert1);
 //    scan_word* iword = scanWordInit();
 //    sqlsacnner(iword,inserts);
 //    treenode *iroot = check_tree(iword);

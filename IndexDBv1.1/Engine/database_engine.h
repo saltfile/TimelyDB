@@ -238,8 +238,8 @@ passwd* get_user();
 
 
 
-
-
+//通过数据库名字和表名查询是否存在这个表
+VfsNode *find_table_by_name(char* tab);
 
 //查看数据库的数量
 int get_databse_num();

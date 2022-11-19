@@ -786,6 +786,33 @@ char* create_handle(char* sentence){
 
 
 }
+
+
+int check_table_exists(treenode* root){
+    char* db = back_dbname();
+    if (db == NULL){return 0;}
+
+
+    list *sql_s = root->nodelist;
+    char* tablename = sql_s->next->tree->str;
+    VfsNode *colum = find_table_by_name(tablename);
+    if (colum ==NULL)return -1;
+    char* colum_mes = sql_s->next->next->tree->str;
+    char** colums = split_gar(colum_mes,",");
+    int col_len = spilt_size_gar(colum_mes,",");
+    for (int i = 0; i < col_len; ++i) {
+       VfsNode *cl = findNodeByName(colum->cList,colums[i]);
+        if (cl == NULL)return -2;
+    }
+    return 1;
+
+}
+
+
+
+
+
+
 char* insert_handle(char* sentence){
     char** sent = split_gar(sentence,"\n");
     scan_word *words = scanWordInit();
@@ -795,6 +822,11 @@ char* insert_handle(char* sentence){
     treenode *create = check_tree(iword);
     char* res = NULL;
     if (create==NULL){return "Error: syntax error between statements, please try again";}
+    //加入对语句中表和列的校验
+    int exis = check_table_exists(create);
+    if (exis == 0){return "Error: Please use a database";}
+    if (exis == -1){return "Your table does not exist";}
+    if (exis == -2){return "Column in statement does not exist";}
     res = memte_insert(create);
     return res;
 }
