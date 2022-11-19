@@ -111,6 +111,7 @@ tuple_column *fileds_add(tuple_column *root,char*cname,value_tuple*datalist){
         p = p->nextcolumn;
     }
     tuple_column *new_node = (tuple_column*) malloc(sizeof(tuple_column));
+    memset(new_node,0, sizeof(tuple_column));
     new_node->columnname = (char*) malloc(strlen(cname)+1);
     memset(new_node->columnname,0, strlen(cname)+1);
     strcpy(new_node->columnname,cname);
@@ -127,7 +128,7 @@ tuple_column* flieds_data_copy(tuple_column * copied){
     tuple_column *c = copied;
     while (c){
         value_tuple *data = NULL;
-        data = value_tuple_data_copy(data,copied->datalist);
+        data = value_tuple_data_copy(data,c->datalist);
         p = fileds_add(p, c->columnname,data);
         c = c->nextcolumn;
     }

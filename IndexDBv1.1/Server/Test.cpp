@@ -5,27 +5,36 @@
 
 int test_ser() {
     engine_init(5);
-//        epollser_start(8996);
-    char *inserts = "insert into item(age,name)values(45,xiaoming)";
-    char *insert1 = "insert into hgf(age,name)values(43,aaaaa)";
 
-    cout<<use_handle("use com");
-    scan_word* iword = scanWordInit();
-    sqlsacnner(iword,inserts);
-    treenode *iroot = check_tree(iword);
-    memte_insert(iroot);
-    scan_word* wors2 = scanWordInit();
-    sqlsacnner(wors2,insert1);
-    treenode *our = check_tree(wors2);
-    memte_insert(our);
-//
-    memte_insert(our);
-    memte_insert(our);
-    memte_insert(our);
+    //检测列表行的值是否正确
+
+
+
+
+
+
+
+        epollser_start(8995);
+//    char *inserts = "insert into item(age,name)values(45,xiaoming)";
+//    char *insert1 = "insert into hgf(age,name)values(43,aaaaa)";
+
+//    cout<<use_handle("use com");
+//    scan_word* iword = scanWordInit();
+//    sqlsacnner(iword,inserts);
+//    treenode *iroot = check_tree(iword);
+//    memte_insert(iroot);
+//    scan_word* wors2 = scanWordInit();
+//    sqlsacnner(wors2,insert1);
+//    treenode *our = check_tree(wors2);
+//    memte_insert(our);
+////
+//    memte_insert(our);
+//    memte_insert(our);
+//    memte_insert(our);
 //
 ////
-    int a = 1;
-    scanf("%d",&a);
+//    int a = 1;
+//    scanf("%d",&a);
 //    cout<<show_DB_handle("show databases")<<endl;
 //    cout<<create_handle("create database xxxs")<<endl;
 //    cout<<show_DB_handle("show databases")<<endl;

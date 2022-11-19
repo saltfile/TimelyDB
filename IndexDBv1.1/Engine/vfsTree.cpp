@@ -9,6 +9,10 @@
 VfsTree *vfsTreeRoot;
 VfsNode *root;
 
+
+
+
+
 VfsTree * createVfsTreeRoot(){
     return vfsTreeRoot;
 }
@@ -362,6 +366,7 @@ void  deleteList(ChildList *list)
 VfsTree * InitRootNode()
 {
     VfsTree* newTree = (VfsTree *)malloc(sizeof(VfsTree));
+    memset(newTree,0, sizeof(VfsTree));
     VfsNode *root=createNode(0,"root",0,NULL,NULL,NULL);
     if (newTree == NULL || root == NULL)
     {
@@ -433,6 +438,11 @@ char* showDataBase()
     printf("dbAllName=%s\n",dbName);
     return dbName;
 }
+
+
+
+
+
 
 //遍历表
 char* showTables(char* databaseName)
