@@ -415,16 +415,30 @@ bool task_head_t(head_tuple* root){
 
 }
 //void free
-void free_val_tupl(value_tuple *p){
-    while (p->next){
+value_tuple *free_val_tupl(value_tuple *p){
+
+    if (p == NULL){
+        return p;
+    }
+    while (p){
+        char *times = p->timestamp;
+        if (times != nullptr)
+        free(times);
+        p->timestamp = NULL;
+        char* val = p->value;
+        if (val != nullptr)
+        free(val);
+        p->value = NULL;
 
         value_tuple *as = p;
         p = p->next;
+        if (as != nullptr)
         free(as);
         as = NULL;
     }
     value_tuple *as = p;
     as = NULL;
+    return as;
 }
 
 void free_string(char* root){
@@ -436,17 +450,19 @@ void free_string(char* root){
 }
 
 
-void free_tup_conlum(tuple_column *ptr){
-    while (ptr->nextcolumn){
-        tuple_column *as = ptr;
+tuple_column* free_tup_conlum(tuple_column *ptr){
+    tuple_column *as = NULL;
+    while (ptr){
+         as = ptr;
         ptr = ptr->nextcolumn;
-        free_val_tupl(as->datalist);
-        free_val_tupl(as->listtail);
+        as->datalist = free_val_tupl(as->datalist);
+        as->listtail = free_val_tupl(as->listtail);
+        char *cname = as->columnname;
+        free(cname);
+        as->columnname = NULL;
         free(as);
         as = NULL;
     }
-    tuple_column *as = ptr;
-    as = NULL;
 }
 //后期用来清除节点中已经落盘之后的函数
 void clear_head_t(head_tuple* root){
@@ -462,7 +478,7 @@ void clear_head_t(head_tuple* root){
     char*matime = root->max_time;
     free(matime);
     root->max_time = NULL;
-    free_tup_conlum(root->fileds);
+    root->fileds = free_tup_conlum(root->fileds);
 }
 
 
@@ -515,8 +531,17 @@ void * manager_writedisk(long int reserve_time){
         head_tuple * load_list_index=load_list;
         long times = atol(headtuple_index->min_time)-flush_cond;
         if (times <= 0){
+            /**
+             *  记得测试和补全功能
+             */
             head_tuple_data_copy(load_list,headtuple_index);
+            //落盘之后的
+            clear_head_t(headtuple_index);
+            headtuple_index = headtuple_index->next;
+        } else{
+            continue;
         }
+
         if (load_ahead_log(load_list)==ITrue){
             pthread_t load;
             int iRet=pthread_create(&load, NULL, reinterpret_cast<void *(*)(void *)>(&load_disk_method),

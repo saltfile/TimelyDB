@@ -66,8 +66,15 @@ tuple_column* judge_nextcolum(tuple_column* tupleColum, condition* sql, char* sq
     tuple_column* node=malloc_tuple_colum();
 //    node->datalist=malloc_tuple();
 
-    node->datalist->timestamp=sql_timstamp;
-    node->datalist->value=sql->c_value;
+    node->datalist->timestamp=(char*)malloc(strlen(sql_timstamp)+1);
+    memset(node->datalist->timestamp,0,strlen(sql_timstamp)+1);
+    strcpy(node->datalist->timestamp,sql_timstamp);
+
+    node->datalist->value=(char*)malloc(strlen(sql->c_value)+1);
+    memset(node->datalist->value,0, strlen(sql->c_value)+1);
+    strcpy(node->datalist->value,sql->c_value);
+
+
 
     node->columnname=sql->c_name;
 //    node->dataTypes=sql->dataTypes;
