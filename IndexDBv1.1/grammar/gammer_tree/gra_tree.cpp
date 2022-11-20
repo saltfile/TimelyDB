@@ -801,7 +801,7 @@ int check_table_exists(treenode* root){
     char** colums = split_gar(colum_mes,",");
     int col_len = spilt_size_gar(colum_mes,",");
     for (int i = 0; i < col_len; ++i) {
-       VfsNode *cl = findNodeByName(colum->cList,colums[i]);
+       VfsNode *cl = findClonmByName(colum->cList,colums[i]);
         if (cl == NULL)return -2;
     }
     return 1;

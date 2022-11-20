@@ -125,6 +125,31 @@ VfsNode *findNodeByName(ChildList *list,char* name)
     return NULL;
 }
 
+
+
+VfsNode *findClonmByName(ChildList *list,char* name)
+{
+    if (list == NULL ||list->size == 0|| name ==NULL)
+    {
+        return NULL;
+    }
+
+    VfsNode *temp;
+    for (temp=list->head;  temp != NULL ; temp = temp->next) {
+        char** colms = split_gar(temp->name,"|");
+        if (strcmp(colms[0],name)==0)
+        {
+            printf("find it level = %d,flag=%d,name=%s\n",temp->level,temp->flag,temp->name);
+            return temp;
+        }
+    }
+    return NULL;
+}
+
+
+
+
+
 //遍历子链表
 char * foreachList(ChildList* list)
 {
