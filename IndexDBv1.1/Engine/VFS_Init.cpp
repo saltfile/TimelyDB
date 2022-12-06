@@ -255,10 +255,6 @@ char **conlum_apply(char* clonms_path){
     }
     return res;
 
-
-
-
-
 }
 
 

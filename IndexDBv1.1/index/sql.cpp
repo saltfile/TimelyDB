@@ -107,7 +107,7 @@ char* sql_oper_insrtinto(sql_operation* sql){
     }
     printf("插入语句：%d\n", sizeof(tupleHead));
 
-//    create_skip_index(tupleHead);//创建跳表索引（一级索引）
+    create_skip_index(tupleHead);//创建跳表索引（一级索引）
 //
 //    create_rbtree_index(tupleHead);//创建rbtree （二级索引）
 //if (tupleHead->databasename == NULL){
@@ -272,7 +272,7 @@ bool sql_oper_create_table(sql_operation* sql){
     char* swar= dbname_tname(tupleHead);//生成database_tablename
 
     skipList= skip_list_init(swar); //在创建表的时候就，初始化对应的跳表，并且放进skip_map里面
-    rbRoot= rbTree_init(swar); //在创建表的时候就，初始化对应的rbtree，并且放进rbtree_map里面
+//    rbRoot= rbTree_init(swar); //在创建表的时候就，初始化对应的rbtree，并且放进rbtree_map里面
 
     set_map_node(swar,sql);//存放表结构？忘记了
     return true;

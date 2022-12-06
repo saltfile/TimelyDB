@@ -1,5 +1,5 @@
 AUX_SOURCE_DIRECTORY(. ZY)
 add_subdirectory(../Engine Engine)
 add_subdirectory(../primitive primitive)
-ADD_LIBRARY (index ${ZY} )
+ADD_LIBRARY (index ${ZY} Init_storage.cpp data_loading.cpp)
 TARGET_LINK_LIBRARIES(index Engine primitive)

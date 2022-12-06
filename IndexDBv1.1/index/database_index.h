@@ -244,4 +244,7 @@ void condition_add_insert(condition* root,char* c_name,TokenType c_symbol,char* 
 condition* condition_add(condition* root,condition* ptr);
 ///////////////////////////////////////////test.h
 int z_index();
+
+
+int Load_Test();
 #endif //INDEXDBV1_1_DATABASE_INDEX_H

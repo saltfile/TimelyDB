@@ -970,7 +970,7 @@ char* create_memte_tb(treenode *root){
     res = str_merge(res,create_tb->name);
         return res;
     } else{
-        char* res = "Syntax error&service exception！！";
+        char* res = "Please use a database";
         return res;
     }
 }

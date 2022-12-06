@@ -188,6 +188,7 @@ void * deleteNode(VfsNode* node)
 {
 
    free(node);
+   node = NULL;
 }
 
 //删除节点

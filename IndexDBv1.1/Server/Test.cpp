@@ -10,16 +10,12 @@ int test_ser() {
 //    find_table_by_name("com","item");
 
 
-
-
-
-
-        epollser_start(8995);
+//        epollser_start(8995);
 //    char *inserts = "insert into item(age,name)values(45,xiaoming)";
 //    char *insert1 = "insert into hgf(age,name)values(43,aaaaa)";
-
+//
 //    use_handle("use com");
-//    insert_handle(insert1);
+//    insert_handle(inserts);
 //    scan_word* iword = scanWordInit();
 //    sqlsacnner(iword,inserts);
 //    treenode *iroot = check_tree(iword);

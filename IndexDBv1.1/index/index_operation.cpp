@@ -26,6 +26,7 @@ char* dbname_tname(tuple_head* tupleHead){
     strcat(swar,"_");
     strcat(swar,tupleHead->tablename);
     return  swar;
+        
 }
 
 void Pri_fifltra(PRI* pri, Link_Node * head){
