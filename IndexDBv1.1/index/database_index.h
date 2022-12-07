@@ -245,6 +245,25 @@ condition* condition_add(condition* root,condition* ptr);
 ///////////////////////////////////////////test.h
 int z_index();
 
+typedef struct tab_file{
+    char** datas;
+    int tab_len;
+
+    char** colums;
+    int col_len;
+
+}tab_file;
+
+
+
 
 int Load_Test();
+
+
+
+
+
+
+
+
 #endif //INDEXDBV1_1_DATABASE_INDEX_H

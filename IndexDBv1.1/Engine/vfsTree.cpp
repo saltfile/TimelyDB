@@ -161,6 +161,7 @@ char * foreachList(ChildList* list)
     VfsNode *temp;
     //TODO 内存大小合理计算
     nameComplete=(char*)malloc(100*sizeof(char*));
+    memset(nameComplete,0,100*sizeof(char*));
   /*  memset(nameComplete,'/0',sizeof(nameComplete));*/
     int i = 0;
     if (list !=NULL && list->size != 0)
