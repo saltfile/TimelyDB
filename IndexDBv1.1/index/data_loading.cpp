@@ -73,10 +73,59 @@ tab_file* read_table_data(char* filepath){
 
 
 
+char* path_merge(char* database,char* table){
+    char* path = "/home/saltfish/indexTSDB";
+    char*res = str_merge("",path);
+    res = str_merge(res,"/");
+    res = str_merge(res,database);
+    res = str_merge(res,"/");
+    res = str_merge(res,table);
+
+    return res;
+}
+
+
+
+
+
 
 //使用文件树预留接口遍历所有数据库和表
 void library_table_federation(){
     char* all_base = showDataBase();
+    if (strlen(all_base)==0)return;
+    int base_len = spilt_size_gar(all_base,",");
+    char** bases = split_gar(all_base,",");
+
+    for (int i = 0; i < base_len; ++i) {
+        char* tabs = showTables(bases[i]);
+        if (strlen(tabs)==0)continue;
+        int tab_lens = spilt_size_gar(tabs,",");
+        char** tab_arr = split_gar(tabs,",");
+
+        //将表中数据装入结构
+        for (int j = 0; j < tab_lens; ++j) {
+            char* data_path = path_merge(bases[i],tab_arr[i]);
+            tab_file *tab_datas = read_table_data(data_path);
+            cout<<tab_datas->datas<<endl;
+            //TODO:12-08 这里的结构明天考虑并实现
+
+
+
+
+
+        }
+
+
+
+
+
+    }
+
+
+
+
+
+
 
 
 
