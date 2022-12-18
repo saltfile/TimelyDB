@@ -72,7 +72,6 @@ tab_file* read_table_data(char* filepath){
 }
 
 
-
 char* path_merge(char* database,char* table){
     char* path = "/home/saltfish/indexTSDB";
     char*res = str_merge("",path);
@@ -85,6 +84,43 @@ char* path_merge(char* database,char* table){
 }
 
 
+//初始化时一开始就有的数据
+tuple_head* create_skip_data(tab_file *tabFile){
+    //最后返回的结果
+    tuple_head *res = malloc_tuple_head_null();
+    //数据库名和表名
+    char** dtname = split_gar(tabFile->db_t_name,"_");
+    res->databasename = str_copy(res->databasename,dtname[0]);
+    res->tablename = str_copy(res->tablename,dtname[1]);
+    tuple_column *files = NULL;
+
+    for (int i = 0; i < tabFile->col_len; ++i) {
+        tuple_column *p = (tuple_column*) malloc(sizeof(tuple_column));
+        memset(p, 0, sizeof(tuple_column));
+
+        p->columnname = str_copy("",tabFile->colums[i]);
+        if (files == NULL)files = p;
+        else files->nextcolumn = p;
+    }
+
+    int flag = tabFile->col_len;
+//    map<char*,int> times_map;
+
+    for (int i = 0; i < tabFile->tab_len;i+=flag ) {
+        tuple_column*p = files;
+        for (int j = i; j <i+flag; ++j) {
+
+            char** data = split_gar(tabFile->datas[j],";");
+            p->datalist = value_tuple_add(p->datalist,data[0],data[1]);
+            p = p->nextcolumn;
+        }
+    }
+    res->fileds = files;
+
+    return res;
+
+
+}
 
 
 
@@ -102,38 +138,20 @@ void library_table_federation(){
         int tab_lens = spilt_size_gar(tabs,",");
         char** tab_arr = split_gar(tabs,",");
 
+
         //将表中数据装入结构
         for (int j = 0; j < tab_lens; ++j) {
-            char* data_path = path_merge(bases[i],tab_arr[i]);
+            char* data_path = path_merge(bases[i],tab_arr[j]);
             tab_file *tab_datas = read_table_data(data_path);
-            cout<<tab_datas->datas<<endl;
-            //TODO:12-08 这里的结构明天考虑并实现
-
-
-
-
-
+            tab_datas->db_t_name = str_merge("",bases[i]);
+            tab_datas->db_t_name = str_merge(tab_datas->db_t_name,"_");
+            tab_datas->db_t_name = str_merge(tab_datas->db_t_name,tab_arr[j]);
+            skip_list_init(tab_datas->db_t_name);
+            tuple_head *p  = create_skip_data(tab_datas);
+            create_skip_index(p);
+            //TODO：10-18 说实话现在这里的结构确实还没测试太好所以明后要把第一层搜索跳表给测试成功
         }
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 

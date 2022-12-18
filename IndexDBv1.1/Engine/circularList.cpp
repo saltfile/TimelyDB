@@ -65,9 +65,11 @@ value_tuple *value_tuple_add(value_tuple* root,char *timestamp,char*value){
     if (p == NULL){
         p = (value_tuple*) malloc(sizeof(value_tuple));
         memset(p,0, sizeof(value_tuple));
+
         p->timestamp = (char*) malloc(strlen(timestamp)+1);
         memset(p->timestamp,0, strlen(timestamp)+1);
         strcpy(p->timestamp,timestamp);
+
         p->value = (char*) malloc(strlen(value)+1);
         memset(p->value,0, strlen(value)+1);
         strcpy(p->value,value);
@@ -87,6 +89,14 @@ value_tuple *value_tuple_add(value_tuple* root,char *timestamp,char*value){
     p->next = new_node;
     return root;
 }
+
+
+
+
+
+
+
+
 value_tuple *value_tuple_data_copy(value_tuple*root,value_tuple * datalist){
     value_tuple * d = datalist;
     while (d){

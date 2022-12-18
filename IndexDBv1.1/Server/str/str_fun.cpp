@@ -21,7 +21,6 @@ char * str_merge_ser(char *str,char * merstr){
     for(int i = 0;i < strlen(str);i++){
         res[i] = str[i];
     }
-
     for(int i = 0;i < strlen(merstr);i++){
         int j = i;
         char s =  merstr[i];

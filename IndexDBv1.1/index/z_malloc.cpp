@@ -103,13 +103,25 @@ tuple_column* malloc_tuple_colum(void){
     tupleColumn->datalist=malloc_tuple();
     return tupleColumn;
 }
-
+tuple_column* malloc_tuple_colum_null(void){
+    tuple_column* tupleColumn;
+    tupleColumn=(tuple_column*)malloc(sizeof(tuple_column));
+    memset(tupleColumn,0, sizeof(tuple_column));
+    return tupleColumn;
+}
 tuple_head* malloc_tuple_head(void){
     tuple_head* tupleHead;
     tupleHead=(tuple_head*)malloc(sizeof(tuple_head));
     tupleHead->fileds=malloc_tuple_colum();
     return tupleHead;
 }
+tuple_head* malloc_tuple_head_null(void){
+    tuple_head* tupleHead;
+    tupleHead=(tuple_head*)malloc(sizeof(tuple_head));
+    memset(tupleHead,0, sizeof(tuple_head));
+    return tupleHead;
+}
+
 
 void condition_add_insert(condition* root,char* c_name,TokenType c_symbol,char* c_value){
     condition *p = root;

@@ -281,7 +281,7 @@ void free_string(char* root);
 //关于节点数据之间的拷贝
 void head_tuple_data_copy(head_tuple * root, head_tuple *copied);
 
-
+value_tuple *value_tuple_add(value_tuple* root,char *timestamp,char*value);
 
 VfsNode *findClonmByName(ChildList *list,char* name);
 #endif //G__TEST_DATABASE_ENGINE_H

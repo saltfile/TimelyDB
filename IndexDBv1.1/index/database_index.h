@@ -237,8 +237,9 @@ rbtree_result_timestamp* malloc_rb_timestamp(void);
  * */
 value_tuple * malloc_tuple(void);
 tuple_column* malloc_tuple_colum(void);
-
+tuple_column* malloc_tuple_colum_null(void);
 tuple_head* malloc_tuple_head(void);
+tuple_head* malloc_tuple_head_null(void);
 //添加
 void condition_add_insert(condition* root,char* c_name,TokenType c_symbol,char* c_value);
 condition* condition_add(condition* root,condition* ptr);
@@ -251,6 +252,8 @@ typedef struct tab_file{
 
     char** colums;
     int col_len;
+    //给索引当key用
+    char* db_t_name;
 
 }tab_file;
 
