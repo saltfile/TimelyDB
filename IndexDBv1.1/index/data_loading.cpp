@@ -148,9 +148,65 @@ void library_table_federation(){
             tab_datas->db_t_name = str_merge(tab_datas->db_t_name,tab_arr[j]);
             skip_list_init(tab_datas->db_t_name);
             tuple_head *p  = create_skip_data(tab_datas);
+
+
+
+            sql_operation* create_table=malloc_sqloperation();
+            create_table->handler=CREATE_TABLE;
+            create_table->name="item";
+
+//    create_table->data_list=malloc_sqlcondition();
+            create_table->data_list->next=malloc_sqlcondition();
+            create_table->data_list->next->next=malloc_sqlcondition();
+
+            create_table->data_list->c_name="age";
+            create_table->data_list->dataTypes=INT;
+
+            create_table->data_list->next->c_name="name";
+            create_table->data_list->next->dataTypes=VARCHAR;
+            create_table->data_list->next->c_value="255";
+
+
+            set_map_node(tab_datas->db_t_name,create_table);
+
+            rbTree_init(tab_datas->db_t_name);
+            skip_list_init(tab_datas->db_t_name);
             create_skip_index(p);
-            //TODO：10-18 说实话现在这里的结构确实还没测试太好所以明后要把第一层搜索跳表给测试成功
+            create_rbtree_index(p);
         }
+
+
+        sql_operation* select_sql=malloc_sqloperation();
+        select_sql->handler=SELECTS;
+        select_sql->name="item";
+        select_sql->field="*";
+
+//    select_sql->data_list=malloc_sqlcondition();
+        select_sql->data_list->c_name="age";
+        select_sql->data_list->c_symbol=Assignment;//>
+        select_sql->data_list->c_value="18";
+//    select_sql->data_list->dataTypes=INT;
+
+        //select_sql->timestamp="18";
+
+        select_sql->data_list->next=malloc_sqlcondition();
+        (select_sql->data_list->next)->cTypes=AND;
+        (select_sql->data_list->next)->c_name="name";
+        (select_sql->data_list->next)->c_symbol=GE;//>=
+        (select_sql->data_list->next)->c_value="aaaaaa";
+//    (select_sql->data_list->next)->dataTypes=VARCHAR;
+
+        select_sql->data_list->next->next=malloc_sqlcondition();
+        (select_sql->data_list->next)->next->cTypes=GROUPBY;
+        select_sql->data_list->next->next->next=malloc_sqlcondition();
+        (select_sql->data_list->next)->next->next->cTypes=Desc;
+
+
+        sql_oper_select(select_sql);
+
+
+
+
     }
 }
 

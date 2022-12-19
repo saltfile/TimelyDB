@@ -402,6 +402,11 @@ void find_rbtree_data(char* database_tablename, sql_operation* sql, tuple_head* 
         swap->data_list=swap->data_list->next;
 
     }
+
+
+
+
+
     free(sql);
     Pri_end(head);//执行过滤
 }

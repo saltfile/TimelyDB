@@ -94,7 +94,7 @@ func run(c *<-chan int8){
     (select_sql->data_list->next)->cTypes=AND;
     (select_sql->data_list->next)->c_name="name";
     (select_sql->data_list->next)->c_symbol=GE;//>=
-    (select_sql->data_list->next)->c_value="zhangsan";
+    (select_sql->data_list->next)->c_value="aaaaaa";
 //    (select_sql->data_list->next)->dataTypes=VARCHAR;
 
     select_sql->data_list->next->next=malloc_sqlcondition();
@@ -140,7 +140,7 @@ func run(c *<-chan int8){
     sql_oper_create_table(create_table); //ok
     sql_oper_insrtinto(insert_sql); //ok
 
-//    sql_oper_select(select_sql);
+    sql_oper_select(select_sql);
     sql_oper_delete(delete_sql);
 //    sql_oper_drop_database(drop_sql);
 
