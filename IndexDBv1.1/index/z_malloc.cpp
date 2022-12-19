@@ -57,7 +57,6 @@ data_node * malloc_sk_node(void){
 skip_list * malloc_sk_head(void){
     skip_list *head;
     head=(skip_list*)malloc(sizeof(skip_list));
-
     head->header=(data_node**)malloc_sk_node();
     return head;
 }
@@ -99,7 +98,6 @@ value_tuple * malloc_tuple(void){
 tuple_column* malloc_tuple_colum(void){
     tuple_column* tupleColumn;
     tupleColumn=(tuple_column*)malloc(sizeof(tuple_column));
-
     tupleColumn->datalist=malloc_tuple();
     return tupleColumn;
 }

@@ -496,7 +496,9 @@ void create_rbtree_index(tuple_head *tupleHead) {
     while(tupleHead->fileds!=NULL){
         tuple_column* node_value1=node->tag_values;
         while(node_value1!=NULL){
-            if (tupleHead->fileds->columnname==node_value1->columnname){
+            char* a = tupleHead->fileds->columnname;
+            char* b = node_value1->columnname;
+            if (strcmp(tupleHead->fileds->columnname,node_value1->columnname) == 0){
                 node_value1->datalist->timestamp=tupleHead->fileds->datalist->timestamp;
                 node_value1->datalist->value=tupleHead->fileds->datalist->value;
                 node_value1=node_value1->nextcolumn;
