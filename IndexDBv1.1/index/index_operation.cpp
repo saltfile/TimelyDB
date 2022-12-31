@@ -499,9 +499,11 @@ void create_rbtree_index(tuple_head *tupleHead) {
             char* a = tupleHead->fileds->columnname;
             char* b = node_value1->columnname;
             if (strcmp(tupleHead->fileds->columnname,node_value1->columnname) == 0){
-                node_value1->datalist->timestamp=tupleHead->fileds->datalist->timestamp;
-                node_value1->datalist->value=tupleHead->fileds->datalist->value;
-                node_value1=node_value1->nextcolumn;
+                node_value1->datalist = free_val_tupl(node_value1->datalist);
+                //这里需要改变
+                node_value1->datalist = value_tuple_data_copy(node_value1->datalist,tupleHead->fileds->datalist);
+                //赋值完成之后释放老的内存项
+                tupleHead->fileds->datalist = free_val_tupl(tupleHead->fileds->datalist);
                 break;
             }else{
                 node_value1=node_value1->nextcolumn;

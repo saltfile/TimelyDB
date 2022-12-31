@@ -282,6 +282,7 @@ void free_string(char* root);
 void head_tuple_data_copy(head_tuple * root, head_tuple *copied);
 
 value_tuple *value_tuple_add(value_tuple* root,char *timestamp,char*value);
-
+value_tuple *value_tuple_data_copy(value_tuple*root,value_tuple * datalist);
+value_tuple *free_val_tupl(value_tuple *p);
 VfsNode *findClonmByName(ChildList *list,char* name);
 #endif //G__TEST_DATABASE_ENGINE_H
