@@ -1,4 +1,0 @@
-/opt/CLion-2020.2.4/clion-2020.2.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_C_FLAGS=--coverage -G "CodeBlocks - Unix Makefiles" /opt/Cpro/resolve
--- Configuring done
--- Generating done
--- Build files have been written to: /opt/Cpro/resolve/cmake-build-debug-coverage
