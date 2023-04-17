@@ -21,7 +21,8 @@ int str_spilt_size(char *a,char *b);
 char **str_spilt(char *str,char *dent);
 
 
-
+//释放字符串函数
+char * free_str(char *str);
 
 
 

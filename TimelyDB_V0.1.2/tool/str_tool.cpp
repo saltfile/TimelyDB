@@ -88,3 +88,21 @@ char **str_spilt(char *str,char *dent){
     return res;
 }
 
+
+/**
+ * 只来释放字符串用的
+ * @param str
+ * @return
+ */
+char * free_str(char *str){
+    char*p = str;
+    str = NULL;
+    return str;
+}
+
+
+
+
+
+
+
