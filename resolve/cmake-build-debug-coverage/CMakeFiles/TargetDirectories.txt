@@ -1,3 +1,0 @@
-/opt/Cpro/resolve/cmake-build-debug-coverage/CMakeFiles/edit_cache.dir
-/opt/Cpro/resolve/cmake-build-debug-coverage/CMakeFiles/rebuild_cache.dir
-/opt/Cpro/resolve/cmake-build-debug-coverage/CMakeFiles/resolve.dir

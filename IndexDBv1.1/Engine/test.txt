@@ -1,4 +1,0 @@
-int;varchar;long;
-alhflak;djka;adslkja;
-18;sherry;4869;
-asd;fasf;asfa;
