@@ -4,8 +4,6 @@
 #include "tool/tool_base.h"
 using namespace std;
 int main() {
-    char* p = "asdafsdf";
-    free_str(p);
 
 
 
