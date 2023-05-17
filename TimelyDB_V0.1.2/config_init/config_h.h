@@ -8,15 +8,17 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <string.h>
-#include <libxml2/libxml/parser.h>
-#include <libxml2/libxml/tree.h>
-#include <libxml2/libxml/xpath.h>
+#include <cassert>
+#include <libxml/parser.h>
+#include <libxml/xmlmemory.h>
+#include <libxml/xpath.h>
 #include <iostream>
 
 using namespace std;
+#define DEFAULT_XML_FILE "../config.xml"
 
 
-
+static int parse_phone_book(const char *file_name);
 
 
 #endif //TIMELYDB_V0_1_2_CONFIG_H_H
