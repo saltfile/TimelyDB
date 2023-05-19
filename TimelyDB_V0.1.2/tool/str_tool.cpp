@@ -9,10 +9,12 @@
  * @return 复制完成的指针
  */
 char *str_copy(char *str1,char *str2){
+    char *p = str1;
     int str1_len = sizeof(char)*(strlen(str2)+1);
     str1 = (char *) malloc(str1_len);
     memset(str1,0,str1_len);
     strcpy(str1,str2);
+    free_str(p);
     return str1;
 }
 

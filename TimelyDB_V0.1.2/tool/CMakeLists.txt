@@ -1,2 +1,2 @@
-AUX_SOURCE_DIRECTORY(. tos)
-add_library(tool ${tos})
+AUX_SOURCE_DIRECTORY(. tol)
+add_library(tool ${tol})
