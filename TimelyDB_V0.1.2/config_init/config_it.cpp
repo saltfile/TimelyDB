@@ -3,11 +3,11 @@
 //
 
 #include "config_h.h"
-
+static dbconfig *conf = new dbconfig();
 int add(int a,int b){
     return a+b;
 }
-static dbconfig *conf = new dbconfig();
+
 
 char* get_config_port(){
     return conf->port;
@@ -24,10 +24,14 @@ int load_config(const char *file_name){
 
 
 
-    if (!yaml_parser_initialize(&parser))
+    if (!yaml_parser_initialize(&parser)){
         fputs("Failed to initialize parser!\n", stderr);
-    if (fh == NULL)
+        return -1;
+    }
+    if (fh == NULL){
         fputs("Failed to open file!\n", stderr);
+        return -2;
+    }
     yaml_parser_set_input_file(&parser, fh);
     char *parent = NULL;
     int state = 0;
@@ -78,5 +82,36 @@ int load_config(const char *file_name){
     printf(LIGHT_BLUE"开启服务 \n");
     printf(LIGHT_BLUE"        port：%s \n",conf->port);
     printf(LIGHT_BLUE"        address：%s \n\033[m",conf->address);
+    return 1;
+}
+
+char * load_project_path(){
+    char *pro_path = (char *) malloc(PATH_SIZE);
+
+    if (NULL == realpath("../", pro_path))
+
+    {
+        printf("***Error***\n");
+
+        exit(-1);
+
+    }
+
+    strcat(pro_path, "/");
+
+    return pro_path;
+
 
 }
+
+
+char* load_config_path(){
+    char *res = load_project_path();
+    res = str_marge(res,"config.yaml");
+    return res;
+}
+
+
+
+
+

@@ -15,6 +15,7 @@
 #include "../tool/tool_base.h"
 #include <iostream>
 using namespace std;
+#define PATH_SIZE 255
 
 #define NONE         "\033[m";
 #define LIGHT_BLUE   "\033[1;34m"
@@ -29,9 +30,17 @@ typedef struct dbconfig{
     this->address = "localhost";
     }
 }dbconfig;
+
 int add(int a,int b);
+
 int load_config(const char *file_name);
+
 char * get_config_port();
+
 char * get_config_address();
+
+char * load_project_path();
+
+char* load_config_path();
 
 #endif //TIMELYDB_V0_1_2_CONFIG_H_H
