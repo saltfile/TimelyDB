@@ -22,5 +22,5 @@ ADD_SUBDIRECTORY(config_init)
 #aux_source_directory(./config_init config_init)
 AUX_SOURCE_DIRECTORY(. timelyDb)
 
-add_executable(TimelyDB_V0_1_2 ${timelyDb} config_init tool server filetree engine time_pool _startup.h)
-TARGET_LINK_LIBRARIES(TimelyDB_V0_1_2  pthread config_init tool time_pool server filetree engine)
+add_executable(TimelyDB_V0_1_2 ${timelyDb}  _startup.h time_pool config_init tool server filetree engine)
+TARGET_LINK_LIBRARIES(TimelyDB_V0_1_2  pthread  time_pool config_init tool server filetree engine)

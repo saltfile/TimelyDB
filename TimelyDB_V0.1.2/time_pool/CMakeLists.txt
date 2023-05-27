@@ -1,2 +1,2 @@
-AUX_SOURCE_DIRECTORY(. pool)
-add_library(time_pool ${pool} t_pool.h)
+AUX_SOURCE_DIRECTORY(. pols)
+add_library(time_pool ${pols} )
