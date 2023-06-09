@@ -42,6 +42,11 @@ using namespace std;
 
 
 
+
+
+
+
+
 typedef struct tylist_node {
     tylist_node *prev;
     tylist_node *next;
@@ -50,13 +55,12 @@ typedef struct tylist_node {
 template<typename T>
 class tylink_list {
 private:
-    struct tylist_node list;
-
     T data;
     int length = -1;
     int aim = -1;
 public:
-    void init_node(T data) {
+    struct tylist_node list;
+    tylink_list(T data) {
         this->data = data;
     }
 
