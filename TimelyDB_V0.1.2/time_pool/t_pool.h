@@ -41,6 +41,8 @@ using namespace std;
     node->prev = pos;                  \
 
 
+#define CONTAINER_OF(head,type,pos) \
+   head = ((typeof(type) *)((char *)(pos)-(unsigned long )(&((typeof(type)*)0)->list)))
 
 
 
@@ -59,9 +61,10 @@ private:
     int length = -1;
     int aim = -1;
 public:
-    struct tylist_node list;
+    tylist_node list;
     tylink_list(T data) {
         this->data = data;
+//        this->list = (tylist_node *) malloc(sizeof(tylist_node));
     }
 
     void set_data(T data) {
