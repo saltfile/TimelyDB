@@ -143,11 +143,11 @@ public:
 
 
 
-           pthread_create(&this->admin, NULL, reinterpret_cast<void *(*)(void *)>(contoller_p), this);
-           for (int i = 0; i < min; ++i) {
-               pthread_create(&this->works[i], NULL, reinterpret_cast<void *(*)(void *)>(work), pool);
-           }
-
+//           pthread_create(&this->admin, NULL, reinterpret_cast<void *(*)(void *)>(contoller_p), this);
+//           for (int i = 0; i < min; ++i) {
+//               pthread_create(&this->works[i], NULL, reinterpret_cast<void *(*)(void *)>(work), pool);
+//           }
+//
 
 
 
