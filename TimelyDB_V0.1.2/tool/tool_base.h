@@ -9,6 +9,24 @@
 #include <iostream>
 #include <cstring>
 using namespace std;
+//基本的list宏
+
+#define LIST_LAST(pos, head) \
+    for (pos =(head) ;pos->next ;pos = pos->next)
+
+#define LIST_FOREACH(pos, head) \
+    for (pos =(head) ;pos->next ;pos = pos->next)
+
+#define LIST_ADD_TAIL(head, pos, node) \
+    for (pos =(head) ;pos->next ;pos = pos->next);            \
+    pos->next = node;                  \
+    node->prev = pos;                  \
+
+
+#define CONTAINER_OF(head,type,pos) \
+   head = ((typeof(type) *)((char *)(pos)-(unsigned long )(&((typeof(type)*)0)->list)))
+
+
 
 //字符串框架
 

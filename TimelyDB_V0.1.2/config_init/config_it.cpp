@@ -4,9 +4,6 @@
 
 #include "config_h.h"
 static dbconfig *conf = new dbconfig();
-int add(int a,int b){
-    return a+b;
-}
 
 
 char* get_config_port(){

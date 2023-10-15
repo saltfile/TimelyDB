@@ -3,31 +3,15 @@
 
 
 
-void fun(void* a){
-    int* b = (int*)a;
-    cout<<"执行任务"<<&b<<endl;
-}
-
-
-
-
 
 
 
 
 //
 int main() {
-
-    thread_pool *pool = new thread_pool(10,3,100);
-
-    for (int i = 0; i < 100; ++i) {
-        void* arg = &i;
-        pool->pool_add_task(fun, (void *)arg);
-        sleep(1);
-    }
-
-    sleep(10);
-
+    load_config("/opt/TIme1.2/TimelyDB/TimelyDB_V0.1.2/config.yaml");
+    cout<<get_config_address()<<endl;
+    cout<<get_config_port()<<endl;
 
 
 
