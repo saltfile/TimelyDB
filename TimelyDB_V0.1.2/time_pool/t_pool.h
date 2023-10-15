@@ -40,34 +40,6 @@ void* work(void* arg);
 
 
 
-typedef struct tylist_node {
-    tylist_node *prev;
-    tylist_node *next;
-} tylist_node;
-//QUEUE
-template<typename T>
-class tylink_list {
-private:
-    T data;
-    int length = -1;
-    int aim = -1;
-public:
-    tylist_node list;
-    tylink_list(T data) {
-        this->data = data;
-//        this->list = (tylist_node *) malloc(sizeof(tylist_node));
-    }
-
-    void set_data(T data) {
-        this->data = data;
-    }
-
-    T get_data() {
-        return this->data;
-    }
-
-
-};
 
 
 //TODO:block_queue重做 c撰写内核链表
