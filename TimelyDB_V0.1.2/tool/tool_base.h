@@ -25,6 +25,7 @@ using namespace std;
     pos = pos->next;           \
     }                            \
 pos = pos->next;
+
 #define LIST_ADD_TAIL(head, pos, node) \
     for (pos =(head) ;pos->next ;pos = pos->next);            \
     pos->next = node;                  \
@@ -41,8 +42,7 @@ memset(ptr,0,sizeof(ptr))
 
 #define CREATE_COLLECTION(ptr) \
 ptr = (collection *) malloc(sizeof(collection)); \
-memset(ptr, 0, sizeof(ptr));    \
-ptr->initialization()
+memset(ptr, 0, sizeof(ptr));
 
 #define CREATE_ARRLIST(ptr) \
 ptr = (arr_list *)malloc(sizeof(arr_list)); \
@@ -63,14 +63,10 @@ typedef struct tylist_node {
 struct collection {
 public:
     void *data;
-    tylist_node *list = NULL;
-    void initialization(){
-        CREATE_BASE_LIST(this->list);
-    }
+    struct tylist_node list;
 
     void set_data(void *data) {
         this->data = data;
-        this->list = CREATE_BASE_LIST(list);
     }
 
     void *get_data() {
@@ -95,25 +91,31 @@ public:
         collection *new_node = NULL;
         CREATE_COLLECTION(new_node);
         //3.赋值NULL
+        new_node->list.next = NULL;
+        new_node->list.prev = NULL;
         new_node->set_data(data);
         //4.添加到末尾
         tylist_node *temp = NULL;
-        LIST_ADD_TAIL(ptr->list, temp, new_node->list);
+
+        for (temp =(&ptr->list) ;temp->next ;temp = temp->next);
+        temp->next = &new_node->list;
+        new_node->list.prev = temp;
+//        LIST_ADD_TAIL(&ptr->list, temp, &new_node->list);
         //5.长度加一
         this->length++;
     }
 
 
-    tylist_node *get(int idx) {
+    void *get(int idx) {
         //1.拿到句柄
-        tylist_node *ptr = this->collect->list;
+        tylist_node *ptr = &this->collect->list;
         tylist_node *p = NULL;
         //2.拿到对应的下标
         LIST_FOR(p, ptr, idx);
 //        //3.置换出来返回结果
-//        collection *res = NULL;
-//        CONTAINER_OF(res,collection,p);
-        return p;
+        collection *res = NULL;
+        CONTAINER_OF(res,collection,p);
+        return res->data;
     }
 
     void arr_list_remove(int idx) {

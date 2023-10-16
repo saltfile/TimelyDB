@@ -27,23 +27,34 @@ int main() {
     memset(ptr, 0, sizeof(arr_list));
     ptr->initialization();
     int *a = (int *) malloc(sizeof(int));
-    int *b = (int *) malloc(sizeof(int));
+    char*b = (char *) malloc(sizeof(10));
+    memset(b,0, sizeof(b));
     int *c = (int *) malloc(sizeof(int));
     int *d = (int *) malloc(sizeof(int));
-    a = (int *) 1;
-    b = (int *) 2;
-    c = (int *) 3;
-    d = (int *) 4;
-
-    ptr->arr_list_add(1);
-    ptr->arr_list_add(2);
-    ptr->arr_list_add(3);
+    b = strcpy(b,"asdasda");
 
 
-    tylist_node *p = ptr->get(2);
+    int nud = 10;
+    int nud1 = 11;
+    int nud2 = 12;
+    int nud3 = 13;
 
-    collection *temp = ((struct collection *) ((char *) (p) - (unsigned long) (&((struct collection *) 0)->list)));
-    int asf =  *((int*)temp->data);
+    a = &nud;
+    c = &nud2;
+    d = &nud3;
+
+    ptr->arr_list_add((void *)a);
+    ptr->arr_list_add((void *)b);
+    ptr->arr_list_add((void *)c);
+
+
+    char *str =(char *)ptr->get(2);
+    cout<<str;
+//    collection *temp = ((struct collection *) ((char *) (p) - (unsigned long) (&((struct collection *) 0)->list)));
+//    char *asf = (char*)temp->data;
+//    cout<<asf<<endl;
+
+
 
     return 1;
 }
