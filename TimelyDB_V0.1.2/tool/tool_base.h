@@ -11,6 +11,11 @@
 #include <cstring>
 
 using namespace std;
+
+#define NONE         "\033[m";
+#define LIGHT_BLUE   "\033[1;34m"
+#define LIGHT_PURPLE "\033[1;35m"
+#define LIGHT_RED "\033[1;31m"
 //基本的list宏
 
 #define LIST_LAST(pos, head) \
@@ -75,6 +80,17 @@ public:
 };
 
 struct arr_list {
+private:
+    void free_list_node(collection *_col){
+        try{
+        free(_col->data);
+        _col->data = NULL;
+        free(_col);
+        _col = NULL;
+        }catch(exception e){
+            printf(LIGHT_RED"异常： 自定义链表内存释放失败\n\033[m");
+        }
+    }
 public:
     int length = 0;
     int aim = -1;
@@ -119,8 +135,42 @@ public:
     }
 
     void arr_list_remove(int idx) {
+        tylist_node *ptr = &this->collect->list;
+        tylist_node *p = NULL;
 
+        if (idx > length-1 ||idx < 0)
+            return;
+        if (idx == 0){
+            tylist_node *tmp = ptr->next;
+            tylist_node *p_tmp_next = p->next->next;
+            p_tmp_next->prev = ptr;
+            ptr->next = tmp->next;
+
+            tmp->next = NULL;
+            tmp->prev = NULL;
+            collection *_rm = NULL;
+            CONTAINER_OF(_rm,collection,tmp);
+            free_list_node(_rm);
+        } else {
+
+            LIST_FOR(p, ptr, idx - 1);
+            tylist_node *tmp = p->next;
+            tylist_node *p_tmp_next = p->next->next;
+            p_tmp_next->prev = p;
+            p->next = p_tmp_next;
+
+            tmp->next = NULL;
+            tmp->prev = NULL;
+            collection *_rm = NULL;
+            CONTAINER_OF(_rm, collection, tmp);
+            free_list_node(_rm);
+        }
     }
+
+
+
+
+
 
 
 };
@@ -133,7 +183,7 @@ public:
 
 
 
-//字符串框架
+//字符串工具类
 
 //字符串赋值
 char *str_copy(char *str1, char *str2);

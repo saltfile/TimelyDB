@@ -50,6 +50,10 @@ int main() {
 
     char *str =(char *)ptr->get(2);
     cout<<str;
+    ptr->arr_list_remove(2);
+    int *sty = (int *)ptr->get(2);
+    cout<<*sty;
+
 //    collection *temp = ((struct collection *) ((char *) (p) - (unsigned long) (&((struct collection *) 0)->list)));
 //    char *asf = (char*)temp->data;
 //    cout<<asf<<endl;
