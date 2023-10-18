@@ -27,11 +27,10 @@ int main() {
     memset(ptr, 0, sizeof(arr_list));
     ptr->initialization();
     int *a = (int *) malloc(sizeof(int));
-    char*b = (char *) malloc(sizeof(10));
+    int*b = (int *) malloc(sizeof(int));
     memset(b,0, sizeof(b));
     int *c = (int *) malloc(sizeof(int));
     int *d = (int *) malloc(sizeof(int));
-    b = strcpy(b,"asdasda");
 
 
     int nud = 10;
@@ -41,17 +40,18 @@ int main() {
 
     a = &nud;
     c = &nud2;
+    b = &nud1;
     d = &nud3;
 
     ptr->arr_list_add((void *)a);
     ptr->arr_list_add((void *)b);
     ptr->arr_list_add((void *)c);
+    ptr->arr_list_add((void *)d);
 
-
-    char *str =(char *)ptr->get(2);
-    cout<<str;
-    ptr->arr_list_remove(2);
-    int *sty = (int *)ptr->get(2);
+    int *str =(int *)ptr->get(ptr->length-1);
+    cout<<*str;
+    ptr->arr_list_remove(ptr->length-1);
+    int *sty = (int *)ptr->get(ptr->length-1);
     cout<<*sty;
 
 //    collection *temp = ((struct collection *) ((char *) (p) - (unsigned long) (&((struct collection *) 0)->list)));

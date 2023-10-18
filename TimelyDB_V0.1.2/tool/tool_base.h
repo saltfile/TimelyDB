@@ -26,10 +26,10 @@ using namespace std;
 
 #define LIST_FOR(pos, head, idx) \
     pos = head;                \
-    for(int i = 0;i < idx-1;i++){\
+    for(int i = 0;i < idx;i++){\
     pos = pos->next;           \
     }                            \
-pos = pos->next;
+pos = pos->next; \
 
 #define LIST_ADD_TAIL(head, pos, node) \
     for (pos =(head) ;pos->next ;pos = pos->next);            \
@@ -54,9 +54,11 @@ ptr = (arr_list *)malloc(sizeof(arr_list)); \
 memset(ptr,0,sizeof(arr_list));             \
 ptr->arr_list(); \
 
-
-
-
+#define SAFE_FREE(p) \
+    if (NULL != (p)) { \
+        free((p)); \
+        (p) = NULL;\
+    }\
 
 typedef struct tylist_node {
     tylist_node *prev;
@@ -81,16 +83,19 @@ public:
 
 struct arr_list {
 private:
-    void free_list_node(collection *_col){
-        try{
-        free(_col->data);
-        _col->data = NULL;
-        free(_col);
-        _col = NULL;
-        }catch(exception e){
+    void free_list_node(collection *_col) {
+        try {
+            void *p = _col->data;
+//            memset(p,0, sizeof(p));
+//            SAFE_FREE(p);
+            _col->data = NULL;
+            SAFE_FREE(_col);
+            _col = NULL;
+        } catch (exception e) {
             printf(LIGHT_RED"异常： 自定义链表内存释放失败\n\033[m");
         }
     }
+
 public:
     int length = 0;
     int aim = -1;
@@ -113,7 +118,7 @@ public:
         //4.添加到末尾
         tylist_node *temp = NULL;
 
-        for (temp =(&ptr->list) ;temp->next ;temp = temp->next);
+        for (temp = (&ptr->list); temp->next; temp = temp->next);
         temp->next = &new_node->list;
         new_node->list.prev = temp;
 //        LIST_ADD_TAIL(&ptr->list, temp, &new_node->list);
@@ -126,11 +131,17 @@ public:
         //1.拿到句柄
         tylist_node *ptr = &this->collect->list;
         tylist_node *p = NULL;
-        //2.拿到对应的下标
+
+        //2.校验参数是否合法
+        if (idx < 0||idx >= length)
+            return NULL;
+
+        //3.拿到对应的下标
         LIST_FOR(p, ptr, idx);
-//        //3.置换出来返回结果
+
+        //4.置换出来返回结果
         collection *res = NULL;
-        CONTAINER_OF(res,collection,p);
+        CONTAINER_OF(res, collection, p);
         return res->data;
     }
 
@@ -138,18 +149,28 @@ public:
         tylist_node *ptr = &this->collect->list;
         tylist_node *p = NULL;
 
-        if (idx > length-1 ||idx < 0)
+        if (idx > length - 1 || idx < 0)
             return;
-        if (idx == 0){
+        if (idx == 0) {
             tylist_node *tmp = ptr->next;
-            tylist_node *p_tmp_next = p->next->next;
+            tylist_node *p_tmp_next = ptr->next->next;
             p_tmp_next->prev = ptr;
             ptr->next = tmp->next;
 
             tmp->next = NULL;
             tmp->prev = NULL;
             collection *_rm = NULL;
-            CONTAINER_OF(_rm,collection,tmp);
+            CONTAINER_OF(_rm, collection, tmp);
+            free_list_node(_rm);
+        } else if (idx == length - 1) {
+
+            LIST_LAST(p, ptr);
+            tylist_node *p_tmp_prev = p->prev;
+            p_tmp_prev->next = NULL;
+            p->prev = NULL;
+            p->next = NULL;
+            collection *_rm = NULL;
+            CONTAINER_OF(_rm, collection, p);
             free_list_node(_rm);
         } else {
 
@@ -165,12 +186,9 @@ public:
             CONTAINER_OF(_rm, collection, tmp);
             free_list_node(_rm);
         }
+        length--;
+
     }
-
-
-
-
-
 
 
 };
