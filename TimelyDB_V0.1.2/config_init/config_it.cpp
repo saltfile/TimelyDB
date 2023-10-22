@@ -9,8 +9,13 @@ static dbconfig *conf = new dbconfig();
 char* get_config_port(){
     return conf->port;
 }
+
 char * get_config_address(){
-    return conf->address;
+    return conf->host;
+}
+
+char *get_config_base_path(){
+    return conf->base_path;
 }
 
 int load_config(const char *file_name){
@@ -50,15 +55,21 @@ int load_config(const char *file_name){
                 if (!strcmp((char *)tk, "dbconfig")) {
                     parent = str_copy(parent,(char *)tk);
 
+                }else if (!strcmp((char *)tk, "file_path")){
+                    parent = str_copy(parent,(char *)tk);
                 }
 
                 if (!strcmp((char *)tk, "port")&& !strcmp(parent,"dbconfig")){
                     datap = &conf->port;
 
                 }
-                if (!strcmp((char *)tk, "address")&& !strcmp(parent,"dbconfig")){
-                    datap = &conf->address;
+                if (!strcmp((char *)tk, "host")&& !strcmp(parent,"dbconfig")){
+                    datap = &conf->host;
 
+                }
+
+                if (!strcmp((char *)tk, "base_path")&& !strcmp(parent,"file_path")){
+                    datap = &conf->base_path;
                 }
 
             }else {
@@ -78,7 +89,8 @@ int load_config(const char *file_name){
     printf(LIGHT_BLUE"TimelyDb初始化ing ... \n");
     printf(LIGHT_BLUE"开启服务 \n");
     printf(LIGHT_BLUE"        port：%s \n",conf->port);
-    printf(LIGHT_BLUE"        address：%s \n\033[m",conf->address);
+    printf(LIGHT_BLUE"        host：%s \n",conf->host);
+    printf(LIGHT_BLUE"        base_path：%s\n\033[m",conf->base_path);
     return 1;
 }
 

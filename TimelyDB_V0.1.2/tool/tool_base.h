@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <cstring>
-
+#include<map>
 using namespace std;
 
 #define NONE         "\033[m";
@@ -192,6 +192,11 @@ public:
 
 
 };
+
+
+
+//文件系统初期测试存储文件
+void file_test();
 
 
 

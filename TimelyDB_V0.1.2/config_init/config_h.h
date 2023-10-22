@@ -24,10 +24,12 @@ using namespace std;
 #define DEFAULT_XML_FILE "../config.yaml"
 typedef struct dbconfig{
     char *port;
-    char *address;
+    char *host;
+    char *base_path;
     dbconfig(){
     this->port = "8080";
-    this->address = "localhost";
+    this->host = "localhost";
+    this->base_path = "/home/saltfish/indexTSDB";
     }
 }dbconfig;
 
@@ -38,6 +40,8 @@ int load_config(const char *file_name);
 char * get_config_port();
 
 char * get_config_address();
+
+char * get_config_base_path();
 
 char * load_project_path();
 

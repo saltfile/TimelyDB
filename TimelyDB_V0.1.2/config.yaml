@@ -1,3 +1,5 @@
 dbconfig:
     port: 8989
-    address: "192.168.0.108"
+    host: "192.168.0.108"
+file_path:
+    base_path: "/home/saltfish/indexTSDB"
