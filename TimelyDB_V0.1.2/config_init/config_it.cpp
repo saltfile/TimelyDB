@@ -87,7 +87,7 @@ int load_config(const char *file_name){
 
 
     printf(LIGHT_BLUE"TimelyDb初始化ing ... \n");
-    printf(LIGHT_BLUE"开启服务 \n");
+    printf(LIGHT_BLUE"读取配置 \n");
     printf(LIGHT_BLUE"        port：%s \n",conf->port);
     printf(LIGHT_BLUE"        host：%s \n",conf->host);
     printf(LIGHT_BLUE"        base_path：%s\n\033[m",conf->base_path);
