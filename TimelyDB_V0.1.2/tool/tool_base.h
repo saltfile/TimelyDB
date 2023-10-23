@@ -9,15 +9,16 @@
 #include <stdlib.h>
 #include <iostream>
 #include <cstring>
+#include <dirent.h>
+#include <fcntl.h>
+#include <sys/stat.h>
 #include<map>
 using namespace std;
-
 #define NONE         "\033[m";
 #define LIGHT_BLUE   "\033[1;34m"
 #define LIGHT_PURPLE "\033[1;35m"
 #define LIGHT_RED "\033[1;31m"
 //基本的list宏
-
 #define LIST_LAST(pos, head) \
     for (pos =(head) ;pos->next ;pos = pos->next)
 
@@ -190,14 +191,13 @@ public:
 
     }
 
-
 };
 
 
 
 //文件系统初期测试存储文件
 void file_test();
-
+int push_file(char* database,char* table);
 
 
 

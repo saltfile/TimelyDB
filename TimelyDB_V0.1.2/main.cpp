@@ -4,14 +4,11 @@
 //
 int main() {
 
+    char *path =  load_config_path();
+    load_config(path);
+    char *add = get_config_base_path();
 
-
-
-
-
-
-
-
+    push_file("user","xxx");
 
 
 
