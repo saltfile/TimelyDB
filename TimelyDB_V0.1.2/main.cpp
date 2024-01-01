@@ -8,7 +8,12 @@ int main() {
     load_config(path);
     char *add = get_config_base_path();
 
-    push_file("user","xxx");
+
+
+//    create_table("user","xxx");
+
+
+
 
 
 

@@ -197,7 +197,17 @@ public:
 
 //文件系统初期测试存储文件
 void file_test();
-int push_file(char* database,char* table);
+/**
+ * 创建目录&文件接口
+ * @return 统一规则
+ * 目录    已创建：1、目录已存在：0、创建失败：-1
+ */
+int create_mkdir(char *path);
+FILE *create_file(char *path);
+bool file_is_exist(char *path);
+
+int create_database(char *base_name);
+int create_table(char* database,char* table);
 
 
 
