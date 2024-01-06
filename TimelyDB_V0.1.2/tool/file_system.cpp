@@ -76,18 +76,25 @@ int create_database(char *base_name) {
     base = str_marge(base, "/");
 
     char *base_path = str_marge(base, base_name);
-    int result = create_mkdir(base_path);
+    int result = 0;
+
+    if(file_is_exist(base_path)){
+        return result;
+    }
+
     string key = base_path;
 
     map<string, FILE *> val;
+    //创建数据库成功后才可以添加进映射map
     if (result == 1) {
         DB_FILE_MAP.insert(pair<string, map<string, FILE *>>(key, val));
     }
-
     return result;
 }
 //TODO:这里仍然需要多多斟酌
 int create_table(char *database, char *table) {
+
+
 
 
     return 1;
