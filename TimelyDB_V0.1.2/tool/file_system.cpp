@@ -71,6 +71,17 @@ FILE *create_file(char *path, char *suffix) {
     }
 }
 
+bool database_is_exist(char *database){
+    if (database == NULL)return false;
+    string key = database;
+    auto it = DB_FILE_MAP.find(key);
+    if (it != DB_FILE_MAP.end()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 int create_database(char *base_name) {
     char *base = str_copy(base, get_config_base_path());
     base = str_marge(base, "/");
@@ -91,13 +102,61 @@ int create_database(char *base_name) {
     }
     return result;
 }
-//TODO:这里仍然需要多多斟酌
+
+
+
+
+
+bool table_is_exist(char *database, char *table){
+    string key = database;
+    string tab_key = table;
+    if (!database_is_exist(database))return false;
+
+    auto it = DB_FILE_MAP[key].find(key);
+    if (it != DB_FILE_MAP[key].end()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 int create_table(char *database, char *table) {
+    //1.先查看数据库是否存在
+    string base_key = database;
 
+    char *base = str_copy(base,get_config_base_path());
+    base = str_marge(base,"/");
+    base = str_marge(base,database);
+    base = str_marge(base,"/");
+    base = str_marge(base,table);
+    //2.如果数据库不存在返回-1
+    if (database_is_exist(database)){
+        //2.1查看是否已经存在表
+        if (table_is_exist(database,table)){
+            return -2;
+        } else{
+            //2.1.1创建基础存储文件表表结构元数据&先不创建索引
+            /**
+             * 1.数据源文件只是普通的txt
+             * 2.表结构元数据文件+tsdb
+             */
+             //2.1.1创建数据文件
+            FILE *db_file = fopen(base, "a+");
+            //2.1.2创建元数据文件
+            char *des_path = str_marge(base,".tsdb");
+            FILE *des_file = fopen(des_path,"a+");
 
+            string db_key = table;
+            string des_key = str_marge(table,".tsdb");
+            DB_FILE_MAP[base_key].insert(pair<string , FILE *>(db_key,db_file));
+            DB_FILE_MAP[base_key].insert(pair<string,FILE *>(des_key,des_file));
 
+            return 1;
+        }
+    } else{
+        return -1;
+    }
 
-    return 1;
 
 
 }
