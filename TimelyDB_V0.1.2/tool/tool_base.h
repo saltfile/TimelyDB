@@ -193,7 +193,8 @@ public:
 
 };
 
-
+int get_databse_num();
+void init_file_system();
 
 //文件系统初期测试存储文件
 void file_test();

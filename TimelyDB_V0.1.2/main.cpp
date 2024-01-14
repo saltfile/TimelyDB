@@ -6,10 +6,11 @@ int main() {
 
     char *path =  load_config_path();
     load_config(path);
-    char *add = get_config_base_path();
+    char *base = get_config_base_path();
+    cout<<get_databse_num();
 
-
-
+//    cout<<create_database("usnh_db");
+//    cout<<create_table("usnh_db","push");
 //    create_table("user","xxx");
 
 

@@ -71,7 +71,7 @@ FILE *create_file(char *path, char *suffix) {
     }
 }
 
-bool database_is_exist(char *database){
+bool database_is_exist(char *database) {
     if (database == NULL)return false;
     string key = database;
     auto it = DB_FILE_MAP.find(key);
@@ -89,13 +89,15 @@ int create_database(char *base_name) {
     char *base_path = str_marge(base, base_name);
     int result = 0;
 
-    if(file_is_exist(base_path)){
+    if (file_is_exist(base_path)) {
         return result;
     }
 
     string key = base_path;
 
     map<string, FILE *> val;
+
+    result = create_mkdir(base_path);
     //创建数据库成功后才可以添加进映射map
     if (result == 1) {
         DB_FILE_MAP.insert(pair<string, map<string, FILE *>>(key, val));
@@ -104,10 +106,7 @@ int create_database(char *base_name) {
 }
 
 
-
-
-
-bool table_is_exist(char *database, char *table){
+bool table_is_exist(char *database, char *table) {
     string key = database;
     string tab_key = table;
     if (!database_is_exist(database))return false;
@@ -124,45 +123,113 @@ int create_table(char *database, char *table) {
     //1.先查看数据库是否存在
     string base_key = database;
 
-    char *base = str_copy(base,get_config_base_path());
-    base = str_marge(base,"/");
-    base = str_marge(base,database);
-    base = str_marge(base,"/");
-    base = str_marge(base,table);
+    char *base = str_copy(base, get_config_base_path());
+    base = str_marge(base, "/");
+    base = str_marge(base, database);
+    base = str_marge(base, "/");
+    base = str_marge(base, table);
     //2.如果数据库不存在返回-1
-    if (database_is_exist(database)){
+    if (database_is_exist(database)) {
         //2.1查看是否已经存在表
-        if (table_is_exist(database,table)){
+        if (table_is_exist(database, table)) {
             return -2;
-        } else{
+        } else {
             //2.1.1创建基础存储文件表表结构元数据&先不创建索引
             /**
              * 1.数据源文件只是普通的txt
              * 2.表结构元数据文件+tsdb
              */
-             //2.1.1创建数据文件
+            //2.1.1创建数据文件
             FILE *db_file = fopen(base, "a+");
             //2.1.2创建元数据文件
-            char *des_path = str_marge(base,".tsdb");
-            FILE *des_file = fopen(des_path,"a+");
+            char *des_path = str_marge(base, ".tsdb");
+            FILE *des_file = fopen(des_path, "a+");
 
             string db_key = table;
-            string des_key = str_marge(table,".tsdb");
-            DB_FILE_MAP[base_key].insert(pair<string , FILE *>(db_key,db_file));
-            DB_FILE_MAP[base_key].insert(pair<string,FILE *>(des_key,des_file));
+            string des_key = str_marge(table, ".tsdb");
+            DB_FILE_MAP[base_key].insert(pair<string, FILE *>(db_key, db_file));
+            DB_FILE_MAP[base_key].insert(pair<string, FILE *>(des_key, des_file));
 
             return 1;
         }
-    } else{
+    } else {
         return -1;
     }
-
 
 
 }
 
 
 
+
+int get_databse_num(){
+    DIR * dp;
+    struct dirent *filename;
+
+    char* local_host = str_copy(local_host,get_config_base_path());
+
+    dp = opendir(local_host);
+    if (!dp)
+    {
+        fprintf(stderr,"open directory error\n");
+        return -1;
+    }
+    int res = 0;
+    while (filename = readdir(dp))
+    {
+        if (strcmp(filename->d_name,".")&&strcmp(filename->d_name,"..")){
+            res++;
+        }
+    }
+
+    closedir(dp);
+    return res;
+}
+
+
+
+
+char** find_database(){
+    int size = get_databse_num();
+    char **res =  (char**) malloc(size * sizeof(char*));
+    memset(res,0,sizeof(res));
+    char* local_host = str_copy(local_host,get_config_base_path());
+    //遍历目录下的文件
+    DIR * dp;
+    struct dirent *filename;
+
+    dp = opendir(local_host);
+    if (!dp)
+    {
+        fprintf(stderr,"open directory error\n");
+        return NULL;
+    }
+
+    int i = 0;
+    while (filename = readdir(dp))
+    {
+
+        if (strcmp(filename->d_name,".")&&strcmp(filename->d_name,"..")){
+            struct stat buf;
+            char* path = str_copy(path,filename->d_name);
+            res[i] = path;
+            i++;
+        }
+
+    }
+    return res;
+
+}
+
+void init_file_system(){
+
+
+
+
+
+
+
+}
 
 
 
