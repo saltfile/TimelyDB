@@ -7,7 +7,9 @@ int main() {
     char *path =  load_config_path();
     load_config(path);
     char *base = get_config_base_path();
-    cout<<get_databse_num();
+    int base_num = get_databse_num();
+    char ** database_s = find_database();
+
 
 //    cout<<create_database("usnh_db");
 //    cout<<create_table("usnh_db","push");

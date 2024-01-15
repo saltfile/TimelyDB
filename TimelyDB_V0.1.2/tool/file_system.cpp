@@ -221,9 +221,22 @@ char** find_database(){
 
 }
 
+//获取对应的文件指针
+FILE *get_file_ptr(char *file_path){
+
+}
+
+
 void init_file_system(){
+    int base_num = get_databse_num();
+    char ** database_s = find_database();
 
+    for (int i = 0; i < base_num; ++i) {
+        string key = database_s[i];
+        map<string, FILE *> val;
+        DB_FILE_MAP.insert(pair<string, map<string, FILE *>>(key, val));
 
+    }
 
 
 
