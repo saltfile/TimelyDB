@@ -140,10 +140,10 @@ int create_table(char *database, char *table) {
              * 2.表结构元数据文件+tsdb
              */
             //2.1.1创建数据文件
-            FILE *db_file = fopen(base, "a+");
+            FILE *db_file = fopen(base, "rw+");
             //2.1.2创建元数据文件
             char *des_path = str_marge(base, ".tsdb");
-            FILE *des_file = fopen(des_path, "a+");
+            FILE *des_file = fopen(des_path, "rw+");
 
             string db_key = table;
             string des_key = str_marge(table, ".tsdb");
@@ -279,7 +279,12 @@ char** find_database(){
 
 //获取对应的文件指针
 FILE *get_file_ptr(char *file_path){
-
+    if (file_is_exist(file_path)) {
+        FILE *file = fopen(file_path, "rw+");
+        return file;
+    } else {
+        return NULL;
+    }
 }
 
 
@@ -295,10 +300,21 @@ void init_file_system(){
         base_local_path = str_marge(base_local_path,"/");
         base_local_path = str_marge(base_local_path,(char *)key.c_str());
 
-        int table_num = get_tables_num(base_local_path);
-        char **tables = find_tables(base_local_path);
+        int table_file_num = get_tables_num(base_local_path);
+        char **table_files = find_tables(base_local_path);
 
+        for (int j = 0; j < table_file_num; ++j) {
+            char *table_local_path = str_copy(table_local_path,get_config_base_path());
+            char *tab_name = table_files[j];
+            table_local_path = str_marge(table_local_path,"/");
+            table_local_path = str_marge(table_local_path,(char *)key.c_str());
+            table_local_path = str_marge(table_local_path,"/");
+            table_local_path = str_marge(table_local_path,tab_name);
 
+            FILE *file_ptr = get_file_ptr(table_local_path);
+            string tab_key = tab_name;
+            val.insert(pair<string,FILE *>(tab_key,file_ptr));
+        }
 
         DB_FILE_MAP.insert(pair<string, map<string, FILE *>>(key, val));
     }
