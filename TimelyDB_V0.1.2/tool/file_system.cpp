@@ -187,6 +187,62 @@ int get_databse_num(){
 }
 
 
+int get_tables_num(char *database_path){
+
+
+    DIR * dp;
+    struct dirent *filename;
+
+    dp = opendir(database_path);
+    if (!dp)
+    {
+        fprintf(stderr,"open directory error\n");
+        return -1;
+    }
+    int res = 0;
+    while (filename = readdir(dp))
+    {
+        if (strcmp(filename->d_name,".")&&strcmp(filename->d_name,".."))
+            res++;
+    }
+    return res;
+}
+
+
+char ** find_tables(char *database_path){
+
+    int size = get_tables_num(database_path);
+    char **res =  (char**) malloc(size * sizeof(char*));
+    memset(res,0,sizeof(res));
+
+    //遍历目录下的文件
+    DIR * dp;
+    struct dirent *filename;
+
+    dp = opendir(database_path);
+    if (!dp)
+    {
+        fprintf(stderr,"open directory error\n");
+        return NULL;
+    }
+
+    int i = 0;
+    while (filename = readdir(dp))
+    {
+
+        if (strcmp(filename->d_name,".")&&strcmp(filename->d_name,"..")){
+
+            char *tab_path = str_marge("",filename->d_name);
+            res[i] = tab_path;
+            i++;
+        }
+
+    }
+    return res;
+
+}
+
+
 
 
 char** find_database(){
@@ -232,10 +288,19 @@ void init_file_system(){
     char ** database_s = find_database();
 
     for (int i = 0; i < base_num; ++i) {
-        string key = database_s[i];
+        string key = database_s[i];   //数据库本地文件夹名称
         map<string, FILE *> val;
-        DB_FILE_MAP.insert(pair<string, map<string, FILE *>>(key, val));
 
+        char *base_local_path = str_copy(base_local_path,get_config_base_path());
+        base_local_path = str_marge(base_local_path,"/");
+        base_local_path = str_marge(base_local_path,(char *)key.c_str());
+
+        int table_num = get_tables_num(base_local_path);
+        char **tables = find_tables(base_local_path);
+
+
+
+        DB_FILE_MAP.insert(pair<string, map<string, FILE *>>(key, val));
     }
 
 

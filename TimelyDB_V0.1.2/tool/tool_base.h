@@ -195,6 +195,8 @@ public:
 
 int get_databse_num();
 char** find_database();
+int get_tables_num(char *database_path);
+char ** find_tables(char *database_path);
 void init_file_system();
 
 //文件系统初期测试存储文件
