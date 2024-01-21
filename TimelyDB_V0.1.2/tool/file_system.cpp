@@ -310,7 +310,10 @@ void init_file_system(){
             table_local_path = str_marge(table_local_path,(char *)key.c_str());
             table_local_path = str_marge(table_local_path,"/");
             table_local_path = str_marge(table_local_path,tab_name);
-
+            if (!file_is_exist(table_local_path)){
+                printf(LIGHT_RED" log-err:初始化未找到对应文件%s \n\033[m",tab_name);
+                continue;
+            }
             FILE *file_ptr = get_file_ptr(table_local_path);
             string tab_key = tab_name;
             val.insert(pair<string,FILE *>(tab_key,file_ptr));
@@ -320,10 +323,15 @@ void init_file_system(){
     }
 
 
-
-
-
 }
+
+
+//文件写入
+
+
+
+
+
 
 
 
