@@ -111,7 +111,7 @@ bool table_is_exist(char *database, char *table) {
     string tab_key = table;
     if (!database_is_exist(database))return false;
 
-    auto it = DB_FILE_MAP[key].find(key);
+    auto it = DB_FILE_MAP[key].find(tab_key);
     if (it != DB_FILE_MAP[key].end()) {
         return true;
     } else {
@@ -140,10 +140,10 @@ int create_table(char *database, char *table) {
              * 2.表结构元数据文件+tsdb
              */
             //2.1.1创建数据文件
-            FILE *db_file = fopen(base, "rw+");
+            FILE *db_file = fopen(base, "a+");
             //2.1.2创建元数据文件
             char *des_path = str_marge(base, ".tsdb");
-            FILE *des_file = fopen(des_path, "rw+");
+            FILE *des_file = fopen(des_path, "a+");
 
             string db_key = table;
             string des_key = str_marge(table, ".tsdb");
@@ -280,7 +280,7 @@ char** find_database(){
 //获取对应的文件指针
 FILE *get_file_ptr(char *file_path){
     if (file_is_exist(file_path)) {
-        FILE *file = fopen(file_path, "rw+");
+        FILE *file = fopen(file_path, "a+");
         return file;
     } else {
         return NULL;
@@ -327,7 +327,26 @@ void init_file_system(){
 
 
 //文件写入
+int file_write(char *base_key,char *file_name,char *data){
+    string b_key = base_key;
+    string f_key = file_name;
 
+    if (!database_is_exist(base_key)){
+        return -2;
+    }
+    if (!table_is_exist(base_key,file_name)){
+        return -1;
+    }
+
+
+    FILE *ptr = DB_FILE_MAP[b_key][f_key];
+    data = str_marge(data,"\n");
+    int result = fputs(data, ptr);
+    fflush(ptr);
+    return result;
+
+
+}
 
 
 

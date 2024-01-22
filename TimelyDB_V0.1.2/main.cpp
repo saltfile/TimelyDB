@@ -9,6 +9,9 @@ int main() {
 
     init_file_system();
 
+    file_write("usnh_db","push","sadakfhsdf");
+    file_write("usnh_db","push","sadakfhsdfss");
+    file_write("usnh_db","push","sadakfhsdfhh");
 //    char *base = get_config_base_path();
 //    int base_num = get_databse_num();
 //    char ** database_s = find_database();

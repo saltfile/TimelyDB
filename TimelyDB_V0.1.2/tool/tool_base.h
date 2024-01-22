@@ -213,7 +213,7 @@ bool file_is_exist(char *path);
 int create_database(char *base_name);
 int create_table(char* database,char* table);
 
-
+int file_write(char *base_key,char *file_name,char *data);
 
 
 
