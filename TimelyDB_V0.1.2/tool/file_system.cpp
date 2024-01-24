@@ -348,7 +348,15 @@ int file_write(char *base_key,char *file_name,char *data){
 
 }
 
+char *file_read(char *base_name,char *file_name,char buf[]){
 
+    string base_key = base_name;
+    string file_key = file_name;
+
+    FILE *ptr = DB_FILE_MAP[base_key][file_key];
+    fgets(buf, sizeof(buf), ptr);
+    return buf;
+}
 
 
 
