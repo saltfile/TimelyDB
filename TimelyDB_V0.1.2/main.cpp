@@ -1,4 +1,5 @@
 #include "_startup.h"
+#include "server/server_base.h"
 
 
 //
@@ -9,9 +10,17 @@ int main() {
 
     init_file_system();
 
-    file_write("usnh_db","push","sadakfhsdf");
-    file_write("usnh_db","push","sadakfhsdfss");
-    file_write("usnh_db","push","sadakfhsdfhh");
+//    file_write("usnh_db","push","sadakfhsdf");
+//    file_write("usnh_db","push","sadakfhsdfss");
+//    file_write("usnh_db","push","sadakfhsdfhh");
+//TODO：目前可以得知服务端还可以使用
+//    epollser_start(9898);
+
+
+
+
+
+    
 //    char *base = get_config_base_path();
 //    int base_num = get_databse_num();
 //    char ** database_s = find_database();
