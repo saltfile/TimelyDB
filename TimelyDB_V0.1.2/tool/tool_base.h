@@ -233,6 +233,7 @@ int str_spilt_size(char *a, char *b);
 
 char **str_spilt(char *str, char *dent);
 
+char *str_to_int(int num,char* str,int radix);
 
 //释放字符串函数
 char *free_str(char *str);

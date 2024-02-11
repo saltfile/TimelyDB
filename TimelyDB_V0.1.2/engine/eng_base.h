@@ -62,6 +62,13 @@ typedef struct tab_struct{
 };
 
 
+
+
+
+
+
+//初始化表
+bool DB_init_memery_tab();
 //创建表
 bool DB_create_table(char* base_name,char* tab_name,char** clonms,data_type * types,int clonms_size);
 
