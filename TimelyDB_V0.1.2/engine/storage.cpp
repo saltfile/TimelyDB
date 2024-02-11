@@ -13,6 +13,8 @@ static map<string, map<string, tab_struct>> DB_TAB_MAP;
  */
 bool DB_init_memery_tab(){
 
+
+
 }
 
 

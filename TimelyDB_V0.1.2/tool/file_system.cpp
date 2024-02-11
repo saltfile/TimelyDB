@@ -325,6 +325,21 @@ void init_file_system(){
 
 }
 
+vector<string> get_any_base(){
+    vector<string> result;
+    for (auto it = DB_FILE_MAP.begin(); it != DB_FILE_MAP.end(); ++it) {
+        result.push_back(it->first);
+    }
+    return result;
+
+}
+
+
+
+
+
+
+
 
 //文件写入
 int file_write(char *base_key,char *file_name,char *data){
