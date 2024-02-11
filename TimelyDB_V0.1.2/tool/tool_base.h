@@ -12,6 +12,7 @@
 #include <dirent.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <vector>
 #include<map>
 using namespace std;
 #define NONE         "\033[m";
@@ -216,6 +217,11 @@ int create_table(char* database,char* table);
 int file_write(char *base_key,char *file_name,char *data);
 
 
+/**
+ * 支持数据库的函数
+ * @return
+ */
+vector<string> get_any_base();
 
 
 

@@ -10,6 +10,19 @@ int main() {
 
     init_file_system();
 
+    map<string, int> myMap;
+    myMap["apple"] = 10;
+    myMap["banana"] = 5;
+    myMap["orange"] = 8;
+
+    vector<string> res;
+    // 使用迭代器遍历map
+    for (auto it = myMap.begin(); it != myMap.end(); ++it) {
+        cout << "Key: " << it->first << ", Value: " << it->second << endl;
+        res.push_back(it->first);
+    }
+
+
 //    file_write("usnh_db","push","sadakfhsdf");
 //    file_write("usnh_db","push","sadakfhsdfss");
 //    file_write("usnh_db","push","sadakfhsdfhh");
