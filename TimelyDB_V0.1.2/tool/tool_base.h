@@ -216,13 +216,14 @@ int create_table(char* database,char* table);
 
 int file_write(char *base_key,char *file_name,char *data);
 
+char *file_read(char *base_name,char *file_name);
 
 /**
  * 支持数据库的函数
  * @return
  */
 vector<string> get_any_base();
-
+vector<string> get_any_table(string base_key);
 
 
 

@@ -12,7 +12,25 @@ static map<string, map<string, tab_struct>> DB_TAB_MAP;
  * @return
  */
 bool DB_init_memery_tab(){
+    vector<string> bases = get_any_base();
+    for (int i = 0; i < bases.size(); ++i) {
+        string base_key = bases[i];
+        vector<string> tab_s = get_any_table(base_key);
 
+        for (int j = 0; j < tab_s.size(); ++j) {
+//            file_read(base_key,tab_s[j])
+        }
+
+
+
+
+
+
+
+
+
+
+    }
 
 
 }

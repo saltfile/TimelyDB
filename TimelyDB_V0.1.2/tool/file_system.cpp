@@ -335,7 +335,13 @@ vector<string> get_any_base(){
 }
 
 
-
+vector<string> get_any_table(string base_key){
+    vector<string> result;
+    for (auto it = DB_FILE_MAP[base_key].begin(); it != DB_FILE_MAP[base_key].end(); ++it) {
+        result.push_back(it->first);
+    }
+    return result;
+}
 
 
 
@@ -363,13 +369,28 @@ int file_write(char *base_key,char *file_name,char *data){
 
 }
 
-char *file_read(char *base_name,char *file_name,char buf[]){
+char *file_read(char *base_name,char *file_name){
 
     string base_key = base_name;
     string file_key = file_name;
 
     FILE *ptr = DB_FILE_MAP[base_key][file_key];
+    long file_size = 0;
+    char *buf = NULL;
+
+    fseek(ptr, 0, SEEK_END);
+    file_size = ftell(ptr);
+    rewind(ptr);
+
+
+
+    // 分配足够的内存空间
+    buf = (char*)malloc(file_size * sizeof(char));
+
+    // 读取文件内容
+    fread(buf, sizeof(char), file_size, ptr);
     fgets(buf, sizeof(buf), ptr);
+
     return buf;
 }
 
