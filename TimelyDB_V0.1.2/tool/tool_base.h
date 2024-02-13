@@ -14,6 +14,8 @@
 #include <sys/stat.h>
 #include <vector>
 #include<map>
+#include <csetjmp>
+
 using namespace std;
 #define NONE         "\033[m";
 #define LIGHT_BLUE   "\033[1;34m"
@@ -244,6 +246,34 @@ char *str_to_int(int num,char* str,int radix);
 
 //释放字符串函数
 char *free_str(char *str);
+
+//异常处理封装
+typedef struct exceptions{
+    jmp_buf jmpbuf;     // 用于长跳转的上下文数据
+    char *err_msg;      // 错误信息
+} exception;
+
+struct exceptions e;
+
+
+void except_throw(char *msg) {
+    e.err_msg = msg;
+    longjmp(e.jmpbuf, 1);
+}
+
+//异常处理封装宏
+#define TRY do { \
+    if (setjmp(e.jmpbuf) == 0) {
+
+// catch 代码块
+#define CATCH } else { \
+    printf("Exception occurred: %s\n", e.err_msg);
+
+// end try 块
+#define END_TRY } \
+} while (0)
+
+
 
 
 #endif //TIMELYDB_V0_1_2_TOOL_BASE_H

@@ -57,8 +57,8 @@ typedef struct DB_table{
 //最懒省事做法
 typedef struct tab_struct{
     int max_data_size;
-    map<char*,data_type> type_map;
-    map<char*,arr_list*> data_map;
+    map<string ,data_type> type_map;
+    map<string ,arr_list*> data_map;
 };
 
 
