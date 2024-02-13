@@ -11,6 +11,11 @@ static map<string, map<string, tab_struct>> DB_TAB_MAP;
  * @return
  */
 bool DB_init_memery_tab() {
+    /**
+     * 后期加入try块儿
+     */
+
+
     vector<string> bases = get_any_base();
     for (int i = 0; i < bases.size(); ++i) {
         string base_key = bases[i];
@@ -43,7 +48,7 @@ bool DB_init_memery_tab() {
         DB_TAB_MAP.insert(pair<string,map<string,tab_struct>>(base_key,push_map));
 
     }
-
+    return true;
 
 }
 
