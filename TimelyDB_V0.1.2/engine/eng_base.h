@@ -30,7 +30,7 @@
 #include <netinet/ip.h>
 #include <future>
 #include <cstdlib>
-#include <exception>
+//#include <exception>
 #include "../tool/tool_base.h"
 using namespace std;
 

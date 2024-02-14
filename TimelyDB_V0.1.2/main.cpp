@@ -1,10 +1,13 @@
 #include "_startup.h"
 #include "server/server_base.h"
 
+//异常处理封装
 
 //
 int main() {
 
+
+    TRY
     char *path =  load_config_path();
     load_config(path);
 
@@ -21,7 +24,10 @@ int main() {
         cout << "Key: " << it->first << ", Value: " << it->second << endl;
         res.push_back(it->first);
     }
-
+    except_throws("invalid value");
+    CATCH
+        printf("Error message: %s\n", my_excs.err_msg);
+    END_TRY
 
 //    file_write("usnh_db","push","sadakfhsdf");
 //    file_write("usnh_db","push","sadakfhsdfss");
