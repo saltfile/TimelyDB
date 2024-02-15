@@ -5,6 +5,8 @@
 #include "tool/tool_base.h"
 #include "config_init/config_h.h"
 #include "time_pool/t_pool.h"
+#include "engine/eng_base.h"
+#include "server/server_base.h"
 using namespace std;
 
 #define CONFIG_INIT()\

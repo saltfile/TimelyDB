@@ -338,7 +338,9 @@ vector<string> get_any_base(){
 vector<string> get_any_table(string base_key){
     vector<string> result;
     for (auto it = DB_FILE_MAP[base_key].begin(); it != DB_FILE_MAP[base_key].end(); ++it) {
+        if (it->first.find(".tsdb") == -1) {
         result.push_back(it->first);
+        }
     }
     return result;
 }
@@ -361,7 +363,7 @@ int file_write(char *base_key,char *file_name,char *data){
 
 
     FILE *ptr = DB_FILE_MAP[b_key][f_key];
-    data = str_marge(data,"\n");
+//    data = str_marge(data,"\n");
     int result = fputs(data, ptr);
     fflush(ptr);
     return result;

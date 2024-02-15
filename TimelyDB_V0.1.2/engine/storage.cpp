@@ -21,9 +21,11 @@ bool DB_init_memery_tab() {
         string base_key = bases[i];
         vector<string> tab_s = get_any_table(base_key);
         map<string, tab_struct> push_map;
-
         for (int j = 0; j < tab_s.size(); ++j) {
-            char *ts_data = file_read(const_cast<char *>(base_key.c_str()), const_cast<char *>(tab_s[j].c_str()));
+
+            char *tsdata = const_cast<char *>(tab_s[j].c_str());
+            tsdata = str_marge(tsdata,".tsdb");
+            char *ts_data = file_read(const_cast<char *>(base_key.c_str()), const_cast<char *>(tsdata));
             int cloms = str_spilt_size(ts_data, ";");
             char **c_names = str_spilt(ts_data, ";");
 
@@ -65,6 +67,7 @@ bool DB_create_table(char *base_name, char *tab_name, char **clonms, data_type *
     int is_succ = create_table(base_name, tab_name);
     if (is_succ != 1)return result;
 
+    tab_struct tab;
     //1.拼接表信息
     char *tsdb_data = "";
     for (int i = 0; i < clonms_size; ++i) {
@@ -73,10 +76,23 @@ bool DB_create_table(char *base_name, char *tab_name, char **clonms, data_type *
         tsdb_data = str_marge(tsdb_data, "$");
         tsdb_data = str_marge(tsdb_data, str_to_int(types[i], stnum, 10));
         tsdb_data = str_marge(tsdb_data, ";");
+        string col = clonms[i];
+
+        arr_list *ptr = (arr_list *) malloc(sizeof(arr_list));
+        memset(ptr, 0, sizeof(arr_list));
+        ptr->initialization();
+
+        tab.type_map.insert(pair<string,data_type>(col,types[i]));
+        tab.data_map.insert(pair<string ,arr_list*>(col, ptr));
     }
     //2.写入
     char *file_key = str_marge(tab_name, ".tsdb");
     result = file_write(base_name, file_key, tsdb_data) > 0;
+    //3.同步到内存map
+    string b_name = base_name;
+    string t_name = tab_name;
+    DB_TAB_MAP[b_name].insert(pair<string ,tab_struct>(t_name,tab));
+
 
     return result;
 }

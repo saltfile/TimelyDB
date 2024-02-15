@@ -1,5 +1,6 @@
 #include "_startup.h"
-#include "server/server_base.h"
+
+
 
 //异常处理封装
 
@@ -7,27 +8,30 @@
 int main() {
 
 
-    TRY
     char *path =  load_config_path();
     load_config(path);
 
     init_file_system();
 
-    map<string, int> myMap;
-    myMap["apple"] = 10;
-    myMap["banana"] = 5;
-    myMap["orange"] = 8;
+    DB_init_memery_tab();
 
-    vector<string> res;
-    // 使用迭代器遍历map
-    for (auto it = myMap.begin(); it != myMap.end(); ++it) {
-        cout << "Key: " << it->first << ", Value: " << it->second << endl;
-        res.push_back(it->first);
-    }
-    except_throws("invalid value");
-    CATCH
-        printf("Error message: %s\n", my_excs.err_msg);
-    END_TRY
+    char* cloms[] = {"name","age"};
+    data_type types[] = {VARCHAR,INT};
+
+    DB_create_table("usnh_db","stuq",cloms,types,2);
+
+
+//    map<string, int> myMap;
+//    myMap["apple"] = 10;
+//    myMap["banana"] = 5;
+//    myMap["orange"] = 8;
+//
+//    vector<string> res;
+//    // 使用迭代器遍历map
+//    for (auto it = myMap.begin(); it != myMap.end(); ++it) {
+//        cout << "Key: " << it->first << ", Value: " << it->second << endl;
+//        res.push_back(it->first);
+//    }
 
 //    file_write("usnh_db","push","sadakfhsdf");
 //    file_write("usnh_db","push","sadakfhsdfss");

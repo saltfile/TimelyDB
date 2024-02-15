@@ -247,32 +247,7 @@ char *str_to_int(int num,char* str,int radix);
 //释放字符串函数
 char *free_str(char *str);
 
-//异常处理封装
-typedef struct Exception{
-    jmp_buf jmpbuf;     // 用于长跳转的上下文数据
-    char *err_msg;      // 错误信息
-} Exception;
 
-Exception my_excs;
-
-
-void except_throws(char *msg) {
-    my_excs.err_msg = msg;
-    longjmp(my_excs.jmpbuf, 1);
-}
-
-//异常处理封装宏
-#define TRY do { \
-    if (setjmp(my_excs.jmpbuf) == 0) {
-
-// catch 代码块
-#define CATCH } else { \
-    printf("Exception occurred: %s\n", my_excs.err_msg);
-
-// end try 块
-#define END_TRY } \
-} while (0);
-//
 
 
 
