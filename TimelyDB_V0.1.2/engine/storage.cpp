@@ -104,8 +104,15 @@ bool DB_create_table(char *base_name, char *tab_name, char **clonms, data_type *
 
 
 
+/**
+ * 插入这里需要想想
+ * @param base_name
+ * @param tab_name
+ * @return
+ */
+bool DB_insert_table(char *base_name,char *tab_name){
 
-
+}
 
 
 

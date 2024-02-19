@@ -44,6 +44,34 @@ enum data_type{
     TEXT=5,
     TIMESTAMP=8
 };
+
+typedef struct integer{
+    int val;
+};
+
+typedef struct varchar{
+    int size;
+    char *val;
+};
+
+typedef struct boolbean{
+    bool val;
+};
+
+typedef struct doubles{
+    double val;
+};
+
+typedef struct timestramp{
+
+};
+
+
+
+
+
+
+
 //早期做法
 typedef struct DB_table{
     int clonms_size;
