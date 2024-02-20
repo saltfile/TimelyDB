@@ -47,23 +47,54 @@ enum data_type{
 
 typedef struct integer{
     int val;
+
+    integer(int v) : val(v) {}
+
+    int operator=(integer &order){
+        return order.val;
+    }
+    void operator=(int i)
+    {
+        val = i;
+    }
 };
 
 typedef struct varchar{
-    int size;
-    char *val;
+    int size = 255;
+    char *val = (char *) malloc(sizeof(char)*size);
+
+    void operator=(char* str){
+        if(size > strlen(str)){
+            memset(val,0,size);
+            strcpy(val,str);
+        }
+    }
+
+
 };
 
 typedef struct boolbean{
     bool val;
+    void operator=(bool data){
+        val = data;
+    }
+
 };
 
 typedef struct doubles{
     double val;
+    void operator=(double data){
+        val = data;
+    }
 };
 
 typedef struct timestramp{
-
+    time_t timestramp;
+    long time_val;
+    void operator=(time_t t){
+        time_val = (long)t;
+        timestramp = t;
+    }
 };
 
 

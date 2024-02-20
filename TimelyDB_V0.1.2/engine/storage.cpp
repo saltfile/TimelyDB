@@ -112,6 +112,10 @@ bool DB_create_table(char *base_name, char *tab_name, char **clonms, data_type *
  */
 bool DB_insert_table(char *base_name,char *tab_name){
 
+
+
+
+
 }
 
 

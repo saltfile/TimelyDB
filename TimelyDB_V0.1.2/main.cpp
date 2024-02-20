@@ -15,10 +15,21 @@ int main() {
 
     DB_init_memery_tab();
 
-    char* cloms[] = {"name","age"};
-    data_type types[] = {VARCHAR,INT};
 
-    DB_create_table("usnh_db","stuq",cloms,types,2);
+    integer *s = (integer*) malloc(sizeof(integer));
+    *s=5;
+    cout<<s->val;
+
+
+
+
+
+
+
+//    char* cloms[] = {"name","age"};
+//    data_type types[] = {VARCHAR,INT};
+
+//    DB_create_table("usnh_db","stuq",cloms,types,2);
 
 
 //    map<string, int> myMap;
