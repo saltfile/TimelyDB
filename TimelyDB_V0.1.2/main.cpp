@@ -8,17 +8,30 @@
 int main() {
 
 
-    char *path =  load_config_path();
-    load_config(path);
+//    char *path =  load_config_path();
+//    load_config(path);
+//
+//    init_file_system();
+//
+//    DB_init_memery_tab();
+//
+//
+//    integer *s = (integer*) malloc(sizeof(integer));
+//    *s=5;
+//    cout<<s->val;
 
-    init_file_system();
+    /**
+     * 环形链表：使用方法
+     */
+     ring_list *list =  (ring_list *) malloc(sizeof(ring_list));;
+     list->initialization(5);
 
-    DB_init_memery_tab();
 
 
-    integer *s = (integer*) malloc(sizeof(integer));
-    *s=5;
-    cout<<s->val;
+
+
+
+
 
 
 

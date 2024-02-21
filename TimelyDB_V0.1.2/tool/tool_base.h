@@ -196,6 +196,150 @@ public:
 
 };
 
+
+typedef struct integer{
+    int val;
+
+    integer(int v) : val(v) {}
+
+    int operator=(integer &order){
+        return order.val;
+    }
+    void operator=(int i)
+    {
+        val = i;
+    }
+};
+
+typedef struct varchar{
+    int size = 255;
+    char *val = (char *) malloc(sizeof(char)*size);
+
+    void operator=(char* str){
+        if(size > strlen(str)){
+            memset(val,0,size);
+            strcpy(val,str);
+        }
+    }
+
+
+};
+
+typedef struct boolbean{
+    bool val;
+    void operator=(bool data){
+        val = data;
+    }
+
+};
+
+typedef struct doubles{
+    double val;
+    void operator=(double data){
+        val = data;
+    }
+};
+
+typedef struct timestramp{
+    time_t timestramp;
+    long time_val;
+    void operator=(time_t t){
+        time_val = (long)t;
+        timestramp = t;
+    }
+};
+
+
+struct ring_list{
+private:
+    void free_list_node(collection *_col) {
+        try {
+            void *p = _col->data;
+//            memset(p,0, sizeof(p));
+//            SAFE_FREE(p);
+            _col->data = NULL;
+            SAFE_FREE(_col);
+            _col = NULL;
+        } catch (exception e) {
+            printf(LIGHT_RED"异常： 自定义链表内存释放失败\n\033[m");
+        }
+    }
+
+
+public:
+    int length = 0;
+    int size = 0;
+    collection *collect = NULL;
+
+    void initialization(int nul) {
+        collection *ptr = CREATE_COLLECTION(ptr);
+        tylist_node *start = &ptr->list;
+        tylist_node *tail = &ptr->list;
+
+        for (int i = 0; i < nul; ++i) {
+            collection *new_node = NULL;
+            CREATE_COLLECTION(new_node);
+            //3.赋值NULL
+            new_node->list.next = NULL;
+            new_node->list.prev = NULL;
+            tail->next = &new_node->list;
+            tail = tail->next;
+        }
+
+        tail->next = start;
+
+        this->collect = ptr;
+
+        this->size = size;
+    }
+
+    void add(integer i){
+
+    }
+    void add(varchar s){
+
+    }
+
+
+
+
+
+    void destroy(){
+
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int get_databse_num();
 char** find_database();
 int get_tables_num(char *database_path);
