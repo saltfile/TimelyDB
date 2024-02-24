@@ -18,15 +18,16 @@
 
 using namespace std;
 
-enum data_type{
-    BYTE=0,
-    INT=1,
-    FLOAT=2,
-    DOUBLE=3,
-    DECIMAL=4,
-    VARCHAR=5,
-    TEXT=5,
-    TIMESTAMP=8
+enum data_type {
+    BYTE = 0,
+    INT = 1,
+    FLOAT = 2,
+    DOUBLE = 3,
+    DECIMAL = 4,
+    VARCHAR = 5,
+    TEXT = 5,
+    TIMESTAMP = 8,
+    VOID = 9
 };
 
 #define NONE         "\033[m";
@@ -46,6 +47,16 @@ enum data_type{
     pos = pos->next;           \
     }                            \
 pos = pos->next; \
+
+
+#define LIST_FOR_RING(pos, head, idx) \
+    pos = head;                \
+    for(int i = 0;i < idx;i++){\
+    pos = pos->next;           \
+    }                            \
+//pos = pos->next; \
+
+
 
 #define LIST_ADD_TAIL(head, pos, node) \
     for (pos =(head) ;pos->next ;pos = pos->next);            \
@@ -149,7 +160,7 @@ public:
         tylist_node *p = NULL;
 
         //2.校验参数是否合法
-        if (idx < 0||idx >= length)
+        if (idx < 0 || idx >= length)
             return NULL;
 
         //3.拿到对应的下标
@@ -209,60 +220,63 @@ public:
 };
 
 
-typedef struct integer{
+typedef struct integer {
     int val;
 
     integer(int v) : val(v) {}
 
-    int operator=(integer &order){
+    int operator=(integer &order) {
         return order.val;
     }
-    void operator=(int i)
-    {
+
+    void operator=(int i) {
         val = i;
     }
 };
 
-typedef struct varchar{
+typedef struct varchar {
     int size = 255;
-    char *val = (char *) malloc(sizeof(char)*size);
+    char *val = (char *) malloc(sizeof(char) * size);
 
-    void operator=(char* str){
-        if(size > strlen(str)){
-            memset(val,0,size);
-            strcpy(val,str);
+    void operator=(char *str) {
+        if (size > strlen(str)) {
+            memset(val, 0, size);
+            strcpy(val, str);
         }
     }
 
 
 };
 
-typedef struct boolbean{
+typedef struct boolbean {
     bool val;
-    void operator=(bool data){
+
+    void operator=(bool data) {
         val = data;
     }
 
 };
 
-typedef struct doubles{
+typedef struct doubles {
     double val;
-    void operator=(double data){
+
+    void operator=(double data) {
         val = data;
     }
 };
 
-typedef struct time_tramp{
+typedef struct time_tramp {
     time_t timestramp;
     long time_val;
-    void operator=(time_t t){
-        time_val = (long)t;
+
+    void operator=(time_t t) {
+        time_val = (long) t;
         timestramp = t;
     }
 };
 
 
-struct ring_list{
+struct ring_list {
 private:
     void free_list_node(collection *_col) {
         try {
@@ -282,13 +296,14 @@ public:
     int length = 0;
     int size = 0;
     collection *collect = NULL;
+    enum data_type type;
 
-    void initialization(int nul) {
+    void initialization(int nul, enum data_type type) {
         collection *ptr = CREATE_COLLECTION(ptr);
         tylist_node *start = &ptr->list;
         tylist_node *tail = &ptr->list;
 
-        for (int i = 0; i < nul; ++i) {
+        for (int i = 0; i < nul - 1; ++i) {
             collection *new_node = NULL;
             CREATE_COLLECTION(new_node);
             //3.赋值NULL
@@ -302,106 +317,148 @@ public:
 
         this->collect = ptr;
 
-        this->size = size;
+        this->size = nul;
+
+        this->type = type;
     }
 
-    void add(integer *i){
+    void add(int i) {
+
+        if (this->type != INT)return;
+
+        if (this->length + 1 > size) {
+            this->length = 0;
+        }
+        integer data = i;
         tylist_node *ptr = &this->collect->list;
         tylist_node *p = NULL;
 
-        LIST_FOR(p, ptr, length);
+        LIST_FOR_RING(p, ptr, length);
         collection *res = NULL;
         CONTAINER_OF(res, collection, p);
 
-        if (res->data != NULL){
-            integer *pi = (integer*)res->data;
+        if (res->data != NULL) {
             res->data = NULL;
-            memset(pi,0, sizeof(integer));
-            free(pi);
         }
 
-        res->data = (void *)i;
+        res->data = (void *) &data;
         length++;
 
-
-    }
-    void add(varchar *s){
-
-    }
-    void add(doubles *d){
-
-    }
-    void add(time_tramp *t){
-
     }
 
+    void add(varchar *s) {
+        if (this->type != VARCHAR)return;
+
+        if (this->length + 1 > size) {
+            this->length = 0;
+        }
+
+        tylist_node *ptr = &this->collect->list;
+        tylist_node *p = NULL;
+
+        LIST_FOR_RING(p, ptr, length);
+        collection *res = NULL;
+        CONTAINER_OF(res, collection, p);
+
+        if (res->data != NULL) {
+            res->data = NULL;
+        }
+
+        res->data = (void *) s;
+        length++;
+    }
+
+    int get(int idx) {
+        //1.拿到句柄
+        tylist_node *ptr = &this->collect->list;
+        tylist_node *p = NULL;
+
+        //2.校验参数是否合法
+        if (idx < 0 || idx >= length)
+            return NULL;
+
+        //3.拿到对应的下标
+        LIST_FOR_RING(p, ptr, idx);
+
+        //4.置换出来返回结果
+        collection *res = NULL;
+        CONTAINER_OF(res, collection, p);
+        integer *d = (integer*)res->data;
+        return d->val;
+    }
 
 
-    void destroy(){
+
+    string to_string() {
+        //1.拿到句柄
+        tylist_node *ptr = &this->collect->list;
+
+        string result = "[ ";
+
+        for (int i = 0; i < size; i++) {
+            ptr = ptr->next;
+            collection *res = NULL;
+            CONTAINER_OF(res, collection, ptr);
+            integer *o = (integer*)res->data;
+            result += std::to_string(o->val);
+        }
+
+        return result;
+
+    }
+
+    void add(doubles *d) {
+    }
+
+    void add(time_tramp *t) {
+
+    }
+
+
+    void destroy() {
 
     }
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 int get_databse_num();
-char** find_database();
+
+char **find_database();
+
 int get_tables_num(char *database_path);
-char ** find_tables(char *database_path);
+
+char **find_tables(char *database_path);
+
 void init_file_system();
 
 //文件系统初期测试存储文件
 void file_test();
+
 /**
  * 创建目录&文件接口
  * @return 统一规则
  * 目录    已创建：1、目录已存在：0、创建失败：-1
  */
 int create_mkdir(char *path);
+
 FILE *create_file(char *path);
+
 bool file_is_exist(char *path);
 
 int create_database(char *base_name);
-int create_table(char* database,char* table);
 
-int file_write(char *base_key,char *file_name,char *data);
+int create_table(char *database, char *table);
 
-char *file_read(char *base_name,char *file_name);
+int file_write(char *base_key, char *file_name, char *data);
+
+char *file_read(char *base_name, char *file_name);
 
 /**
  * 支持数据库的函数
  * @return
  */
 vector<string> get_any_base();
+
 vector<string> get_any_table(string base_key);
 
 
@@ -419,13 +476,10 @@ int str_spilt_size(char *a, char *b);
 
 char **str_spilt(char *str, char *dent);
 
-char *str_to_int(int num,char* str,int radix);
+char *str_to_int(int num, char *str, int radix);
 
 //释放字符串函数
 char *free_str(char *str);
-
-
-
 
 
 #endif //TIMELYDB_V0_1_2_TOOL_BASE_H

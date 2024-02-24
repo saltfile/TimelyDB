@@ -24,10 +24,24 @@ int main() {
      * 环形链表：使用方法
      */
      ring_list *list =  (ring_list *) malloc(sizeof(ring_list));;
-     list->initialization(5);
-     integer a = 1;
-     list->add(&a);
+     list->initialization(5,INT);
+     list->add(1);
+    list->add(2);
+    list->add(3);
+    list->add(4);
+    list->add(5);
+    list->add(6);
 
+    cout<<list->get(0);
+    cout<<list->get(1);
+    cout<<list->get(2);
+    cout<<list->get(3);
+    cout<<list->get(4);
+    cout<<list->get(5);
+
+
+
+//    cout<<list->to_string();
 
 
 
