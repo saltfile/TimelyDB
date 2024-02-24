@@ -25,7 +25,8 @@ int main() {
      */
      ring_list *list =  (ring_list *) malloc(sizeof(ring_list));;
      list->initialization(5);
-
+     integer a = 1;
+     list->add(&a);
 
 
 

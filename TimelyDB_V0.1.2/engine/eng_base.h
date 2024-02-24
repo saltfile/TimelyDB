@@ -34,17 +34,6 @@
 #include "../tool/tool_base.h"
 using namespace std;
 
-enum data_type{
-    BYTE=0,
-    INT=1,
-    FLOAT=2,
-    DOUBLE=3,
-    DECIMAL=4,
-    VARCHAR=5,
-    TEXT=5,
-    TIMESTAMP=8
-};
-
 
 //早期做法
 typedef struct DB_table{

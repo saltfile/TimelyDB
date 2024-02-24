@@ -17,6 +17,18 @@
 #include <csetjmp>
 
 using namespace std;
+
+enum data_type{
+    BYTE=0,
+    INT=1,
+    FLOAT=2,
+    DOUBLE=3,
+    DECIMAL=4,
+    VARCHAR=5,
+    TEXT=5,
+    TIMESTAMP=8
+};
+
 #define NONE         "\033[m";
 #define LIGHT_BLUE   "\033[1;34m"
 #define LIGHT_PURPLE "\033[1;35m"
@@ -240,7 +252,7 @@ typedef struct doubles{
     }
 };
 
-typedef struct timestramp{
+typedef struct time_tramp{
     time_t timestramp;
     long time_val;
     void operator=(time_t t){
@@ -293,14 +305,35 @@ public:
         this->size = size;
     }
 
-    void add(integer i){
+    void add(integer *i){
+        tylist_node *ptr = &this->collect->list;
+        tylist_node *p = NULL;
+
+        LIST_FOR(p, ptr, length);
+        collection *res = NULL;
+        CONTAINER_OF(res, collection, p);
+
+        if (res->data != NULL){
+            integer *pi = (integer*)res->data;
+            res->data = NULL;
+            memset(pi,0, sizeof(integer));
+            free(pi);
+        }
+
+        res->data = (void *)i;
+        length++;
+
 
     }
-    void add(varchar s){
+    void add(varchar *s){
 
     }
+    void add(doubles *d){
 
+    }
+    void add(time_tramp *t){
 
+    }
 
 
 
