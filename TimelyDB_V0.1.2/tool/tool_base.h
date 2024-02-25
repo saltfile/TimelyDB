@@ -323,26 +323,32 @@ public:
     }
 
     void add(int i) {
-
-        if (this->type != INT)return;
-
-        if (this->length + 1 > size) {
-            this->length = 0;
-        }
-        integer data = i;
+        //1.拿到句柄
         tylist_node *ptr = &this->collect->list;
         tylist_node *p = NULL;
+        this->length = this->length % size;
+        int len = this->length;
+        //3.拿到对应的下标
+//        LIST_FOR_RING(p, ptr, len);
 
-        LIST_FOR_RING(p, ptr, length);
+        p = ptr;
+        for (int i = 0; i < this->length; i++) {
+            p = p->next;
+        }
+        //4.置换出来返回结果
         collection *res = NULL;
         CONTAINER_OF(res, collection, p);
-
-        if (res->data != NULL) {
-            res->data = NULL;
+        integer *aaa = NULL;
+        if (res->data != NULL){
+           aaa= (integer*)res->data;
         }
+        integer *pi = (integer *) malloc(sizeof(integer));
+        memset(pi, 0, sizeof(integer));
+        pi->val = i;
+        res->data = (void *) pi;
 
-        res->data = (void *) &data;
-        length++;
+        this->length++;
+//        this->length =
 
     }
 
@@ -374,19 +380,20 @@ public:
         tylist_node *p = NULL;
 
         //2.校验参数是否合法
-        if (idx < 0 || idx >= length)
+        if (idx < -1 || idx > this->size)
             return NULL;
 
-        //3.拿到对应的下标
-        LIST_FOR_RING(p, ptr, idx);
+        p = ptr;
+        for (int i = 0; i < idx; i++) {
+            p = p->next;
+        }
 
         //4.置换出来返回结果
         collection *res = NULL;
         CONTAINER_OF(res, collection, p);
-        integer *d = (integer*)res->data;
+        integer *d = (integer *) res->data;
         return d->val;
     }
-
 
 
     string to_string() {
@@ -399,7 +406,7 @@ public:
             ptr = ptr->next;
             collection *res = NULL;
             CONTAINER_OF(res, collection, ptr);
-            integer *o = (integer*)res->data;
+            integer *o = (integer *) res->data;
             result += std::to_string(o->val);
         }
 

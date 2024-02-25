@@ -30,7 +30,12 @@ int main() {
     list->add(3);
     list->add(4);
     list->add(5);
-    list->add(6);
+    list->add(7);
+    list->add(8);
+    list->add(9);
+    list->add(10);
+    list->add(11);
+
 
     cout<<list->get(0);
     cout<<list->get(1);
@@ -38,7 +43,6 @@ int main() {
     cout<<list->get(3);
     cout<<list->get(4);
     cout<<list->get(5);
-
 
 
 //    cout<<list->to_string();
