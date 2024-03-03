@@ -49,7 +49,7 @@ typedef struct DB_table{
 typedef struct tab_struct{
     int max_data_size;
     map<string ,data_type> type_map;
-    map<string ,arr_list*> data_map;
+    map<string ,ring_list*> data_map;
 };
 
 

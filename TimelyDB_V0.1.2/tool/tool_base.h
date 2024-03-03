@@ -392,7 +392,12 @@ public:
         collection *res = NULL;
         CONTAINER_OF(res, collection, p);
         integer *d = (integer *) res->data;
+        if (d != NULL){
         return d->val;
+        } else{
+            return NULL;
+        }
+
     }
 
 

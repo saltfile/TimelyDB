@@ -5,7 +5,7 @@
 
 static map<string, map<string, tab_struct>> DB_TAB_MAP;
 
-
+static int RING_LEN = 10;
 /**
  * 打开数据库时将对应的库刷进内存
  * @return
@@ -36,11 +36,11 @@ bool DB_init_memery_tab() {
                 data_type type = static_cast<data_type>(atoi(type_s[1]));
 
 
-                arr_list *ptr = (arr_list *) malloc(sizeof(arr_list));
-                memset(ptr, 0, sizeof(arr_list));
-                ptr->initialization();
+                ring_list *ptr = (ring_list *) malloc(sizeof(ring_list));
+                memset(ptr, 0, sizeof(ring_list));
+                ptr->initialization(RING_LEN,type);
 
-                tab.data_map.insert(pair<string ,arr_list*>(col, ptr));
+                tab.data_map.insert(pair<string ,ring_list*>(col, ptr));
                 tab.type_map.insert(pair<string,data_type>(col,type));
 
             }
@@ -78,12 +78,12 @@ bool DB_create_table(char *base_name, char *tab_name, char **clonms, data_type *
         tsdb_data = str_marge(tsdb_data, ";");
         string col = clonms[i];
 
-        arr_list *ptr = (arr_list *) malloc(sizeof(arr_list));
-        memset(ptr, 0, sizeof(arr_list));
-        ptr->initialization();
+        ring_list *ptr = (ring_list *) malloc(sizeof(ring_list));
+        memset(ptr, 0, sizeof(ring_list));
+        ptr->initialization(RING_LEN,types[i]);
 
         tab.type_map.insert(pair<string,data_type>(col,types[i]));
-        tab.data_map.insert(pair<string ,arr_list*>(col, ptr));
+        tab.data_map.insert(pair<string ,ring_list*>(col, ptr));
     }
     //2.写入
     char *file_key = str_marge(tab_name, ".tsdb");
@@ -105,12 +105,22 @@ bool DB_create_table(char *base_name, char *tab_name, char **clonms, data_type *
 
 
 /**
- * 插入这里需要想想
+ * 单行插入
  * @param base_name
  * @param tab_name
  * @return
  */
-bool DB_insert_table(char *base_name,char *tab_name){
+bool DB_insert_table(char *base_name,char *tab_name,char **colum_key,int key_size,char** colum_val,int val_size){
+    string base_key = base_name;
+    string tab_key = tab_name;
+    tab_struct ins_tab = DB_TAB_MAP[base_key][tab_key];
+
+    for (int i = 0; i < key_size; ++i) {
+        string col_key = colum_key[i];
+        ins_tab.type_map[col_key];
+        ins_tab.data_map[col_key];
+    }
+
 
 
 
