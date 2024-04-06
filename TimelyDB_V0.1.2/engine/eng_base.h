@@ -47,7 +47,7 @@ typedef struct DB_table{
 };
 //最懒省事做法
 typedef struct tab_struct{
-    int max_data_size;
+    int max_data_size = 1024;
     map<string ,data_type> type_map;
     map<string ,ring_list*> data_map;
 };
@@ -62,8 +62,8 @@ typedef struct tab_struct{
 bool DB_init_memery_tab();
 //创建表
 bool DB_create_table(char *base_name, char *tab_name, char **clonms, data_type *types, int clonms_size);
-
-
+//单行插入
+bool DB_insert_table(char *base_name,char *tab_name,char **colum_key,int key_size,char** colum_val,int val_size);
 
 
 

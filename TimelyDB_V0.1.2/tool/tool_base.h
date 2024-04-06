@@ -494,4 +494,9 @@ char *str_to_int(int num, char *str, int radix);
 char *free_str(char *str);
 
 
+
+
+//类型转换
+int str_to_type_int(char *str);
+varchar *str_to_type_varchar(char *str);
 #endif //TIMELYDB_V0_1_2_TOOL_BASE_H

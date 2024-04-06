@@ -139,7 +139,14 @@ char *str_to_int(int num,char* str,int radix){
     return str;//返回转换后的字符串
 }
 
-
+int str_to_type_int(char *str){
+    int res = atoi(str);
+    return res;
+}
+varchar *str_to_type_varchar(char *str){
+    varchar *result = reinterpret_cast<varchar *>(str);
+    return result;
+}
 
 
 

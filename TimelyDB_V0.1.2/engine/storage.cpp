@@ -5,7 +5,7 @@
 
 static map<string, map<string, tab_struct>> DB_TAB_MAP;
 
-static int RING_LEN = 10;
+static int RING_LEN = 5;
 /**
  * 打开数据库时将对应的库刷进内存
  * @return
@@ -14,7 +14,6 @@ bool DB_init_memery_tab() {
     /**
      * 后期加入try块儿
      */
-
 
     vector<string> bases = get_any_base();
     for (int i = 0; i < bases.size(); ++i) {
@@ -34,7 +33,6 @@ bool DB_init_memery_tab() {
                 char **type_s = str_spilt(c_names[k],"$");
                 string col = type_s[0];
                 data_type type = static_cast<data_type>(atoi(type_s[1]));
-
 
                 ring_list *ptr = (ring_list *) malloc(sizeof(ring_list));
                 memset(ptr, 0, sizeof(ring_list));
@@ -117,8 +115,16 @@ bool DB_insert_table(char *base_name,char *tab_name,char **colum_key,int key_siz
 
     for (int i = 0; i < key_size; ++i) {
         string col_key = colum_key[i];
-        ins_tab.type_map[col_key];
-        ins_tab.data_map[col_key];
+        data_type type_ins = ins_tab.type_map[col_key];
+        switch (type_ins) {
+            case INT:
+                ins_tab.data_map[col_key]->add(str_to_type_int(colum_val[i]));
+                break;
+            case VARCHAR:
+                ins_tab.data_map[col_key]->add(str_to_type_varchar(colum_val[i]));
+                break;
+        }
+//
     }
 
 

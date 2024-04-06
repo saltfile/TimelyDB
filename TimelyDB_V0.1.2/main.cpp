@@ -8,12 +8,20 @@
 int main() {
 
 
-//    char *path =  load_config_path();
-//    load_config(path);
-//
-//    init_file_system();
-//
-//    DB_init_memery_tab();
+    char *path =  load_config_path();
+    load_config(path);
+
+    init_file_system();
+
+    DB_init_memery_tab();
+    char ** col_name = (char**)malloc(sizeof(char*) * (1024));
+    col_name[0] = "name";
+    col_name[1] = "age";
+    char ** col_val = (char**)malloc(sizeof(char*) * (1024));
+    col_val[0] = "aaaa";
+    col_val[1] = "1";
+    DB_insert_table("usnh_db","stu",col_name,2,col_val,2);
+
 //
 //
 //    integer *s = (integer*) malloc(sizeof(integer));
@@ -23,20 +31,20 @@ int main() {
     /**
      * 环形链表：使用方法
      */
-     ring_list *list =  (ring_list *) malloc(sizeof(ring_list));;
-     list->initialization(5,INT);
-     list->add(1);
-    list->add(2);
-    list->add(3);
-    list->add(4);
-
-
-    cout<<list->get(0);
-    cout<<list->get(1);
-    cout<<list->get(2);
-    cout<<list->get(3);
-    cout<<list->get(4);
-    cout<<list->get(5);
+//     ring_list *list =  (ring_list *) malloc(sizeof(ring_list));;
+//     list->initialization(5,INT);
+//     list->add(1);
+//    list->add(2);
+//    list->add(3);
+//    list->add(4);
+//
+//
+//    cout<<list->get(0);
+//    cout<<list->get(1);
+//    cout<<list->get(2);
+//    cout<<list->get(3);
+//    cout<<list->get(4);
+//    cout<<list->get(5);
 
 
 //    cout<<list->to_string();
