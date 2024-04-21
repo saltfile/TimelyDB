@@ -144,7 +144,12 @@ int str_to_type_int(char *str){
     return res;
 }
 varchar *str_to_type_varchar(char *str){
-    varchar *result = reinterpret_cast<varchar *>(str);
+    varchar *result = (varchar *) malloc(sizeof(varchar));
+    if (result->size > strlen(str)) {
+        memset(result->val, 0, sizeof(result->size));
+        strcpy(result->val, str);
+    }
+
     return result;
 }
 

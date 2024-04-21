@@ -232,6 +232,10 @@ typedef struct integer {
     void operator=(int i) {
         val = i;
     }
+    string to_string(){
+        string str = std::to_string(this->val);
+        return str;
+    }
 };
 
 typedef struct varchar {
@@ -245,7 +249,12 @@ typedef struct varchar {
         }
     }
 
-
+    string to_string(){
+        if (this->val == NULL)
+            return "nil";
+        string str = this->val;
+        return str;
+    }
 };
 
 typedef struct boolbean {
@@ -374,7 +383,7 @@ public:
         length++;
     }
 
-    int get(int idx) {
+    void* get(int idx) {
         //1.拿到句柄
         tylist_node *ptr = &this->collect->list;
         tylist_node *p = NULL;
@@ -391,9 +400,9 @@ public:
         //4.置换出来返回结果
         collection *res = NULL;
         CONTAINER_OF(res, collection, p);
-        integer *d = (integer *) res->data;
-        if (d != NULL){
-        return d->val;
+//        integer *d = (integer *) res->data;
+        if (res->data != NULL){
+        return res->data;
         } else{
             return NULL;
         }

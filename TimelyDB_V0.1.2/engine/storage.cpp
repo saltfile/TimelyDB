@@ -20,6 +20,7 @@ bool DB_init_memery_tab() {
         string base_key = bases[i];
         vector<string> tab_s = get_any_table(base_key);
         map<string, tab_struct> push_map;
+
         for (int j = 0; j < tab_s.size(); ++j) {
 
             char *tsdata = const_cast<char *>(tab_s[j].c_str());
@@ -27,23 +28,25 @@ bool DB_init_memery_tab() {
             char *ts_data = file_read(const_cast<char *>(base_key.c_str()), const_cast<char *>(tsdata));
             int cloms = str_spilt_size(ts_data, ";");
             char **c_names = str_spilt(ts_data, ";");
-
+            char *col_together = "";
             tab_struct tab;
             for (int k = 0; k < cloms; ++k) {
                 char **type_s = str_spilt(c_names[k],"$");
                 string col = type_s[0];
+                col_together = str_marge(col_together,(char*)col.c_str());
+                col_together = str_marge(col_together,";");
                 data_type type = static_cast<data_type>(atoi(type_s[1]));
 
                 ring_list *ptr = (ring_list *) malloc(sizeof(ring_list));
                 memset(ptr, 0, sizeof(ring_list));
                 ptr->initialization(RING_LEN,type);
-
                 tab.data_map.insert(pair<string ,ring_list*>(col, ptr));
                 tab.type_map.insert(pair<string,data_type>(col,type));
 
-            }
-            push_map.insert(pair<string,tab_struct>(tab_s[j],tab));
 
+            }
+            tab.col_together_name = col_together;
+            push_map.insert(pair<string,tab_struct>(tab_s[j],tab));
         }
         DB_TAB_MAP.insert(pair<string,map<string,tab_struct>>(base_key,push_map));
 
@@ -68,6 +71,13 @@ bool DB_create_table(char *base_name, char *tab_name, char **clonms, data_type *
     tab_struct tab;
     //1.拼接表信息
     char *tsdb_data = "";
+    char *tab_colnm_to = "";
+    //  1.先把所有列名字合并
+    for (int i = 0; i < clonms_size; ++i) {
+        tab_colnm_to = str_marge(tab_colnm_to,clonms[i]);
+        tab_colnm_to = str_marge(tab_colnm_to,";");
+    }
+
     for (int i = 0; i < clonms_size; ++i) {
         char stnum[16] = {0};
         tsdb_data = str_marge(tsdb_data, clonms[i]);
@@ -83,6 +93,7 @@ bool DB_create_table(char *base_name, char *tab_name, char **clonms, data_type *
         tab.type_map.insert(pair<string,data_type>(col,types[i]));
         tab.data_map.insert(pair<string ,ring_list*>(col, ptr));
     }
+    tab.col_together_name = tab_colnm_to;
     //2.写入
     char *file_key = str_marge(tab_name, ".tsdb");
     result = file_write(base_name, file_key, tsdb_data) > 0;
@@ -127,18 +138,45 @@ bool DB_insert_table(char *base_name,char *tab_name,char **colum_key,int key_siz
 //
     }
 
-
-
-
-
-
 }
 
 
+/**
+ * 整行展示   Select *
+ */
 
+/**
+ * 从环中取出某一行
+ */
 
+vector<string> get_DB_once_row(char *base_name,char *tab_name,int idx_nums){
+    string base_key = base_name;
+    string tab_key = tab_name;
+    tab_struct ins_tab = DB_TAB_MAP[base_key][tab_key];
 
+    vector<string> result;
+    char **cols = str_spilt(ins_tab.col_together_name,";");
+    int cols_len = str_spilt_size(ins_tab.col_together_name,";");
 
+    for (int i = 0; i < cols_len; ++i) {
+        string col_key = cols[i];
+        data_type col_type  = ins_tab.type_map[col_key];
+        void *val = ins_tab.data_map[col_key]->get(idx_nums);
+        switch (col_type) {
+            case INT: {
+                integer *int_p = (integer *) val;
+                result.push_back(int_p->to_string());
+            }break;
+            case VARCHAR: {
+                varchar *char_p = (varchar *) val;
+                result.push_back(char_p->to_string());
+            }break;
+        }
+    }
+
+    return result;
+
+}
 
 
 

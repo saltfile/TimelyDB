@@ -22,8 +22,13 @@ int main() {
     col_val[1] = "1";
     DB_insert_table("usnh_db","stu",col_name,2,col_val,2);
 
-//
-//
+    vector<string> list = get_DB_once_row("usnh_db","stu",0);
+    for (int i = 0; i < list.size(); ++i) {
+        cout<<list[i]<<endl;
+    }
+
+
+
 //    integer *s = (integer*) malloc(sizeof(integer));
 //    *s=5;
 //    cout<<s->val;
@@ -37,9 +42,11 @@ int main() {
 //    list->add(2);
 //    list->add(3);
 //    list->add(4);
+//    integer* va = (integer *)list->get(0);
 //
-//
-//    cout<<list->get(0);
+//    cout<<va->val;
+//    va = (integer *)list->get(1);
+//    cout<<va->val;
 //    cout<<list->get(1);
 //    cout<<list->get(2);
 //    cout<<list->get(3);
