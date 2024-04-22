@@ -145,6 +145,7 @@ int str_to_type_int(char *str){
 }
 varchar *str_to_type_varchar(char *str){
     varchar *result = (varchar *) malloc(sizeof(varchar));
+    result->size = 255;
     if (result->size > strlen(str)) {
         memset(result->val, 0, sizeof(result->size));
         strcpy(result->val, str);

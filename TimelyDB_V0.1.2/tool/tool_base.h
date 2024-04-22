@@ -240,7 +240,7 @@ typedef struct integer {
 
 typedef struct varchar {
     int size = 255;
-    char *val = (char *) malloc(sizeof(char) * size);
+    char val[255];
 
     void operator=(char *str) {
         if (size > strlen(str)) {
