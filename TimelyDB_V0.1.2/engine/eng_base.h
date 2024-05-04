@@ -70,6 +70,70 @@ vector<string> get_DB_once_row(char *base_name,char *tab_name,int idx_nums);
 
 
 
+//线程处理
+class ThreadPool {
+public:
+    ThreadPool(size_t threads) : stop(false) {
+        for(size_t i = 0; i < threads; ++i) {
+            workerThreads.emplace_back(
+                    [this] {
+                        while(true) {
+                            std::function<void()> task;
+
+                            {
+                                unique_lock<std::mutex> lock(this->queueMutex);
+                                this->condition.wait(lock,
+                                                     [this]{ return this->stop || !this->tasks.empty(); });
+                                if(this->stop && this->tasks.empty())
+                                    return;
+                                task = move(this->tasks.front());
+                                this->tasks.pop();
+                            }
+
+                            task();
+                        }
+                    }
+            );
+        }
+    }
+
+    template<class F, class... Args>
+    void enqueue(F&& f, Args&&... args) {
+        auto task = bind(forward<F>(f), forward<Args>(args)...);
+
+        {
+            unique_lock<mutex> lock(queueMutex);
+            if(stop)
+                throw runtime_error("enqueue on stopped ThreadPool");
+
+            tasks.emplace(task);
+        }
+        condition.notify_one();
+    }
+
+    void set_stop(bool stop){
+        this->stop = stop;
+    }
+
+    ~ThreadPool() {
+        {
+            unique_lock<std::mutex> lock(queueMutex);
+//            stop = true;
+        }
+        condition.notify_all();
+        for(thread &worker : workerThreads)
+            worker.join();
+    }
+
+private:
+    vector<std::thread> workerThreads;
+    queue<std::function<void()>> tasks;
+
+    mutex queueMutex;
+    condition_variable condition;
+    bool stop;
+};
+
 
 
 
