@@ -178,8 +178,54 @@ vector<string> get_DB_once_row(char *base_name,char *tab_name,int idx_nums){
 
 }
 
+/**
+ * 通过读取单表数据环来获取全部数据
+ */
+vector<string> get_DB_data(char *base_name,char *tab_name){
 
+    string base_key = base_name;
+    string tab_key = tab_name;
+    tab_struct ins_tab = DB_TAB_MAP[base_key][tab_key];
 
+    vector<string> result;
+    char **cols = str_spilt(ins_tab.col_together_name,";");
+    int cols_len = str_spilt_size(ins_tab.col_together_name,";");
+
+    int ring_size = RING_LEN;
+    for (int r = 0; r < ring_size; ++r) {
+
+        string data_row = "";
+
+        for (int i = 0; i < cols_len; ++i) {
+            string col_key = cols[i];
+            data_type col_type = ins_tab.type_map[col_key];
+            void *val = ins_tab.data_map[col_key]->get(r);
+            if (val == NULL){
+                data_row = data_row + "nil";
+                data_row = data_row + ";";
+                continue;
+            }
+            switch (col_type) {
+                case INT: {
+                    integer *int_p = (integer *) val;
+                    data_row = data_row + int_p->to_string();
+                    data_row = data_row + ";";
+                }
+                    break;
+                case VARCHAR: {
+                    varchar *char_p = (varchar *) val;
+                    data_row = data_row + char_p->to_string();
+                    data_row = data_row + ";";
+                }
+                    break;
+            }
+        }
+
+        result.push_back(data_row);
+    }
+
+    return result;
+}
 
 
 

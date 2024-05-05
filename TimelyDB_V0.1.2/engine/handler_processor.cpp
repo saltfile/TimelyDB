@@ -8,7 +8,7 @@ int arr[WHEEL_SIZE] = {0};//时间任务准备
 int wheel_idx = 0;//60秒
 bool time_flag = false;
 
-ThreadPool handler_pool(20);//处理任务的池子
+ThreadPool handler_pool(4);//处理任务的池子
 
 void* time_fun(void *arg){
     while (1){
@@ -43,7 +43,22 @@ void stop_time_pool(){
     handler_pool.set_stop(true);
 }
 
+void run_file_loading(){
 
+
+
+
+}
+
+
+
+
+void load_disk(){
+
+    cout<<"落盘操作"<<endl;
+
+
+}
 
 
 

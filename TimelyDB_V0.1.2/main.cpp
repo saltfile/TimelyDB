@@ -26,8 +26,10 @@ int main() {
     for (int i = 0; i < list.size(); ++i) {
         cout<<list[i]<<endl;
     }
-
-
+    vector<string> lis = get_DB_data("usnh_db","stu");
+    for (int i = 0; i < lis.size(); ++i) {
+        cout<<lis[i]<<endl;
+    }
 
 //    integer *s = (integer*) malloc(sizeof(integer));
 //    *s=5;
@@ -85,9 +87,9 @@ int main() {
 //        res.push_back(it->first);
 //    }
 
-//    file_write("usnh_db","push","sadakfhsdf");
-//    file_write("usnh_db","push","sadakfhsdfss");
-//    file_write("usnh_db","push","sadakfhsdfhh");
+//    file_write("usnh_db","stu","sadakfhsdf");
+//    file_write("usnh_db","stu","sadakfhsdfss");
+//    file_write("usnh_db","stu","sadakf");
 //TODO：目前可以得知服务端还可以使用
 //    epollser_start(9898);
 

@@ -30,6 +30,11 @@
 #include <netinet/ip.h>
 #include <future>
 #include <cstdlib>
+#include <queue>
+#include <mutex>
+#include <condition_variable>
+#include <functional>
+#include <stdexcept>
 //#include <exception>
 #include "../tool/tool_base.h"
 using namespace std;
@@ -53,6 +58,17 @@ typedef struct tab_struct{
     map<string ,ring_list*> data_map;
 };
 
+typedef void(*file_func)();
+enum func_type {
+   FILE_FUN = 0,
+   TIME_FUN = 1
+};
+
+typedef struct handler_event{
+    func_type fun_tpye;
+    file_func f_fun;
+
+}handler_event;
 
 
 
@@ -67,9 +83,10 @@ bool DB_create_table(char *base_name, char *tab_name, char **clonms, data_type *
 bool DB_insert_table(char *base_name,char *tab_name,char **colum_key,int key_size,char** colum_val,int val_size);
 //单行获取
 vector<string> get_DB_once_row(char *base_name,char *tab_name,int idx_nums);
-
-
-
+//获取环形数据
+vector<string> get_DB_data(char *base_name,char *tab_name);
+void load_disk();
+void run_file_loading();
 //线程处理
 class ThreadPool {
 public:
@@ -133,8 +150,6 @@ private:
     condition_variable condition;
     bool stop;
 };
-
-
 
 
 #endif //TIMELYDB_V0_1_2_ENG_BASE_H

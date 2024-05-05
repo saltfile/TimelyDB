@@ -473,6 +473,8 @@ int create_table(char *database, char *table);
 int file_write(char *base_key, char *file_name, char *data);
 
 char *file_read(char *base_name, char *file_name);
+//清除文件内容
+void clear_file(char *base_name,char *file_name);
 
 /**
  * 支持数据库的函数

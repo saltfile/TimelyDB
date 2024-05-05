@@ -2,6 +2,7 @@
 // Created by saltfish on 23-10-22.
 //
 
+#include <fstream>
 #include "tool_base.h"
 #include "../config_init/config_h.h"
 
@@ -360,7 +361,7 @@ int file_write(char *base_key,char *file_name,char *data){
     if (!table_is_exist(base_key,file_name)){
         return -1;
     }
-
+    clear_file(base_key,file_name);
 
     FILE *ptr = DB_FILE_MAP[b_key][f_key];
 //    data = str_marge(data,"\n");
@@ -397,7 +398,17 @@ char *file_read(char *base_name,char *file_name){
 }
 
 
+void clear_file(char *base_name,char *file_name){
 
+    char *base_local_path = str_copy(base_local_path,get_config_base_path());
+    base_local_path = str_marge(base_local_path,"/");
+    base_local_path = str_marge(base_local_path,base_name);
+    base_local_path = str_marge(base_local_path,"/");
+    base_local_path = str_marge(base_local_path,file_name);
+
+    FILE *fp = fopen(base_local_path, "w");
+    fclose(fp);
+}
 
 
 
