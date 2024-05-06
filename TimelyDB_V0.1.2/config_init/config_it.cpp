@@ -14,6 +14,10 @@ char * get_config_address(){
     return conf->host;
 }
 
+char* get_load_time(){
+    return conf->load_disk;
+}
+
 char *get_config_base_path(){
     return conf->base_path;
 }
@@ -70,6 +74,10 @@ int load_config(const char *file_name){
 
                 if (!strcmp((char *)tk, "base_path")&& !strcmp(parent,"file_path")){
                     datap = &conf->base_path;
+                }
+
+                if (!strcmp((char *)tk, "load_disk")&& !strcmp(parent,"dbconfig")){
+                    datap = &conf->load_disk;
                 }
 
             }else {

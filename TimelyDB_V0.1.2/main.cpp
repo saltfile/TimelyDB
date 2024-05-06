@@ -31,6 +31,13 @@ int main() {
         cout<<lis[i]<<endl;
     }
 
+    run_file_loading();
+    sleep(50);
+    stop_time_pool();
+
+
+
+
 //    integer *s = (integer*) malloc(sizeof(integer));
 //    *s=5;
 //    cout<<s->val;

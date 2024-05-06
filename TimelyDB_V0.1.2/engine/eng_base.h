@@ -37,6 +37,7 @@
 #include <stdexcept>
 //#include <exception>
 #include "../tool/tool_base.h"
+#include "../config_init/config_h.h"
 using namespace std;
 
 
@@ -65,14 +66,15 @@ enum func_type {
 };
 
 typedef struct handler_event{
+    bool is_task = false;
     func_type fun_tpye;
     file_func f_fun;
 
 }handler_event;
 
 
-
-
+void run_file_loading();
+void stop_time_pool();
 
 
 //初始化表
@@ -85,6 +87,8 @@ bool DB_insert_table(char *base_name,char *tab_name,char **colum_key,int key_siz
 vector<string> get_DB_once_row(char *base_name,char *tab_name,int idx_nums);
 //获取环形数据
 vector<string> get_DB_data(char *base_name,char *tab_name);
+//获取所有库表名称用;隔开
+vector<string> get_all_tab_name();
 void load_disk();
 void run_file_loading();
 //线程处理

@@ -228,6 +228,27 @@ vector<string> get_DB_data(char *base_name,char *tab_name){
 }
 
 
+/**
+ * 获取所有库表信息 用;隔开   库名;表名
+ */
+
+vector<string> get_all_tab_name(){
+    vector<string> result;
+    for (auto it = DB_TAB_MAP.begin(); it != DB_TAB_MAP.end(); ++it) {
+       string base_name = it->first;
+        for (auto i = DB_TAB_MAP[base_name].begin(); i != DB_TAB_MAP[base_name].end(); ++i) {
+            string tab_name = base_name +";"+ i->first;
+            result.push_back(tab_name);
+        }
+
+    }
+    return result;
+}
+
+
+
+
+
 
 
 
