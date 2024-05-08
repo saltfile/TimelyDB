@@ -5,6 +5,7 @@
 #include "tool/tool_base.h"
 #include "config_init/config_h.h"
 #include "time_pool/t_pool.h"
+#include "filetree/tree_base.h"
 #include "engine/eng_base.h"
 #include "server/server_base.h"
 using namespace std;

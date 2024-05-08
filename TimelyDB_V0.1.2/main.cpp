@@ -7,33 +7,52 @@
 //
 int main() {
 
+//    char *path =  load_config_path();
+//    load_config(path);
+//
+//    init_file_system();
+//
+//    DB_init_memery_tab();
+//    char ** col_name = (char**)malloc(sizeof(char*) * (1024));
+//    col_name[0] = "name";
+//    col_name[1] = "age";
+//    char ** col_val = (char**)malloc(sizeof(char*) * (1024));
+//    col_val[0] = "aaaa";
+//    col_val[1] = "1";
+//    DB_insert_table("usnh_db","stu",col_name,2,col_val,2);
+//
+//    vector<string> list = get_DB_once_row("usnh_db","stu",0);
+//    for (int i = 0; i < list.size(); ++i) {
+//        cout<<list[i]<<endl;
+//    }
+//    vector<string> lis = get_DB_data("usnh_db","stu");
+//    for (int i = 0; i < lis.size(); ++i) {
+//        cout<<lis[i]<<endl;
+//    }
+//
+//    run_file_loading();
+//    sleep(50);
+//    stop_time_pool();
 
-    char *path =  load_config_path();
-    load_config(path);
 
-    init_file_system();
 
-    DB_init_memery_tab();
-    char ** col_name = (char**)malloc(sizeof(char*) * (1024));
-    col_name[0] = "name";
-    col_name[1] = "age";
-    char ** col_val = (char**)malloc(sizeof(char*) * (1024));
-    col_val[0] = "aaaa";
-    col_val[1] = "1";
-    DB_insert_table("usnh_db","stu",col_name,2,col_val,2);
 
-    vector<string> list = get_DB_once_row("usnh_db","stu",0);
-    for (int i = 0; i < list.size(); ++i) {
-        cout<<list[i]<<endl;
-    }
-    vector<string> lis = get_DB_data("usnh_db","stu");
-    for (int i = 0; i < lis.size(); ++i) {
-        cout<<lis[i]<<endl;
-    }
 
-    run_file_loading();
-    sleep(50);
-    stop_time_pool();
+
+
+//分词
+    scan_word *words = scanWordInit();
+    sqlsacnner(words,"use databasename");
+    sqlitWord head = get_word(words,0);
+    cout<<head.num;
+
+
+
+
+
+
+
+
 
 
 
