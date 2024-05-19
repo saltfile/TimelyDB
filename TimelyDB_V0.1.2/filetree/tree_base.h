@@ -38,6 +38,8 @@
 //#include <exception>
 #include "../tool/tool_base.h"
 #include "../config_init/config_h.h"
+
+
 using namespace std;
 #define BUF_LEN 1024
 #define SMALL_LEN 256
@@ -92,22 +94,22 @@ int get_wordlen(scan_word *scan);
 
 //语法树
 //此树是一颗语法树根据语法的一颗多叉树 //其中原理是先准备建立一颗树等语句进来在按个放进去用空间换取时间
-typedef struct list{
-    struct treenode *tree;//树节点
-    struct list *prev;//后继
-    struct list *next;//前驱
-}list;
-
-typedef struct treenode{
-    char *str;
-    int strlen = 0;
-    int strtype = 0;
-    struct list *nodelist;//节点列表
-}treenode;
+//typedef struct list{
+//    struct treenode *tree;//树节点
+//    struct list *prev;//后继
+//    struct list *next;//前驱
+//}list;
+//
+//typedef struct treenode{
+//    char *str;
+//    int strlen = 0;
+//    int strtype = 0;
+//    struct list *nodelist;//节点列表
+//}treenode;
 //链表函数
 
 
-
+void test_fire();
 
 
 

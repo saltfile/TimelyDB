@@ -1,2 +1,7 @@
 AUX_SOURCE_DIRECTORY(. ftree)
-add_library(filetree ${ftree} participle.cpp)
+
+file(GLOB_RECURSE SOURCES "token/*.cpp" "lexer/*.cpp" "json/*.cpp" "ast/*.cpp"
+        "parser/*.cpp" )
+
+
+add_library(filetree ${ftree} ${SOURCES})

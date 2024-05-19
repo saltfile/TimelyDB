@@ -1,0 +1,27 @@
+#pragma once
+
+#include "node.h"
+
+//namespace dt::ast
+//{
+    /**
+     * 字符串类定义
+     */
+    class String : public Expression
+    {
+    public:
+        String(): Expression(NODE_STRING) {}
+        ~String() {}
+
+        virtual Json json()
+        {
+            Json json;
+            json["type"] = name();
+            json["value"] = m_value;
+            return json;
+        }
+
+    public:
+        std::string m_value;
+    };
+//}

@@ -41,16 +41,17 @@ int main() {
 
 
 //分词
-    scan_word *words = scanWordInit();
-    sqlsacnner(words,"use databasename");
-    sqlitWord head = get_word(words,0);
-    cout<<head.num;
+//    scan_word *words = scanWordInit();
+//    sqlsacnner(words,"use databasename");
+//    sqlitWord head = get_word(words,0);
+//    cout<<head.num;
 
 
+//    std::shared_ptr<Lexer> lexer(new Lexer("./../code.ch"));
+//    std::shared_ptr<Parser> parser(new Parser(lexer));
 
 
-
-
+test_fire();
 
 
 
