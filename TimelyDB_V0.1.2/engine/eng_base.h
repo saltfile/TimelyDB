@@ -72,6 +72,11 @@ typedef struct handler_event{
 
 }handler_event;
 
+typedef void(*mointor_handler) (char *base_name,char *tab_name,int count,...);
+
+typedef struct mointor_event{
+    vector<mointor_handler> funcs;
+};
 
 void run_file_loading();
 void stop_time_pool();

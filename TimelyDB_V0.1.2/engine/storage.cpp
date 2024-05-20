@@ -245,7 +245,25 @@ vector<string> get_all_tab_name(){
     return result;
 }
 
+typedef void(*mointor_handler) (char *base_name,char *tab_name,int count,...);
+/**
+ * 轮询监控
+ * @param base_name
+ * @param tab_name
+ * @param count
+ * @param ...
+ */
+void mointor_s(char *base_name,char *tab_name,int count,...){
+    va_list ap;
+    va_start(ap, count);
 
+    for (int i = 0; i < count; i++) {
+        char *s = va_arg(ap, char *);
+        cout<<s<<endl;
+    }
+
+    va_end(ap);
+}
 
 
 

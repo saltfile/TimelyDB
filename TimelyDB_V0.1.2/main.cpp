@@ -4,9 +4,24 @@
 
 //异常处理封装
 
-//
-int main() {
+void funcd(int count,...){
+    va_list ap;
+    va_start(ap, count);
 
+    for (int i = 0; i < count; i++) {
+        char *s = va_arg(ap, char *);
+        cout<<s<<endl;
+    }
+
+    va_end(ap);
+}
+
+
+
+
+
+int main() {
+//    funcd(4,"aaa","bbb","ccc");
 //    char *path =  load_config_path();
 //    load_config(path);
 //
@@ -51,7 +66,7 @@ int main() {
 //    std::shared_ptr<Parser> parser(new Parser(lexer));
 
 
-test_fire();
+//test_fire();
 
 
 

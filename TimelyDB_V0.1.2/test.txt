@@ -3,5 +3,5 @@ create table xxx(field1_name field_type, field2_name field_type)
 
 select * from school where local='aaaa'
 
-select monitor tabname time:3 conlm,conlm2 file:show1
+select monitor tabname time:3  file:show1  conlm,conlm2
 
