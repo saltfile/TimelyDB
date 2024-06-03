@@ -27,11 +27,13 @@ typedef struct dbconfig{
     char *host;
     char *base_path;
     char *load_disk;
+    char *iot_path;
     dbconfig(){
     this->port = "8080";
     this->host = "localhost";
     this->base_path = "/home/saltfish/indexTSDB";
     this->load_disk = "3";
+    this->iot_path = "/home/saltfish";
     }
 }dbconfig;
 
@@ -50,5 +52,8 @@ char * load_project_path();
 char* load_config_path();
 
 char* get_load_time();
+
+char * get_config_iot_path();
+
 
 #endif //TIMELYDB_V0_1_2_CONFIG_H_H

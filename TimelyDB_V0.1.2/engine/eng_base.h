@@ -72,11 +72,32 @@ typedef struct handler_event{
 
 }handler_event;
 
-typedef void(*mointor_handler) (char *base_name,char *tab_name,int count,...);
+typedef void(*mointor_fun) (char *base_name,char *tab_name,char *file,int times,vector<string> colnms);
+
+typedef struct mointor_handler{
+
+    char *base_name;
+    char *tab_name;
+    char *file;
+    int times;
+    vector<string> colums;
+
+    mointor_fun func;
+
+
+}mointor_handler;
+
 
 typedef struct mointor_event{
-    vector<mointor_handler> funcs;
+    vector<mointor_fun> funcs;
 };
+
+
+
+
+
+
+
 
 void run_file_loading();
 void stop_time_pool();
@@ -94,6 +115,8 @@ vector<string> get_DB_once_row(char *base_name,char *tab_name,int idx_nums);
 vector<string> get_DB_data(char *base_name,char *tab_name);
 //获取所有库表名称用;隔开
 vector<string> get_all_tab_name();
+//获取单个表的所有列
+vector<string> get_tab_colums(char* base_name,char* tab_name);
 void load_disk();
 void run_file_loading();
 //线程处理

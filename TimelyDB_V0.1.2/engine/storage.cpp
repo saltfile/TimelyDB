@@ -245,26 +245,52 @@ vector<string> get_all_tab_name(){
     return result;
 }
 
-typedef void(*mointor_handler) (char *base_name,char *tab_name,int count,...);
+/**
+ * 获取一张表所有列
+ */
+
+vector<string> get_tab_colums(char* base_name,char* tab_name){
+    vector<string> res;
+    string base_key = base_name;
+    string tab_key = tab_name;
+    tab_struct ins_tab = DB_TAB_MAP[base_key][tab_key];
+    for (auto it = ins_tab.type_map.begin(); it != ins_tab.type_map.end(); ++it) {
+        res.push_back(it->first);
+    }
+    return res;
+}
+
+//typedef void(*mointor_handler) (char *base_name,char *tab_name,char *file,int times,vector<string> colnms);
+
+
+
+
+
+
+
+
 /**
  * 轮询监控
  * @param base_name
  * @param tab_name
  * @param count
  * @param ...
+ * TODO:明儿
  */
-void mointor_s(char *base_name,char *tab_name,int count,...){
-    va_list ap;
-    va_start(ap, count);
+void mointor_s(char *base_name,char *tab_name,char *file,vector<string> colnms){
+    string base_key = base_name;
+    string tab_key = tab_name;
+    tab_struct ins_tab = DB_TAB_MAP[base_key][tab_key];
+    map<string,string> iot_map = read_iot(file,colnms);
+    vector<string> col = get_tab_colums(base_name,tab_name);
+    char** col_key = NULL;
+    char** col_val = NULL;
+    col_key = ( char**)calloc( col.size(),  sizeof( char*));
+    col_val = ( char**)calloc( col.size(),  sizeof( char*));
 
-    for (int i = 0; i < count; i++) {
-        char *s = va_arg(ap, char *);
-        cout<<s<<endl;
-    }
 
-    va_end(ap);
+
 }
-
 
 
 

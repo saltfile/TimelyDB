@@ -4,23 +4,33 @@
 
 //异常处理封装
 
-void funcd(int count,...){
-    va_list ap;
-    va_start(ap, count);
-
-    for (int i = 0; i < count; i++) {
-        char *s = va_arg(ap, char *);
-        cout<<s<<endl;
-    }
-
-    va_end(ap);
-}
+//void funcd(int count,...){
+//    va_list ap;
+//    va_start(ap, count);
+//
+//    for (int i = 0; i < count; i++) {
+//        char *s = va_arg(ap, char *);
+//        cout<<s<<endl;
+//    }
+//
+//    va_end(ap);
+//}
 
 
 
 
 
 int main() {
+
+    char *path =  load_config_path();
+    load_config(path);
+
+vector<string> arr_col;
+arr_col.push_back("age");
+arr_col.push_back("test");
+read_iot("test",arr_col);
+init_file_system();
+
 //    funcd(4,"aaa","bbb","ccc");
 //    char *path =  load_config_path();
 //    load_config(path);

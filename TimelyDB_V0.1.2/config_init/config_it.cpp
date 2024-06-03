@@ -22,6 +22,10 @@ char *get_config_base_path(){
     return conf->base_path;
 }
 
+char * get_config_iot_path(){
+    return conf->iot_path;
+}
+
 int load_config(const char *file_name){
     FILE* fh = fopen(file_name, "r");
 
@@ -75,6 +79,9 @@ int load_config(const char *file_name){
                 if (!strcmp((char *)tk, "base_path")&& !strcmp(parent,"file_path")){
                     datap = &conf->base_path;
                 }
+                if (!strcmp((char *)tk, "iot_path")&& !strcmp(parent,"file_path")){
+                    datap = &conf->iot_path;
+                }
 
                 if (!strcmp((char *)tk, "load_disk")&& !strcmp(parent,"dbconfig")){
                     datap = &conf->load_disk;
@@ -99,6 +106,8 @@ int load_config(const char *file_name){
     printf(LIGHT_BLUE"        port：%s \n",conf->port);
     printf(LIGHT_BLUE"        host：%s \n",conf->host);
     printf(LIGHT_BLUE"        base_path：%s\n\033[m",conf->base_path);
+    printf(LIGHT_BLUE"        load_disk：%s\n\033[m",conf->load_disk);
+    printf(LIGHT_BLUE"        iot_path：%s\n\033[m",conf->iot_path);
     return 1;
 }
 

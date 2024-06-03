@@ -413,5 +413,67 @@ void clear_file(char *base_name,char *file_name){
 
 
 
+map<string,string> analyzing_iot(char *buff){
+    int clo_size = str_spilt_size(buff,"\n");
+    char** colums = str_spilt(buff,"\n");
+    map<string,string> result;
+
+    for (int i = 0; i < clo_size; ++i) {
+        char** f_pus = str_spilt(colums[i],"=");
+        string filed = f_pus[0];
+        string value = f_pus[1];
+        result.insert(pair<string,string>(filed, value));
+    }
+    return result;
+}
+
+
+
+
+
+map<string,string> read_iot(char *file,vector<string> clonms){
+    map<string,string> result;
+    char *iot_path = get_config_iot_path();
+    iot_path = str_marge(iot_path,file);
+    FILE *f_read = fopen(iot_path, "r");
+    if (f_read == NULL) {
+        return result;
+    }
+    char *buf = NULL;
+    long file_size = 0;
+    fseek(f_read, 0, SEEK_END);
+    file_size = ftell(f_read);
+    rewind(f_read);
+
+
+
+    // 分配足够的内存空间
+    buf = (char*)malloc(file_size * sizeof(char));
+
+    // 读取文件内容
+    fread(buf, sizeof(char), file_size, f_read);
+    fgets(buf, sizeof(buf), f_read);
+    fclose(f_read);
+
+    map<string,string> r_map = analyzing_iot(buf);
+    for (int i = 0; i < clonms.size(); ++i) {
+        string key = clonms[i];
+        if (!r_map[key].empty()){
+            result.insert(pair<string,string>(key,r_map[key]));
+        }
+    }
+
+    return result;
+}
+
+
+
+
+
+
+
+
+
+
 
 

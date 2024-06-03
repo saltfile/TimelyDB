@@ -5,7 +5,7 @@
 
 #define WHEEL_SIZE 60
 handler_event arr[WHEEL_SIZE];//时间任务准备
-int wheel_idx = 0;//60格
+extern int wheel_idx = 0;//60格
 bool time_flag = false;
 
 ThreadPool handler_pool(4);//处理任务的池子

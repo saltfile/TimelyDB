@@ -4,3 +4,4 @@ dbconfig:
     load_disk: 4
 file_path:
     base_path: "/home/saltfish/indexTSDB"
+    iot_path: "/home/saltfish/vaoi_iot/"
