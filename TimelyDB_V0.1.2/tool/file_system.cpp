@@ -419,6 +419,8 @@ map<string,string> analyzing_iot(char *buff){
     map<string,string> result;
 
     for (int i = 0; i < clo_size; ++i) {
+        if (str_spilt_size(colums[i],"=") <= 1)
+            continue;
         char** f_pus = str_spilt(colums[i],"=");
         string filed = f_pus[0];
         string value = f_pus[1];

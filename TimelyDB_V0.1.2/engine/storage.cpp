@@ -127,9 +127,13 @@ bool DB_insert_table(char *base_name,char *tab_name,char **colum_key,int key_siz
     for (int i = 0; i < key_size; ++i) {
         string col_key = colum_key[i];
         data_type type_ins = ins_tab.type_map[col_key];
+        char *val = colum_val[i];
         switch (type_ins) {
             case INT:
-                ins_tab.data_map[col_key]->add(str_to_type_int(colum_val[i]));
+                if (strcmp(colum_val[i],"nil") != 0)
+                    ins_tab.data_map[col_key]->add(str_to_type_int(colum_val[i]));
+                else
+                    ins_tab.data_map[col_key]->add(str_to_type_int("0"));
                 break;
             case VARCHAR:
                 ins_tab.data_map[col_key]->add(str_to_type_varchar(colum_val[i]));
@@ -275,7 +279,7 @@ vector<string> get_tab_colums(char* base_name,char* tab_name){
  * @param tab_name
  * @param count
  * @param ...
- * TODO:明儿
+ *
  */
 void mointor_s(char *base_name,char *tab_name,char *file,vector<string> colnms){
     string base_key = base_name;
@@ -288,6 +292,21 @@ void mointor_s(char *base_name,char *tab_name,char *file,vector<string> colnms){
     col_key = ( char**)calloc( col.size(),  sizeof( char*));
     col_val = ( char**)calloc( col.size(),  sizeof( char*));
 
+
+    for (int i = 0; i < col.size(); ++i) {
+        string k = col[i];
+        auto it = iot_map.find(k);
+        col_key[i] = (char *) malloc(k.size()*sizeof(char *));
+        strcpy(col_key[i],k.c_str());
+        if (it == iot_map.end()){
+            col_val[i] = str_copy("","nil");
+            continue;
+        }
+        string v = iot_map[k];
+        col_val[i] = (char *) malloc(v.size()*sizeof(char *));
+        strcpy(col_val[i],v.c_str());
+    }
+    DB_insert_table(base_name,tab_name,col_key,col.size(),col_val,col.size());
 
 
 }

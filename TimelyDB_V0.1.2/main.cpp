@@ -25,12 +25,18 @@ int main() {
     char *path =  load_config_path();
     load_config(path);
 
-vector<string> arr_col;
-arr_col.push_back("age");
-arr_col.push_back("test");
-read_iot("test",arr_col);
-init_file_system();
+    vector<string> arr_col;
+    arr_col.push_back("age");
+    //arr_col.push_back("test");
+    //read_iot("test",arr_col);
+    init_file_system();
+    DB_init_memery_tab();
+    mointor_s("usnh_db","stu","test",arr_col);
 
+    run_file_loading();
+    sleep(50);
+    stop_time_pool();
+//    get_tab_colums("usnh_db","stu");
 //    funcd(4,"aaa","bbb","ccc");
 //    char *path =  load_config_path();
 //    load_config(path);

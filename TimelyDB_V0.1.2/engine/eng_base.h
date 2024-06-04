@@ -72,25 +72,8 @@ typedef struct handler_event{
 
 }handler_event;
 
-typedef void(*mointor_fun) (char *base_name,char *tab_name,char *file,int times,vector<string> colnms);
+typedef void(*mointor_fun) (char *base_name,char *tab_name,char *file,vector<string> colnms);
 
-typedef struct mointor_handler{
-
-    char *base_name;
-    char *tab_name;
-    char *file;
-    int times;
-    vector<string> colums;
-
-    mointor_fun func;
-
-
-}mointor_handler;
-
-
-typedef struct mointor_event{
-    vector<mointor_fun> funcs;
-};
 
 
 
@@ -102,6 +85,8 @@ typedef struct mointor_event{
 void run_file_loading();
 void stop_time_pool();
 
+
+void run_mointor_loading();
 
 //初始化表
 bool DB_init_memery_tab();
@@ -117,6 +102,8 @@ vector<string> get_DB_data(char *base_name,char *tab_name);
 vector<string> get_all_tab_name();
 //获取单个表的所有列
 vector<string> get_tab_colums(char* base_name,char* tab_name);
+//执行时间任务
+void mointor_s(char *base_name,char *tab_name,char *file,vector<string> colnms);
 void load_disk();
 void run_file_loading();
 //线程处理
@@ -181,6 +168,28 @@ private:
     mutex queueMutex;
     condition_variable condition;
     bool stop;
+};
+
+
+
+
+typedef struct mointor_handler{
+    char *base_name;
+    char *tab_name;
+    char *file;
+    vector<string> colums;
+    void start(){
+//        mointor_s(base_name,tab_name,file,colums);
+cout<<base_name<<endl;
+cout<<tab_name<<endl;
+cout<<file<<endl;
+    }
+}mointor_handler;
+
+
+typedef struct mointor_event{
+
+    vector<mointor_handler> funcs;
 };
 
 

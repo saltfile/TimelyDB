@@ -8,7 +8,7 @@
 
 #define WHEEL_SIZE 60
 mointor_event arr[WHEEL_SIZE];//时间任务准备
-int wheel_idx = 0;//60格
+int time_idx = 0;//60格
 bool time_flag = false;
 ThreadPool mointor_pool(4);//处理任务的池子
 
@@ -16,16 +16,17 @@ ThreadPool mointor_pool(4);//处理任务的池子
 
 void* time_fun(void *arg){
     while (1){
-//        if (arr[wheel_idx].is_task){
-//            mointor_pool.enqueue([]{
-//                arr[wheel_idx].f_fun();
-//            });
-//
-//        }
+        if (!arr[time_idx].funcs.empty()){
+            mointor_pool.enqueue([]{
+            for (int i = 0; i < arr[time_idx].funcs.size(); ++i) {
+                arr[time_idx].funcs[i].start();
+            }
+            });
+        }
         sleep(1);
-        wheel_idx++;
-        if (WHEEL_SIZE == wheel_idx){
-            wheel_idx = 0;
+        time_idx++;
+        if (WHEEL_SIZE == time_idx){
+            time_idx = 0;
         }
         if (time_flag)break;
     }
@@ -35,7 +36,18 @@ void* time_fun(void *arg){
 
 
 
+void run_mointor_loading(){
 
+    pthread_t tid;
+    pthread_create(&tid,NULL,time_fun,NULL);
+
+}
+
+//TODO:添加时间任务
+void mointor_add_task(char *base_name,char *tab_name,char *file,vector<string> colums,int time){
+
+
+}
 
 
 
