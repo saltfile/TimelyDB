@@ -15,7 +15,7 @@
 #include <vector>
 #include<map>
 #include <csetjmp>
-
+#include "../config_init/config_h.h"
 using namespace std;
 
 enum data_type {
@@ -465,6 +465,8 @@ int create_mkdir(char *path);
 FILE *create_file(char *path);
 
 bool file_is_exist(char *path);
+
+bool database_is_exist(char *database);
 
 int create_database(char *base_name);
 

@@ -2,8 +2,9 @@
 // Created by saltfish on 23-4-19.
 //
 #include "eng_base.h"
-
 static map<string, map<string, tab_struct>> DB_TAB_MAP;
+
+static char * databasename = NULL;
 
 static int RING_LEN = 5;
 /**
@@ -108,9 +109,44 @@ bool DB_create_table(char *base_name, char *tab_name, char **clonms, data_type *
 
 
 
+bool create_databaase(char *basename){
+    bool res = false;
+    //查看是否已存在
 
+    string base_key = basename;
+    char *base_path = load_config_path();
+    base_path = str_marge(base_path,"/");
+    base_path = str_marge(base_path,basename);
 
+    bool file_exist = file_is_exist(base_path);
+    if (file_exist){
+        return res;
+    }
+    //内存建库
+    map<string, tab_struct> push_map;
+    DB_TAB_MAP.insert(pair<string,map<string,tab_struct>>(base_key,push_map));
+    //文件建库
+    int result = create_database(basename);
+    if (result == 1){
+        res = true;
+    }
+    return res;
+}
 
+bool use_database(char *basename){
+    bool res = false;
+    //查看是否已存在
+
+    string base_key = basename;
+    bool file_exist = database_is_exist(basename);
+    auto it = DB_TAB_MAP.find(base_key);
+    if (!file_exist||it == DB_TAB_MAP.end()){
+        return res;
+    }
+    databasename = str_copy("",basename);
+    res = true;
+    return res;
+}
 
 
 /**
@@ -145,9 +181,6 @@ bool DB_insert_table(char *base_name,char *tab_name,char **colum_key,int key_siz
 }
 
 
-/**
- * 整行展示   Select *
- */
 
 /**
  * 从环中取出某一行

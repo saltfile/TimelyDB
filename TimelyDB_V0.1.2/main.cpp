@@ -21,21 +21,37 @@
 
 
 int main() {
+    char *inf =  str_copy("","asdasd");
+
+
+
 
     char *path =  load_config_path();
     load_config(path);
-
-    vector<string> arr_col;
-    arr_col.push_back("age");
-    //arr_col.push_back("test");
-    //read_iot("test",arr_col);
     init_file_system();
     DB_init_memery_tab();
-    mointor_s("usnh_db","stu","test",arr_col);
 
-    run_file_loading();
-    sleep(50);
-    stop_time_pool();
+    use_handle("use usnhdb");
+//
+//    run_file_loading();
+//    run_mointor_loading();
+//
+//    sleep(60);
+//    stop_file_pool();
+//    stop_mointor_pool();
+
+//    run_mointor_loading();
+//    sleep(3);
+//    mointor_add_task("usnh_db","stu","test",arr_col,3);
+//    mointor_add_task("usnh_db34","stu4","test",arr_col,4);
+//    mointor_add_task("usnh_db1","stu4","test",arr_col,3);
+//    sleep(50);
+//
+
+//    m_handler.tab_name = str_copy("","str");
+//    m_handler.file = str_copy("","asdasd");
+//    m_handler.colums = arr_col;
+
 //    get_tab_colums("usnh_db","stu");
 //    funcd(4,"aaa","bbb","ccc");
 //    char *path =  load_config_path();
@@ -219,7 +235,7 @@ int main() {
 //    int *sty = (int *)ptr->get(ptr->length-1);
 //    cout<<*sty;
 
-
+//    mointor_handler m_handler;
 
     return 1;
 }

@@ -9,8 +9,8 @@ link_libraries(/usr/local/lib/libyaml.a)
 
 ADD_SUBDIRECTORY(tool)
 ADD_SUBDIRECTORY(time_pool)
-ADD_SUBDIRECTORY(server)
 ADD_SUBDIRECTORY(engine)
+ADD_SUBDIRECTORY(server)
 ADD_SUBDIRECTORY(filetree)
 ADD_SUBDIRECTORY(config_init)
 
@@ -22,5 +22,5 @@ ADD_SUBDIRECTORY(config_init)
 #aux_source_directory(./config_init config_init)
 AUX_SOURCE_DIRECTORY(. timelyDb)
 
-add_executable(TimelyDB_V0_1_2 ${timelyDb}  _startup.h time_pool config_init tool server filetree engine)
-TARGET_LINK_LIBRARIES(TimelyDB_V0_1_2  pthread  time_pool config_init tool server filetree engine)
+add_executable(TimelyDB_V0_1_2 ${timelyDb} time_pool config_init tool server engine filetree  _startup.h )
+TARGET_LINK_LIBRARIES(TimelyDB_V0_1_2  pthread  time_pool config_init tool server engine filetree )

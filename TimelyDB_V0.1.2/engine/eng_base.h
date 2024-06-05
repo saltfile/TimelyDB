@@ -36,10 +36,9 @@
 #include <functional>
 #include <stdexcept>
 //#include <exception>
-#include "../tool/tool_base.h"
-#include "../config_init/config_h.h"
-using namespace std;
 
+using namespace std;
+#include "../tool/tool_base.h"
 
 //早期做法
 typedef struct DB_table{
@@ -83,10 +82,13 @@ typedef void(*mointor_fun) (char *base_name,char *tab_name,char *file,vector<str
 
 
 void run_file_loading();
-void stop_time_pool();
+void stop_file_pool();
 
 
 void run_mointor_loading();
+void stop_mointor_pool();
+
+void mointor_add_task(char *base_name,char *tab_name,char *file,vector<string> colums,int time);
 
 //初始化表
 bool DB_init_memery_tab();
@@ -102,6 +104,11 @@ vector<string> get_DB_data(char *base_name,char *tab_name);
 vector<string> get_all_tab_name();
 //获取单个表的所有列
 vector<string> get_tab_colums(char* base_name,char* tab_name);
+//use语句
+bool use_database(char *basename);
+
+
+
 //执行时间任务
 void mointor_s(char *base_name,char *tab_name,char *file,vector<string> colnms);
 void load_disk();

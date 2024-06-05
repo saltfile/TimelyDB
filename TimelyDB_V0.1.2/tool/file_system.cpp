@@ -4,7 +4,7 @@
 
 #include <fstream>
 #include "tool_base.h"
-#include "../config_init/config_h.h"
+
 
 /**
  * 本地文件映射
@@ -351,7 +351,7 @@ vector<string> get_any_table(string base_key){
 
 
 //文件写入
-int file_write(char *base_key,char *file_name,char *data){
+int file_write(char *base_key, char *file_name, char *data){
     string b_key = base_key;
     string f_key = file_name;
 

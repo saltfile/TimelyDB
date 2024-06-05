@@ -36,8 +36,7 @@
 #include <functional>
 #include <stdexcept>
 //#include <exception>
-#include "../tool/tool_base.h"
-#include "../config_init/config_h.h"
+#include "../engine/eng_base.h"
 
 
 using namespace std;
@@ -94,22 +93,107 @@ int get_wordlen(scan_word *scan);
 
 //语法树
 //此树是一颗语法树根据语法的一颗多叉树 //其中原理是先准备建立一颗树等语句进来在按个放进去用空间换取时间
-//typedef struct list{
-//    struct treenode *tree;//树节点
-//    struct list *prev;//后继
-//    struct list *next;//前驱
-//}list;
-//
-//typedef struct treenode{
-//    char *str;
-//    int strlen = 0;
-//    int strtype = 0;
-//    struct list *nodelist;//节点列表
-//}treenode;
+typedef struct tree_list{
+    struct treenode *tree;//树节点
+    struct tree_list *prev;//后继
+    struct tree_list *next;//前驱
+}tree_list;
+
+typedef struct treenode{
+    char *str;
+    int strlen = 0;
+    int strtype = 0;
+    struct tree_list *nodelist;//节点列表
+}treenode;
 //链表函数
 
+enum Handler{
+    CREATE_DATABASE,
+    CREATE_TABLE,
+    INSERTINTO,
+    SELECTS,
+    DELETE,
+    USE,
+    DROP_DATABASE,
+    DROP_TABLE
+};
 
+enum TokenType{
+    Asc,
+    Desc,
+    Max,
+    Min,
+//    SELECT,
+    Add ,
+    Drop,
+    Alter_Add_Column,
+    Alter_Drop_Column,
+    Database_Name,        //数据库名
+    Column_Name,          //列名
+    From_TableName,
+    Alter_Table,
+    LIMIT_Param,
+    GROUPBY_Column,
+    Select_Column,
+    Where_Column,
+    DataType,
+    FROM,
+    WHERE,
+    AND,                 //交
+    OR,                  //并
+    NOT,                 //补
+    LIMIT,
+    GROUPBY,
+    Function,
+    Select_ColumnName,
+    Alter,
+    Create,
+    GE,                   //>=
+    GT,                   //>
+    EQ,                   //==
+    LE,                   //<=
+    LT,                   //<
+    LeftParen,            //(
+    RightParen,           //)
+    Assignment,           //=
+    START,                //*
+    COMMA,                //,
+    END,                  //;
+};
+
+
+struct condition{
+
+    char* c_name;//tag名
+    enum TokenType c_symbol;//> < =
+    char* c_value;//值
+    enum TokenType cTypes;
+    enum data_type dataTypes;
+
+    struct condition* next;
+};
+
+struct sql_operation{
+    enum Handler handler;
+    char* name;// databasename or tbname
+    char* field;//*
+    char * timestamp;//时间戳
+//    int condition_size;//默认为0
+    struct condition* data_list;
+
+};
+
+treenode *init_use();
+void sql_use(scan_word *scan,treenode *root);
+char* use_handle(char* sentence);
+char* use_memte(treenode *root);
+void sql_use(scan_word *scan,treenode *root);
+treenode *init_use();
+treenode *check_tree(scan_word *scan);
+void add_list(tree_list *root,treenode *node);
 void test_fire();
+
+
 
 
 
