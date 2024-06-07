@@ -143,6 +143,15 @@ int str_to_type_int(char *str){
     int res = atoi(str);
     return res;
 }
+
+long get_now_timestamp(){
+    time_t timestamp;
+    time(&timestamp);
+    long result = timestamp;
+    return result;
+}
+
+
 varchar *str_to_type_varchar(char *str){
     varchar *result = (varchar *) malloc(sizeof(varchar));
     result->size = 255;

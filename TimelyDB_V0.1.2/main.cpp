@@ -31,8 +31,14 @@ int main() {
     init_file_system();
     DB_init_memery_tab();
 
-    use_handle("use usnhdb");
-//
+    cout<<use_handle("use usnhdb")<<endl;
+//    cout<<create_handle("create database xxxs")<<endl;
+//    cout<<create_handle("create table xxx(age int,name varchar(255))")<<endl;
+
+    cout<<insert_handle("insert into xxx (name,age) values(asd,45)");
+
+//create database xxxs
+
 //    run_file_loading();
 //    run_mointor_loading();
 //

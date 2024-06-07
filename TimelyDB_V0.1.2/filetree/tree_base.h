@@ -189,14 +189,33 @@ char* use_handle(char* sentence);
 char* use_memte(treenode *root);
 void sql_use(scan_word *scan,treenode *root);
 treenode *init_use();
+
+treenode *init_create_db();
+treenode *check_create(scan_word* scan,treenode *root);
+void sql_create_db(scan_word *scan,treenode *root);
+treenode *init_create_tb();
+char* create_handle(char* sentence);
+
+
+//初始化insert
+treenode *init_ins();
+void sql_ins(scan_word *scan,treenode *root);
+char* memte_insert(treenode* root);
+char* insert_handle(char* sentence);
+
+
+
 treenode *check_tree(scan_word *scan);
 void add_list(tree_list *root,treenode *node);
+int get_list_size(tree_list *root);
+int base_type_syntax(scan_word *scan,int start);
 void test_fire();
 
+tree_list *branch_259(scan_word *scanWord,int start,int end);
+tree_list * branch_257(scan_word *scan,int arrlen);
+tree_list * branch_258(scan_word *scan,int arrlen);
 
 
-
-
-
+int check_table_exists(treenode* root);
 
 #endif //TIMELYDB_V0_1_2_TREE_BASE_H

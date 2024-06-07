@@ -88,7 +88,7 @@ int create_database(char *base_name) {
     base = str_marge(base, "/");
 
     char *base_path = str_marge(base, base_name);
-    int result = 0;
+    int result = -1;
 
     if (file_is_exist(base_path)) {
         return result;

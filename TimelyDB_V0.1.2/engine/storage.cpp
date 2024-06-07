@@ -109,7 +109,7 @@ bool DB_create_table(char *base_name, char *tab_name, char **clonms, data_type *
 
 
 
-bool create_databaase(char *basename){
+bool create_database_db(char *basename){
     bool res = false;
     //查看是否已存在
 
@@ -148,6 +148,11 @@ bool use_database(char *basename){
     return res;
 }
 
+char *is_use_database(){
+    if (databasename == NULL)return NULL;
+    char *result = str_copy("",databasename);
+    return result;
+}
 
 /**
  * 单行插入
@@ -174,9 +179,40 @@ bool DB_insert_table(char *base_name,char *tab_name,char **colum_key,int key_siz
             case VARCHAR:
                 ins_tab.data_map[col_key]->add(str_to_type_varchar(colum_val[i]));
                 break;
+            case TIMESTAMP:
+                ins_tab.data_map[col_key]->add(get_now_timestamp());
+                break;
         }
 //
     }
+
+}
+bool DB_tab_is_exist(char *tab_name){
+    string base_key = is_use_database();
+    string tab_key = tab_name;
+    auto it = DB_TAB_MAP.find(base_key);
+    if (it == DB_TAB_MAP.end()){
+        return false;
+    }
+    auto tab_it = DB_TAB_MAP[base_key].find(tab_key);
+    if (tab_it == DB_TAB_MAP[base_key].end()){
+        return false;
+    }
+    return true;
+}
+
+
+
+bool DB_colum_is_exist(char *tab_name,char *col_name){
+    string base_key = is_use_database();
+    string tab_key = tab_name;
+    tab_struct i_tab = DB_TAB_MAP[base_key][tab_key];
+    string col_key = col_name;
+    auto it = i_tab.type_map.find(col_key);
+    if (it == i_tab.type_map.end()){
+        return false;
+    }
+    return true;
 
 }
 
@@ -207,6 +243,10 @@ vector<string> get_DB_once_row(char *base_name,char *tab_name,int idx_nums){
             case VARCHAR: {
                 varchar *char_p = (varchar *) val;
                 result.push_back(char_p->to_string());
+            }break;
+            case TIMESTAMP: {
+                long *long_p = (long *)val;
+                result.push_back(to_string(*long_p));
             }break;
         }
     }

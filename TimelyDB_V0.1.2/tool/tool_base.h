@@ -331,7 +331,7 @@ public:
         this->type = type;
     }
 
-    void add(int i) {
+    void add(int val) {
         //1.拿到句柄
         tylist_node *ptr = &this->collect->list;
         tylist_node *p = NULL;
@@ -353,7 +353,38 @@ public:
         }
         integer *pi = (integer *) malloc(sizeof(integer));
         memset(pi, 0, sizeof(integer));
-        pi->val = i;
+        pi->val = val;
+        res->data = (void *) pi;
+
+        this->length++;
+//        this->length =
+
+    }
+
+
+    void add(long val) {
+        //1.拿到句柄
+        tylist_node *ptr = &this->collect->list;
+        tylist_node *p = NULL;
+        this->length = this->length % size;
+        int len = this->length;
+        //3.拿到对应的下标
+//        LIST_FOR_RING(p, ptr, len);
+
+        p = ptr;
+        for (int i = 0; i < this->length; i++) {
+            p = p->next;
+        }
+        //4.置换出来返回结果
+        collection *res = NULL;
+        CONTAINER_OF(res, collection, p);
+        integer *aaa = NULL;
+        if (res->data != NULL){
+            aaa= (integer*)res->data;
+        }
+        integer *pi = (integer *) malloc(sizeof(integer));
+        memset(pi, 0, sizeof(integer));
+        pi->val = val;
         res->data = (void *) pi;
 
         this->length++;
@@ -514,4 +545,5 @@ char *free_str(char *str);
 //类型转换
 int str_to_type_int(char *str);
 varchar *str_to_type_varchar(char *str);
+long get_now_timestamp();
 #endif //TIMELYDB_V0_1_2_TOOL_BASE_H

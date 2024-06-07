@@ -106,9 +106,14 @@ vector<string> get_all_tab_name();
 vector<string> get_tab_colums(char* base_name,char* tab_name);
 //use语句
 bool use_database(char *basename);
-
-
-
+//返回use 数据库
+char *is_use_database();
+//create database语句
+bool create_database_db(char *basename);
+//查看是否存在表
+bool DB_tab_is_exist(char *tab_name);
+//查看列是否存在
+bool DB_colum_is_exist(char *tab_name,char *col_name);
 //执行时间任务
 void mointor_s(char *base_name,char *tab_name,char *file,vector<string> colnms);
 void load_disk();
