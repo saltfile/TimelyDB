@@ -104,6 +104,8 @@ vector<string> get_DB_data(char *base_name,char *tab_name);
 vector<string> get_all_tab_name();
 //获取单个表的所有列
 vector<string> get_tab_colums(char* base_name,char* tab_name);
+//获取列map
+map<string,string> get_tab_map_colums(char* base_name,char* tab_name);
 //use语句
 bool use_database(char *basename);
 //返回use 数据库

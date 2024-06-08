@@ -378,13 +378,13 @@ public:
         //4.置换出来返回结果
         collection *res = NULL;
         CONTAINER_OF(res, collection, p);
-        integer *aaa = NULL;
+        long *aaa = NULL;
         if (res->data != NULL){
-            aaa= (integer*)res->data;
+            aaa= (long*)res->data;
         }
-        integer *pi = (integer *) malloc(sizeof(integer));
-        memset(pi, 0, sizeof(integer));
-        pi->val = val;
+        long *pi = (long *) malloc(sizeof(long));
+        memset(pi, 0, sizeof(long));
+        pi = &val;
         res->data = (void *) pi;
 
         this->length++;

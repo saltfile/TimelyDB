@@ -166,7 +166,8 @@ bool DB_insert_table(char *base_name,char *tab_name,char **colum_key,int key_siz
     tab_struct ins_tab = DB_TAB_MAP[base_key][tab_key];
 
     for (int i = 0; i < key_size; ++i) {
-        string col_key = colum_key[i];
+        char *a1 = colum_key[i];
+        string col_key = a1;
         data_type type_ins = ins_tab.type_map[col_key];
         char *val = colum_val[i];
         switch (type_ins) {
@@ -295,6 +296,11 @@ vector<string> get_DB_data(char *base_name,char *tab_name){
                     data_row = data_row + ";";
                 }
                     break;
+                case TIMESTAMP:{
+                    long *l_ptr = (long *)val;
+                    data_row = data_row + to_string(*l_ptr);
+                    data_row = data_row + ";";
+                }
             }
         }
 
@@ -339,7 +345,16 @@ vector<string> get_tab_colums(char* base_name,char* tab_name){
 
 //typedef void(*mointor_handler) (char *base_name,char *tab_name,char *file,int times,vector<string> colnms);
 
-
+map<string,string> get_tab_map_colums(char* base_name,char* tab_name){
+    map<string,string> res;
+    string base_key = base_name;
+    string tab_key = tab_name;
+    tab_struct ins_tab = DB_TAB_MAP[base_key][tab_key];
+    for (auto it = ins_tab.type_map.begin(); it != ins_tab.type_map.end(); ++it) {
+        res.insert(pair<string,string>(it->first,"nil"));
+    }
+    return res;
+}
 
 
 

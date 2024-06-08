@@ -24,8 +24,6 @@ int main() {
     char *inf =  str_copy("","asdasd");
 
 
-
-
     char *path =  load_config_path();
     load_config(path);
     init_file_system();
@@ -36,7 +34,10 @@ int main() {
 //    cout<<create_handle("create table xxx(age int,name varchar(255))")<<endl;
 
     cout<<insert_handle("insert into xxx (name,age) values(asd,45)");
-
+    vector<string> res = get_DB_data("usnhdb","xxx");
+    for (int i = 0; i < res.size(); ++i) {
+        cout<<res[i]<<endl;
+    }
 //create database xxxs
 
 //    run_file_loading();

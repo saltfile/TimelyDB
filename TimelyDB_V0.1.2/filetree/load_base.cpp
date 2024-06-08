@@ -502,9 +502,7 @@ char* use_memte(treenode *root){
 
 
 char* memte_insert(treenode* root){
-//    char **col_key =
-
-//    TODO:获取所有列数-将对应的、key时列名 val是值
+    char *result = NULL;
 
     tree_list* sql = root->nodelist->next;
     treenode* p = sql->tree;
@@ -514,8 +512,45 @@ char* memte_insert(treenode* root){
     insert->name = str_copy(insert->name,p->str);
     insert->timestamp = 0;
     sql = sql->next;
-    tree_list *colnms = sql->tree->nodelist;
-    return NULL;
+    char *cols = str_copy("",sql->tree->str);
+    char **col_arr = str_spilt(cols,",");
+    int col_size = str_spilt_size(cols,",");
+
+    sql = sql->next;
+    sql = sql->next;
+
+    char *vals = str_copy("",sql->tree->str);
+    char **val_arr = str_spilt(vals,",");
+    int val_size = str_spilt_size(vals,",");
+
+    char *tab_name = str_copy("",p->str);
+    map<string,string> map_col = get_tab_map_colums(is_use_database(),tab_name);
+
+    for (int i = 0; i < col_size; ++i) {
+        string col_key = col_arr[i];
+        string val = val_arr[i];
+        map_col[col_key] = val;
+    }
+    string times = "timeStamp";
+    string stamp_val = to_string(get_now_timestamp());
+    map_col[times] = stamp_val;
+
+    char **push_col = (char **) calloc(map_col.size() , sizeof(char *));
+    char **push_val = (char **) calloc(map_col.size(),sizeof(char *));
+    int i = 0;
+    for (map<string ,string>::iterator it = map_col.begin(); it != map_col.end(); ++it) {
+        push_col[i] = str_copy(push_col[i],const_cast<char *>(it->first.c_str()));
+        push_val[i] = str_copy(push_val[i],const_cast<char *>(it->second.c_str()));
+        i++;
+    }
+    bool is_success = DB_insert_table(is_use_database(),tab_name,push_col,map_col.size(),push_val,map_col.size());
+    if (is_success){
+        result = str_copy("","Successfully inserted 1 * row into");
+    } else{
+        result = str_copy("","Insert Failed");
+    }
+
+    return result;
 }
 
 
@@ -553,6 +588,10 @@ char* insert_handle(char* sentence){
     if (exis == -1){return "Your table does not exist";}
     if (exis == -2){return "Column in statement does not exist";}
     res = memte_insert(create);
+
+
+
+
     return res;
 }
 
