@@ -52,6 +52,7 @@ typedef struct DB_table{
 };
 //最懒省事做法
 typedef struct tab_struct{
+    bool display = true;
     int max_data_size = 1024;
     char *col_together_name = NULL;
     map<string ,data_type> type_map;
@@ -112,6 +113,7 @@ bool use_database(char *basename);
 char *is_use_database();
 //create database语句
 bool create_database_db(char *basename);
+char *get_tab_cols(char *base_name,char *tab_name);
 //查看是否存在表
 bool DB_tab_is_exist(char *tab_name);
 //查看列是否存在
@@ -120,6 +122,7 @@ bool DB_colum_is_exist(char *tab_name,char *col_name);
 void mointor_s(char *base_name,char *tab_name,char *file,vector<string> colnms);
 void load_disk();
 void run_file_loading();
+void del_tab(char *base_name,char *tab_name);
 //线程处理
 class ThreadPool {
 public:
@@ -191,12 +194,13 @@ typedef struct mointor_handler{
     char *base_name;
     char *tab_name;
     char *file;
+    int time;
     vector<string> colums;
     void start(){
-//        mointor_s(base_name,tab_name,file,colums);
-cout<<base_name<<endl;
-cout<<tab_name<<endl;
-cout<<file<<endl;
+        mointor_s(base_name,tab_name,file,colums);
+//cout<<base_name<<endl;
+//cout<<tab_name<<endl;
+//cout<<file<<endl;
     }
 }mointor_handler;
 

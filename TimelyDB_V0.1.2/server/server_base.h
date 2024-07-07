@@ -32,6 +32,7 @@
 #include <cstdlib>
 //#include <exception>
 #include "../tool/tool_base.h"
+#include "../filetree/tree_base.h"
 using namespace std;
 typedef unsigned char u8;
 

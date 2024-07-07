@@ -117,19 +117,20 @@ void rec_runtable(int epollfd,int fd,char *buf)
             case 0 :packge2->create_package(packge1->result,MESS_SUCCESS);break;
             case 1 :packge2->create_package("err is del user",MESS_SUCCESS);break;
             case 2 :packge2->create_package("succses",MESS_SUCCESS);break;
-//            case 3 :packge2->create_package(create_handle(packge1->result),MESS_SUCCESS);break;
+            case 3 :packge2->create_package(create_handle(packge1->result),MESS_SUCCESS);break;
             case 4 :packge2->create_package("succses",MESS_SUCCESS);break;
             case 5 :packge2->create_package("succses",MESS_SUCCESS);break;
             case 6 :packge2->create_package("succses",MESS_SUCCESS);break;
             case 7 :packge2->create_package("succses",MESS_SUCCESS);break;
-//            case 14:packge2->create_package(show_Table_handle(packge1->result),MESS_SUCCESS);break;
-//            case 8 :packge2->create_package(show_DB_handle(packge1->result),MESS_SUCCESS);break;
-//            case 9 :packge2->create_package(use_handle(packge1->result),MESS_SUCCESS);break;
+            case 14:packge2->create_package(show_Table_handle(packge1->result),MESS_SUCCESS);break;
+            case 8 :packge2->create_package(show_DB_handle(packge1->result),MESS_SUCCESS);break;
+            case 9 :packge2->create_package(use_handle(packge1->result),MESS_SUCCESS);break;
             case 10 :packge2->create_package("succses",MESS_SUCCESS);break;
             case 11 :packge2->create_package("succses",MESS_SUCCESS);break;
-            case 12 :packge2->create_package("succses",MESS_SUCCESS);break;
+            case 12 :packge2->create_package(select_handle(packge1->result),MESS_SUCCESS);break;
             case 13 :packge2->create_package("succses",MESS_SUCCESS);break;
-//            case 15 :packge2->create_package(insert_handle(packge1->result),MESS_SUCCESS);break;
+            case 15 :packge2->create_package(insert_handle(packge1->result),MESS_SUCCESS);break;
+            case 31 :packge2->create_package(handler_mointor(packge1->result),MESS_SUCCESS);break;
             default:packge2->create_package("error",CONN_FAIL);
         }
 

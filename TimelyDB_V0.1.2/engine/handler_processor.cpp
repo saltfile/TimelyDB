@@ -63,10 +63,10 @@ void run_file_loading(){
 
 void load_disk(){
 
-    cout<<"落盘操作"<<endl;
+//    cout<<"落盘操作"<<endl;
     vector<string> result=get_all_tab_name();
     for (int i = 0; i < result.size(); ++i) {
-        cout<<result[i]<<endl;
+//        cout<<result[i]<<endl;
         char *lis_base = const_cast<char *>(result[i].c_str());
         char **cols = str_spilt(lis_base,";");
         vector<string> data_arr = get_DB_data(cols[0],cols[1]);
@@ -76,8 +76,8 @@ void load_disk(){
             push_str+=data_arr[j]+"\n";
         }
         file_write(cols[0], cols[1],const_cast<char *>(push_str.c_str()));
-        cout<<push_str<<endl;
-        cout<<endl;
+//        cout<<push_str<<endl;
+//        cout<<endl;
 
     }
 

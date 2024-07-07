@@ -22,6 +22,7 @@ char *get_config_base_path(){
     return conf->base_path;
 }
 
+
 char * get_config_iot_path(){
     return conf->iot_path;
 }

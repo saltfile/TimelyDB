@@ -164,7 +164,7 @@ bool DB_insert_table(char *base_name,char *tab_name,char **colum_key,int key_siz
     string base_key = base_name;
     string tab_key = tab_name;
     tab_struct ins_tab = DB_TAB_MAP[base_key][tab_key];
-
+    if (!ins_tab.display)return false;
     for (int i = 0; i < key_size; ++i) {
         char *a1 = colum_key[i];
         string col_key = a1;
@@ -255,6 +255,19 @@ vector<string> get_DB_once_row(char *base_name,char *tab_name,int idx_nums){
     return result;
 
 }
+
+
+char *get_tab_cols(char *base_name,char *tab_name){
+    char *res = NULL;
+    string base_key = base_name;
+    string tab_key = tab_name;
+    tab_struct ins_tab = DB_TAB_MAP[base_key][tab_key];
+    if (ins_tab.col_together_name != NULL) {
+       res = str_copy("", ins_tab.col_together_name);
+    }
+    return res;
+}
+
 
 /**
  * 通过读取单表数据环来获取全部数据

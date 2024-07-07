@@ -100,6 +100,8 @@ typedef struct tree_list{
 }tree_list;
 
 typedef struct treenode{
+    mointor_handler handler;
+    bool is_succ;
     char *str;
     int strlen = 0;
     int strtype = 0;
@@ -160,7 +162,13 @@ enum TokenType{
     COMMA,                //,
     END,                  //;
 };
+typedef  struct colnm{
+    int start;
+    int type;
+    int end;
+    char *str;
 
+};
 
 struct condition{
 
@@ -182,6 +190,10 @@ struct sql_operation{
     struct condition* data_list;
 
 };
+//show
+char* show_DB_handle(char* sentence);
+char* show_Table_handle(char* sentence);
+
 
 treenode *init_use();
 void sql_use(scan_word *scan,treenode *root);
@@ -205,6 +217,23 @@ char* insert_handle(char* sentence);
 
 
 
+//初始化select
+treenode *init_sel();
+void sql_sel(scan_word *scan,treenode *root);
+char* select_handle(char* sentence);
+char* memte_select(treenode* root);
+
+
+treenode *init_mointor();
+char* handler_mointor(char* sentence);
+void sql_mointor(scan_word *scan,treenode *root);
+
+
+//删除表
+char* deltab_handle(char* sentence);
+
+colnm *get_colnm(scan_word *scan);
+colnm *get_andcolum(scan_word *scan,int len);
 treenode *check_tree(scan_word *scan);
 void add_list(tree_list *root,treenode *node);
 int get_list_size(tree_list *root);
@@ -213,8 +242,9 @@ void test_fire();
 
 tree_list *branch_259(scan_word *scanWord,int start,int end);
 tree_list * branch_257(scan_word *scan,int arrlen);
+tree_list * branch_256(scan_word *scan,int arrlen,int num);
 tree_list * branch_258(scan_word *scan,int arrlen);
-
+tree_list * branch_245(scan_word *scan,int arrlen);
 
 int check_table_exists(treenode* root);
 

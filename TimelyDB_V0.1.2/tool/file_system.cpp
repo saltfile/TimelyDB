@@ -94,7 +94,7 @@ int create_database(char *base_name) {
         return result;
     }
 
-    string key = base_path;
+    string key = base_name;
 
     map<string, FILE *> val;
 
@@ -368,8 +368,6 @@ int file_write(char *base_key, char *file_name, char *data){
     int result = fputs(data, ptr);
     fflush(ptr);
     return result;
-
-
 }
 
 char *file_read(char *base_name,char *file_name){

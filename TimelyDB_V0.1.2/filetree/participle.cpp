@@ -71,7 +71,7 @@
 
 char *keywords[] = {"select", "insert", "delete", "from", "into", "where", "group", "by", "between", "and", "or",
                     "primary", "like", "values", "order", "mean", "max", "min", "count", "as", "time","create","database",
-                    "table","use","int","float","double","timestamp","varchar",_END_};
+                    "table","use","int","float","double","timestamp","varchar","mointor","file",_END_};
 
 
 scan_word * scanWordInit(){
@@ -214,7 +214,7 @@ sqlWord *scanner(scan_word *scan) {
             case '>':
                 m_getch(scan);
                 if (scan->ch == '=') {
-                    myword->typenum = 150;
+                    myword->typenum = 160;
                     myword->word = ">=";
                     return myword;
                 }
@@ -550,7 +550,7 @@ int allFunc(scan_word *scan) {
             return (scan->level += 5);
             break;
         default:
-            printf("error!");
+//            printf("error!");
             return 0;
             break;
     }
@@ -568,7 +568,7 @@ int selectSql(scan_word *scan) {
         isEnd(scan);
         if (!allFunc(scan)) {
 //            printf("delete from error:语句错误");
-            printf("select from error:语句错误");//修改处
+//            printf("select from error:语句错误");//修改处
             return 0;
         }
         return scan->level;
@@ -638,6 +638,9 @@ void llParser(scan_word *scan) {
             break;
         case 25:
             printf("\nuse判断成功！ 种别码 :%d\n",scan->number);
+            break;
+        case 31:
+            printf("\nmointor 判断成功！ 种别码 :%d\n",scan->number);
             break;
         default:
             printf("error:语句错误\n");

@@ -22,22 +22,42 @@
 
 int main() {
     char *inf =  str_copy("","asdasd");
-
+//    vector<string> ss;
+//    SortByInt(ss,ss,ss,GT);
 
     char *path =  load_config_path();
     load_config(path);
     init_file_system();
     DB_init_memery_tab();
+    run_file_loading();
+    run_mointor_loading();
+    epollser_start(atoi(get_config_port()));
 
-    cout<<use_handle("use usnhdb")<<endl;
+
+//    insert into boiler (temp,name) values(32,bo1)
+
+
+
+
+
+//    cout<<use_handle("use iot")<<endl;
 //    cout<<create_handle("create database xxxs")<<endl;
-//    cout<<create_handle("create table xxx(age int,name varchar(255))")<<endl;
+//    cout<<create_handle("create table iotPo(temp int,mps int)")<<endl;
 
-    cout<<insert_handle("insert into xxx (name,age) values(asd,45)");
-    vector<string> res = get_DB_data("usnhdb","xxx");
-    for (int i = 0; i < res.size(); ++i) {
-        cout<<res[i]<<endl;
-    }
+//    cout<<insert_handle("insert into boiler (temp,name) values(32,bo1)");
+//    cout<<select_handle("select * from boiler where temp >= 1")<<endl;
+//    cout<<select_handle("select * from boiler")<<endl;
+//    cout<<deltab_handle("delete table boiler")<<endl;
+//    cout<<handler_mointor("mointor boiler time:3  file:boiler  temp,name")<<endl;
+//    cout<<show_DB_handle("show databases")<<endl;
+//    cout<<show_Table_handle("show tables")<<endl;
+
+
+
+//    vector<string> res = get_DB_data("usnhdb","xxx");
+//    for (int i = 0; i < res.size(); ++i) {
+//        cout<<res[i]<<endl;
+//    }
 //create database xxxs
 
 //    run_file_loading();
@@ -172,7 +192,7 @@ int main() {
 //    file_write("usnh_db","stu","sadakfhsdfss");
 //    file_write("usnh_db","stu","sadakf");
 //TODO：目前可以得知服务端还可以使用
-//    epollser_start(9898);
+
 
 
 
